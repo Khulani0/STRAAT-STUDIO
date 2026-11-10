@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import SEO, { type Props as SEOProps } from '../components/SEO.astro';
+import {
+  business,
+  footerLegalLine,
+  phoneHref,
+  whatsappHref,
+  defaultWhatsappMessage,
+} from '../config/business';
+
+export interface Props extends SEOProps {
+  /** Pre-filled WhatsApp message for this page. */
+  whatsappMessage?: string;
+  /** Shows the "Draft, review before launch" banner (legal pages). */
+  draft?: boolean;
+}
+
+const { whatsappMessage = defaultWhatsappMessage, draft = false, ...seo } = Astro.props;
+const wa = whatsappHref(whatsappMessage);
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en-ZA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/dm-sans-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+    <SEO {...seo} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-white text-ink">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {draft && (
+      <p class="bg-ink text-white text-center text-sm py-2 px-6">Draft, review before launch</p>
+    )}
+
+    <header class="bg-black text-white on-black">
+      <div class="container-site flex items-center justify-between gap-4 py-4">
+        <a href="/" class="font-heading font-extrabold text-2xl tracking-tight no-underline" aria-label="Straat Studio, home">
+          Straat<span class="text-accent-light">.</span>Studio
+        </a>
+        <a
+          class="btn btn-whatsapp"
+          href={wa}
+          data-event="whatsapp-click"
+          rel="noopener"
+        >
+          WhatsApp us
+        </a>
+      </div>
+    </header>
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <footer class="bg-black text-muted-dark on-black">
+      <div class="container-site py-12 flex flex-col gap-4 text-base">
+        <p class="font-heading font-extrabold text-white text-2xl">{business.name}</p>
+        <p>
+          <a class="underline" href={phoneHref} data-event="phone-click">Call us</a>
+        </p>
+        <p>{footerLegalLine}</p>
+        <p>&copy; {year} {business.legalName}</p>
+      </div>
+    </footer>
+  </body>
+</html>

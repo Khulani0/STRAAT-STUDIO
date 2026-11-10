@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business, prices, formatRand } from '../config/business';
+---
+
+<BaseLayout
+  title="Straat Studio | Websites for Cape Town trades"
+  description="Fixed-price websites for trades and small businesses in Cape Town. Scaffold preview only; the full homepage is built in step 2."
+  path="/"
+  noindex
+>
+  <section class="bg-black text-white on-black section">
+    <div class="container-site">
+      <h1>Scaffold is running.</h1>
+      <p class="mt-6 max-w-2xl text-muted-dark">
+        Base layout, design tokens and fonts are in place. The real homepage comes in step 2.
+      </p>
+      <p class="mt-6 text-muted-dark">
+        {business.name}: websites from {formatRand(prices.websites.onePage.price)}.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <span class="btn btn-primary">Primary</span>
+        <span class="btn btn-light">Light</span>
+        <span class="btn btn-whatsapp">WhatsApp</span>
+      </div>
+    </div>
+  </section>
+  <section class="bg-mist section">
+    <div class="container-site">
+      <h2>Mist section</h2>
+      <p class="mt-4 text-muted max-w-2xl">Muted text on white and mist, passing 4.5:1.</p>
+    </div>
+  </section>
+</BaseLayout>

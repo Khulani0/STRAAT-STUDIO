@@ -1,0 +1,79 @@
+---
+import { business } from '../config/business';
+
+export interface Props {
+  title: string; // under 60 characters
+  description: string; // under 155 characters
+  /** Path such as "/prices/". Always absolute-ised with trailing slash. */
+  path: string;
+  /** Absolute or root-relative 1200x630 share image. Omit until one exists. */
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  /** One or more JSON-LD objects. Must contain true facts only. */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Breadcrumb trail for non-home pages. Last item is the current page. */
+  breadcrumbs?: { name: string; path: string }[];
+}
+
+const {
+  title,
+  description,
+  path,
+  image,
+  imageAlt,
+  type = 'website',
+  noindex = false,
+  jsonLd,
+  breadcrumbs,
+} = Astro.props;
+
+if (import.meta.env.DEV) {
+  if (title.length >= 60) console.warn(`[SEO] Title is ${title.length} chars (limit 59): "${title}"`);
+  if (description.length >= 155) console.warn(`[SEO] Description is ${description.length} chars (limit 154) on ${path}`);
+}
+
+const normalisedPath = path.endsWith('/') ? path : `${path}/`;
+const canonical = new URL(normalisedPath, business.siteUrl).toString();
+const imageUrl = image ? new URL(image, business.siteUrl).toString() : undefined;
+
+const graph: Record<string, unknown>[] = [];
+if (jsonLd) graph.push(...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]));
+if (breadcrumbs && breadcrumbs.length > 0) {
+  graph.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: b.name,
+      item: new URL(b.path.endsWith('/') ? b.path : `${b.path}/`, business.siteUrl).toString(),
+    })),
+  });
+}
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+
+<meta property="og:site_name" content={business.name} />
+<meta property="og:locale" content="en_ZA" />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+{imageUrl && <meta property="og:image:width" content="1200" />}
+{imageUrl && <meta property="og:image:height" content="630" />}
+{imageUrl && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+
+<meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+{imageUrl && imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+
+{graph.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}
