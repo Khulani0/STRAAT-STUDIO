@@ -51,9 +51,9 @@
     letter-spacing: -0.03em;
     line-height: 1.05;
   }
-  h1 { font-size: clamp(48px, 7vw, 104px); }
-  h2 { font-size: clamp(38px, 5vw, 64px); }
-  h3 { font-size: clamp(24px, 2.2vw, 34px); line-height: 1.15; }
+  h1 { font-size: clamp(38px, 5.5vw, 64px); }
+  h2 { font-size: clamp(30px, 4vw, 44px); }
+  h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.2; }
 
   :focus-visible {
     outline: 3px solid var(--color-accent);
@@ -96,7 +96,7 @@
     gap: 0.5rem;
     min-height: 48px;
     padding: 0.75rem 1.75rem;
-    border-radius: 9999px;
+    border-radius: 6px;
     font-weight: 700;
     line-height: 1.2;
     text-decoration: none;
@@ -104,11 +104,9 @@
   }
   .btn-primary { background: var(--color-accent); color: #fff; }
   .btn-primary:hover { background: #2445c7; }
-  .btn-light { background: #fff; color: var(--color-ink); }
-  .btn-light:hover { background: var(--color-mist); }
   .btn-whatsapp { background: var(--color-whatsapp); color: #000; }
   .btn-whatsapp:hover { background: #1fbd5a; }
-  .btn-outline { border: 2px solid currentColor; }
+  .btn-outline { border: 2px solid var(--color-accent); color: var(--color-accent); }
 }
 
 .skip-link {
@@ -119,6 +117,6 @@
   background: var(--color-ink);
   color: #fff;
   padding: 12px 20px;
-  border-radius: 9999px;
+  border-radius: 6px;
 }
 .skip-link:focus { top: 16px; }

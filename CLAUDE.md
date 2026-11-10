@@ -31,21 +31,24 @@ The approved design reference is the "Straat Studio homepage v2" canvas. Match i
 | Token | Value |
 | --- | --- |
 | Ink | #15171A |
-| Black (hero, work, process, footer) | #000000 |
+| Black (footer only) | #000000 |
 | White | #FFFFFF |
 | Mist (alternate sections) | #F3F4F6 |
 | Accent (Straat blue) | #2F54EB |
-| Accent light (on black) | #8EA8FF |
-| WhatsApp green | #25D366 |
+| Accent light (links on the black footer only) | #8EA8FF |
+| WhatsApp green (WhatsApp button only, nowhere else) | #25D366 |
 | Muted text on white | #4A5058 (passes 4.5:1) |
 | Muted text on black | #C3C8CE |
 
-- Type scale: H1 clamp(48px, 7vw, 104px), H2 clamp(38px, 5vw, 64px), H3 24 to 34px, body 17 to 20px, line-height 1.6.
+- Type scale: the largest heading on the site is 64px. H1 clamp(38px, 5.5vw, 64px), H2 clamp(30px, 4vw, 44px), H3 22 to 28px, body 17 to 20px, line-height 1.6.
 - Headings: Bricolage Grotesque 800, letter-spacing -0.03em.
 - Layout: max-width 1240px, 24px side padding, 96px section padding (64px on mobile).
-- Buttons: full pill, min height 48px, visible focus ring 3px accent.
-- Icons: hand-drawn line icons, 2.5px stroke, one colour per service.
-- Motion: none on load except one hero entrance. Respect `prefers-reduced-motion`.
+- Backgrounds: white and Mist only, from the header down to the footer. Black is used for the footer only.
+- Colour: Straat blue is the only brand colour, used for buttons and links. Green appears only on the WhatsApp button. Never show a row of buttons in three different colours. No gradients, no glow.
+- Buttons: 6px corner radius (never pills), min height 48px, visible focus ring 3px accent.
+- Icons: plain line icons, 2.5px stroke, in Ink. Never inside coloured circles or badges. Use them sparingly.
+- Motion: none. No fade-ins, no entrance animations, no scroll effects. Respect `prefers-reduced-motion`.
+- Personal touch: the homepage has a clear space for a real photo of Khulani with a short note signed by Khulani. It is marked as a placeholder until the photo is supplied. Copy says "Cape Town small businesses", not only trades.
 
 ## 4. Site map
 

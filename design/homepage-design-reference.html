@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Straat Studio, web design in Cape Town</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=DM+Sans:opsz,wght@9..40,400..700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#2F54EB}a:hover{color:#1D39C4}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #2F54EB;outline-offset:3px}
+summary{cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+details[open] .faq-sign{transform:rotate(45deg)}
+.faq-sign{transition:transform .15s ease}
+@media (prefers-reduced-motion: reduce){.faq-sign{transition:none}}
+</style>
+</helmet>
+
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #15171A; background: #FFFFFF; font-size: 17px; line-height: 1.6; position: relative">
+
+<!-- Header -->
+<header style="position: sticky; top: 0; z-index: 20; background: #000000; border-bottom: 1px solid #23262B">
+<div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF">
+<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="7" fill="none" stroke="#FFFFFF" stroke-width="2"></rect><path d="M9 22c2 2 4.5 3 8 3 4 0 7-2 7-5 0-6-14-3-14-9 0-3 3-5 7-5 3 0 5.5 1 7 3" fill="none" stroke="{{accent}}" stroke-width="2.6" stroke-linecap="round"></path></svg>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em">straat studio</span>
+</a>
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="#contact" style="display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; min-height: 22px; background: #25D366; color: #06210F; text-decoration: none; font-weight: 700; font-size: 15px; border-radius: 999px">
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.2L4 20z" fill="none" stroke="#06210F" stroke-width="2" stroke-linejoin="round"></path></svg>
+WhatsApp us</a>
+<button type="button" onClick="{{openMenu}}" aria-label="Open menu" style="width: 48px; height: 48px; display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 0 10px; background: transparent; border: 0; cursor: pointer">
+<span style="display: block; height: 2px; background: #FFFFFF"></span>
+<span style="display: block; height: 2px; background: #FFFFFF"></span>
+</button>
+</div>
+</div>
+</header>
+
+<!-- Full screen menu -->
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<nav aria-label="Main" style="position: fixed; inset: 0; z-index: 40; background: #000000; color: #FFFFFF; display: flex; flex-direction: column; padding: 24px">
+<div style="display: flex; justify-content: flex-end">
+<button type="button" onClick="{{closeMenu}}" aria-label="Close menu" style="width: 56px; height: 56px; background: transparent; border: 0; color: #FFFFFF; font-size: 40px; line-height: 1; cursor: pointer">×</button>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(34px, 6vw, 64px); line-height: 1.15">
+<a href="#prices" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">Prices</a>
+<a href="#demo" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">See it work</a>
+<a href="#builder" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">Build your package</a>
+<a href="#work" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">Sample work</a>
+<a href="#services" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">Services</a>
+<a href="#process" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">How it works</a>
+<a href="#guides" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">Guides</a>
+<a href="#questions" onClick="{{closeMenu}}" style="color: #FFFFFF; text-decoration: none">Questions</a>
+<a href="#contact" onClick="{{closeMenu}}" style="color: {{accentLight}}; text-decoration: none">Get a free preview</a>
+</div>
+</nav>
+</sc-if>
+
+<main id="top">
+
+<!-- Hero -->
+<section style="background: #000000; color: #FFFFFF; overflow: hidden">
+<div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px 72px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 520px; min-width: 0">
+<p style="margin: 0 0 20px; font-size: 16px; color: #B8BEC6">Web design, Cape Town</p>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(48px, 7vw, 104px); line-height: 0.95; letter-spacing: -0.035em">Websites that get your phone ringing.</h1>
+<p style="margin: 28px 0 0; max-width: 32em; font-size: 20px; line-height: 1.55; color: #D4D8DD">Websites that turn Google searches into booked jobs, and a simple system that keeps track of every enquiry for you. Built for Cape Town trades and small businesses. You see your homepage before you pay anything.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px">
+<a href="#contact" style="display: inline-block; padding: 17px 28px; background: {{accent}}; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 18px; border-radius: 999px">Get my free preview</a>
+<a href="#prices" style="display: inline-block; padding: 15px 26px; border: 2px solid #FFFFFF; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 18px; border-radius: 999px">See prices from R999</a>
+</div>
+<ul style="margin: 40px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 15px; color: #B8BEC6">
+<li>Final prices, no VAT added</li>
+<li>You own your domain</li>
+<li>Live in 3 to 7 working days</li>
+</ul>
+</div>
+
+<!-- Device mockup -->
+<div style="flex: 1 1 440px; min-width: 0; position: relative; padding-bottom: 40px">
+<div style="background: #2A2D33; border-radius: 16px 16px 4px 4px; padding: 12px 12px 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
+<div style="background: #FFFFFF; border-radius: 6px; overflow: hidden; color: #15171A">
+<div style="background: #0F3B5F; color: #FFFFFF; padding: 14px 18px 22px">
+<div style="display: flex; justify-content: space-between; font-size: 11px"><span style="font-weight: 800; font-size: 13px">Ndlovu Electrical</span><span style="opacity: 0.8">Services   Areas   Contact</span></div>
+<p style="margin: 22px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; line-height: 1.05">Electrician in Mitchells Plain and Khayelitsha</p>
+<p style="margin: 8px 0 0; font-size: 11px; opacity: 0.85">COCs, DB board upgrades and fault finding. Callouts Monday to Saturday.</p>
+<div style="display: flex; gap: 6px; margin-top: 12px"><span style="background: #FFC21A; color: #15171A; font-weight: 700; font-size: 11px; padding: 6px 10px; border-radius: 3px">Call now</span><span style="border: 1px solid #FFFFFF; font-weight: 700; font-size: 11px; padding: 5px 10px; border-radius: 3px">WhatsApp</span></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 12px 18px 16px; font-size: 10px">
+<div style="border: 1px solid #E3E5E8; border-radius: 4px; padding: 8px"><strong style="display: block; font-size: 11px">COC certificates</strong>For selling or renting</div>
+<div style="border: 1px solid #E3E5E8; border-radius: 4px; padding: 8px"><strong style="display: block; font-size: 11px">DB boards</strong>Upgrades and earth leakage</div>
+<div style="border: 1px solid #E3E5E8; border-radius: 4px; padding: 8px"><strong style="display: block; font-size: 11px">Fault finding</strong>Tripping and prepaid meters</div>
+</div>
+</div>
+</div>
+<div style="height: 14px; margin: 0 -24px; background: #3A3E45; border-radius: 0 0 14px 14px"></div>
+<div style="position: absolute; right: -6px; bottom: 0; width: 132px; background: #2A2D33; border-radius: 20px; padding: 7px; box-shadow: 0 20px 40px rgba(0,0,0,0.6)">
+<div style="background: #0F3B5F; border-radius: 14px; overflow: hidden; color: #FFFFFF; padding: 12px 10px 14px">
+<p style="margin: 0; font-size: 9px; font-weight: 800">Ndlovu Electrical</p>
+<p style="margin: 14px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 14px; line-height: 1.05">Electrician in Mitchells Plain</p>
+<p style="margin: 10px 0 0; background: #FFC21A; color: #15171A; font-weight: 700; font-size: 9px; padding: 6px; border-radius: 3px; text-align: center">Call now</p>
+<p style="margin: 6px 0 0; border: 1px solid #FFFFFF; font-weight: 700; font-size: 9px; padding: 5px; border-radius: 3px; text-align: center">WhatsApp</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Prices -->
+<section id="prices" style="background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 48px; margin-bottom: 48px">
+<h2 style="margin: 0; max-width: 14ch; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em">Prices on the page, not after a meeting.</h2>
+<p style="margin: 0; max-width: 30em; color: #4A5058">Once-off prices. Every package includes a .co.za domain, hosting for the first year, the words written for you and 2 rounds of changes.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); border: 2px solid #15171A">
+<div style="padding: 36px 32px; border-right: 2px solid #15171A">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px">One-Page</h3>
+<p style="margin: 6px 0 0; color: #4A5058; font-size: 15px">For sellers and new businesses who need one link that explains everything.</p>
+<p style="margin: 28px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.03em">R999</p>
+<p style="margin: 6px 0 0; font-size: 14px; color: #4A5058">Live in 3 working days</p>
+<ul style="margin: 28px 0 0; padding: 0 0 0 20px; font-size: 16px; line-height: 1.9">
+<li>One page: services, prices, hours, map</li>
+<li>Call and WhatsApp buttons, enquiry form</li>
+<li>info@yourbusiness.co.za to your Gmail</li>
+<li>Basic Google setup</li>
+</ul>
+<a href="#contact" style="display: block; margin-top: 32px; padding: 14px; text-align: center; border: 2px solid #15171A; color: #15171A; text-decoration: none; font-weight: 700; border-radius: 999px">Start with One-Page</a>
+</div>
+<div style="padding: 36px 32px; background: #15171A; color: #FFFFFF; border-right: 2px solid #15171A">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px">Business</h3>
+<p style="margin: 6px 0 0; color: #C3C8CE; font-size: 15px">Most chosen by trades. A page for every service so Google can match each search.</p>
+<p style="margin: 28px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.03em">R2,499</p>
+<p style="margin: 6px 0 0; font-size: 14px; color: #C3C8CE">Live in 5 working days</p>
+<ul style="margin: 28px 0 0; padding: 0 0 0 20px; font-size: 16px; line-height: 1.9">
+<li>Up to 5 pages, one per service</li>
+<li>Photo gallery and quote form</li>
+<li>Google Business Profile set up</li>
+<li>Everything in One-Page</li>
+</ul>
+<a href="#contact" style="display: block; margin-top: 32px; padding: 14px; text-align: center; background: {{accent}}; color: #FFFFFF; text-decoration: none; font-weight: 700; border-radius: 999px">Start with Business</a>
+</div>
+<div style="padding: 36px 32px">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 26px">Catalogue</h3>
+<p style="margin: 6px 0 0; color: #4A5058; font-size: 15px">For bakers, caterers and shops who change prices and products often.</p>
+<p style="margin: 28px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.03em">R2,999</p>
+<p style="margin: 6px 0 0; font-size: 14px; color: #4A5058">Live in 7 working days</p>
+<ul style="margin: 28px 0 0; padding: 0 0 0 20px; font-size: 16px; line-height: 1.9">
+<li>Up to 30 products you update yourself</li>
+<li>WhatsApp order buttons</li>
+<li>Optional PayFast or Yoco payments</li>
+<li>Everything in Business</li>
+</ul>
+<a href="#contact" style="display: block; margin-top: 32px; padding: 14px; text-align: center; border: 2px solid #15171A; color: #15171A; text-decoration: none; font-weight: 700; border-radius: 999px">Start with Catalogue</a>
+</div>
+</div>
+<p style="margin: 20px 0 0; font-size: 15px; color: #4A5058">Can't pay at once? Business website plus Straat Leads: R499 to start, then R449 a month for 12 months. The site is yours after the 12th payment.</p>
+
+<h3 style="margin: 72px 0 8px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; letter-spacing: -0.02em">Monthly plans: never lose an enquiry again</h3>
+<p style="margin: 0 0 28px; max-width: 40em; color: #4A5058">Optional. Cancel any time. Your website stays yours either way.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border-top: 2px solid #15171A">
+<div style="padding: 28px 24px 28px 0; border-bottom: 1px solid #D6D9DE">
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Straat Care</p>
+<p style="margin: 4px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.1">R99<span style="font-size: 16px; font-weight: 500; font-family: 'DM Sans', sans-serif"> a month</span></p>
+<p style="margin: 12px 0 0; color: #4A5058; font-size: 16px">Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p>
+</div>
+<div style="padding: 28px 24px; border-bottom: 1px solid #D6D9DE; background: #F3F4F6">
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Straat Leads</p>
+<p style="margin: 4px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.1">R249<span style="font-size: 16px; font-weight: 500; font-family: 'DM Sans', sans-serif"> a month</span></p>
+<p style="margin: 12px 0 0; color: #4A5058; font-size: 16px">Everything in Care, plus a quote form where customers choose the job, area and add photos. Every enquiry lands in your inbox with a status, you get an instant alert, the customer gets an instant reply, and you get a monthly report.</p>
+</div>
+<div style="padding: 28px 0 28px 24px; border-bottom: 1px solid #D6D9DE">
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Straat Growth</p>
+<p style="margin: 4px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.1">R449<span style="font-size: 16px; font-weight: 500; font-family: 'DM Sans', sans-serif"> a month</span></p>
+<p style="margin: 12px 0 0; color: #4A5058; font-size: 16px">Everything in Leads, plus a Google review request after every finished job, reminders for quotes not yet accepted, 2 Google posts a month and a new service or area page every quarter.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Package builder -->
+<section id="builder" style="background: #F3F4F6">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: flex-start">
+<div style="flex: 2 1 560px; min-width: 0">
+<h2 style="margin: 0 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 4.4vw, 56px); line-height: 1; letter-spacing: -0.03em">Build your package</h2>
+<p style="margin: 0 0 36px; color: #4A5058; max-width: 36em">Pick what you need. The price updates as you go, and there is nothing hidden behind it.</p>
+<p style="margin: 0 0 12px; font-weight: 700">1. Your website</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px">
+<button type="button" onClick="{{pickSite_one}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_one_bg}}; color: {{site_one_fg}}">One-Page R999</button>
+<button type="button" onClick="{{pickSite_business}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_business_bg}}; color: {{site_business_fg}}">Business R2,499</button>
+<button type="button" onClick="{{pickSite_catalogue}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_catalogue_bg}}; color: {{site_catalogue_fg}}">Catalogue R2,999</button>
+<button type="button" onClick="{{pickSite_launch}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_launch_bg}}; color: {{site_launch_fg}}">Launch Pack R3,299</button>
+</div>
+<p style="margin: 0 0 12px; font-weight: 700">2. Monthly plan (optional)</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px">
+<button type="button" onClick="{{pickPlan_none}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{plan_none_bg}}; color: {{plan_none_fg}}">No plan</button>
+<button type="button" onClick="{{pickPlan_care}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{plan_care_bg}}; color: {{plan_care_fg}}">Care R99</button>
+<button type="button" onClick="{{pickPlan_leads}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{plan_leads_bg}}; color: {{plan_leads_fg}}">Leads R249</button>
+<button type="button" onClick="{{pickPlan_growth}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{plan_growth_bg}}; color: {{plan_growth_fg}}">Growth R449</button>
+</div>
+<p style="margin: 0 0 12px; font-weight: 700">3. Extras</p>
+<sc-if value="{{notLaunch}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<button type="button" onClick="{{toggle_logo}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{add_logo_bg}}; color: {{add_logo_fg}}">Logo R300</button>
+<button type="button" onClick="{{toggle_posters}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{add_posters_bg}}; color: {{add_posters_fg}}">3 posters R350</button>
+<button type="button" onClick="{{toggle_wa}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{add_wa_bg}}; color: {{add_wa_fg}}">WhatsApp setup R250</button>
+</div>
+</sc-if>
+<sc-if value="{{isLaunch}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; color: #4A5058">Logo, 3 posters and WhatsApp Business setup are already in the Launch Pack.</p>
+</sc-if>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; background: #15171A; color: #FFFFFF; padding: 32px; border-radius: 6px">
+<p style="margin: 0; color: #C3C8CE; font-size: 15px">Once-off, final price</p>
+<p style="margin: 4px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 56px; line-height: 1; letter-spacing: -0.03em">{{onceOff}}</p>
+<p style="margin: 24px 0 0; color: #C3C8CE; font-size: 15px">Then</p>
+<p style="margin: 4px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 28px">{{monthly}}</p>
+<p style="margin: 20px 0 0; color: #C3C8CE; font-size: 14px">Domain and hosting for year 1 included. No VAT added. Free homepage preview before you pay.</p>
+<a href="#contact" style="display: block; margin-top: 28px; padding: 15px; text-align: center; background: #25D366; color: #06210F; text-decoration: none; font-weight: 700; border-radius: 999px">Send this to us on WhatsApp</a>
+</div>
+</div>
+</section>
+
+<!-- Straat Leads demo -->
+<section id="demo" style="background: #0E1630; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px">
+<p style="margin: 0 0 16px; display: inline-block; padding: 6px 12px; border: 1px solid #3A4673; border-radius: 999px; font-size: 14px; color: #C9D2F0">Live demo, made-up data</p>
+<h2 style="margin: 0; max-width: 18ch; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em">More than a website. A system that catches every job.</h2>
+<p style="margin: 20px 0 48px; max-width: 40em; color: #C9D2F0; font-size: 18px">Try it. You are the customer on the left. The business owner sees the right. This is Straat Leads, R249 a month.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<div style="flex: 1 1 360px; min-width: 0; background: #FFFFFF; color: #15171A; border-radius: 10px; padding: 28px">
+<p style="margin: 0; font-size: 13px; color: #4A5058">ndlovuelectrical.co.za</p>
+<h3 style="margin: 6px 0 20px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px">Get a quote</h3>
+<sc-if value="{{notSubmitted}}" hint-placeholder-val="{{ true }}">
+<div>
+<p style="margin: 0 0 10px; font-weight: 700; font-size: 15px">What do you need?</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px">
+<button type="button" onClick="{{pickJob0}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{job0_bg}}; color: {{job0_fg}}">DB board upgrade</button>
+<button type="button" onClick="{{pickJob1}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{job1_bg}}; color: {{job1_fg}}">COC certificate</button>
+<button type="button" onClick="{{pickJob2}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{job2_bg}}; color: {{job2_fg}}">Fault finding</button>
+</div>
+<p style="margin: 0 0 10px; font-weight: 700; font-size: 15px">Where?</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px">
+<button type="button" onClick="{{pickArea0}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{area0_bg}}; color: {{area0_fg}}">Bellville</button>
+<button type="button" onClick="{{pickArea1}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{area1_bg}}; color: {{area1_fg}}">Mitchells Plain</button>
+<button type="button" onClick="{{pickArea2}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{area2_bg}}; color: {{area2_fg}}">Khayelitsha</button>
+</div>
+<p style="margin: 0 0 8px; font-weight: 700; font-size: 15px">Describe the problem</p>
+<p style="margin: 0 0 12px; padding: 12px; border: 1px solid #D6D9DE; border-radius: 4px; color: #4A5058; font-size: 15px">Lights trip when the geyser switches on.</p>
+<p style="margin: 0 0 20px; padding: 12px; border: 1px dashed #B9BEBB; border-radius: 4px; color: #4A5058; font-size: 15px; text-align: center">2 photos added</p>
+<button type="button" onClick="{{send}}" style="width: 100%; padding: 15px; border: 0; border-radius: 999px; background: #0F3B5F; color: #FFFFFF; font-weight: 700; font-size: 17px; cursor: pointer; font-family: inherit">Send quote request</button>
+</div>
+</sc-if>
+<sc-if value="{{submitted}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 20px; background: #EAF7EE; border-radius: 6px">
+<p style="margin: 0; font-weight: 700; font-size: 18px">Thanks, your request is in.</p>
+<p style="margin: 8px 0 0; color: #3A4A3F">Ndlovu Electrical has your {{job}} request for {{area}} and replies within an hour. A copy is in your email.</p>
+</div>
+</sc-if>
+</div>
+<div style="flex: 1.3 1 440px; min-width: 0; background: #FFFFFF; color: #15171A; border-radius: 10px; overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 24px; background: #15171A; color: #FFFFFF">
+<p style="margin: 0; font-weight: 700">StraatOS enquiries</p>
+<p style="margin: 0; font-size: 14px; color: #C3C8CE">{{enquiryCount}} this month, {{wonCount}} won</p>
+</div>
+<sc-if value="{{submitted}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; padding: 12px 24px; background: #FFF4D6; font-size: 15px"><strong>New enquiry:</strong> {{job}}, {{area}}. Sent to your phone.</p>
+</sc-if>
+<div style="padding: 8px 24px 20px">
+<sc-if value="{{submitted}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E3E5E8; "><div><p style="margin: 0; font-weight: 700">{{job}}</p><p style="margin: 2px 0 0; font-size: 14px; color: #4A5058">{{area}}, just now, 2 photos</p></div><span style="padding: 5px 12px; border-radius: 999px; background: {{statusBg}}; color: #FFFFFF; font-size: 13px; font-weight: 700; white-space: nowrap">{{statusLabel}}</span></div>
+</sc-if>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E3E5E8; "><div><p style="margin: 0; font-weight: 700">Geyser wiring</p><p style="margin: 2px 0 0; font-size: 14px; color: #4A5058">Parow, 2 days ago</p></div><span style="padding: 5px 12px; border-radius: 999px; background: #7048E8; color: #FFFFFF; font-size: 13px; font-weight: 700; white-space: nowrap">Quote sent</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; "><div><p style="margin: 0; font-weight: 700">COC certificate</p><p style="margin: 2px 0 0; font-size: 14px; color: #4A5058">Goodwood, 5 days ago</p></div><span style="padding: 5px 12px; border-radius: 999px; background: #2F9E44; color: #FFFFFF; font-size: 13px; font-weight: 700; white-space: nowrap">Won</span></div>
+<sc-if value="{{submitted}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px">
+<sc-if value="{{notWon}}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{advance}}" style="padding: 12px 18px; border: 0; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-weight: 700; cursor: pointer; font-family: inherit">Move to next step</button>
+</sc-if>
+<sc-if value="{{isWon}}" hint-placeholder-val="{{ false }}">
+<button type="button" style="padding: 12px 18px; border: 0; border-radius: 999px; background: #25D366; color: #06210F; font-weight: 700; font-family: inherit">Ask for a Google review</button>
+</sc-if>
+<button type="button" onClick="{{reset}}" style="padding: 10px 18px; border: 2px solid #15171A; border-radius: 999px; background: #FFFFFF; color: #15171A; font-weight: 700; cursor: pointer; font-family: inherit">Start again</button>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+<p style="margin: 32px 0 0; color: #C9D2F0; max-width: 44em">Every enquiry is tracked from first message to won job. The owner gets an alert, the customer gets an instant reply, and once a job is won, one tap asks for a Google review.</p>
+</div>
+</section>
+
+<!-- Sample work -->
+<section id="work" style="background: #000000; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em">Sample work</h2>
+<p style="margin: 18px 0 64px; max-width: 38em; color: #C3C8CE">Concept projects, not commissioned client work. We built them for made-up Cape Town businesses to show the standard, and real client sites replace them here as they go live. Each one has its own look, because each business is different.</p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: center; padding-bottom: 72px; border-bottom: 1px solid #2A2D33">
+<div style="flex: 1 1 420px; min-width: 0; background: #FFF7EE; border-radius: 10px; padding: 24px; color: #3B2314">
+<p style="margin: 0; font-family: Georgia, serif; font-weight: 700; font-size: 26px">Fazila's Kitchen</p>
+<p style="margin: 4px 0 18px; font-size: 13px; color: #6A4A36">Home baking from Athlone. Order by Thursday for the weekend.</p>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #EBD9C6; font-size: 14px"><span>Chocolate celebration cake, serves 12</span><strong>R420</strong></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #EBD9C6; font-size: 14px"><span>Milk tart, large</span><strong>R160</strong></div>
+<div style="display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid #EBD9C6; border-bottom: 1px solid #EBD9C6; font-size: 14px"><span>Koeksisters, 12</span><strong>R75</strong></div>
+<p style="margin: 16px 0 0; display: inline-block; background: #7A2E14; color: #FFFFFF; font-weight: 700; font-size: 13px; padding: 9px 16px; border-radius: 999px">Order on WhatsApp</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">Fazila's Kitchen, home baker</h3>
+<p style="margin: 6px 0 0; color: {{accentLight}}; font-weight: 700">Catalogue package</p>
+<p style="margin: 18px 0 0; color: #D4D8DD">The owner changes prices and photos from her phone. Every product has an order button that opens WhatsApp with the item already typed in.</p>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap-reverse; gap: 40px 64px; align-items: center; padding: 72px 0; border-bottom: 1px solid #2A2D33">
+<div style="flex: 1 1 380px; min-width: 0">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">Thandeka Hair Studio, salon</h3>
+<p style="margin: 6px 0 0; color: {{accentLight}}; font-weight: 700">One-Page package</p>
+<p style="margin: 18px 0 0; color: #D4D8DD">Prices, hours, directions from the taxi rank and booking by WhatsApp, all on one page she shares on Facebook and Instagram.</p>
+</div>
+<div style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border-radius: 10px; overflow: hidden; color: #15171A">
+<div style="background: #4A1D3F; color: #FFFFFF; padding: 22px 24px">
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; line-height: 1">Thandeka Hair Studio</p>
+<p style="margin: 8px 0 0; font-size: 13px; opacity: 0.9">Site C, Khayelitsha. Tuesday to Saturday, 8am to 6pm.</p>
+</div>
+<div style="padding: 14px 24px 22px; font-size: 14px">
+<div style="display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #ECE3EA"><span>Knotless braids, mid-back</span><strong>from R550</strong></div>
+<div style="display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #ECE3EA"><span>Cornrows</span><strong>from R180</strong></div>
+<div style="display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #ECE3EA"><span>Wash and blow-dry</span><strong>R150</strong></div>
+<p style="margin: 16px 0 0; display: inline-block; background: #4A1D3F; color: #FFFFFF; font-weight: 700; padding: 9px 16px; border-radius: 4px">Book on WhatsApp</p>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: center; padding-top: 72px">
+<div style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border-radius: 10px; overflow: hidden; color: #15171A">
+<div style="background: #0F3B5F; color: #FFFFFF; padding: 22px 24px">
+<p style="margin: 0; font-size: 13px; font-weight: 800">Ndlovu Electrical</p>
+<p style="margin: 14px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; line-height: 1.05">Electrician in Mitchells Plain and Khayelitsha</p>
+<p style="margin: 14px 0 0; display: inline-block; background: #FFC21A; color: #15171A; font-weight: 700; font-size: 13px; padding: 8px 12px; border-radius: 3px">Call now</p>
+</div>
+<div style="padding: 14px 24px 22px; font-size: 14px">
+<p style="margin: 0; padding: 9px 0; border-bottom: 1px solid #E3E5E8">Certificate of compliance for selling or renting</p>
+<p style="margin: 0; padding: 9px 0; border-bottom: 1px solid #E3E5E8">DB board and earth leakage upgrades</p>
+<p style="margin: 0; padding: 9px 0">Geyser and stove wiring</p>
+</div>
+</div>
+<div style="flex: 1 1 380px; min-width: 0">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 34px; line-height: 1.1">Ndlovu Electrical, electrician</h3>
+<p style="margin: 6px 0 0; color: {{accentLight}}; font-weight: 700">Business package</p>
+<p style="margin: 18px 0 0; color: #D4D8DD">A separate page for each job type and each area served, so a search for "electrician Mitchells Plain" lands on the right page. Linked to his Google Business Profile.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Services -->
+<section id="services" style="background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px">
+<h2 style="margin: 0 0 56px; max-width: 16ch; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em">Everything a small business needs to be found.</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px 48px">
+<div>
+<svg width="52" height="44" viewBox="0 0 52 44" aria-hidden="true"><rect x="2" y="2" width="48" height="34" fill="none" stroke="#E5484D" stroke-width="2.5"></rect><line x1="2" y1="10" x2="50" y2="10" stroke="#E5484D" stroke-width="2.5"></line><line x1="10" y1="20" x2="26" y2="20" stroke="#E5484D" stroke-width="2.5"></line><line x1="10" y1="27" x2="22" y2="27" stroke="#E5484D" stroke-width="2.5"></line><rect x="31" y="16" width="12" height="13" fill="none" stroke="#E5484D" stroke-width="2.5"></rect></svg>
+<h3 style="margin: 18px 0 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Websites</h3>
+<p style="margin: 0; color: #4A5058">Fast sites built to load on a cheap phone with weak signal. From R999.</p>
+</div>
+<div>
+<svg width="52" height="44" viewBox="0 0 52 44" aria-hidden="true"><path d="M3 4h7l5 24h26l5-16H13" fill="none" stroke="#D99A00" stroke-width="2.5" stroke-linejoin="round"></path><circle cx="19" cy="37" r="4" fill="none" stroke="#D99A00" stroke-width="2.5"></circle><circle cx="37" cy="37" r="4" fill="none" stroke="#D99A00" stroke-width="2.5"></circle></svg>
+<h3 style="margin: 18px 0 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Online catalogues</h3>
+<p style="margin: 0; color: #4A5058">Products and prices you update yourself, with WhatsApp ordering. From R2,999.</p>
+</div>
+<div>
+<svg width="52" height="44" viewBox="0 0 52 44" aria-hidden="true"><path d="M26 41s-14-13-14-24a14 14 0 0 1 28 0c0 11-14 24-14 24z" fill="none" stroke="#2F9E44" stroke-width="2.5"></path><circle cx="26" cy="17" r="5" fill="none" stroke="#2F9E44" stroke-width="2.5"></circle></svg>
+<h3 style="margin: 18px 0 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Google Business Profile</h3>
+<p style="margin: 0; color: #4A5058">Show up on Google Maps with the right hours, photos and areas. The profile is in your name; we are added as a manager. R250, included in Business.</p>
+</div>
+<div>
+<svg width="52" height="44" viewBox="0 0 52 44" aria-hidden="true"><path d="M8 40l2.6-7.8A17 17 0 1 1 17 38.6L8 40z" fill="none" stroke="#1C7ED6" stroke-width="2.5" stroke-linejoin="round"></path><path d="M19 17c1 5 4 8 9 10l3-3 4 2-1 4c-9 0-17-8-17-17l4-1 2 4-3 3z" fill="none" stroke="#1C7ED6" stroke-width="2"></path></svg>
+<h3 style="margin: 18px 0 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">WhatsApp Business setup</h3>
+<p style="margin: 0; color: #4A5058">Catalogue, greeting and away messages and quick replies, in the free app. R250.</p>
+</div>
+<div>
+<svg width="52" height="44" viewBox="0 0 52 44" aria-hidden="true"><path d="M44 4L20 30l-4-4L40 2z" fill="none" stroke="#9C36B5" stroke-width="2.5" stroke-linejoin="round"></path><path d="M16 26c-6 0-9 4-9 9 0 3-2 5-4 5 8 2 17 0 17-9z" fill="none" stroke="#9C36B5" stroke-width="2.5" stroke-linejoin="round"></path></svg>
+<h3 style="margin: 18px 0 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Logo and posters</h3>
+<p style="margin: 0; color: #4A5058">A clean name logo for R300 and 3 social media posters for R350.</p>
+</div>
+<div>
+<svg width="52" height="44" viewBox="0 0 52 44" aria-hidden="true"><path d="M26 3l18 7v11c0 11-8 18-18 21C16 39 8 32 8 21V10z" fill="none" stroke="#0C8599" stroke-width="2.5" stroke-linejoin="round"></path><path d="M18 22l6 6 10-11" fill="none" stroke="#0C8599" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<h3 style="margin: 18px 0 6px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px">Enquiry tracking</h3>
+<p style="margin: 0; color: #4A5058">Care from R99, Leads from R249 and Growth from R449 a month. Every enquiry tracked, every customer answered.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Process -->
+<section id="process" style="background: #000000; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 48px 80px">
+<div style="flex: 1 1 340px; min-width: 0">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5vw, 64px); line-height: 1; letter-spacing: -0.03em">See it first. Pay after.</h2>
+<p style="margin: 20px 0 0; max-width: 26em; color: #C3C8CE">Four steps, all on WhatsApp. No meetings, no forms to fill in.</p>
+</div>
+<ol style="flex: 2 1 520px; min-width: 0; margin: 0; padding: 0 0 0 36px; list-style: none; border-left: 2px dashed {{accent}}">
+<li style="position: relative; padding-bottom: 48px">
+<span aria-hidden="true" style="position: absolute; left: -46px; top: 8px; width: 18px; height: 18px; border-radius: 50%; background: {{accent}}"></span>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: 1">01</p>
+<h3 style="margin: 14px 0 6px; font-size: 24px">Send your details</h3>
+<p style="margin: 0; color: #C3C8CE">Your business name, what you do, the areas you serve and a few photos of your work.</p>
+</li>
+<li style="position: relative; padding-bottom: 48px">
+<span aria-hidden="true" style="position: absolute; left: -46px; top: 8px; width: 18px; height: 18px; border-radius: 50%; background: {{accent}}"></span>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: 1">02</p>
+<h3 style="margin: 14px 0 6px; font-size: 24px">Get your free homepage preview</h3>
+<p style="margin: 0; color: #C3C8CE">One homepage, designed and written for your business with your name, services and photos. No payment yet. The full site is built after your deposit.</p>
+</li>
+<li style="position: relative; padding-bottom: 48px">
+<span aria-hidden="true" style="position: absolute; left: -46px; top: 8px; width: 18px; height: 18px; border-radius: 50%; background: {{accent}}"></span>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: 1">03</p>
+<h3 style="margin: 14px 0 6px; font-size: 24px">Approve and pay</h3>
+<p style="margin: 0; color: #C3C8CE">One-Page is paid in full. Business and Catalogue are half now, half before your site goes live.</p>
+</li>
+<li style="position: relative">
+<span aria-hidden="true" style="position: absolute; left: -46px; top: 8px; width: 18px; height: 18px; border-radius: 50%; background: {{accent}}"></span>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 48px; line-height: 1">04</p>
+<h3 style="margin: 14px 0 6px; font-size: 24px">Go live on your own address</h3>
+<p style="margin: 0; color: #C3C8CE">Your site goes live on your .co.za, with a one-page sheet showing what you own and how to ask for changes.</p>
+</li>
+</ol>
+</div>
+</section>
+
+<!-- Comparison -->
+<section style="background: #F3F4F6">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px">
+<h2 style="margin: 0 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.02em">Before you pay anyone, ask these questions.</h2>
+<p style="margin: 0 0 32px; max-width: 40em; color: #4A5058">Cheap website adverts often leave things out. Here is what we include, in writing.</p>
+<div style="overflow-x: auto; background: #FFFFFF; border: 1px solid #D6D9DE">
+<table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 16px">
+<thead><tr style="text-align: left; border-bottom: 2px solid #15171A">
+<th scope="col" style="padding: 16px 20px">Question</th>
+<th scope="col" style="padding: 16px 20px">Straat Studio</th>
+</tr></thead>
+<tbody>
+<tr style="border-bottom: 1px solid #E3E5E8"><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">Is the domain included, and in whose name?</th><td style="padding: 14px 20px">Included for year 1, registered in your name</td></tr>
+<tr style="border-bottom: 1px solid #E3E5E8"><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">Is hosting included?</th><td style="padding: 14px 20px">Yes, for year 1</td></tr>
+<tr style="border-bottom: 1px solid #E3E5E8"><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">What does year 2 cost?</th><td style="padding: 14px 20px">R999 a year, or R99 a month with Straat Care</td></tr>
+<tr style="border-bottom: 1px solid #E3E5E8"><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">Who writes the words?</th><td style="padding: 14px 20px">We do, from your WhatsApp details</td></tr>
+<tr style="border-bottom: 1px solid #E3E5E8"><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">Can I see it before paying?</th><td style="padding: 14px 20px">Yes, a free homepage preview</td></tr>
+<tr style="border-bottom: 1px solid #E3E5E8"><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">Who owns my Google Business Profile?</th><td style="padding: 14px 20px">You do. We are added as a manager, and you can remove us at any time</td></tr>
+<tr style="border-bottom: 1px solid #E3E5E8"><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">Who owns the website code?</th><td style="padding: 14px 20px">You do, after final payment, in writing, with a handover guide</td></tr>
+<tr><th scope="row" style="padding: 14px 20px; text-align: left; font-weight: 500">Can I leave and take my site?</th><td style="padding: 14px 20px">Yes. No contract, and we hand over your files and logins</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<!-- Industries and areas, for search -->
+<section style="background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 48px 80px">
+<div style="flex: 1 1 480px; min-width: 0">
+<h2 style="margin: 0 0 28px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; letter-spacing: -0.02em">Websites for your trade</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; font-size: 18px">
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Electricians</a>
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Plumbers</a>
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Builders and painters</a>
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Solar installers</a>
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Hair and nail salons</a>
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Home bakers and caterers</a>
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Mechanics</a>
+<a href="#top" style="padding: 12px 0; border-bottom: 1px solid #E3E5E8; color: #15171A; text-decoration: none">Cleaning companies</a>
+</div>
+</div>
+<div style="flex: 1 1 360px; min-width: 0">
+<h2 style="margin: 0 0 28px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; letter-spacing: -0.02em">Areas we serve</h2>
+<p style="margin: 0; font-size: 18px; line-height: 2">Bellville, Mitchells Plain, Khayelitsha, Athlone, Gugulethu, Durbanville, Parow, Goodwood, the Southern Suburbs, the CBD and the rest of Cape Town. We work over WhatsApp, so anywhere in South Africa too.</p>
+</div>
+</div>
+</section>
+
+<!-- Guides -->
+<section id="guides" style="background: #F3F4F6">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px">
+<h2 style="margin: 0 0 40px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.02em">Guides for business owners</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px">
+<a href="#top" style="display: block; padding: 28px; background: #FFFFFF; border: 1px solid #D6D9DE; color: #15171A; text-decoration: none">
+<p style="margin: 0; font-size: 14px; color: #4A5058">Prices</p>
+<h3 style="margin: 10px 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15">How much does a website cost in Cape Town in 2026?</h3>
+<p style="margin: 0; color: #4A5058; font-size: 16px">What R350, R1,000 and R3,500 websites actually include, and the costs that show up in year 2.</p>
+</a>
+<a href="#top" style="display: block; padding: 28px; background: #FFFFFF; border: 1px solid #D6D9DE; color: #15171A; text-decoration: none">
+<p style="margin: 0; font-size: 14px; color: #4A5058">Getting found</p>
+<h3 style="margin: 10px 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15">How to get your business on Google Maps for free</h3>
+<p style="margin: 0; color: #4A5058; font-size: 16px">Set up your Google Business Profile in an afternoon, step by step, with your phone.</p>
+</a>
+<a href="#top" style="display: block; padding: 28px; background: #FFFFFF; border: 1px solid #D6D9DE; color: #15171A; text-decoration: none">
+<p style="margin: 0; font-size: 14px; color: #4A5058">Basics</p>
+<h3 style="margin: 10px 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15">Do I need a website if I already have a Facebook page?</h3>
+<p style="margin: 0; color: #4A5058; font-size: 16px">What a website does that a Facebook page cannot, and when a page is enough.</p>
+</a>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="questions" style="background: #FFFFFF">
+<div style="max-width: 900px; margin: 0 auto; padding: 96px 24px">
+<h2 style="margin: 0 0 28px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 48px); line-height: 1.05; letter-spacing: -0.02em">Questions people ask</h2>
+<details style="border-top: 1px solid #D6D9DE; padding: 20px 0">
+<summary style="display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 20px">Do I pay before I see anything?<span class="faq-sign" aria-hidden="true" style="font-size: 26px; line-height: 1">+</span></summary>
+<p style="margin: 12px 0 0; color: #4A5058">No. We build a homepage preview from the details you send. You pay once you are happy with the direction.</p>
+</details>
+<details style="border-top: 1px solid #D6D9DE; padding: 20px 0">
+<summary style="display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 20px">What do I need to send?<span class="faq-sign" aria-hidden="true" style="font-size: 26px; line-height: 1">+</span></summary>
+<p style="margin: 12px 0 0; color: #4A5058">Your business name, what you do, the areas you serve, your hours, 6 to 15 photos of your work, and your logo if you have one. We write the words.</p>
+</details>
+<details style="border-top: 1px solid #D6D9DE; padding: 20px 0">
+<summary style="display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 20px">Will I come up on Google?<span class="faq-sign" aria-hidden="true" style="font-size: 26px; line-height: 1">+</span></summary>
+<p style="margin: 12px 0 0; color: #4A5058">Every site is built so Google can read it, with a page for each service and area on the Business package. Nobody honest can promise you the top spot.</p>
+</details>
+<details style="border-top: 1px solid #D6D9DE; padding: 20px 0">
+<summary style="display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 20px">Is there a monthly fee?<span class="faq-sign" aria-hidden="true" style="font-size: 26px; line-height: 1">+</span></summary>
+<p style="margin: 12px 0 0; color: #4A5058">Not for the website in year 1. From year 2, hosting and your domain cost R999 a year. Monthly plans are optional: Care R99, Leads R249 or Growth R449, and you can cancel any time.</p>
+</details>
+<details style="border-top: 1px solid #D6D9DE; padding: 20px 0">
+<summary style="display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 20px">What do you build the sites with?<span class="faq-sign" aria-hidden="true" style="font-size: 26px; line-height: 1">+</span></summary>
+<p style="margin: 12px 0 0; color: #4A5058">We build lightweight sites around the features your business actually needs, with no pile of third-party plugins. That keeps them fast and simple to maintain. Every site still gets security updates, backups and checks from us.</p>
+</details>
+<details style="border-top: 1px solid #D6D9DE; border-bottom: 1px solid #D6D9DE; padding: 20px 0">
+<summary style="display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 20px">Do I get a business email address?<span class="faq-sign" aria-hidden="true" style="font-size: 26px; line-height: 1">+</span></summary>
+<p style="margin: 12px 0 0; color: #4A5058">Yes. An address like info@yourbusiness.co.za forwards to your Gmail for free. A full mailbox can be set up for R250, and you pay the email provider directly.</p>
+</details>
+</div>
+</section>
+
+<!-- CTA band -->
+<section id="contact" style="background: {{accent}}; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 40px">
+<h2 style="margin: 0; flex: 1 1 560px; max-width: 15ch; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 5.6vw, 76px); line-height: 0.98; letter-spacing: -0.035em">Send your business name. Get your homepage back, free.</h2>
+<div style="flex: 0 1 340px; display: flex; flex-direction: column; gap: 12px">
+<a href="#contact" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 19px 24px; background: #FFFFFF; color: #15171A; text-decoration: none; font-weight: 700; font-size: 19px; border-radius: 999px">WhatsApp [YOUR NUMBER]</a>
+<a href="mailto:hello@straatstudio.co.za" style="display: block; text-align: center; padding: 15px 24px; border: 2px solid #FFFFFF; color: #FFFFFF; text-decoration: none; font-weight: 700; border-radius: 999px">hello@straatstudio.co.za</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer style="background: #000000; color: #C3C8CE; font-size: 15px">
+<div style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 32px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px">
+<div>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; color: #FFFFFF; letter-spacing: -0.02em">straat studio</p>
+<p style="margin: 12px 0 0; max-width: 22em">Websites for Cape Town trades and small businesses. Final prices. You own your domain.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0 0 6px; color: #FFFFFF; font-weight: 700">Packages</p>
+<a href="#prices" style="color: #C3C8CE; text-decoration: none">One-Page website, R999</a>
+<a href="#prices" style="color: #C3C8CE; text-decoration: none">Business website, R2,499</a>
+<a href="#prices" style="color: #C3C8CE; text-decoration: none">Catalogue website, R2,999</a>
+<a href="#services" style="color: #C3C8CE; text-decoration: none">Straat Care, R99 a month</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0 0 6px; color: #FFFFFF; font-weight: 700">Company</p>
+<a href="#process" style="color: #C3C8CE; text-decoration: none">How it works</a>
+<a href="#guides" style="color: #C3C8CE; text-decoration: none">Guides</a>
+<a href="#top" style="color: #C3C8CE; text-decoration: none">Terms</a>
+<a href="#top" style="color: #C3C8CE; text-decoration: none">Privacy notice</a>
+<a href="#top" style="color: #C3C8CE; text-decoration: none">PAIA manual</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0 0 6px; color: #FFFFFF; font-weight: 700">Contact</p>
+<a href="#contact" style="color: #C3C8CE; text-decoration: none">WhatsApp [YOUR NUMBER]</a>
+<a href="mailto:hello@straatstudio.co.za" style="color: #C3C8CE; text-decoration: none">hello@straatstudio.co.za</a>
+<p style="margin: 0">Cape Town, South Africa</p>
+</div>
+</div>
+<div style="margin-top: 56px; padding-top: 24px; border-top: 1px solid #2A2D33; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px">
+<p style="margin: 0">Straat Studio is a trading name of STRAATTECH (PTY) LTD, Reg. [REG NUMBER]</p>
+<p style="margin: 0">Built in Cape Town</p>
+</div>
+</div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="#contact" aria-label="Chat on WhatsApp" style="position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(0,0,0,0.3)">
+<svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.2L4 20z" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"></path><path d="M9 9.5c.4 2.2 2 3.9 4.4 4.6l1-1 1.6.8-.4 1.6c-3.6 0-6.6-3-6.6-6.6l1.6-.4.8 1.6-1 1z" fill="#FFFFFF"></path></svg>
+</a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#2F54EB","options":["#2F54EB","#E5484D","#0C8599","#7048E8"]},"$preview":{"width":1440,"height":9600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menuOpen: false, site: 'business', plan: 'leads', addons: { logo: false, posters: false, wa: false }, job: 'DB board upgrade', area: 'Bellville', submitted: false, status: 0 };
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#2F54EB';
+    const s = this.state;
+    const chip = (on) => ({ bg: on ? '#15171A' : '#FFFFFF', fg: on ? '#FFFFFF' : '#15171A' });
+    const fmt = (n) => 'R' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const v = {
+      accent: accent,
+      accentLight: '#8EA8FF',
+      menuOpen: s.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+    const sites = { one: 999, business: 2499, catalogue: 2999, launch: 3299 };
+    const plans = { none: 0, care: 99, leads: 249, growth: 449 };
+    const extras = { logo: 300, posters: 350, wa: 250 };
+    Object.keys(sites).forEach((k) => { const c = chip(s.site === k); v['site_' + k + '_bg'] = c.bg; v['site_' + k + '_fg'] = c.fg; v['pickSite_' + k] = () => this.setState({ site: k }); });
+    Object.keys(plans).forEach((k) => { const c = chip(s.plan === k); v['plan_' + k + '_bg'] = c.bg; v['plan_' + k + '_fg'] = c.fg; v['pickPlan_' + k] = () => this.setState({ plan: k }); });
+    Object.keys(extras).forEach((k) => { const c = chip(s.addons[k]); v['add_' + k + '_bg'] = c.bg; v['add_' + k + '_fg'] = c.fg; v['toggle_' + k] = () => this.setState({ addons: Object.assign({}, this.state.addons, { [k]: !this.state.addons[k] }) }); });
+    const isLaunch = s.site === 'launch';
+    let once = sites[s.site];
+    if (!isLaunch) Object.keys(extras).forEach((k) => { if (s.addons[k]) once += extras[k]; });
+    v.onceOff = fmt(once);
+    v.monthly = plans[s.plan] ? fmt(plans[s.plan]) + ' a month' : 'No monthly plan';
+    v.isLaunch = isLaunch;
+    v.notLaunch = !isLaunch;
+    const jobs = ['DB board upgrade', 'COC certificate', 'Fault finding'];
+    const areas = ['Bellville', 'Mitchells Plain', 'Khayelitsha'];
+    jobs.forEach((j, i) => { const c = chip(s.job === j); v['job' + i + '_bg'] = c.bg; v['job' + i + '_fg'] = c.fg; v['pickJob' + i] = () => this.setState({ job: j }); });
+    areas.forEach((a, i) => { const c = chip(s.area === a); v['area' + i + '_bg'] = c.bg; v['area' + i + '_fg'] = c.fg; v['pickArea' + i] = () => this.setState({ area: a }); });
+    const labels = ['New', 'Contacted', 'Quote sent', 'Won'];
+    const colours = ['#2F54EB', '#B07800', '#7048E8', '#2F9E44'];
+    v.job = s.job;
+    v.area = s.area;
+    v.submitted = s.submitted;
+    v.notSubmitted = !s.submitted;
+    v.statusLabel = labels[s.status];
+    v.statusBg = colours[s.status];
+    v.isWon = s.submitted && s.status === 3;
+    v.notWon = s.submitted && s.status !== 3;
+    v.enquiryCount = s.submitted ? 3 : 2;
+    v.wonCount = 1 + (s.submitted && s.status === 3 ? 1 : 0);
+    v.send = () => this.setState({ submitted: true, status: 0 });
+    v.advance = () => this.setState({ status: Math.min(3, this.state.status + 1) });
+    v.reset = () => this.setState({ submitted: false, status: 0 });
+    return v;
+  }
+}
+</script>
+</body>
+</html>
