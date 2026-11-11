@@ -1,34 +1,1105 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { business, prices, formatRand } from '../config/business';
+/*
+  Straat Studio homepage, design v3. Self-contained: own CSS and script.
+  All prices come from src/config/business.ts.
+*/
+import SEO from '../components/SEO.astro';
+import {
+  business,
+  prices,
+  formatRand as R,
+  whatsappHref,
+  phoneHref,
+  emailHref,
+} from '../config/business';
+
+const w = prices.websites;
+const m = prices.monthly;
+const x = prices.extras;
+const pm = prices.payMonthly;
+const wa = whatsappHref("Hi Straat Studio, I'd like a free homepage preview for my business.");
+const waFounding = whatsappHref("Hi Straat Studio, is a founding client spot still open?");
+const year = new Date().getFullYear();
+
+const nav = [
+  { label: 'Services', href: '#services' },
+  { label: 'Enquiry system', href: '#system' },
+  { label: 'Prices', href: '#prices' },
+  { label: 'Work', href: '#work' },
+  { label: 'How it works', href: '#process' },
+];
+
+const trades = [
+  { name: 'Electricians', icon: 'M13 2 4 14h7l-1 8 9-12h-7l1-8z' },
+  { name: 'Plumbers', icon: 'M4 10h10a4 4 0 0 1 4 4v6M4 6v8M14 10V4h-4' },
+  { name: 'Roofing and waterproofing', icon: 'M3 12 12 4l9 8M6 10v10h12V10' },
+  { name: 'Solar installers', icon: 'M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M6 18l2-2M16 8l2-2M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z' },
+  { name: 'Painters and builders', icon: 'M4 4h12v5H4zM10 9v4M8 13h4v8H8z' },
+  { name: 'Hair and nail salons', icon: 'M6 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM6 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM8.5 8.5 20 18M8.5 15.5 20 6' },
+  { name: 'Home bakers and caterers', icon: 'M4 20h16M6 20v-7h12v7M8 13V9h8v4M12 9V5' },
+  { name: 'Mechanics', icon: 'M14 6a4 4 0 0 0-5 5l-6 6 3 3 6-6a4 4 0 0 0 5-5l-2 2-2-2 2-2z' },
+];
+
+const faqs = [
+  ['Do I pay before I see anything?', 'No. We design your homepage first and send you a view-only preview link. If you like it, you pay to start and we build the rest. If you don\'t, you owe nothing. One free preview per business.'],
+  ['Can I ask for changes to the free preview?', `The preview shows our design for your business. Changes start once you approve it and pay: One-Page is paid in full, Business and Catalogue pay half. Every package then includes 2 rounds of changes, each sent as one list. Extra changes during the build are ${R(prices.extraChangeDuringBuild)} each.`],
+  ['Do you only work in Cape Town?', 'No. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, email and online forms, so you never need to visit us.'],
+  ['What do I need to send?', 'After you pay, we send you one short online form with a checklist for your package: your services and prices, areas, hours, logo and 6 to 15 photos of your work. The site goes live 3 to 7 working days after everything arrives.'],
+  ['Will I come up on Google?', 'Every site is built for search: one page per service, your towns and suburbs in the titles, fast loading and a Google Business Profile linked to it. No honest company can promise first place, and we never will.'],
+  ['Is there a monthly fee?', `No, monthly plans are optional. Your first year of hosting and your domain are included. From year 2 it is ${R(prices.year2HostingAndDomain)} a year, or included in Straat Care at ${R(m.care.price)} a month.`],
+  ['Who looks after backups and updates?', `Backups, uptime checks and small changes come with Straat Care from ${R(m.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
+  ['Do I get a business email address?', `Yes. An address like info@yourbusiness.co.za forwards to your Gmail for free. A full mailbox can be set up for ${R(x.mailbox.price)}, and you pay the email provider directly.`],
+];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'ProfessionalService',
+    name: business.name, legalName: business.legalName, url: business.siteUrl,
+    telephone: `+${business.phoneDigits}`, email: business.email,
+    areaServed: { '@type': 'Country', name: 'South Africa' },
+    priceRange: prices.priceRange, currenciesAccepted: 'ZAR',
+    description: 'Websites, Google Business Profile setup and enquiry tracking for South African small businesses.',
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  },
+];
 ---
 
-<BaseLayout
-  title="Straat Studio | Websites for Cape Town trades"
-  description="Fixed-price websites for trades and small businesses in Cape Town. Scaffold preview only; the full homepage is built in step 2."
-  path="/"
-  noindex
->
-  <section class="bg-black text-white on-black section">
-    <div class="container-site">
-      <h1>Scaffold is running.</h1>
-      <p class="mt-6 max-w-2xl text-muted-dark">
-        Base layout, design tokens and fonts are in place. The real homepage comes in step 2.
-      </p>
-      <p class="mt-6 text-muted-dark">
-        {business.name}: websites from {formatRand(prices.websites.onePage.price)}.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <span class="btn btn-primary">Primary</span>
-        <span class="btn btn-light">Light</span>
-        <span class="btn btn-whatsapp">WhatsApp</span>
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <SEO
+    title="Small business websites from R999 | Straat Studio"
+    description="Websites for South African small businesses from R999, domain and hosting included, plus an enquiry system that tracks every quote. See your homepage free."
+    path="/"
+    jsonLd={jsonLd}
+  />
+  <style is:global>
+    @font-face { font-family: 'Source Serif'; src: url('/fonts/source-serif-4.woff2') format('woff2'); font-weight: 200 900; font-display: swap; }
+    @font-face { font-family: 'Inter'; src: url('/fonts/inter.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+
+    :root {
+      --ink: #14161a;
+      --paper: #ffffff;
+      --sand: #f5f3ef;
+      --line: #e4e1da;
+      --muted: #555b63;
+      --blue: #2f54eb;
+      --blue-dark: #2443c4;
+      --blue-soft: #e8edff;
+      --night: #0f1b2d;
+      --night-2: #172640;
+      --on-night: #c9d1dc;
+      --sign: #ffc629;
+      --sign-soft: #fff4cc;
+      --wa: #25d366;
+      --wa-dark: #128c4a;
+      --serif: 'Source Serif', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      --wrap: 1200px;
+      --r: 14px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.6 var(--sans); }
+    @media (min-width: 768px) { body { font-size: 18px; } }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.012em; line-height: 1.12; margin: 0; }
+    h1 { font-size: clamp(38px, 5.4vw, 64px); }
+    h2 { font-size: clamp(30px, 3.8vw, 46px); }
+    h3 { font-size: clamp(21px, 2vw, 26px); line-height: 1.25; }
+    p { margin: 0; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    .on-night :focus-visible { outline-color: var(--sign); }
+    section[id] { scroll-margin-top: 80px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+    .wrap { max-width: calc(var(--wrap) + 48px); margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 72px 0; }
+    @media (min-width: 900px) { .sec { padding: 112px 0; } }
+    .eyebrow { font: 600 13px/1.4 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .on-night .eyebrow { color: var(--sign); }
+    .lead { font-size: clamp(18px, 1.6vw, 21px); color: var(--muted); max-width: 40ch; margin-top: 20px; }
+    .on-night .lead { color: var(--on-night); }
+    .mark { background: linear-gradient(transparent 62%, var(--sign) 62%, var(--sign) 92%, transparent 92%); padding: 0 2px; }
+    .head { max-width: 760px; margin-bottom: 48px; }
+    .head.center { margin-inline: auto; text-align: center; }
+    .head.center .lead { margin-inline: auto; }
+    .muted { color: var(--muted); }
+    .small { font-size: 15px; }
+    .label-concept { font: 500 13px/1.4 var(--sans); color: var(--muted); }
+    .skip { position: absolute; left: -9999px; top: 8px; background: var(--ink); color: #fff; padding: 10px 16px; z-index: 100; }
+    .skip:focus { left: 8px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px 24px; border-radius: 8px; border: 2px solid transparent; font: 600 16px/1.2 var(--sans); text-decoration: none; cursor: pointer; transition: background .15s, border-color .15s, transform .15s; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-blue { background: var(--blue); color: #fff; }
+    .btn-blue:hover { background: var(--blue-dark); }
+    .btn-wa { background: var(--wa); color: #06210f; }
+    .btn-wa:hover { background: #1fbf5b; }
+    .btn-ghost { border-color: var(--ink); color: var(--ink); background: transparent; }
+    .btn-ghost:hover { background: var(--ink); color: #fff; }
+    .btn-light { background: #fff; color: var(--ink); }
+    .btn-sm { min-height: 44px; padding: 8px 18px; font-size: 15px; }
+    .wa-ico { width: 20px; height: 20px; flex: none; }
+    .tick { width: 20px; height: 20px; flex: none; color: var(--blue); }
+
+    /* Announcement */
+    .announce { background: var(--sign); color: var(--ink); font-size: 15px; text-align: center; padding: 10px 24px; }
+    .announce a { font-weight: 600; }
+
+    /* Header */
+    .hdr { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }
+    .hdr-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 72px; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 34px; height: 34px; border-radius: 8px; background: var(--blue); color: #fff; display: grid; place-items: center; font: 700 19px/1 var(--serif); position: relative; }
+    .logo-mark::after { content: ''; position: absolute; left: 7px; right: 7px; bottom: 6px; height: 3px; background: var(--sign); border-radius: 2px; }
+    .logo-word { font: 600 21px/1 var(--serif); letter-spacing: -0.01em; }
+    .nav { display: none; gap: 30px; }
+    .nav a { text-decoration: none; font-size: 16px; font-weight: 500; }
+    .nav a:hover { color: var(--blue); }
+    .hdr-cta { display: flex; gap: 10px; align-items: center; }
+    .menu-btn { min-height: 44px; padding: 8px 16px; border: 1.5px solid var(--ink); border-radius: 8px; background: #fff; font: 600 15px var(--sans); cursor: pointer; }
+    .mobile-nav { border-top: 1px solid var(--line); background: #fff; }
+    .mobile-nav ul { list-style: none; margin: 0; padding: 8px 24px 20px; }
+    .mobile-nav a { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-weight: 500; }
+    .hdr .btn-wa { display: none; }
+    @media (min-width: 640px) { .hdr .btn-wa { display: inline-flex; } }
+    @media (min-width: 1024px) { .nav { display: flex; } .menu-btn, .mobile-nav { display: none !important; } }
+
+    /* Hero */
+    .hero { padding: 56px 0 72px; overflow: hidden; }
+    @media (min-width: 1024px) { .hero { padding: 88px 0 104px; } }
+    .hero-grid { display: grid; gap: 56px; align-items: center; }
+    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.05fr 1fr; gap: 40px; } }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .hero-trust { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 10px; font-size: 16px; }
+    @media (min-width: 640px) { .hero-trust { display: flex; flex-wrap: wrap; gap: 10px 26px; } }
+    .hero-trust li { display: flex; gap: 8px; align-items: center; white-space: nowrap; }
+
+    .stage { position: relative; aspect-ratio: 1 / 0.92; max-width: 600px; width: 100%; margin: 0 auto; }
+    .stage-disc { position: absolute; inset: 6% 4% 4% 10%; border-radius: 50%; background: var(--blue-soft); }
+    .stage-disc::after { content: ''; position: absolute; width: 22%; aspect-ratio: 1; border-radius: 50%; background: var(--sign); right: 2%; top: 4%; }
+    .browser { position: absolute; left: 0; top: 8%; width: 80%; background: #fff; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(15,27,45,.35); overflow: hidden; font-size: 12px; }
+    .browser-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: var(--sand); border-bottom: 1px solid var(--line); }
+    .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #d6d2c8; }
+    .browser-url { margin-left: 8px; flex: 1; background: #fff; border-radius: 6px; padding: 3px 10px; color: var(--muted); font-size: 11px; }
+    .site-nd { padding: 16px 18px 20px; }
+    .nd-top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
+    .nd-logo { font-weight: 800; color: var(--night); font-size: 13px; }
+    .nd-logo b { color: #8a6400; }
+    .nd-hero { margin-top: 14px; background: var(--night); color: #fff; border-radius: 8px; padding: 18px; }
+    .nd-hero strong { display: block; font: 600 clamp(14px, 1.9vw, 19px)/1.2 var(--serif); max-width: 20ch; }
+    .nd-hero span { display: block; margin-top: 6px; color: var(--on-night); font-size: 11px; }
+    .nd-btns { display: flex; gap: 6px; margin-top: 12px; }
+    .nd-btns em { font-style: normal; font-weight: 700; font-size: 10.5px; padding: 6px 10px; border-radius: 5px; background: var(--sign); color: var(--night); }
+    .nd-btns em + em { background: var(--wa); color: #06210f; }
+    .nd-svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+    .nd-svc div { border: 1px solid var(--line); border-radius: 6px; padding: 8px; font-size: 10.5px; line-height: 1.35; }
+    .nd-svc b { display: block; font-size: 11px; }
+    .phone { position: absolute; right: 0; bottom: 0; width: 35%; aspect-ratio: 9 / 18.5; background: var(--ink); border-radius: 28px; padding: 9px; box-shadow: 0 30px 60px -24px rgba(15,27,45,.45); }
+    .phone-screen { width: 100%; height: 100%; border-radius: 20px; background: #eef1f5; overflow: hidden; display: flex; flex-direction: column; font-size: 11px; }
+    .phone-top { background: var(--night); color: #fff; padding: 14px 12px 10px; font-weight: 600; font-size: 11.5px; }
+    .phone-top small { display: block; font-weight: 400; color: var(--on-night); font-size: 10px; }
+    .notif { margin: 10px; background: #fff; border-radius: 12px; padding: 10px; box-shadow: 0 6px 16px -8px rgba(0,0,0,.25); }
+    .notif-h { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); }
+    .notif-h i { width: 14px; height: 14px; border-radius: 4px; background: var(--blue); }
+    .notif b { display: block; margin-top: 4px; font-size: 11.5px; }
+    .chip { display: inline-block; font-size: 9.5px; font-weight: 700; padding: 3px 7px; border-radius: 999px; background: var(--sign-soft); color: #6b4e00; margin-top: 6px; }
+    .chip.blue { background: var(--blue-soft); color: var(--blue-dark); }
+    .chip.green { background: #dcf7e6; color: #0b6b35; }
+    .row-mini { margin: 0 10px 8px; background: #fff; border-radius: 10px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+    .row-mini span { font-size: 10px; line-height: 1.3; }
+    .stage-cap { position: absolute; left: 0; bottom: -34px; }
+    @media (max-width: 639px) {
+      .stage { aspect-ratio: 1 / 1.18; }
+      .browser { width: 92%; top: 0; }
+      .nd-svc, .nd-top > span:last-child { display: none; }
+      .phone { width: 52%; }
+      .stage-disc { inset: 18% 0 6% 10%; }
+      .stage-cap { bottom: -30px; }
+      .stage { margin-bottom: 0; }
+    }
+    .phone-sum { margin: auto 10px 12px; background: var(--sign-soft); border-radius: 10px; padding: 10px; font-size: 10.5px; line-height: 1.5; }
+    .phone-sum b { font-size: 13px; }
+    .th-map { margin: 6px 14px 14px; border-radius: 10px; overflow: hidden; border: 1px solid #eadde4; }
+    .th-map div { display:none; height: 70px; background: linear-gradient(90deg, transparent 46%, #fff 46%, #fff 52%, transparent 52%), linear-gradient(0deg, transparent 44%, #fff 44%, #fff 50%, transparent 50%), #efe4ea; }
+    .th-map p { padding: 8px 10px; font-size: 10px; background: #fff; }
+
+    /* Trades */
+    .trades { background: var(--sand); padding: 56px 0; }
+    .trades-title { text-align: center; font: 500 17px/1.5 var(--sans); color: var(--muted); margin-bottom: 28px; }
+    .trade-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (min-width: 720px) { .trade-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+    .trade { background: #fff; border-radius: 12px; padding: 18px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 15.5px; line-height: 1.3; box-shadow: 0 1px 0 var(--line); }
+    .trade svg { width: 26px; height: 26px; flex: none; stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Night: whole package */
+    .night { background: var(--night); color: #fff; }
+    .pkg-grid { display: grid; gap: 48px; }
+    @media (min-width: 1024px) { .pkg-grid { grid-template-columns: 0.9fr 1.1fr; gap: 80px; } .pkg-left { position: sticky; top: 120px; align-self: start; } }
+    .steps3 { display: grid; gap: 0; }
+    .step3 { display: grid; grid-template-columns: auto 1fr; gap: 24px; padding: 32px 0; border-top: 1px solid rgba(255,255,255,.14); }
+    .step3:last-child { border-bottom: 1px solid rgba(255,255,255,.14); }
+    .num { font: 700 clamp(56px, 7vw, 88px)/0.9 var(--serif); letter-spacing: -0.03em; }
+    .n1 { color: var(--sign); } .n2 { color: #8ea8ff; } .n3 { color: #6fe3a0; }
+    .step3 h3 { color: #fff; }
+    .step3 p { color: var(--on-night); margin-top: 10px; }
+    .step3 .price-tag { display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 4px 12px; }
+
+    /* Services alternating */
+    .svc { display: grid; gap: 40px; align-items: center; padding: 48px 0; }
+    .svc + .svc { border-top: 1px solid var(--line); }
+    @media (min-width: 900px) { .svc { grid-template-columns: 1fr 1fr; gap: 80px; padding: 72px 0; } .svc.flip .svc-art { order: 2; } }
+    .svc-art { position: relative; aspect-ratio: 1 / 0.82; display: grid; place-items: center; }
+    .svc > * { min-width: 0; }
+    .svc-art::before { content: ''; position: absolute; width: 76%; aspect-ratio: 1; border-radius: 50%; background: var(--c, var(--blue-soft)); }
+    .svc-art > * { position: relative; }
+    .svc ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
+    .svc li { display: flex; gap: 10px; align-items: flex-start; }
+    .svc li .tick { margin-top: 4px; }
+    .svc-price { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+    .svc-price strong { font: 600 30px/1 var(--serif); }
+    .svc-price a { font-weight: 600; color: var(--blue); }
+
+    .card-ui { background: #fff; border-radius: 14px; box-shadow: 0 24px 48px -28px rgba(15,27,45,.45); border: 1px solid var(--line); font-size: 13px; }
+    /* Phone: Thandeka */
+    .ph2 { width: min(250px, 62%); aspect-ratio: 9 / 18; background: var(--ink); border-radius: 30px; padding: 9px; box-shadow: 0 30px 50px -26px rgba(15,27,45,.5); }
+    .ph2-s { height: 100%; border-radius: 22px; overflow: hidden; background: #fbf6f8; font-size: 11px; }
+    .th-hero { background: #5b2a4d; color: #fff; padding: 22px 14px 18px; }
+    .th-hero strong { display: block; font: 600 17px/1.15 var(--serif); }
+    .th-hero span { display: block; color: #f0d9e7; margin-top: 4px; font-size: 10px; }
+    .th-list { padding: 10px 14px; }
+    .th-list div { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #eadde4; }
+    .th-book { margin: 8px 14px; text-align: center; background: var(--wa); color: #06210f; font-weight: 700; border-radius: 8px; padding: 9px; }
+    /* Pipeline board */
+    .board { width: min(520px, 100%); padding: 16px; }
+    .board-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 700; }
+    .board-h span { font-weight: 500; color: var(--muted); font-size: 12px; }
+    .cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    @media (min-width: 560px) { .cols { grid-template-columns: repeat(4, 1fr); } }
+    .col { background: var(--sand); border-radius: 10px; padding: 8px; min-height: 120px; }
+    @media (min-width: 560px) { .col { min-height: 170px; } }
+    .col p { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 8px; }
+    .tkt { background: #fff; border-radius: 8px; padding: 8px; font-size: 11px; line-height: 1.3; margin-bottom: 6px; border-left: 3px solid var(--blue); }
+    .tkt small { display: block; color: var(--muted); font-size: 10px; margin-top: 2px; }
+    .tkt.y { border-left-color: var(--sign); } .tkt.g { border-left-color: var(--wa); }
+    /* Google profile */
+    .gbp { width: min(380px, 88%); overflow: hidden; }
+    .map { height: 120px; background:
+      linear-gradient(90deg, transparent 48%, #fff 48%, #fff 52%, transparent 52%),
+      linear-gradient(0deg, transparent 40%, #fff 40%, #fff 45%, transparent 45%),
+      linear-gradient(30deg, transparent 60%, #fde7a6 60%, #fde7a6 64%, transparent 64%), #e5ecd9; position: relative; }
+    .pin { position: absolute; left: 50%; top: 38%; width: 22px; height: 22px; border-radius: 50% 50% 50% 0; background: #e5484d; transform: translate(-50%, -50%) rotate(-45deg); }
+    .gbp-b { padding: 14px 16px 16px; }
+    .gbp-b strong { font: 600 18px/1.2 var(--serif); display: block; }
+    .gbp-b .muted { font-size: 12px; }
+    .gbp-acts { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .gbp-acts span { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--blue-dark); }
+    .hours { margin-top: 10px; font-size: 12px; } .hours b { color: #0b6b35; }
+    /* WhatsApp chat */
+    .chat { width: min(340px, 84%); overflow: hidden; background: #efe9e1; }
+    .chat-h { background: #075e54; color: #fff; padding: 12px 14px; font-weight: 600; font-size: 13px; }
+    .chat-h small { display: block; font-weight: 400; opacity: .8; font-size: 11px; }
+    .chat-b { padding: 12px; display: grid; gap: 8px; }
+    .bub { max-width: 82%; padding: 8px 10px; border-radius: 10px; font-size: 12px; line-height: 1.4; background: #fff; }
+    .bub.me { justify-self: end; background: #d9fdd3; }
+    .quick { display: flex; gap: 6px; flex-wrap: wrap; }
+    .quick span { background: #fff; border-radius: 999px; padding: 5px 10px; font-size: 11px; font-weight: 600; color: #075e54; }
+
+    /* Demo */
+    .demo-grid { display: grid; gap: 20px; }
+    @media (min-width: 900px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }
+    .panel-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+    .panel-h strong { font: 600 20px/1.2 var(--serif); }
+    .who { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    fieldset { border: 0; padding: 0; margin: 0 0 18px; }
+    legend { font-weight: 600; margin-bottom: 8px; font-size: 16px; }
+    .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+    .opt { position: relative; }
+    .opt input { position: absolute; opacity: 0; inset: 0; }
+    .opt span { display: inline-flex; min-height: 44px; align-items: center; padding: 8px 14px; border: 1.5px solid var(--line); border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; background: #fff; }
+    .opt input:checked + span { border-color: var(--blue); background: var(--blue-soft); color: var(--blue-dark); font-weight: 600; }
+    .opt input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
+    .demo-note { margin-top: 6px; font-size: 14px; color: var(--muted); }
+    .inbox-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); }
+    .inbox-row b { display: block; font-size: 16px; }
+    .inbox-row small { color: var(--muted); font-size: 14px; }
+    .inbox-row.new { background: var(--sign-soft); margin: 0 -24px; padding: 14px 24px; border-top: 0; }
+    .status { font-size: 13px; font-weight: 700; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+    .s-new { background: var(--sign); color: var(--ink); } .s-quote { background: var(--blue-soft); color: var(--blue-dark); } .s-won { background: #dcf7e6; color: #0b6b35; }
+    .alert { margin-top: 16px; display: flex; gap: 10px; align-items: flex-start; background: var(--night); color: #fff; border-radius: 10px; padding: 12px 14px; font-size: 15px; }
+    .alert i { width: 10px; height: 10px; border-radius: 50%; background: var(--sign); margin-top: 7px; flex: none; }
+    .demo-acts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+    /* Prices */
+    .sand { background: var(--sand); }
+    .price-grid { display: grid; gap: 16px; }
+    @media (min-width: 720px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1100px) { .price-grid { grid-template-columns: repeat(4, 1fr); } }
+    .pcard { background: #fff; border-radius: var(--r); padding: 28px 24px; display: flex; flex-direction: column; border: 1px solid var(--line); }
+    @media (max-width: 719px) { .pcard.hi { order: -1; margin-top: 12px; } }
+    .pcard.hi { background: var(--night); color: #fff; border-color: var(--night); position: relative; }
+    .pcard .tag { position: absolute; top: -12px; left: 24px; background: var(--sign); color: var(--ink); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+    .pcard h3 { font-size: 24px; }
+    .pcard .for { margin-top: 8px; font-size: 15px; color: var(--muted); min-height: 3em; }
+    .pcard.hi .for, .pcard.hi .when { color: var(--on-night); }
+    .pcard .amt { font: 600 44px/1 var(--serif); margin-top: 22px; letter-spacing: -0.02em; }
+    .pcard .when { font-size: 14px; color: var(--muted); margin-top: 6px; }
+    .pcard ul { list-style: none; padding: 0; margin: 22px 0 26px; display: grid; gap: 9px; font-size: 15.5px; flex: 1; align-content: start; }
+    .pcard li { display: flex; gap: 9px; }
+    .pcard li .tick { margin-top: 3px; width: 18px; height: 18px; }
+    .pcard.hi .tick { color: var(--sign); }
+    .pcard .btn { width: 100%; }
+    .pcard.hi .btn-ghost { border-color: #fff; color: #fff; } .pcard.hi .btn-ghost:hover { background: #fff; color: var(--ink); }
+    .incl { margin-top: 20px; font-size: 15px; color: var(--muted); }
+    .paymonthly { margin-top: 20px; background: #fff; border: 1.5px dashed #cfc9bd; border-radius: var(--r); padding: 18px 22px; display: flex; gap: 12px 24px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+    .paymonthly p { max-width: 70ch; }
+    .plans-h { margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: end; margin-bottom: 24px; }
+    .plan-grid { display: grid; gap: 16px; }
+    @media (min-width: 900px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
+    .plan { background: #fff; border-radius: var(--r); padding: 26px 24px; border: 1px solid var(--line); }
+    .plan.hi { border: 2px solid var(--blue); }
+    .plan-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .plan-top strong { font: 600 22px/1.2 var(--serif); }
+    .plan-top span { font: 600 26px/1 var(--serif); white-space: nowrap; } .plan-top span small { font: 400 14px var(--sans); color: var(--muted); }
+    .plan p { margin-top: 12px; font-size: 15.5px; color: var(--muted); }
+    .plan .badge { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 700; color: var(--blue-dark); background: var(--blue-soft); border-radius: 999px; padding: 4px 10px; }
+
+    /* Builder */
+    .builder { margin-top: 72px; background: #fff; border-radius: 20px; border: 1px solid var(--line); display: grid; overflow: hidden; }
+    @media (min-width: 960px) { .builder { grid-template-columns: 1.4fr 1fr; } }
+    .builder-l { padding: 28px; }
+    @media (min-width: 960px) { .builder-l { padding: 40px; } }
+    .builder-r { background: var(--night); color: #fff; padding: 28px; display: flex; flex-direction: column; justify-content: center; }
+    @media (min-width: 960px) { .builder-r { padding: 40px; } }
+    .total-l { font-size: 14px; color: var(--on-night); }
+    .total { font: 600 48px/1 var(--serif); margin-top: 6px; }
+    .total-m { font: 600 22px/1.2 var(--serif); margin-top: 6px; }
+    .builder-r .btn { margin-top: 26px; }
+    .builder-r .small { color: var(--on-night); margin-top: 16px; }
+
+    /* Compare */
+    .cmp { width: 100%; border-collapse: collapse; font-size: 16px; }
+    .cmp th, .cmp td { text-align: left; padding: 16px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .cmp th { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); border-bottom: 2px solid var(--ink); }
+    .cmp td:first-child { font-weight: 600; width: 44%; }
+    .cmp .ans { display: flex; gap: 10px; align-items: flex-start; } .cmp .ans .tick { margin-top: 3px; }
+    @media (max-width: 640px) { .cmp, .cmp tbody, .cmp tr, .cmp td { display: block; width: 100% !important; } .cmp thead { display: none; } .cmp td { border: 0; padding: 4px 0; } .cmp tr { padding: 14px 0; border-bottom: 1px solid var(--line); } }
+
+    /* Work tiles */
+    .work-grid { display: grid; gap: 20px; }
+    @media (min-width: 900px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+    .wk { border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; color: #fff; }
+    .wk-1 { background: #93401c; } .wk-2 { background: #5b2a4d; } .wk-3 { background: var(--night); }
+    .wk-top { padding: 26px 24px 0; }
+    .wk-top .label-concept { color: #fff; }
+    .wk-top h3 { color: #fff; margin-top: 10px; }
+    .wk-top p { color: #fff; margin-top: 8px; font-size: 15.5px; }
+    .wk-pkg { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 700; background: rgba(255,255,255,.16); border-radius: 999px; padding: 4px 12px; }
+    .wk-shot { margin: 24px 24px 0; background: #fff; color: var(--ink); border-radius: 12px 12px 0 0; padding: 16px; font-size: 13px; flex: 1; }
+    .wk-shot .r { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .wk-shot .r:last-child { border: 0; }
+    .wk-shot b.t { display: block; font: 600 17px/1.2 var(--serif); margin-bottom: 6px; }
+
+    /* Process */
+    .proc { display: grid; gap: 28px; counter-reset: s; list-style: none; padding: 0; margin: 0; }
+    @media (min-width: 900px) { .proc { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+    .proc li { position: relative; padding-top: 70px; }
+    .proc li::before { counter-increment: s; content: counter(s); position: absolute; top: 0; left: 0; width: 50px; height: 50px; border-radius: 50%; background: var(--sign); display: grid; place-items: center; font: 700 22px var(--serif); }
+    @media (min-width: 900px) { .proc li::after { content: ''; position: absolute; top: 25px; left: 62px; right: -12px; height: 2px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); } .proc li:last-child::after { display: none; } }
+    .proc p { margin-top: 8px; color: var(--muted); font-size: 16px; }
+
+    /* About */
+    .about { display: grid; gap: 40px; align-items: center; }
+    @media (min-width: 900px) { .about { grid-template-columns: 0.8fr 1.2fr; gap: 72px; } }
+    .facts { background: var(--sand); border-radius: 18px; padding: 8px 24px; border-top: 6px solid var(--sign); }
+    .facts div { display: grid; gap: 2px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .facts div:last-child { border-bottom: 0; }
+    .facts span { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+    .facts b { font: 600 19px/1.3 var(--serif); }
+    .need { margin-top: 56px; background: #fff; border-radius: 18px; padding: 28px; border: 1px solid var(--line); }
+    .need-grid { display: grid; gap: 24px; margin-top: 20px; }
+    @media (min-width: 900px) { .need-grid { grid-template-columns: repeat(3, 1fr); } }
+    .need-h { font-weight: 700; margin-bottom: 8px; }
+    .need ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 16px; display: grid; gap: 4px; }
+    .portrait { position: relative; width: min(340px, 80%); aspect-ratio: 1; margin: 0 auto; }
+    .portrait::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; background: var(--sign); }
+    .portrait div { position: relative; width: 100%; height: 100%; border-radius: 50%; background: #e9e5dc; border: 2px dashed #bdb6a6; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); font-size: 15px; }
+    .note p + p { margin-top: 14px; }
+    .note .sig { margin-top: 24px; font: 600 italic 26px/1 var(--serif); }
+
+    /* FAQ */
+    .faq { max-width: 820px; margin: 0 auto; }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq summary { list-style: none; cursor: pointer; padding: 22px 44px 22px 0; position: relative; font: 600 19px/1.35 var(--serif); }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; position: absolute; right: 4px; top: 16px; font: 400 30px/1 var(--sans); color: var(--blue); }
+    .faq details[open] summary::after { content: '\2212'; }
+    .faq details p { padding: 0 0 22px; color: var(--muted); max-width: 68ch; }
+
+    /* CTA band */
+    .cta { background: var(--blue); color: #fff; border-radius: 24px; padding: 48px 28px; text-align: center; position: relative; overflow: hidden; }
+    @media (min-width: 900px) { .cta { padding: 72px 48px; } }
+    .cta::before { content: ''; position: absolute; width: 340px; aspect-ratio: 1; border-radius: 50%; border: 50px solid rgba(255,255,255,.08); right: -120px; top: -140px; }
+    .cta h2 { color: #fff; max-width: 22ch; margin: 0 auto; position: relative; }
+    .cta p { color: #dbe3ff; margin: 16px auto 0; max-width: 46ch; position: relative; }
+    .cta-btns { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; position: relative; }
+    .cta .btn-ghost { border-color: #fff; color: #fff; } .cta .btn-ghost:hover { background: #fff; color: var(--blue); }
+
+    /* Footer */
+    .foot { background: var(--night); color: var(--on-night); padding: 64px 0 28px; margin-top: 96px; font-size: 16px; }
+    .foot-grid { display: grid; gap: 36px; }
+    @media (min-width: 900px) { .foot-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+    .foot .logo-word { color: #fff; }
+    .foot h4 { margin: 0 0 12px; color: #fff; font: 600 15px var(--sans); }
+    .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .foot a { color: #fff; text-underline-offset: 3px; }
+    .foot-legal { border-top: 1px solid rgba(255,255,255,.14); margin-top: 48px; padding-top: 20px; font-size: 14px; }
+
+    .wa-float { position: fixed; right: 16px; bottom: 16px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; box-shadow: 0 10px 24px -8px rgba(0,0,0,.4); }
+    .wa-float svg { width: 30px; height: 30px; }
+    @media (min-width: 900px) { .wa-float { display: none; } }
+    .wa-float[hidden] { display: none; }
+    @media (max-width: 899px) { .foot { padding-bottom: 96px; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <p class="announce">Founding offer: our first {prices.foundingOfferClients} clients get a Business website for {R(prices.foundingOfferPrice)} instead of {R(w.business.price)}. <a href={waFounding} rel="noopener">Ask if a spot is open</a></p>
+
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a href="/" class="logo" aria-label="Straat Studio home">
+        <span class="logo-mark" aria-hidden="true">S</span>
+        <span class="logo-word">Straat Studio</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      </nav>
+      <div class="hdr-cta">
+        <a class="btn btn-wa btn-sm" href={wa} rel="noopener" data-event="whatsapp-click">
+          <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          WhatsApp us
+        </a>
+        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
       </div>
     </div>
-  </section>
-  <section class="bg-mist section">
-    <div class="container-site">
-      <h2>Mist section</h2>
-      <p class="mt-4 text-muted max-w-2xl">Muted text on white and mist, passing 4.5:1.</p>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+      <ul>
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href={wa} rel="noopener" style="color:var(--blue);font-weight:700">Get a free homepage preview</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Websites and enquiry systems for South African businesses</p>
+          <h1>Get found on Google. Catch <span class="mark">every enquiry.</span> Win more jobs.</h1>
+          <p class="lead">We build fast websites for small businesses across South Africa, then keep track of every quote request so none slip through the cracks. You see your homepage free, before you pay anything.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Get my free homepage</a>
+            <a class="btn btn-ghost" href="#prices">See prices from {R(w.onePage.price)}</a>
+          </div>
+          <ul class="hero-trust">
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Final prices, no VAT</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Domain in your name</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Live in 3 to 7 working days</li>
+          </ul>
+        </div>
+
+        <div class="stage" role="img" aria-label="Concept example: an electrician's website on a laptop, and the owner's phone showing a new enquiry alert">
+          <div class="stage-disc" aria-hidden="true"></div>
+          <div class="browser" aria-hidden="true">
+            <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">ndlovuelectrical.co.za</span></div>
+            <div class="site-nd">
+              <div class="nd-top"><span class="nd-logo">NDLOVU <b>ELECTRICAL</b></span><span>Services &middot; Areas &middot; Contact</span></div>
+              <div class="nd-hero">
+                <strong>Electrician in Mitchells Plain and Khayelitsha</strong>
+                <span>COCs, DB boards and fault finding. Monday to Saturday.</span>
+                <div class="nd-btns"><em>Call now</em><em>WhatsApp</em></div>
+              </div>
+              <div class="nd-svc">
+                <div><b>COC certificates</b>For selling or renting</div>
+                <div><b>DB boards</b>Upgrades and earth leakage</div>
+                <div><b>Fault finding</b>Tripping and prepaid meters</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone" aria-hidden="true">
+            <div class="phone-screen">
+              <div class="phone-top">StraatOS<small>Ndlovu Electrical</small></div>
+              <div class="notif">
+                <div class="notif-h"><i></i>New enquiry &middot; now</div>
+                <b>DB board upgrade, Bellville</b>
+                <span>"Lights trip when the geyser switches on." 2 photos</span><br />
+                <span class="chip">New</span>
+              </div>
+              <div class="row-mini"><span><b>Geyser wiring</b><br />Parow</span><span class="chip blue">Quote sent</span></div>
+              <div class="row-mini"><span><b>COC certificate</b><br />Goodwood</span><span class="chip green">Won</span></div>
+              <div class="row-mini"><span><b>Review request</b><br />Sent on WhatsApp</span><span class="chip green">Done</span></div>
+              <div class="phone-sum"><b>14</b> enquiries this month<br /><b>5</b> won &middot; <b>3</b> waiting on a quote</div>
+            </div>
+          </div>
+          <p class="stage-cap label-concept">Concept project, not commissioned client work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRADES -->
+    <section class="trades" aria-labelledby="trades-h">
+      <div class="wrap">
+        <h2 id="trades-h" class="trades-title">Built for the small businesses that keep South Africa running</h2>
+        <ul class="trade-grid" style="list-style:none;padding:0;margin:0">
+          {trades.map((t) => (
+            <li class="trade"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={t.icon} /></svg>{t.name}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- WHOLE PACKAGE -->
+    <section class="sec night on-night" id="system" aria-labelledby="pkg-h">
+      <div class="wrap pkg-grid">
+        <div class="pkg-left">
+          <p class="eyebrow">More than a website</p>
+          <h2 id="pkg-h" style="color:#fff">A website is only the start. We look after what happens when someone finds you.</h2>
+          <p class="lead">Most small businesses don't lose work because they are bad at the job. They lose it because a WhatsApp got buried, a quote was never followed up, or nobody asked for a review.</p>
+          <div class="hero-ctas"><a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">Ask how it works</a></div>
+        </div>
+        <ol class="steps3" style="list-style:none;padding:0;margin:0">
+          <li class="step3">
+            <span class="num n1" aria-hidden="true">01</span>
+            <div>
+              <h3>Get found</h3>
+              <p>A fast website with a page for every service and every area you work in, linked to a Google Business Profile in your name.</p>
+              <span class="price-tag">Websites from {R(w.onePage.price)} once-off</span>
+            </div>
+          </li>
+          <li class="step3">
+            <span class="num n2" aria-hidden="true">02</span>
+            <div>
+              <h3>Catch every enquiry</h3>
+              <p>Customers pick the job, the area and add photos. You get an instant alert, they get an instant reply, and every enquiry sits in one list with a status.</p>
+              <span class="price-tag">Straat Leads {R(m.leads.price)} a month</span>
+            </div>
+          </li>
+          <li class="step3">
+            <span class="num n3" aria-hidden="true">03</span>
+            <div>
+              <h3>Win the job, then the next one</h3>
+              <p>Reminders for quotes not yet accepted, and a Google review request after every finished job, so your reviews keep growing.</p>
+              <span class="price-tag">Straat Growth {R(m.growth.price)} a month</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="sec" id="services" aria-labelledby="svc-h">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">What we do</p>
+          <h2 id="svc-h">Everything a small business needs to look professional online.</h2>
+          <p class="label-concept" style="margin-top:14px">The examples below use made-up businesses.</p>
+        </div>
+
+        <div class="svc">
+          <div class="svc-art" style="--c:#f6e3ec" aria-hidden="true">
+            <div class="ph2"><div class="ph2-s">
+              <div class="th-hero"><strong>Thandeka Hair Studio</strong><span>Pimville, Soweto. Tue to Sat, 8am to 6pm</span></div>
+              <div class="th-list"><div><span>Knotless braids</span><b>from R550</b></div><div><span>Cornrows</span><b>from R180</b></div><div><span>Wash and blow-dry</span><b>R150</b></div></div>
+              <div class="th-book">Book on WhatsApp</div>
+              <div class="th-map"><p><b>Find us:</b> 2 minutes' walk from the Pimville taxi rank. Walk-ins welcome before 10am.</p></div>
+            </div></div>
+          </div>
+          <div>
+            <p class="eyebrow">Websites</p>
+            <h3>A website that works on a cheap phone with weak signal.</h3>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>We write the words for you, from a WhatsApp chat</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Call and WhatsApp buttons on every page</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>.co.za domain and first-year hosting included</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Online catalogue with WhatsApp ordering, from {R(w.catalogue.price)}</li>
+            </ul>
+            <div class="svc-price"><span class="muted">From</span><strong>{R(w.onePage.price)}</strong><span class="muted">once-off</span><a href="#prices">Compare packages</a></div>
+          </div>
+        </div>
+
+        <div class="svc flip">
+          <div class="svc-art" style="--c:var(--blue-soft)" aria-hidden="true">
+            <div class="card-ui board">
+              <div class="board-h">StraatOS enquiries <span>This month: 14</span></div>
+              <div class="cols">
+                <div class="col"><p>New</p><div class="tkt y">DB board<small>Bellville</small></div><div class="tkt y">Plug points<small>Parow</small></div></div>
+                <div class="col"><p>Contacted</p><div class="tkt">Fault finding<small>Athlone</small></div></div>
+                <div class="col"><p>Quote sent</p><div class="tkt">Geyser wiring<small>Goodwood</small></div><div class="tkt">Solar prep<small>Durbanville</small></div></div>
+                <div class="col"><p>Won</p><div class="tkt g">COC<small>Review asked</small></div></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">Enquiry tracking</p>
+            <h3>Every quote request in one place, from first message to won job.</h3>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Smart quote form: job type, suburb, photos</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Instant alert to you, instant reply to the customer</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>A monthly report: enquiries, top jobs, won and lost</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Your customers' details stay yours, under a written POPIA agreement</li>
+            </ul>
+            <div class="svc-price"><strong>{R(m.leads.price)}</strong><span class="muted">a month</span><a href="#demo">Try the demo</a></div>
+          </div>
+        </div>
+
+        <div class="svc">
+          <div class="svc-art" style="--c:#e7efdc" aria-hidden="true">
+            <div class="card-ui gbp">
+              <div class="map"><span class="pin"></span></div>
+              <div class="gbp-b">
+                <strong>Ndlovu Electrical</strong>
+                <span class="muted">Electrician in Mitchells Plain</span>
+                <p class="hours"><b>Open</b> &middot; Closes 5pm</p>
+                <div class="gbp-acts"><span>Call</span><span>Directions</span><span>Website</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">Google Business Profile</p>
+            <h3>Show up on Google Maps with the right hours, photos and areas.</h3>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Profile created or cleaned up, linked to your website</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>In your name. We are added as a manager, and you can remove us any time</li>
+            </ul>
+            <div class="svc-price"><strong>{R(x.googleBusinessProfile.price)}</strong><span class="muted">or included in Business</span></div>
+          </div>
+        </div>
+
+        <div class="svc flip">
+          <div class="svc-art" style="--c:var(--sign-soft)" aria-hidden="true">
+            <div class="card-ui chat">
+              <div class="chat-h">Fazila's Kitchen<small>Business account</small></div>
+              <div class="chat-b">
+                <div class="bub me">Hi, do you have milk tart this weekend?</div>
+                <div class="bub">Hi! Thanks for messaging Fazila's Kitchen. Order by Thursday for the weekend. Here is our menu:</div>
+                <div class="quick"><span>Menu</span><span>Prices</span><span>Delivery areas</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">WhatsApp, logo and posters</p>
+            <h3>The small things customers notice first.</h3>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp Business: catalogue, greeting and away messages, quick replies ({R(x.whatsappSetup.price)})</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>A clean name logo, 3 options ({R(x.logo.price)})</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>3 posters sized for Facebook and Instagram ({R(x.posters.price)})</li>
+            </ul>
+            <div class="svc-price"><span class="muted">All three in the Launch Pack,</span><strong>{R(w.launchPack.price)}</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO -->
+    <section class="sec sand" id="demo" aria-labelledby="demo-h">
+      <div class="wrap">
+        <div class="head center">
+          <p class="eyebrow">Live demo, made-up data</p>
+          <h2 id="demo-h">Be the customer. Watch what the owner sees.</h2>
+          <p class="lead">Pick a job and an area on the left, then send it. This is Straat Leads at {R(m.leads.price)} a month.</p>
+        </div>
+        <div class="demo-grid">
+          <form class="panel" id="demo-form">
+            <div class="panel-h"><strong>Get a quote</strong><span class="who">Customer</span></div>
+            <fieldset><legend>What do you need?</legend>
+              <div class="opts">
+                {['DB board upgrade', 'COC certificate', 'Fault finding'].map((j, i) => (
+                  <label class="opt"><input type="radio" name="job" value={j} checked={i === 0} /><span>{j}</span></label>
+                ))}
+              </div>
+            </fieldset>
+            <fieldset><legend>Where?</legend>
+              <div class="opts">
+                {['Bellville', 'Mitchells Plain', 'Khayelitsha'].map((a, i) => (
+                  <label class="opt"><input type="radio" name="area" value={a} checked={i === 0} /><span>{a}</span></label>
+                ))}
+              </div>
+            </fieldset>
+            <p class="demo-note">Problem: "Lights trip when the geyser switches on." 2 photos added.</p>
+            <div class="demo-acts"><button class="btn btn-blue" type="submit">Send quote request</button></div>
+            <p class="demo-note" id="demo-thanks" aria-live="polite"></p>
+          </form>
+          <div class="panel" aria-live="polite">
+            <div class="panel-h"><strong>StraatOS enquiries</strong><span class="who">Owner</span></div>
+            <div id="inbox">
+              <div class="inbox-row"><div><b>Geyser wiring</b><small>Parow, 2 days ago</small></div><span class="status s-quote">Quote sent</span></div>
+              <div class="inbox-row"><div><b>COC certificate</b><small>Goodwood, 5 days ago</small></div><span class="status s-won">Won</span></div>
+            </div>
+            <div class="alert" id="demo-alert" hidden><i></i><span id="demo-alert-t"></span></div>
+            <div class="demo-acts" id="demo-acts" hidden>
+              <button class="btn btn-ghost btn-sm" type="button" id="demo-next">Move to next step</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="demo-reset">Start again</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICES -->
+    <section class="sec" id="prices" aria-labelledby="prices-h">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Prices</p>
+          <h2 id="prices-h">Prices on the page, not after a meeting.</h2>
+          <p class="lead">Once-off and final. Every package includes a .co.za domain, first-year hosting, the words written for you and 2 rounds of changes.</p>
+        </div>
+        <div class="price-grid">
+          <article class="pcard">
+            <h3>{w.onePage.name}</h3>
+            <p class="for">For new businesses and sellers who need one link that explains everything.</p>
+            <p class="amt">{R(w.onePage.price)}</p><p class="when">Live in 3 working days</p>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Services, prices, hours, map</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Call, WhatsApp and enquiry form</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>info@ email to your Gmail</li>
+            </ul>
+            <a class="btn btn-ghost" href={whatsappHref(`Hi Straat Studio, I'm interested in the ${w.onePage.name} website.`)} rel="noopener">Start with One-Page</a>
+          </article>
+          <article class="pcard hi">
+            <span class="tag">Recommended for trades</span>
+            <h3>{w.business.name}</h3>
+            <p class="for">A page for every service, so Google can match each search to the right page.</p>
+            <p class="amt">{R(w.business.price)}</p><p class="when">Live in 5 working days</p>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to 5 pages</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Photo gallery and quote form</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Google Business Profile set up</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Everything in One-Page</li>
+            </ul>
+            <a class="btn btn-wa" href={whatsappHref(`Hi Straat Studio, I'm interested in the ${w.business.name} website.`)} rel="noopener">Start with Business</a>
+          </article>
+          <article class="pcard">
+            <h3>{w.catalogue.name}</h3>
+            <p class="for">For bakers, caterers and shops who change products and prices often.</p>
+            <p class="amt">{R(w.catalogue.price)}</p><p class="when">Live in 7 working days</p>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to 30 products you update</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp order buttons</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Optional PayFast or Yoco</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Everything in Business</li>
+            </ul>
+            <a class="btn btn-ghost" href={whatsappHref(`Hi Straat Studio, I'm interested in the ${w.catalogue.name} website.`)} rel="noopener">Start with Catalogue</a>
+          </article>
+          <article class="pcard">
+            <h3>{w.launchPack.name}</h3>
+            <p class="for">Starting from scratch? The Business website plus everything around it.</p>
+            <p class="amt">{R(w.launchPack.price)}</p><p class="when">Live in 5 working days</p>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Business website</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Logo, 3 options</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>3 social media posters</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp Business setup</li>
+            </ul>
+            <a class="btn btn-ghost" href={whatsappHref(`Hi Straat Studio, I'm interested in the ${w.launchPack.name}.`)} rel="noopener">Start with Launch Pack</a>
+          </article>
+        </div>
+        <div class="paymonthly">
+          <p><b>Can't pay at once?</b> Business website plus Straat Leads for {R(pm.setup)} to start, then {R(pm.monthlyFor12Months)} a month for 12 months. The site is yours after the 12th payment, then Straat Leads continues at {R(pm.monthlyAfter)} a month.</p>
+          <a class="btn btn-ghost btn-sm" href={whatsappHref('Hi Straat Studio, tell me about the pay-monthly option.')} rel="noopener">Ask about pay-monthly</a>
+        </div>
+
+        <div class="plans-h">
+          <div><p class="eyebrow" style="margin:0 0 8px">Optional monthly plans</p><h3 style="font-size:clamp(24px,2.6vw,32px)">Never lose an enquiry again.</h3></div>
+          <p class="muted small">Cancel any time. Your website stays yours either way.</p>
+        </div>
+        <div class="plan-grid">
+          <div class="plan"><div class="plan-top"><strong>{m.care.name}</strong><span>{R(m.care.price)} <small>a month</small></span></div><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></div>
+          <div class="plan hi"><div class="plan-top"><strong>{m.leads.name}</strong><span>{R(m.leads.price)} <small>a month</small></span></div><p>Everything in Care, plus the smart quote form, your enquiry list with statuses, instant alerts, instant customer replies and a monthly report.</p><span class="badge">Best value for trades</span></div>
+          <div class="plan"><div class="plan-top"><strong>{m.growth.name}</strong><span>{R(m.growth.price)} <small>a month</small></span></div><p>Everything in Leads, plus review requests after every job, quote follow-up reminders, 2 Google posts a month and a new page every quarter.</p></div>
+        </div>
+
+        <div class="builder" id="builder">
+          <div class="builder-l">
+            <p class="eyebrow">Build your package</p>
+            <h3 style="font-size:clamp(24px,2.6vw,32px)">Pick what you need. The total updates as you go.</h3>
+            <fieldset style="margin-top:24px"><legend>1. Your website</legend><div class="opts">
+              {[w.onePage, w.business, w.catalogue, w.launchPack].map((p, i) => (
+                <label class="opt"><input type="radio" name="b-site" value={p.price} data-name={p.name} checked={i === 1} /><span>{p.name} {R(p.price)}</span></label>
+              ))}
+            </div></fieldset>
+            <fieldset><legend>2. Monthly plan (optional)</legend><div class="opts">
+              <label class="opt"><input type="radio" name="b-plan" value="0" data-name="No plan" /><span>No plan</span></label>
+              {[m.care, m.leads, m.growth].map((p, i) => (
+                <label class="opt"><input type="radio" name="b-plan" value={p.price} data-name={p.name} checked={i === 1} /><span>{p.name.replace('Straat ', '')} {R(p.price)}</span></label>
+              ))}
+            </div></fieldset>
+            <fieldset><legend>3. Extras</legend><div class="opts">
+              {[x.logo, x.posters, x.whatsappSetup].map((p) => (
+                <label class="opt"><input type="checkbox" name="b-extra" value={p.price} data-name={p.name} /><span>{p.name} {R(p.price)}</span></label>
+              ))}
+            </div></fieldset>
+            <p class="small muted" id="b-note">The Launch Pack already includes the logo, posters and WhatsApp setup.</p>
+          </div>
+          <div class="builder-r on-night" aria-live="polite">
+            <p class="total-l">Once-off, final price</p>
+            <p class="total" id="b-once">{R(w.business.price)}</p>
+            <p class="total-l" style="margin-top:18px">Then</p>
+            <p class="total-m" id="b-month">{R(m.leads.price)} a month</p>
+            <a class="btn btn-wa" id="b-send" href={wa} rel="noopener">Send this to us on WhatsApp</a>
+            <p class="small">Domain and first-year hosting included. No VAT added. Free homepage preview before you pay.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARE -->
+    <section class="sec sand" aria-labelledby="cmp-h">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Before you pay anyone</p>
+          <h2 id="cmp-h">Ask these 8 questions. Here are our answers, in writing.</h2>
+          <p class="lead">Many cheap website adverts don't say what is included. Ours are on this page.</p>
+        </div>
+        <table class="cmp">
+          <thead><tr><th scope="col">Question</th><th scope="col">Straat Studio</th></tr></thead>
+          <tbody>
+            {[
+              ['Is the domain included, and in whose name?', 'Included for year 1, registered in your name'],
+              ['Is hosting included?', 'Yes, for year 1'],
+              ['What does year 2 cost?', `${R(prices.year2HostingAndDomain)} a year, or ${R(m.care.price)} a month with Straat Care`],
+              ['Who writes the words?', 'We do, from your WhatsApp details'],
+              ['Can I see it before paying?', 'Yes, a free homepage preview for every package'],
+              ['Who owns my Google Business Profile?', 'You do. We are added as a manager'],
+              ['Who owns the website files?', 'You do, after final payment, with a handover sheet'],
+              ['Can I leave and take my site?', 'Yes. No lock-in, and we hand over your files'],
+            ].map(([q, a]) => (
+              <tr><td>{q}</td><td><span class="ans"><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg><span>{a}</span></span></td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="sec" id="work" aria-labelledby="work-h">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Sample work</p>
+          <h2 id="work-h">Each business is different, so each site looks different.</h2>
+          <p class="lead">These are concept projects for made-up South African businesses, built to show the standard. Real client sites replace them here as they go live.</p>
+        </div>
+        <div class="work-grid">
+          <article class="wk wk-1">
+            <div class="wk-top"><p class="label-concept">Concept project, not commissioned client work</p><h3>Fazila's Kitchen</h3><p>Home baker in Athlone. She changes prices and photos from her phone.</p><span class="wk-pkg">Catalogue package</span></div>
+            <div class="wk-shot" aria-hidden="true"><b class="t">Order by Thursday for the weekend</b><div class="r"><span>Chocolate cake, serves 12</span><b>R420</b></div><div class="r"><span>Milk tart, large</span><b>R160</b></div><div class="r"><span>Koeksisters, 12</span><b>R75</b></div></div>
+          </article>
+          <article class="wk wk-2">
+            <div class="wk-top"><p class="label-concept">Concept project, not commissioned client work</p><h3>Thandeka Hair Studio</h3><p>Salon in Soweto. Prices, hours, directions from the taxi rank and WhatsApp booking.</p><span class="wk-pkg">One-Page package</span></div>
+            <div class="wk-shot" aria-hidden="true"><b class="t">Book on WhatsApp</b><div class="r"><span>Knotless braids</span><b>from R550</b></div><div class="r"><span>Cornrows</span><b>from R180</b></div><div class="r"><span>Wash and blow-dry</span><b>R150</b></div></div>
+          </article>
+          <article class="wk wk-3">
+            <div class="wk-top"><p class="label-concept">Concept project, not commissioned client work</p><h3>Ndlovu Electrical</h3><p>A page for each job and each area, so "electrician Mitchells Plain" lands on the right page.</p><span class="wk-pkg">Business package</span></div>
+            <div class="wk-shot" aria-hidden="true"><b class="t">Electrician in Mitchells Plain</b><div class="r"><span>COC certificates</span><b>&rarr;</b></div><div class="r"><span>DB board upgrades</span><b>&rarr;</b></div><div class="r"><span>Geyser and stove wiring</span><b>&rarr;</b></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="sec sand" id="process" aria-labelledby="proc-h">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">How it works</p>
+          <h2 id="proc-h">See it first. Pay after.</h2>
+          <p class="lead">Four steps, done on WhatsApp and one short online form. No meetings, wherever you are in South Africa.</p>
+        </div>
+        <ol class="proc">
+          <li><h3>Tell us about your business</h3><p>Your business name, what you do and where. Two minutes on WhatsApp.</p></li>
+          <li><h3>See your homepage free</h3><p>A view-only preview link, designed and written for you. No payment yet.</p></li>
+          <li><h3>Approve and pay to start</h3><p>One-Page is paid in full, Business and Catalogue pay half. Then you fill in one checklist form for your package.</p></li>
+          <li><h3>2 rounds of changes, then live</h3><p>On your own .co.za, 3 to 7 working days after your content arrives, with a sheet showing what you own.</p></li>
+        </ol>
+        <div class="need">
+          <h3>What we will ask you for</h3>
+          <div class="need-grid">
+            <div><p class="need-h">Every package</p><ul><li>Business name, logo if you have one</li><li>Services and prices</li><li>Areas you serve and your hours</li><li>Phone, WhatsApp and email</li><li>6 to 15 photos of your work</li></ul></div>
+            <div><p class="need-h">Business and Launch Pack</p><ul><li>A few lines on each service</li><li>Your Google Business Profile, or we create one</li><li>Before and after photos, if you have them</li><li>Logo and poster ideas (Launch Pack)</li></ul></div>
+            <div><p class="need-h">Catalogue</p><ul><li>Your product list on our template</li><li>One photo per product</li><li>Delivery or collection areas and fees</li><li>Your PayFast or Yoco account, if you want payments</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="sec" aria-labelledby="about-h">
+      <div class="wrap about">
+        <div class="facts">
+          <div><span>Company</span><b>{business.legalName}</b></div>
+          <div><span>Registration</span><b>{business.regNumber}</b></div>
+          <div><span>Where we work</span><b>All of South Africa, online</b></div>
+          <div><span>Based in</span><b>Cape Town, Western Cape</b></div>
+          <div><span>Paperwork</span><b>Written agreement, POPIA data agreement</b></div>
+        </div>
+        <div class="note">
+          <p class="eyebrow">Who you deal with</p>
+          <h2 id="about-h">A registered company, with every promise in writing.</h2>
+          <div style="margin-top:24px;font-size:clamp(18px,1.6vw,20px)">
+            <p>Straat Studio is a trading name of {business.legalName}, a registered South African company.</p>
+            <p>You get one WhatsApp line for your project, from the first message to the day your site goes live. Prices, delivery times and what you own are written down before you pay a cent.</p>
+            <p>Your domain is registered in your name, your Google profile stays yours, and you can take your website elsewhere at any time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sec sand" id="questions" aria-labelledby="faq-h">
+      <div class="wrap">
+        <div class="head center"><p class="eyebrow">Questions</p><h2 id="faq-h">Questions people ask</h2></div>
+        <div class="faq">
+          {faqs.map(([q, a]) => (<details><summary>{q}</summary><p>{a}</p></details>))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="wrap" id="contact" style="margin-top:96px" aria-labelledby="cta-h">
+      <div class="cta">
+        <h2 id="cta-h">Send us your business name. Get your homepage back, free.</h2>
+        <p>No payment and no obligation. We aim to send your preview within 2 working days.</p>
+        <div class="cta-btns">
+          <a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us</a>
+          <a class="btn btn-ghost" href={phoneHref} data-event="phone-click">Call {business.phoneDisplay}</a>
+          <a class="btn btn-ghost" href={emailHref}>Email us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot on-night">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <span class="logo"><span class="logo-mark" aria-hidden="true">S</span><span class="logo-word">Straat Studio</span></span>
+          <p style="margin-top:16px;max-width:36ch">Websites and enquiry systems for small businesses across South Africa. Final prices. You own your domain.</p>
+        </div>
+        <div><h4>Contact</h4><ul>
+          <li><a href={wa} rel="noopener">WhatsApp us</a></li>
+          <li><a href={phoneHref}>Call {business.phoneDisplay}</a></li>
+          <li><a href={emailHref}>{business.email}</a></li>
+          <li>Based in Cape Town. Serving all of South Africa.</li>
+        </ul></div>
+        <div><h4>On this page</h4><ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#prices">Prices</a></li>
+          <li><a href="#process">How it works</a></li>
+          <li><a href="#questions">Questions</a></li>
+        </ul></div>
+      </div>
+      <div class="foot-legal">
+        <p>{business.legalName}, Reg. {business.regNumber}</p>
+        <p>{business.name} is a trading name of {business.legalName}. &copy; {year}. Based in Cape Town, serving all of South Africa.</p>
+      </div>
     </div>
-  </section>
-</BaseLayout>
+  </footer>
+
+  <a class="wa-float" id="wa-float" href={wa} rel="noopener" aria-label="Chat on WhatsApp" data-event="whatsapp-click">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+  </a>
+
+  <script define:vars={{ waBase: `https://wa.me/${business.phoneDigits}?text=` }}>
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const rand = (n) => 'R' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+    // Menu
+    const mb = $('#menu-btn'), mn = $('#mobile-nav');
+    const closeMenu = (refocus) => { mn.hidden = true; mb.setAttribute('aria-expanded', 'false'); mb.textContent = 'Menu'; if (refocus) mb.focus(); };
+    mb.addEventListener('click', () => {
+      if (mn.hidden) { mn.hidden = false; mb.setAttribute('aria-expanded', 'true'); mb.textContent = 'Close'; $('a', mn).focus(); }
+      else closeMenu(true);
+    });
+    mn.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') return closeMenu(true);
+      if (e.key !== 'Tab') return;
+      const f = [mb, ...$$('a', mn)], first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    $$('a', mn).forEach((a) => a.addEventListener('click', () => closeMenu(false)));
+
+    // Package builder
+    const calc = () => {
+      const site = $('input[name="b-site"]:checked');
+      const plan = $('input[name="b-plan"]:checked');
+      const isLaunch = site.dataset.name === 'Launch Pack';
+      const extras = $$('input[name="b-extra"]');
+      extras.forEach((e) => { e.disabled = isLaunch; if (isLaunch) e.checked = false; e.closest('.opt').style.opacity = isLaunch ? .45 : 1; });
+      const chosen = extras.filter((e) => e.checked);
+      const once = Number(site.value) + chosen.reduce((s, e) => s + Number(e.value), 0);
+      const monthly = Number(plan.value);
+      $('#b-once').textContent = rand(once);
+      $('#b-month').textContent = monthly ? `${rand(monthly)} a month` : 'Nothing monthly';
+      const msg = `Hi Straat Studio, I'd like: ${site.dataset.name}${chosen.length ? ' + ' + chosen.map((e) => e.dataset.name).join(', ') : ''}${monthly ? ' + ' + plan.dataset.name : ''}. Total ${rand(once)} once-off${monthly ? ', then ' + rand(monthly) + ' a month' : ''}.`;
+      $('#b-send').href = waBase + encodeURIComponent(msg);
+    };
+    $$('#builder input').forEach((i) => i.addEventListener('change', calc));
+    calc();
+
+    // Enquiry demo
+    const steps = [['New', 's-new'], ['Quote sent', 's-quote'], ['Won', 's-won']];
+    let stage = 0, row = null;
+    $('#demo-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const job = $('input[name="job"]:checked').value, area = $('input[name="area"]:checked').value;
+      if (row) row.remove();
+      stage = 0;
+      row = document.createElement('div');
+      row.className = 'inbox-row new';
+      row.innerHTML = `<div><b></b><small></small></div><span class="status s-new">New</span>`;
+      row.querySelector('b').textContent = job;
+      row.querySelector('small').textContent = `${area}, just now, 2 photos`;
+      $('#inbox').prepend(row);
+      $('#demo-alert').hidden = false;
+      $('#demo-alert-t').textContent = `New enquiry: ${job}, ${area}. Sent to your phone.`;
+      $('#demo-acts').hidden = false;
+      $('#demo-next').textContent = 'Move to next step';
+      $('#demo-thanks').textContent = `Thanks, your request is in. Ndlovu Electrical will reply soon. A copy is in your email.`;
+    });
+    $('#demo-next').addEventListener('click', () => {
+      if (!row) return;
+      stage = Math.min(stage + 1, 2);
+      const s = row.querySelector('.status');
+      s.className = 'status ' + steps[stage][1];
+      s.textContent = steps[stage][0];
+      if (stage === 2) { $('#demo-alert-t').textContent = 'Job won. One tap sends the customer your Google review link.'; $('#demo-next').textContent = 'Done'; }
+      else $('#demo-alert-t').textContent = 'Quote sent. Every step is tracked, so no job gets forgotten.';
+    });
+    $('#demo-reset').addEventListener('click', () => {
+      if (row) row.remove(); row = null; stage = 0;
+      $('#demo-alert').hidden = true; $('#demo-acts').hidden = true; $('#demo-thanks').textContent = '';
+    });
+
+    // Hide floating WhatsApp over the contact band and footer
+    const fl = $('#wa-float');
+    const io = new IntersectionObserver((es) => { fl.hidden = es.some((x) => x.isIntersecting); });
+    [$('#contact'), $('footer')].forEach((el) => el && io.observe(el));
+  </script>
+</body>
+</html>

@@ -12,7 +12,7 @@ const placeholderGuard = {
       if (!hasPlaceholders) return;
       const todo = [];
       if (business.phoneDigits.includes('X')) todo.push('phoneDigits (WhatsApp and phone)');
-      if (business.email.endsWith('.invalid')) todo.push('email');
+      if (!business.emailForwardingReady) todo.push('email (set up Cloudflare email forwarding for ' + business.email + ', then set emailForwardingReady to true)');
       if (business.regNumber.startsWith('PLACEHOLDER')) todo.push('regNumber');
       throw new Error(
         'Build stopped: placeholders remain in src/config/business.ts: ' + todo.join(', ') + '.'
@@ -24,6 +24,7 @@ const placeholderGuard = {
 export default defineConfig({
   site: 'https://straatstudio.co.za',
   output: 'static',
+  server: { port: 4322 },
   trailingSlash: 'always',
   build: { format: 'directory' },
   integrations: [sitemap(), placeholderGuard],
