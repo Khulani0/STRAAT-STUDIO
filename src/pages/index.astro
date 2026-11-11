@@ -21,6 +21,34 @@ const wa = whatsappHref("Hi Straat Studio, I'd like a free homepage preview for 
 const waFounding = whatsappHref("Hi Straat Studio, is a founding client spot still open?");
 const year = new Date().getFullYear();
 
+// Real screenshots of the three finished concept sites (public/work/). Prices and package names come from business.ts.
+const work = [
+  {
+    key: 'fazila',
+    name: "Fazila's Kitchen",
+    blurb: 'Home baker in Mitchells Plain. Sample menu with a category filter and an Order on WhatsApp button on every product.',
+    pkg: w.catalogue,
+    desktopAlt: "Home page of the Fazila's Kitchen concept site on a desktop screen: a concept-project bar, the headline Baked fresh, made for sharing, and a photo of a chocolate ring cake with white chocolate shavings.",
+    phoneAlt: "Home page of the Fazila's Kitchen concept site on a phone: the concept-project bar, a menu button, the headline Baked fresh, made for sharing, and two buttons.",
+  },
+  {
+    key: 'thandeka',
+    name: 'Thandeka Hair Studio',
+    blurb: 'Salon in Soweto. Sample prices, hours, areas and WhatsApp booking, all on one page.',
+    pkg: w.onePage,
+    desktopAlt: 'Home page of the Thandeka Hair Studio concept site on a desktop screen: a concept-project bar, the headline Braids, twists and natural hair, done with care, and a photo of copper-coloured twists seen from behind.',
+    phoneAlt: 'Home page of the Thandeka Hair Studio concept site on a phone: the concept-project bar, a menu button, the headline Braids, twists and natural hair, done with care, and a Book on WhatsApp button.',
+  },
+  {
+    key: 'ndlovu',
+    name: 'Ndlovu Electrical',
+    blurb: 'Five pages for an electrician in Athlone: services, areas served and a demo quote form.',
+    pkg: w.business,
+    desktopAlt: 'Home page of the Ndlovu Electrical concept site on a desktop screen: a concept-project bar, the headline Lights on. Breakers steady. Done right., and a photo of an open junction box full of wiring.',
+    phoneAlt: 'Home page of the Ndlovu Electrical concept site on a phone: the concept-project bar, a menu button, the headline Lights on. Breakers steady. Done right., and a Chat on WhatsApp button.',
+  },
+];
+
 const trades = [
   { name: 'Electricians', icon: 'M13 2 4 14h7l-1 8 9-12h-7l1-8z' },
   { name: 'Plumbers', icon: 'M4 10h10a4 4 0 0 1 4 4v6M4 6v8M14 10V4h-4' },
@@ -64,6 +92,7 @@ const jsonLd = [
   path="/"
   jsonLd={jsonLd}
 >
+  <link slot="head" rel="preload" as="image" type="image/webp" href="/work/ndlovu-desktop-600.webp" imagesrcset="/work/ndlovu-desktop-600.webp 600w, /work/ndlovu-desktop-800.webp 800w, /work/ndlovu-desktop-1200.webp 1200w" imagesizes="(min-width: 1024px) 480px, 92vw" fetchpriority="high" />
   <p class="announce" slot="announce">Founding offer: our first {prices.foundingOfferClients} clients get a Business website for {R(prices.foundingOfferPrice)} instead of {R(w.business.price)}. <a href={waFounding} rel="noopener">Ask if a spot is open</a></p>
 
     <!-- HERO -->
@@ -84,40 +113,40 @@ const jsonLd = [
           </ul>
         </div>
 
-        <div class="stage" role="img" aria-label="Concept example: an electrician's website on a laptop, and the owner's phone showing a new enquiry alert">
+        <div class="stage">
           <div class="stage-disc" aria-hidden="true"></div>
-          <div class="browser" aria-hidden="true">
-            <div class="browser-bar"><i></i><i></i><i></i><span class="browser-url">ndlovuelectrical.co.za</span></div>
-            <div class="site-nd">
-              <div class="nd-top"><span class="nd-logo">NDLOVU <b>ELECTRICAL</b></span><span>Services &middot; Areas &middot; Contact</span></div>
-              <div class="nd-hero">
-                <strong>Electrician in Mitchells Plain and Khayelitsha</strong>
-                <span>COCs, DB boards and fault finding. Monday to Saturday.</span>
-                <div class="nd-btns"><em>Call now</em><em>WhatsApp</em></div>
-              </div>
-              <div class="nd-svc">
-                <div><b>COC certificates</b>For selling or renting</div>
-                <div><b>DB boards</b>Upgrades and earth leakage</div>
-                <div><b>Fault finding</b>Tripping and prepaid meters</div>
-              </div>
-            </div>
+          <div class="browser">
+            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img
+              class="browser-shot"
+              src="/work/ndlovu-desktop-600.webp"
+              srcset="/work/ndlovu-desktop-600.webp 600w, /work/ndlovu-desktop-800.webp 800w, /work/ndlovu-desktop-1200.webp 1200w"
+              sizes="(min-width: 1024px) 480px, 92vw"
+              width="1200"
+              height="750"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              alt={work[2].desktopAlt}
+            />
           </div>
-          <div class="phone" aria-hidden="true">
+          <div class="phone" role="img" aria-label="The StraatOS enquiry system on a phone, with made-up data: a new enquiry alert for a DB board upgrade in Athlone, two earlier enquiries and a monthly summary.">
             <div class="phone-screen">
               <div class="phone-top">StraatOS<small>Ndlovu Electrical</small></div>
+              <p class="phone-demo">Demo, made-up data</p>
               <div class="notif">
                 <div class="notif-h"><i></i>New enquiry &middot; now</div>
-                <b>DB board upgrade, Bellville</b>
+                <b>DB board upgrade, Athlone</b>
                 <span>"Lights trip when the geyser switches on." 2 photos</span><br />
                 <span class="chip">New</span>
               </div>
-              <div class="row-mini"><span><b>Geyser wiring</b><br />Parow</span><span class="chip blue">Quote sent</span></div>
-              <div class="row-mini"><span><b>COC certificate</b><br />Goodwood</span><span class="chip green">Won</span></div>
+              <div class="row-mini"><span><b>Geyser wiring</b><br />Rylands</span><span class="chip blue">Quote sent</span></div>
+              <div class="row-mini"><span><b>COC certificate</b><br />Gatesville</span><span class="chip green">Won</span></div>
               <div class="row-mini"><span><b>Review request</b><br />Sent on WhatsApp</span><span class="chip green">Done</span></div>
               <div class="phone-sum"><b>14</b> enquiries this month<br /><b>5</b> won &middot; <b>3</b> waiting on a quote</div>
             </div>
           </div>
-          <p class="stage-cap label-concept">Concept project, not commissioned client work.</p>
+          <p class="stage-cap label-concept">Concept project, not commissioned client work. The phone shows the StraatOS demo with made-up data.</p>
         </div>
       </div>
     </section>
@@ -465,18 +494,43 @@ const jsonLd = [
           <p class="lead">These are concept projects for made-up South African businesses, built to show the standard. Real client sites replace them here as they go live.</p>
         </div>
         <div class="work-grid">
-          <article class="wk wk-1">
-            <div class="wk-top"><p class="label-concept">Concept project, not commissioned client work</p><h3>Fazila's Kitchen</h3><p>Home baker in Athlone. She changes prices and photos from her phone.</p><span class="wk-pkg">Catalogue package</span></div>
-            <div class="wk-shot" aria-hidden="true"><b class="t">Order by Thursday for the weekend</b><div class="r"><span>Chocolate cake, serves 12</span><b>R420</b></div><div class="r"><span>Milk tart, large</span><b>R160</b></div><div class="r"><span>Koeksisters, 12</span><b>R75</b></div></div>
-          </article>
-          <article class="wk wk-2">
-            <div class="wk-top"><p class="label-concept">Concept project, not commissioned client work</p><h3>Thandeka Hair Studio</h3><p>Salon in Soweto. Prices, hours, directions from the taxi rank and WhatsApp booking.</p><span class="wk-pkg">One-Page package</span></div>
-            <div class="wk-shot" aria-hidden="true"><b class="t">Book on WhatsApp</b><div class="r"><span>Knotless braids</span><b>from R550</b></div><div class="r"><span>Cornrows</span><b>from R180</b></div><div class="r"><span>Wash and blow-dry</span><b>R150</b></div></div>
-          </article>
-          <article class="wk wk-3">
-            <div class="wk-top"><p class="label-concept">Concept project, not commissioned client work</p><h3>Ndlovu Electrical</h3><p>A page for each job and each area, so "electrician Mitchells Plain" lands on the right page.</p><span class="wk-pkg">Business package</span></div>
-            <div class="wk-shot" aria-hidden="true"><b class="t">Electrician in Mitchells Plain</b><div class="r"><span>COC certificates</span><b>&rarr;</b></div><div class="r"><span>DB board upgrades</span><b>&rarr;</b></div><div class="r"><span>Geyser and stove wiring</span><b>&rarr;</b></div></div>
-          </article>
+          {work.map((c) => (
+            <article class={`wk wk-${c.key}`}>
+              <div class="wk-top">
+                <p class="label-concept">Concept project, not commissioned client work</p>
+                <h3>{c.name}</h3>
+                <p>{c.blurb}</p>
+                <span class="wk-pkg">{c.pkg.name} package, {R(c.pkg.price)}</span>
+              </div>
+              <div class="wk-devs">
+                <div class="dev-browser">
+                  <div class="dev-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <img
+                    src={`/work/${c.key}-desktop-600.webp`}
+                    srcset={`/work/${c.key}-desktop-600.webp 600w, /work/${c.key}-desktop-800.webp 800w, /work/${c.key}-desktop-1200.webp 1200w`}
+                    sizes="(min-width: 900px) 330px, 90vw"
+                    width="1200"
+                    height="750"
+                    loading="lazy"
+                    decoding="async"
+                    alt={c.desktopAlt}
+                  />
+                </div>
+                <div class="dev-phone">
+                  <img
+                    src={`/work/${c.key}-phone-390.webp`}
+                    srcset={`/work/${c.key}-phone-390.webp 390w, /work/${c.key}-phone-780.webp 780w`}
+                    sizes="120px"
+                    width="780"
+                    height="1688"
+                    loading="lazy"
+                    decoding="async"
+                    alt={c.phoneAlt}
+                  />
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -627,21 +681,8 @@ const jsonLd = [
     .stage-disc::after { content: ''; position: absolute; width: 22%; aspect-ratio: 1; border-radius: 50%; background: var(--sign); right: 2%; top: 4%; }
     .browser { position: absolute; left: 0; top: 8%; width: 80%; background: #fff; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(15,27,45,.35); overflow: hidden; font-size: 12px; }
     .browser-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: var(--sand); border-bottom: 1px solid var(--line); }
+    .phone-demo { background: var(--sign-soft); color: var(--ink); font-size: 9.5px; font-weight: 700; text-align: center; padding: 3px 6px; }
     .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #d6d2c8; }
-    .browser-url { margin-left: 8px; flex: 1; background: #fff; border-radius: 6px; padding: 3px 10px; color: var(--muted); font-size: 11px; }
-    .site-nd { padding: 16px 18px 20px; }
-    .nd-top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); }
-    .nd-logo { font-weight: 800; color: var(--night); font-size: 13px; }
-    .nd-logo b { color: #8a6400; }
-    .nd-hero { margin-top: 14px; background: var(--night); color: #fff; border-radius: 8px; padding: 18px; }
-    .nd-hero strong { display: block; font: 600 clamp(14px, 1.9vw, 19px)/1.2 var(--serif); max-width: 20ch; }
-    .nd-hero span { display: block; margin-top: 6px; color: var(--on-night); font-size: 11px; }
-    .nd-btns { display: flex; gap: 6px; margin-top: 12px; }
-    .nd-btns em { font-style: normal; font-weight: 700; font-size: 10.5px; padding: 6px 10px; border-radius: 5px; background: var(--sign); color: var(--night); }
-    .nd-btns em + em { background: var(--wa); color: #06210f; }
-    .nd-svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
-    .nd-svc div { border: 1px solid var(--line); border-radius: 6px; padding: 8px; font-size: 10.5px; line-height: 1.35; }
-    .nd-svc b { display: block; font-size: 11px; }
     .phone { position: absolute; right: 0; bottom: 0; width: 35%; aspect-ratio: 9 / 18.5; background: var(--ink); border-radius: 28px; padding: 9px; box-shadow: 0 30px 60px -24px rgba(15,27,45,.45); }
     .phone-screen { width: 100%; height: 100%; border-radius: 20px; background: #eef1f5; overflow: hidden; display: flex; flex-direction: column; font-size: 11px; }
     .phone-top { background: var(--night); color: #fff; padding: 14px 12px 10px; font-weight: 600; font-size: 11.5px; }
@@ -659,8 +700,7 @@ const jsonLd = [
     @media (max-width: 639px) {
       .stage { aspect-ratio: 1 / 1.18; }
       .browser { width: 92%; top: 0; }
-      .nd-svc, .nd-top > span:last-child { display: none; }
-      .phone { width: 52%; }
+        .phone { width: 52%; }
       .stage-disc { inset: 18% 0 6% 10%; }
       .stage-cap { bottom: -30px; }
       .stage { margin-bottom: 0; }
@@ -835,16 +875,20 @@ const jsonLd = [
     .work-grid { display: grid; gap: 20px; }
     @media (min-width: 900px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
     .wk { border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; color: #fff; }
-    .wk-1 { background: #93401c; } .wk-2 { background: #5b2a4d; } .wk-3 { background: var(--night); }
+    .wk-fazila { background: #93401c; } .wk-thandeka { background: #5b2a4d; } .wk-ndlovu { background: var(--night); }
     .wk-top { padding: 26px 24px 0; }
     .wk-top .label-concept { color: #fff; }
     .wk-top h3 { color: #fff; margin-top: 10px; }
     .wk-top p { color: #fff; margin-top: 8px; font-size: 15.5px; }
+    /* Real screenshots in a browser frame and a phone frame. Width and height are set on every image, so nothing shifts. */
+    .wk-devs { position: relative; margin: 24px 24px 0; aspect-ratio: 1 / 0.82; }
+    .dev-browser { position: absolute; left: 0; top: 0; width: 84%; background: #fff; border-radius: 10px 10px 0 0; border: 1px solid rgba(255,255,255,.35); overflow: hidden; box-shadow: 0 24px 40px -24px rgba(0,0,0,.5); }
+    .dev-bar { display: flex; gap: 5px; padding: 7px 10px; background: var(--sand); border-bottom: 1px solid var(--line); }
+    .dev-bar i { width: 7px; height: 7px; border-radius: 50%; background: #d6d2c8; }
+    .dev-browser img, .browser-shot { display: block; width: 100%; height: auto; }
+    .dev-phone { position: absolute; right: 0; bottom: 0; width: 33%; background: var(--ink); border-radius: 16px 16px 0 0; padding: 5px 5px 0; box-shadow: 0 24px 40px -20px rgba(0,0,0,.6); }
+    .dev-phone img { display: block; width: 100%; height: auto; border-radius: 12px 12px 0 0; }
     .wk-pkg { display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 700; background: rgba(255,255,255,.16); border-radius: 999px; padding: 4px 12px; }
-    .wk-shot { margin: 24px 24px 0; background: #fff; color: var(--ink); border-radius: 12px 12px 0 0; padding: 16px; font-size: 13px; flex: 1; }
-    .wk-shot .r { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--line); }
-    .wk-shot .r:last-child { border: 0; }
-    .wk-shot b.t { display: block; font: 600 17px/1.2 var(--serif); margin-bottom: 6px; }
 
     /* Process */
     .proc { display: grid; gap: 28px; counter-reset: s; list-style: none; padding: 0; margin: 0; }
