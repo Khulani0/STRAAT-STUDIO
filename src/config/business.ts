@@ -81,9 +81,6 @@ export const prices = {
     googleBusinessProfile: { name: 'Google Business Profile', price: 250 },
     mailbox: { name: 'Full email mailbox', price: 250 },
   },
-  /** Founding offer: Business website price for the first 3 clients. */
-  foundingOfferPrice: 1249,
-  foundingOfferClients: 3,
   /** Extra change beyond the 2 included rounds, during the build. */
   extraChangeDuringBuild: 150,
   /** Single change after launch, for sites without Straat Care. */

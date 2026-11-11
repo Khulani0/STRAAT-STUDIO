@@ -76,10 +76,6 @@ section[id] { scroll-margin-top: 80px; }
 .wa-ico { width: 20px; height: 20px; flex: none; }
 .tick { width: 20px; height: 20px; flex: none; color: var(--blue); }
 
-/* Announcement */
-.announce { background: var(--sign); color: var(--ink); font-size: 15px; text-align: center; padding: 10px 24px; }
-.announce a { font-weight: 600; }
-
 /* Header */
 .hdr { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }
 .hdr-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 72px; }
