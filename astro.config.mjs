@@ -27,6 +27,6 @@ export default defineConfig({
   server: { port: 4322 },
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [sitemap(), placeholderGuard],
+  integrations: [sitemap({ filter: (page) => !page.includes('/test-layout/') }), placeholderGuard],
   vite: { plugins: [tailwindcss()] },
 });

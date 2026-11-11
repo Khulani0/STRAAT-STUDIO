@@ -1,13 +1,7 @@
 ---
 import '../styles/global.css';
 import SEO, { type Props as SEOProps } from '../components/SEO.astro';
-import {
-  business,
-  phoneHref,
-  emailHref,
-  whatsappHref,
-  defaultWhatsappMessage,
-} from '../config/business';
+import { business, phoneHref, emailHref, whatsappHref, defaultWhatsappMessage } from '../config/business';
 
 export interface Props extends SEOProps {
   /** Pre-filled WhatsApp message for this page. */
@@ -20,108 +14,95 @@ const { whatsappMessage = defaultWhatsappMessage, draft = false, ...seo } = Astr
 const wa = whatsappHref(whatsappMessage);
 const year = new Date().getFullYear();
 
-// In-page anchors that exist on the homepage. Root-relative so they work from any page.
+// Root-relative so the links work from every page.
 const nav = [
+  { label: 'Services', href: '/#services' },
+  { label: 'Enquiry system', href: '/#system' },
   { label: 'Prices', href: '/#prices' },
-  { label: 'See it work', href: '/#demo' },
-  { label: 'Build your package', href: '/#builder' },
-  { label: 'Sample work', href: '/#work' },
+  { label: 'Work', href: '/#work' },
   { label: 'How it works', href: '/#process' },
-  { label: 'Questions', href: '/#questions' },
 ];
 ---
 
 <!doctype html>
 <html lang="en-ZA">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <SEO {...seo} />
-  </head>
-  <body class="min-h-screen flex flex-col bg-white text-ink">
-    <a class="skip-link" href="#main">Skip to content</a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
+  <SEO {...seo} />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-    {draft && <p class="bg-mist text-ink text-center text-sm py-2 px-6 border-b border-line">Draft, review before launch</p>}
+  <slot name="announce" />
+  {draft && <p class="draft-banner">Draft, review before launch</p>}
 
-    <header class="bg-white border-b border-line sticky top-0 z-30">
-      <div class="container-site flex items-center justify-between gap-4 py-3">
-        <a href="/" class="font-bold text-xl tracking-tight no-underline text-ink">Straat Studio</a>
-
-        <nav aria-label="Main" class="hidden lg:flex items-center gap-6 text-base">
-          {nav.slice(0, 5).map((n) => <a href={n.href} class="text-ink no-underline hover:text-accent">{n.label}</a>)}
-        </nav>
-
-        <div class="flex items-center gap-3">
-          <a class="btn btn-whatsapp hidden sm:inline-flex" href={wa} data-event="whatsapp-click" rel="noopener">WhatsApp us</a>
-          <button
-            type="button"
-            id="menu-button"
-            class="lg:hidden btn btn-outline"
-            aria-expanded="false"
-            aria-controls="menu-panel"
-          >Menu</button>
-        </div>
-      </div>
-
-      <nav id="menu-panel" aria-label="Mobile" hidden class="lg:hidden border-t border-line bg-white">
-        <ul class="container-site py-2">
-          {nav.map((n) => (
-            <li><a href={n.href} class="block py-3 text-ink no-underline border-b border-mist">{n.label}</a></li>
-          ))}
-          <li><a href="/#contact" class="block py-3 text-accent font-bold no-underline">Get a free preview</a></li>
-        </ul>
+  <header class="hdr">
+    <div class="wrap hdr-in">
+      <a href="/" class="logo" aria-label="Straat Studio home">
+        <span class="logo-mark" aria-hidden="true">S</span>
+        <span class="logo-word">Straat Studio</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        {nav.map((n) => <a href={n.href}>{n.label}</a>)}
       </nav>
-    </header>
-
-    <main id="main" class="flex-1">
-      <slot />
-    </main>
-
-    <footer class="bg-black text-muted-dark on-black pb-24 sm:pb-0">
-      <div class="container-site py-12 grid gap-10 md:grid-cols-3 text-base" id="site-footer">
-        <div>
-          <p class="font-bold text-white text-xl">{business.name}</p>
-          <p class="mt-3">Websites for small businesses across South Africa. Final prices. You own your domain. Based in Cape Town.</p>
-        </div>
-        <div>
-          <p class="font-bold text-white">Contact</p>
-          <ul class="mt-3 grid gap-2">
-            <li><a class="text-accent-light underline" href={wa} data-event="whatsapp-click" rel="noopener">WhatsApp us</a></li>
-            <li><a class="text-accent-light underline" href={phoneHref} data-event="phone-click">Call {business.phoneDisplay}</a></li>
-            <li><a class="text-accent-light underline" href={emailHref}>{business.email}</a></li>
-            <li>Cape Town, South Africa</li>
-          </ul>
-        </div>
-        <div>
-          <p class="font-bold text-white">Company</p>
-          <ul class="mt-3 grid gap-2">
-            <li><a class="text-accent-light underline" href="/#process">How it works</a></li>
-            <li><a class="text-accent-light underline" href="/#prices">Prices</a></li>
-          </ul>
-        </div>
+      <div class="hdr-cta">
+        <a class="btn btn-wa btn-sm" href={wa} rel="noopener" data-event="whatsapp-click">
+          <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+          WhatsApp us
+        </a>
+        <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
       </div>
-      <div class="border-t border-white/15">
-        <div class="container-site py-6 text-xs leading-relaxed">
-          <p>{business.legalName}, Reg. {business.regNumber}</p>
-          <p class="mt-1">{business.name} is a trading name of {business.legalName}. &copy; {year}. Based in Cape Town.</p>
-        </div>
-      </div>
-    </footer>
+    </div>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+      <ul>
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href={wa} rel="noopener" style="color:var(--blue);font-weight:700">Get a free homepage preview</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Floating WhatsApp button, mobile only. Hidden by script when the contact section or footer is on screen. -->
-    <a
-      id="wa-float"
-      href={wa}
-      data-event="whatsapp-click"
-      rel="noopener"
-      class="btn btn-whatsapp fixed bottom-4 right-4 z-40 sm:hidden"
-      aria-label="Chat on WhatsApp"
-    >WhatsApp</a>
-  </body>
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="foot on-night">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <span class="logo"><span class="logo-mark" aria-hidden="true">S</span><span class="logo-word">Straat Studio</span></span>
+          <p style="margin-top:16px;max-width:36ch">Websites and enquiry systems for small businesses across South Africa. Final prices. You own your domain.</p>
+        </div>
+        <div><h4>Contact</h4><ul>
+          <li><a href={wa} rel="noopener">WhatsApp us</a></li>
+          <li><a href={phoneHref}>Call {business.phoneDisplay}</a></li>
+          <li><a href={emailHref}>{business.email}</a></li>
+          <li>Based in Cape Town. Serving all of South Africa.</li>
+        </ul></div>
+        <div><h4>On this page</h4><ul>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#prices">Prices</a></li>
+          <li><a href="/#process">How it works</a></li>
+          <li><a href="/#questions">Questions</a></li>
+        </ul></div>
+      </div>
+      <div class="foot-legal">
+        <p>{business.legalName}, Reg. {business.regNumber}</p>
+        <p>{business.name} is a trading name of {business.legalName}. &copy; {year}. Based in Cape Town, serving all of South Africa.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" id="wa-float" href={wa} rel="noopener" aria-label="Chat on WhatsApp" data-event="whatsapp-click">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+  </a>
+
+  <script>
+    import '../scripts/site.js';
+  </script>
+</body>
 </html>
-
-<script>
-  import '../scripts/site.js';
-</script>
