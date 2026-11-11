@@ -4,9 +4,11 @@ Put this file in the root of the repo as `CLAUDE.md`. Claude Code reads it at th
 
 ## 0. Mission
 
-Build straatstudio.co.za: a world-class, fast, honest website for a Cape Town web studio that sells fixed-price websites to trades and small businesses. It must look hand-crafted, never template-made or AI-made, and it must be technically perfect for local SEO.
+Build straatstudio.co.za: a world-class, fast, honest website for a web studio based in Cape Town that sells fixed-price websites to trades and small businesses across South Africa. It must look hand-crafted, never template-made or AI-made, and it must be technically perfect for SEO. Copy, titles and structured data say South Africa, with Cape Town only as "based in".
 
-The approved design reference is the "Straat Studio homepage v2" canvas. Match its structure, copy, type and colour. Improve craft wherever you can, never generic it down.
+The homepage is design v3 (`src/pages/index.astro`). The earlier canvas in `design/` is the source for the words, sections, prices, package builder and enquiry demo only. The look follows section 3.
+
+See also `docs/08-preview-intake-seo-rules.md` for the free preview, client intake and SEO plan. This file (CLAUDE.md) has been updated to match it. `02-quick-reference.md` and the Master Plan live in the Claude project, not in this repo.
 
 ## 1. Non-negotiable rules
 
@@ -21,7 +23,7 @@ The approved design reference is the "Straat Studio homepage v2" canvas. Match i
 
 - Astro (latest stable) + Tailwind CSS, static output.
 - Hosted on Cloudflare Pages (free plan allows commercial use). Never Vercel Hobby.
-- Fonts: Bricolage Grotesque (headings), DM Sans (body), self-hosted as woff2 subsets with `font-display: swap`. No Google Fonts request at runtime.
+- Fonts: Source Serif 4 (headings) and Inter (body), self-hosted as woff2 in `public/fonts/` (`source-serif-4.woff2`, `inter.woff2`) with `font-display: swap` and a system fallback. Preload both. No Google Fonts request at runtime.
 - Forms: Web3Forms or Formspree free tier, with a honeypot field and a POPIA consent line.
 - Analytics: Cloudflare Web Analytics (no cookies, no banner needed). Track clicks on WhatsApp, phone and form submit as events.
 - Zero client-side framework. Vanilla JS only for the menu and FAQ. Total JS under 15 KB.
@@ -30,25 +32,28 @@ The approved design reference is the "Straat Studio homepage v2" canvas. Match i
 
 | Token | Value |
 | --- | --- |
-| Ink | #15171A |
-| Black (footer only) | #000000 |
+| Ink | #14161A |
 | White | #FFFFFF |
-| Mist (alternate sections) | #F3F4F6 |
-| Accent (Straat blue) | #2F54EB |
-| Accent light (links on the black footer only) | #8EA8FF |
-| WhatsApp green (WhatsApp button only, nowhere else) | #25D366 |
-| Muted text on white | #4A5058 (passes 4.5:1) |
-| Muted text on black | #C3C8CE |
+| Sand (alternate light sections) | #F5F3EF |
+| Line (borders) | #E4E1DA |
+| Muted text on white and sand | #555B63 (passes 4.5:1) |
+| Straat blue (buttons and links) | #2F54EB, hover #2443C4 |
+| Blue soft (badges) | #E8EDFF |
+| Night navy (dark sections, footer) | #0F1B2D, alt #172640 |
+| Text on night | #C9D1DC |
+| Sign yellow (accent) | #FFC629, soft #FFF4CC |
+| WhatsApp green (WhatsApp buttons only) | #25D366, dark #128C4A |
 
-- Type scale: the largest heading on the site is 64px. H1 clamp(38px, 5.5vw, 64px), H2 clamp(30px, 4vw, 44px), H3 22 to 28px, body 17 to 20px, line-height 1.6.
-- Headings: Bricolage Grotesque 800, letter-spacing -0.03em.
-- Layout: max-width 1240px, 24px side padding, 96px section padding (64px on mobile).
-- Backgrounds: white and Mist only, from the header down to the footer. Black is used for the footer only.
-- Colour: Straat blue is the only brand colour, used for buttons and links. Green appears only on the WhatsApp button. Never show a row of buttons in three different colours. No gradients, no glow.
-- Buttons: 6px corner radius (never pills), min height 48px, visible focus ring 3px accent.
-- Icons: plain line icons, 2.5px stroke, in Ink. Never inside coloured circles or badges. Use them sparingly.
-- Motion: none. No fade-ins, no entrance animations, no scroll effects. Respect `prefers-reduced-motion`.
-- Personal touch: the homepage has a clear space for a real photo of Khulani with a short note signed by Khulani. It is marked as a placeholder until the photo is supplied. Copy says "Cape Town small businesses", not only trades.
+- Type scale: H1 clamp(38px, 5.4vw, 64px), H2 clamp(30px, 3.8vw, 46px), H3 clamp(21px, 2vw, 26px), body 17px (18px from 768px wide), line-height 1.6. No heading above 64px.
+- Headings: Source Serif 4, weight 600, letter-spacing -0.012em. Body and UI text: Inter.
+- Layout: max-width 1200px plus 24px side padding, section padding 112px on desktop and 72px on mobile.
+- Backgrounds: white and Sand for light sections, Night navy for dark sections and the footer. Dark sections are allowed, but keep them to a few and never two in a row.
+- Colour: Straat blue for buttons and links, sign yellow #FFC629 as the accent (highlights, tags, small marks). Green only on WhatsApp buttons. Never show a row of buttons in three different colours.
+- Shape and depth: 14px corners on cards and panels. Soft shadows only (for example 0 30px 60px -30px rgba(15,27,45,.35)). Buttons are 8px corners as built in the design, min height 48px, visible focus ring 3px accent (yellow on dark sections).
+- Icons: plain line icons, 2.5px stroke. Use them sparingly.
+- Motion: no entrance animations, no fade-ins, no scroll effects. Respect `prefers-reduced-motion`.
+- Hero: headline on the left, a picture of a concept site on the right. Until the concept sites are built it is an HTML mock-up labelled "Concept project, not commissioned client work". Replace it with real screenshots.
+- Presentation: the site presents Straat Studio as a company. No photos of individuals, no personal details and no address on the site. Copy says South Africa, with Cape Town only as "based in".
 
 ## 4. Site map
 
@@ -58,19 +63,19 @@ The approved design reference is the "Straat Studio homepage v2" canvas. Match i
 | `/prices/` | Full package comparison, add-ons, year 2 costs |
 | `/work/` | Concept projects index |
 | `/work/[slug]/` | One case study per concept project |
-| `/web-design-electricians-cape-town/` | Trade page |
-| `/web-design-plumbers-cape-town/` | Trade page |
-| `/web-design-salons-cape-town/` | Trade page |
-| `/web-design-home-bakers-cape-town/` | Trade page |
+| `/websites-for-electricians/` | Trade page |
+| `/websites-for-plumbers/` | Trade page |
+| `/websites-for-salons/` | Trade page |
+| `/websites-for-home-bakers/` | Trade page |
 | `/guides/` | Guides index |
-| `/guides/website-cost-cape-town/` | Guide |
+| `/guides/website-cost-south-africa/` | Guide |
 | `/guides/google-business-profile-free/` | Guide |
 | `/guides/website-vs-facebook-page/` | Guide |
 | `/about/` | Who runs Straat Studio, how we work |
 | `/contact/` | WhatsApp, email, enquiry form |
 | `/privacy/` | POPIA privacy notice |
 | `/terms/` | Terms of service |
-| `/paia-manual/` | PAIA manual for STRAATTECH (PTY) LTD |
+| `/paia-manual/` | PAIA manual for STRAATTECH (Pty) Ltd |
 | `/404` | Helpful not-found page |
 
 Start with 4 trade pages and 3 guides. Add more only when each one has genuinely different, useful content. Never clone a page and swap the trade name; that is doorway-page spam and Google penalises it.
@@ -97,7 +102,7 @@ Minimum 700 words of original content per page.
 - Images in AVIF and WebP via Astro `<Image>`, lazy below the fold, hero image preloaded.
 - `sitemap.xml` (via @astrojs/sitemap) and `robots.txt` pointing to it.
 - JSON-LD structured data, true facts only:
-  - Homepage: `ProfessionalService` with name, url, telephone, email, areaServed (Cape Town), address only if the owner approves showing it, priceRange "R999 to R2999".
+  - Homepage: `ProfessionalService` with name, url, telephone, email, areaServed (South Africa, as a Country), address only if the owner approves showing it, priceRange "R999 to R3299" (taken from `prices.priceRange` in business.ts).
   - Prices page: `Offer` entries per package.
   - FAQ sections: `FAQPage`.
   - Guides: `Article` with author and date.
@@ -143,8 +148,8 @@ Host each at `concepts.straatstudio.co.za/[name]/` or its own Pages project. Eac
 
 - `/privacy/`: what the form collects, why, where it is stored, how long, who to contact, the right to access and delete.
 - `/terms/`: scope, payment (50/50 or full for One-Page), 2 revision rounds, delivery clock starts on content received, ownership passes on final payment, no ranking guarantees, Straat Care terms, cancellation.
-- `/paia-manual/`: PAIA manual for STRAATTECH (PTY) LTD.
-- Footer: "Straat Studio is a trading name of STRAATTECH (PTY) LTD, Reg. [REG NUMBER]".
+- `/paia-manual/`: PAIA manual for STRAATTECH (Pty) Ltd.
+- Footer: "Straat Studio is a trading name of STRAATTECH (Pty) Ltd, Reg. 2026/409104/07".
 Mark these pages "Draft, review before launch" until the owner confirms.
 
 ## 12. Quality gates before every deploy
