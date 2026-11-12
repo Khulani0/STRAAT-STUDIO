@@ -60,12 +60,9 @@ const trades = [
 ];
 
 const faqs = [
-  ['Do I pay before I see anything?', 'No. We design your homepage first and send you a view-only preview link. If you like it, you pay to start and we build the rest. If you don\'t, you owe nothing. One free preview per business.'],
   ['Can I ask for changes to the free preview?', `The preview shows our design for your business. Changes start once you approve it and pay: One-Page is paid in full, Business and Catalogue pay half. Every package then includes 2 rounds of changes, each sent as one list. Extra changes during the build are ${R(prices.extraChangeDuringBuild)} each.`],
   ['Do you only work in Cape Town?', 'No. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, email and online forms, so you never need to visit us.'],
-  ['What do I need to send?', 'After you pay, we send you one short online form with a checklist for your package: your services and prices, areas, hours, logo and 6 to 15 photos of your work. The site goes live 3 to 7 working days after everything arrives.'],
   ['Will I come up on Google?', 'Every site is built for search: one page per service, your towns and suburbs in the titles, fast loading and a Google Business Profile linked to it. No honest company can promise first place, and we never will.'],
-  ['Is there a monthly fee?', `No, monthly plans are optional. Your first year of hosting and your domain are included. From year 2 it is ${R(prices.year2HostingAndDomain)} a year, or included in Straat Care at ${R(m.care.price)} a month.`],
   ['Who looks after backups and updates?', `Backups, uptime checks and small changes come with Straat Care from ${R(m.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
   ['Do I get a business email address?', `Yes. An address like info@yourbusiness.co.za forwards to your Gmail for free. A full mailbox can be set up for ${R(x.mailbox.price)}, and you pay the email provider directly.`],
 ];
@@ -87,7 +84,7 @@ const jsonLd = [
 
 <BaseLayout
   title="Small business websites from R999 | Straat Studio"
-  description="Websites for South African small businesses from R999, domain and hosting included, plus an enquiry system that tracks every quote. See your homepage free."
+  description="Websites for South African small businesses from R999, domain and hosting included, plus an enquiry system that tracks every quote. See a free preview."
   path="/"
   jsonLd={jsonLd}
 >

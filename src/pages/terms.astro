@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business, prices, formatRand as R, emailHref, whatsappHref } from '../config/business';
+
+// Draft until the owner confirms every placeholder below. Set to false to remove the "Draft" banner.
+const draft = true;
+const w = prices.websites;
+const m = prices.monthly;
+const pm = prices.payMonthly;
+const wa = whatsappHref("Hi Straat Studio, I have a question about your terms of service.");
+---
+
+<BaseLayout
+  title="Terms of service | Straat Studio"
+  description="The terms for Straat Studio websites: what is included, payment, changes, delivery, ownership, monthly plans and cancellation."
+  path="/terms/"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Terms of service', path: '/terms/' }]}
+  draft={draft}
+>
+  <section class="sec">
+    <div class="wrap legal">
+      <p class="eyebrow">Terms of service</p>
+      <h1>Our terms, in plain words</h1>
+      <p class="lead" style="max-width:none">
+        These terms apply to websites and monthly plans from {business.name}. We have kept them short and in plain language on purpose.
+      </p>
+      <p class="meta">Draft prepared on 12 November 2026. Items marked <mark class="todo">[like this]</mark> still need the owner's confirmation.</p>
+
+      <h2>Who we are</h2>
+      <p>
+        {business.name} is a trading name of {business.legalName}, Reg. {business.regNumber}. In these terms, "we" means {business.legalName}, and "you" means the business or person ordering a website.
+      </p>
+
+      <h2>What you get</h2>
+      <p>Prices are once-off and final, with no VAT added.</p>
+      <ul>
+        <li>{w.onePage.name} website: {R(w.onePage.price)}</li>
+        <li>{w.business.name} website: {R(w.business.price)}</li>
+        <li>{w.catalogue.name} website: {R(w.catalogue.price)}</li>
+        <li>{w.launchPack.name}: {R(w.launchPack.price)}</li>
+      </ul>
+      <p>
+        Every package includes a .co.za domain and hosting for the first year, the words written for you, and 2 rounds of changes. What each package contains is listed on our <a href="/#prices">prices</a> section.
+      </p>
+
+      <h2>The free preview</h2>
+      <p>
+        Every business gets one free homepage preview. It is a view-only page on our own address, switched off after 7 days. It is not your website and you do not receive its files. The preview is shown once, as it is. Changes start once you approve it and pay to start.
+      </p>
+
+      <h2>Payment</h2>
+      <ul>
+        <li>{w.onePage.name} is paid in full to start.</li>
+        <li>{w.business.name}, {w.catalogue.name} and {w.launchPack.name}: 50% to start and 50% before the website goes live.</li>
+        <li>Pay-monthly option: {R(pm.setup)} to start, then {R(pm.monthlyFor12Months)} a month for {pm.months} months ({pm.includes}), then {R(pm.monthlyAfter)} a month for Straat Leads. The website is yours after the 12th payment.</li>
+        <li>How to pay: <mark class="todo">[Owner to confirm the payment methods and banking details to show.]</mark></li>
+      </ul>
+
+      <h2>Delivery</h2>
+      <p>
+        The delivery clock starts when we have received everything we asked for: the checklist form, your photos and your logo if you have one. Websites go live 3 to 7 working days after that, depending on the package.
+      </p>
+
+      <h2>Changes</h2>
+      <ul>
+        <li>Each package includes 2 rounds of changes. Send each round as one list, within 7 days of each version.</li>
+        <li>Extra changes during the build are {R(prices.extraChangeDuringBuild)} each.</li>
+        <li>After launch, a single change is {R(prices.singleChangeAfterLaunch)} if you do not have Straat Care.</li>
+        <li>If you go silent for 30 days after you have paid, we close the project. The deposit covers the work already done.</li>
+      </ul>
+
+      <h2>Ownership</h2>
+      <p>
+        Your domain is registered in your name after you pay. The website and its files become yours when the final payment is made, in writing, with a handover guide. Your Google Business Profile stays in your name. We are added as a manager and you can remove us at any time.
+      </p>
+      <p>
+        You must own the photos and words you give us, or have permission to use them.
+      </p>
+
+      <h2>No promises about Google</h2>
+      <p>
+        We build every website so that Google can read it. We do not promise a position in Google results, and nobody honest can.
+      </p>
+
+      <h2>Monthly plans</h2>
+      <p>Monthly plans are optional. You can cancel at any time, and your website stays yours either way.</p>
+      <ul>
+        <li><strong>Straat Care, {R(m.care.price)} a month:</strong> backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</li>
+        <li><strong>Straat Leads, {R(m.leads.price)} a month:</strong> everything in Care, plus a quote form, instant alerts and replies, enquiry tracking and a monthly report. A one-page POPIA data agreement is signed before it starts.</li>
+        <li><strong>Straat Growth, {R(m.growth.price)} a month:</strong> everything in Leads, plus the extras listed on our <a href="/#prices">prices</a> section.</li>
+        <li>Without a plan, hosting and your domain cost {R(prices.year2HostingAndDomain)} a year from year 2.</li>
+      </ul>
+
+      <h2>Cancelling</h2>
+      <p>
+        There is no long contract. If you leave, we hand over your files and logins. Before the final payment, the deposit covers the work done so far. <mark class="todo">[Owner to confirm any refund terms.]</mark>
+      </p>
+
+      <h2>Liability and governing law</h2>
+      <p>
+        <mark class="todo">[Owner to confirm with a legal adviser: limits on our liability, how disputes are handled, and the governing law.]</mark>
+      </p>
+
+      <h2>Questions</h2>
+      <p>
+        Email <a href={emailHref}>{business.email}</a> or message us on <a href={wa} rel="noopener">WhatsApp</a>. How we handle your personal information is explained in our <a href="/privacy/">privacy notice</a>.
+      </p>
+
+      <p style="margin-top:40px"><a href="/privacy/">Read our privacy notice</a> &middot; <a href="/">Back to the homepage</a></p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://straatstudio.co.za/sitemap.xml

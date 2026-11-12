@@ -101,7 +101,7 @@ Done on the homepage:
 - One H1, logical headings, title under 60 characters, description under 155
 - JSON-LD: ProfessionalService (area served: South Africa, price range) and FAQPage
 - Fast: about 60 KB page, self-hosted fonts, almost no JavaScript
-- Works on phones, built with accessibility in mind; a full accessibility check is still to be run
+- Works on phones. An automatic accessibility check (axe-core 4.14.0, WCAG 2.2 A and AA rules plus best practice) found no violations on the home, privacy, terms and 404 pages at desktop and phone widths, after fixing the four it first found. A contrast check, a keyboard test and a touch test also passed. Automatic checks cannot find every problem, so a screen reader test by a person is still to be done
 
 Still to do:
 1. Register straatstudio.co.za and connect Google Search Console on day 1.

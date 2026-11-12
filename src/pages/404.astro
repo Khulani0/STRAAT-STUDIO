@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { whatsappHref } from '../config/business';
+
+const wa = whatsappHref("Hi Straat Studio, I couldn't find a page on your website.");
+---
+
+<BaseLayout
+  title="Page not found | Straat Studio"
+  description="We could not find that page. Go back to the Straat Studio homepage, or message us on WhatsApp."
+  path="/404/"
+  noindex
+  whatsappMessage="Hi Straat Studio, I couldn't find a page on your website."
+>
+  <section class="sec">
+    <div class="wrap legal">
+      <p class="err-code" aria-hidden="true">404</p>
+      <h1 style="margin-top:12px">We could not find that page.</h1>
+      <p class="lead">
+        The link may be old, or the address may have a typo. Go back to the homepage, or message us on WhatsApp and we will point you to the right place.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+        <a class="btn btn-blue" href="/">Go to the homepage</a>
+        <a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us</a>
+      </div>
+      <ul class="err-links" aria-label="Pages you may be looking for">
+        <li><a href="/#prices">Prices</a></li>
+        <li><a href="/#process">How it works</a></li>
+        <li><a href="/#questions">Questions</a></li>
+        <li><a href="/privacy/">Privacy notice</a></li>
+        <li><a href="/terms/">Terms of service</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business, phoneHref, emailHref, whatsappHref } from '../config/business';
+
+// Draft until the owner confirms every placeholder below. Set to false to remove the "Draft" banner.
+const draft = true;
+const wa = whatsappHref("Hi Straat Studio, I have a question about my personal information.");
+---
+
+<BaseLayout
+  title="Privacy notice | Straat Studio"
+  description="How Straat Studio uses the personal information you share with us, and your rights under POPIA, including access and deletion."
+  path="/privacy/"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Privacy notice', path: '/privacy/' }]}
+  draft={draft}
+>
+  <section class="sec">
+    <div class="wrap legal">
+      <p class="eyebrow">Privacy notice</p>
+      <h1>How we use your personal information</h1>
+      <p class="lead" style="max-width:none">
+        This notice explains what personal information {business.name} collects, why, where it is kept, and the rights you have under the Protection of Personal Information Act (POPIA).
+      </p>
+      <p class="meta">Draft prepared on 12 November 2026. Items marked <mark class="todo">[like this]</mark> still need the owner's confirmation.</p>
+
+      <h2>Who we are</h2>
+      <p>
+        {business.name} is a trading name of {business.legalName}, Reg. {business.regNumber}. We are the responsible party for the information described here. We are based in Cape Town and work with businesses across South Africa.
+      </p>
+      <ul>
+        <li>Email: <a href={emailHref}>{business.email}</a></li>
+        <li>WhatsApp and phone: <a href={phoneHref}>{business.phoneDisplay}</a></li>
+        <li>Address: <mark class="todo">[Owner to supply or confirm the address to show, if any. No address is shown on this site yet.]</mark></li>
+        <li>Information Officer: <mark class="todo">[Owner to supply the name of the Information Officer.]</mark></li>
+      </ul>
+
+      <h2>What we collect</h2>
+      <p>We collect only what you give us, or what is publicly listed for your business.</p>
+      <ul>
+        <li><strong>When you message us</strong> on WhatsApp, by email or by phone: your name, your number or email address, and what you tell us about your business, for example its name, what you do and the areas you serve.</li>
+        <li><strong>After you agree to start a project:</strong> the details on our checklist form, such as your services and prices, hours, logo, photos of your work, links to your Google, Facebook or Instagram pages, and the domain you want. Photos and files you send must be yours, or you must have permission to use them.</li>
+        <li><strong>If we contact you first:</strong> we use only business details that are publicly listed, such as your Google listing or Facebook page. We ask your permission before we build a free preview.</li>
+        <li><strong>On this website:</strong> the enquiry demo on our homepage uses made-up data and sends nothing. This site does not ask you to fill in a form.</li>
+      </ul>
+
+      <h2>Why we use it</h2>
+      <p>
+        We use your information to reply to you, prepare your free homepage preview, quote, build and look after your website, send invoices, and meet our legal duties. We do not use it for anything else.
+      </p>
+
+      <h2>Where it is kept and for how long</h2>
+      <ul>
+        <li>Where messages, forms and files are stored: <mark class="todo">[Owner to confirm, for example WhatsApp, an email inbox, and a Google account for forms, sheets and files.]</mark></li>
+        <li>Service providers who help us run the business, such as messaging, email, file storage, payments and website hosting: <mark class="todo">[Owner to confirm the list at launch.]</mark></li>
+        <li>How long we keep enquiries and client files: <mark class="todo">[Owner to confirm the retention period.]</mark></li>
+      </ul>
+
+      <h2>Cookies and visitor counts</h2>
+      <p>
+        This website does not set cookies. <mark class="todo">[Owner to confirm when visitor counting is switched on: we plan to use Cloudflare Web Analytics, which does not use cookies.]</mark>
+      </p>
+
+      <h2>Your rights</h2>
+      <p>Under POPIA you can ask us to:</p>
+      <ul>
+        <li>tell you what personal information we hold about you, and give you a copy;</li>
+        <li>correct information that is wrong or out of date;</li>
+        <li>delete your information, or stop using it, unless the law says we must keep it;</li>
+        <li>stop contacting you, and withdraw any permission you gave us.</li>
+      </ul>
+      <p>
+        To use any of these rights, email <a href={emailHref}>{business.email}</a> or message us on <a href={wa} rel="noopener">WhatsApp</a>. If you are not happy with how we handle your information, you can complain to the Information Regulator of South Africa.
+      </p>
+
+      <h2>Changes to this notice</h2>
+      <p>If we change how we use personal information, we will update this page.</p>
+
+      <p style="margin-top:40px"><a href="/terms/">Read our terms of service</a> &middot; <a href="/">Back to the homepage</a></p>
+    </div>
+  </section>
+</BaseLayout>

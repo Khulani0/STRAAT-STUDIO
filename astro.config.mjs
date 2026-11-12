@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import { copyFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { business, hasPlaceholders } from './src/config/business.ts';
 
 // Fails `astro build` while any contact detail is still a placeholder.
@@ -21,12 +23,23 @@ const placeholderGuard = {
   },
 };
 
+// @astrojs/sitemap writes sitemap-index.xml and sitemap-0.xml. Also publish the page list as /sitemap.xml,
+// which is the address CLAUDE.md, robots.txt and Search Console use.
+const sitemapAtRoot = {
+  name: 'sitemap-at-root',
+  hooks: {
+    'astro:build:done': async ({ dir }) => {
+      await copyFile(fileURLToPath(new URL('sitemap-0.xml', dir)), fileURLToPath(new URL('sitemap.xml', dir)));
+    },
+  },
+};
+
 export default defineConfig({
   site: 'https://straatstudio.co.za',
   output: 'static',
   server: { port: 4322 },
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [sitemap({ filter: (page) => !page.includes('/test-layout/') }), placeholderGuard],
+  integrations: [sitemap({ filter: (page) => !page.endsWith('/404/') }), sitemapAtRoot, placeholderGuard],
   vite: { plugins: [tailwindcss()] },
 });
