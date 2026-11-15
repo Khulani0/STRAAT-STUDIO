@@ -42,7 +42,7 @@ See also `docs/08-preview-intake-seo-rules.md` for the free preview, client inta
 | Night navy (dark sections, footer) | #0F1B2D, alt #172640 |
 | Text on night | #C9D1DC |
 | Sign yellow (accent) | #FFC629, soft #FFF4CC |
-| WhatsApp green (WhatsApp buttons only) | #25D366, dark #128C4A |
+| WhatsApp green (WhatsApp buttons only) | #25D366 with dark text #06210F (8.6:1 measured). Where the button text is white or small, use dark green #0E7038 (about 6:1). #128C4A is retired: it gives only 4.3:1 with white text |
 
 - Type scale: H1 clamp(38px, 5.4vw, 64px), H2 clamp(30px, 3.8vw, 46px), H3 clamp(21px, 2vw, 26px), body 17px (18px from 768px wide), line-height 1.6. No heading above 64px.
 - Headings: Source Serif 4, weight 600, letter-spacing -0.012em. Body and UI text: Inter.
@@ -186,10 +186,10 @@ Never build a phase before the business trigger is met. Ask the owner to confirm
 
 ### Phase 1: now, no custom backend
 - A reusable `QuoteForm` component on every client site: job type (dropdown per trade), suburb, description, up to 3 photos, name, phone, preferred contact (WhatsApp or call), POPIA consent tick box.
-- Submissions go to the client's own Google Sheet through a Google Apps Script web app (one script per client, deployed under the client's Google account, Straat Studio as editor).
+- Submissions go to a Google Sheet through a Google Apps Script web app (one script per client). Decision (15 Nov 2026): Phase 1 runs under Straat Studio's own dedicated Google account ("Execute as me"). Each client's sheet and photo folder live in a shared Drive folder and are transferred to the client if they cancel. Switch to an email service or per-client accounts at 8 clients, or earlier if the daily email quota (100 recipients on a consumer account) is near. Back up every client sheet monthly (download as xlsx).
 - The sheet has a Status column with a dropdown: New, Contacted, Quote sent, Won, Lost.
-- The script emails the owner instantly and emails the customer an acknowledgement.
-- Photos go to a Google Drive folder owned by the client, with links in the sheet.
+- The script emails the owner for every enquiry. It emails the customer a copy only if they gave an email address.
+- Photos go to a Google Drive folder next to the client's sheet (see the decision above), with links in the sheet. Photos are links in the sheet, never attachments to the email.
 - Monthly report: a simple template filled from the sheet plus Cloudflare Web Analytics (visits, enquiries, top job types, won and lost).
 
 ### Phase 2: after 5 paying Straat Leads clients

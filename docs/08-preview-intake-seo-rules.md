@@ -126,3 +126,5 @@ What changes: each concept becomes a full, clickable website with real licensed 
 - The homepage has no interactive demo. The enquiry flow is a static picture labelled "Example with made-up data".
 - Same-page anchors scroll in 0.4 seconds or less (instant with reduced motion). Cross-page anchors jump instantly.
 - The floating WhatsApp button shows on phones only after the hero has scrolled away and never covers prices, card text or form buttons.
+- StraatOS Phase 1 runs under Straat Studio's own dedicated Google account. Client sheets live in a shared Drive folder and are transferred to the client on cancellation. Switch to an email service or per-client accounts at 8 clients, or earlier if the daily email quota is near. See CLAUDE.md section 14.
+- Photos are links in the sheet, never email attachments. Wording on the site says "photos added".
