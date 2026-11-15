@@ -126,7 +126,8 @@ Minimum 700 words of original content per page.
 - WCAG 2.2 AA. All text contrast 4.5:1 or better.
 - Menu: real `<button>`, `aria-expanded`, focus trapped while open, Escape closes, focus returns to the button.
 - FAQ: native `<details>` and `<summary>`.
-- Floating WhatsApp button never covers form fields or the footer links on mobile.
+- Floating WhatsApp button: phones only, shown only after the hero has scrolled out of view, hidden over the contact band and footer, and never covers prices, card text, links or form buttons.
+- Anchor links: links to a section on another page jump instantly. Same-page smooth scroll is 0.4 seconds or less and is instant under `prefers-reduced-motion`. No CSS `scroll-behavior: smooth`.
 - Every form field has a visible label.
 
 ## 9. Contact links
@@ -178,6 +179,8 @@ Mark these pages "Draft, review before launch" until the owner confirms.
 At the end of each step: commit with a clear message, list what was done, list anything that needs the owner's input.
 
 ## 14. StraatOS (enquiry system), built in phases
+
+Wording rule: the site may only claim what Phase 1 does. Say "email alert" to the owner, an on-screen thank-you with a WhatsApp button for the customer, an email copy only if the customer gave an email address, and a Google Sheet with a Status column. Never promise WhatsApp alerts, WhatsApp auto-replies, dashboards, review requests or reminders before their phase is built. The homepage shows the flow as a static picture labelled "Example with made-up data", not an interactive demo.
 
 Never build a phase before the business trigger is met. Ask the owner to confirm the trigger first.
 

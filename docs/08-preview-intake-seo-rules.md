@@ -74,8 +74,8 @@ Tool: Google Forms (free, file uploads go to our Drive, answers land in a Google
 
 ### Section E: Straat Leads (adds)
 29. Job types for the quote form (5 to 8)
-30. Email that gets the instant alert
-31. The reply customers get automatically
+30. Email that gets the alert for each enquiry
+31. The thank-you customers see on screen (and the email copy, if they give an email address)
 32. Sign the one-page POPIA data agreement
 
 ## 3. Prices: checked
@@ -119,3 +119,10 @@ Realistic timing: guides and trade pages start bringing visitors after 3 to 6 mo
 Rule: examples are labelled "Concept project, not commissioned client work" until real clients replace them. That label stays. Showing a made-up business as a real client would break consumer law and destroy trust once found out.
 
 What changes: each concept becomes a full, clickable website with real licensed photography (Pexels or Unsplash, credited in docs/image-credits.md), never AI images. The homepage tiles then show real screenshots and a "View the live example" button. The client sees exactly what they will pay for.
+
+## 7. Homepage wording and behaviour (added)
+
+- Straat Leads and Growth copy matches Phase 1 only: email alert to the owner, on-screen thank-you for the customer, email copy only if an email address was given, Google Sheet with a Status column. No WhatsApp alerts or auto-replies.
+- The homepage has no interactive demo. The enquiry flow is a static picture labelled "Example with made-up data".
+- Same-page anchors scroll in 0.4 seconds or less (instant with reduced motion). Cross-page anchors jump instantly.
+- The floating WhatsApp button shows on phones only after the hero has scrolled away and never covers prices, card text or form buttons.

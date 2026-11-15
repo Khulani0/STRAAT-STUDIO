@@ -64,6 +64,7 @@ const faqs = [
   ['Do you only work in Cape Town?', 'No. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, email and online forms, so you never need to visit us.'],
   ['Will I come up on Google?', 'Every site is built for search: one page per service, your towns and suburbs in the titles, fast loading and a Google Business Profile linked to it. No honest company can promise first place, and we never will.'],
   ['Who looks after backups and updates?', `Backups, uptime checks and small changes come with Straat Care from ${R(m.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
+  ['Can I edit the website myself?', `No. You send us a WhatsApp and the change is done within 48 hours. Straat Care includes one small change a month, and a single change without a plan is ${R(prices.singleChangeAfterLaunch)}. Your site is made of plain files, so any developer can take it over.`],
   ['Do I get a business email address?', `Yes. An address like info@yourbusiness.co.za forwards to your Gmail for free. A full mailbox can be set up for ${R(x.mailbox.price)}, and you pay the email provider directly.`],
 ];
 const jsonLd = [
@@ -125,23 +126,22 @@ const jsonLd = [
               alt={work[2].desktopAlt}
             />
           </div>
-          <div class="phone" role="img" aria-label="The StraatOS enquiry system on a phone, with made-up data: a new enquiry alert for a DB board upgrade in Athlone, two earlier enquiries and a monthly summary.">
+          <div class="phone" role="img" aria-label="An example email alert and enquiry list on a phone, with made-up data: a new DB board upgrade enquiry in Athlone, and two earlier enquiries with their status.">
             <div class="phone-screen">
-              <div class="phone-top">StraatOS<small>Ndlovu Electrical</small></div>
-              <p class="phone-demo">Demo, made-up data</p>
+              <div class="phone-top">Straat Leads<small>Ndlovu Electrical</small></div>
+              <p class="phone-demo">Example, made-up data</p>
               <div class="notif">
-                <div class="notif-h"><i></i>New enquiry &middot; now</div>
-                <b>DB board upgrade, Athlone</b>
-                <span>"Lights trip when the geyser switches on." 2 photos</span><br />
+                <div class="notif-h"><i></i>Email alert &middot; now</div>
+                <b>New enquiry: DB board upgrade, Athlone, photos attached</b>
+                <span>"Lights trip when the geyser switches on."</span><br />
                 <span class="chip">New</span>
               </div>
-              <div class="row-mini"><span><b>Geyser wiring</b><br />Rylands</span><span class="chip blue">Quote sent</span></div>
+              <div class="row-mini"><span><b>Geyser or stove wiring</b><br />Rylands</span><span class="chip blue">Quote sent</span></div>
               <div class="row-mini"><span><b>COC certificate</b><br />Gatesville</span><span class="chip green">Won</span></div>
-              <div class="row-mini"><span><b>Review request</b><br />Sent on WhatsApp</span><span class="chip green">Done</span></div>
               <div class="phone-sum"><b>14</b> enquiries this month<br /><b>5</b> won &middot; <b>3</b> waiting on a quote</div>
             </div>
           </div>
-          <p class="stage-cap label-concept">Concept project, not commissioned client work. The phone shows the StraatOS demo with made-up data.</p>
+          <p class="stage-cap label-concept">Concept project, not commissioned client work. The phone shows an example email alert and enquiry list with made-up data.</p>
         </div>
       </div>
     </section>
@@ -164,7 +164,7 @@ const jsonLd = [
         <div class="pkg-left">
           <p class="eyebrow">More than a website</p>
           <h2 id="pkg-h" style="color:#fff">A website is only the start. We look after what happens when someone finds you.</h2>
-          <p class="lead">Most small businesses don't lose work because they are bad at the job. They lose it because a WhatsApp got buried, a quote was never followed up, or nobody asked for a review.</p>
+          <p class="lead">Most small businesses don't lose work because they are bad at the job. They lose it because a WhatsApp got buried or a quote was never followed up.</p>
           <div class="hero-ctas"><a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">Ask how it works</a></div>
         </div>
         <ol class="steps3" style="list-style:none;padding:0;margin:0">
@@ -172,24 +172,21 @@ const jsonLd = [
             <span class="num n1" aria-hidden="true">01</span>
             <div>
               <h3>Get found</h3>
-              <p>A fast website with a page for every service and every area you work in, linked to a Google Business Profile in your name.</p>
-              <span class="price-tag">Websites from {R(w.onePage.price)} once-off</span>
+              <p>A fast website with a page for every service and area, linked to your Google Business Profile.</p>
             </div>
           </li>
           <li class="step3">
             <span class="num n2" aria-hidden="true">02</span>
             <div>
               <h3>Catch every enquiry</h3>
-              <p>Customers pick the job, the area and add photos. You get an instant alert, they get an instant reply, and every enquiry sits in one list with a status.</p>
-              <span class="price-tag">Straat Leads {R(m.leads.price)} a month</span>
+              <p>Customers send a quote form. You get an email alert, and every enquiry sits in your own Google Sheet with a status.</p>
             </div>
           </li>
           <li class="step3">
             <span class="num n3" aria-hidden="true">03</span>
             <div>
-              <h3>Win the job, then the next one</h3>
-              <p>Reminders for quotes not yet accepted, and a Google review request after every finished job, so your reviews keep growing.</p>
-              <span class="price-tag">Straat Growth {R(m.growth.price)} a month</span>
+              <h3>Keep getting found</h3>
+              <p>Two Google posts a month and a new service or area page every quarter.</p>
             </div>
           </li>
         </ol>
@@ -197,7 +194,7 @@ const jsonLd = [
     </section>
 
     <!-- SERVICES -->
-    <section class="sec" id="services" aria-labelledby="svc-h">
+    <section class="sec sand" id="services" aria-labelledby="svc-h">
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">What we do</p>
@@ -208,10 +205,17 @@ const jsonLd = [
         <div class="svc">
           <div class="svc-art" style="--c:#f6e3ec" aria-hidden="true">
             <div class="ph2"><div class="ph2-s">
-              <div class="th-hero"><strong>Thandeka Hair Studio</strong><span>Pimville, Soweto. Tue to Sat, 8am to 6pm</span></div>
-              <div class="th-list"><div><span>Knotless braids</span><b>from R550</b></div><div><span>Cornrows</span><b>from R180</b></div><div><span>Wash and blow-dry</span><b>R150</b></div></div>
+              <div class="th-hero"><strong>Thandeka Hair Studio</strong><span>Soweto, Johannesburg. Tue to Fri 8am to 6pm, Sat 8am to 4pm</span></div>
+              <div class="th-list">
+                <div><span>Knotless braids</span><b>from R550</b></div>
+                <div><span>Cornrows</span><b>from R180</b></div>
+                <div><span>Twists</span><b>from R450</b></div>
+                <div><span>Kids' braids</span><b>from R200</b></div>
+                <div><span>Wash and blow-dry</span><b>R150</b></div>
+                <div><span>Take-down and wash</span><b>R120</b></div>
+              </div>
               <div class="th-book">Book on WhatsApp</div>
-              <div class="th-map"><p><b>Find us:</b> 2 minutes' walk from the Pimville taxi rank. Walk-ins welcome before 10am.</p></div>
+              <div class="th-areas"><p>Areas we serve</p><span>Orlando East</span><span>Orlando West</span><span>Meadowlands</span><span>Diepkloof</span></div>
             </div></div>
           </div>
           <div>
@@ -228,14 +232,33 @@ const jsonLd = [
         </div>
 
         <div class="svc flip">
-          <div class="svc-art" style="--c:var(--blue-soft)" aria-hidden="true">
-            <div class="card-ui board">
-              <div class="board-h">StraatOS enquiries <span>This month: 14</span></div>
-              <div class="cols">
-                <div class="col"><p>New</p><div class="tkt y">DB board upgrade<small>Athlone</small></div><div class="tkt y">Plugs, switches or lights<small>Rylands</small></div></div>
-                <div class="col"><p>Contacted</p><div class="tkt">Fault finding<small>Athlone</small></div></div>
-                <div class="col"><p>Quote sent</p><div class="tkt">Geyser or stove wiring<small>Gatesville</small></div><div class="tkt">Outside lighting<small>Bridgetown</small></div></div>
-                <div class="col"><p>Won</p><div class="tkt g">COC<small>Review asked</small></div></div>
+          <div class="svc-art flat" aria-hidden="true">
+            <div class="steps-pic">
+              <p class="pic-label">Example with made-up data</p>
+              <div class="pic-step">
+                <p class="pic-n"><b>1</b> The customer fills in your quote form</p>
+                <div class="card-ui pic-form">
+                  <div class="f"><small>Job</small><span>DB board upgrade</span></div>
+                  <div class="f"><small>Suburb</small><span>Rylands</span></div>
+                  <div class="f"><small>Phone</small><span class="blank"></span></div>
+                  <div class="f"><small>Email (optional)</small><span class="blank"></span></div>
+                </div>
+              </div>
+              <div class="pic-step">
+                <p class="pic-n"><b>2</b> You get an email alert</p>
+                <div class="card-ui pic-mail">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
+                  <div><b>New enquiry: DB board upgrade, Rylands, photos attached</b><small>Email alert, straight away</small></div>
+                </div>
+              </div>
+              <div class="pic-step">
+                <p class="pic-n"><b>3</b> It lands in your Google Sheet</p>
+                <div class="card-ui pic-sheet">
+                  <div class="sh sh-h"><span>Job</span><span>Suburb</span><span>Status</span></div>
+                  <div class="sh"><span>DB board upgrade</span><span>Rylands</span><span><i class="status s-new">New</i></span></div>
+                  <div class="sh"><span>Fault finding</span><span>Athlone</span><span><i class="status s-quote">Quote sent</i></span></div>
+                  <div class="sh"><span>COC certificate</span><span>Gatesville</span><span><i class="status s-won">Won</i></span></div>
+                </div>
               </div>
             </div>
           </div>
@@ -243,12 +266,12 @@ const jsonLd = [
             <p class="eyebrow">Enquiry tracking</p>
             <h3>Every quote request in one place, from first message to won job.</h3>
             <ul>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Smart quote form: job type, suburb, photos</li>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Instant alert to you, instant reply to the customer</li>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>A monthly report: enquiries, top jobs, won and lost</li>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Your customers' details stay yours, under a written POPIA agreement</li>
+              <li>A quote form for your customers: job, suburb, phone, photos and an optional email</li>
+              <li>An email alert for you. The customer sees a thank-you on screen with a WhatsApp button, and gets an email copy if they gave an email address</li>
+              <li>Every enquiry in your own Google Sheet with a status, and a monthly report of enquiries, top jobs, won and lost</li>
+              <li>Your customers' details stay yours, under a written POPIA agreement</li>
             </ul>
-            <div class="svc-price"><strong>{R(m.leads.price)}</strong><span class="muted">a month</span><a href="#demo">Try the demo</a></div>
+            <div class="svc-price"><strong>{R(m.leads.price)}</strong><span class="muted">a month</span><a href="#process">See how it works</a></div>
           </div>
         </div>
 
@@ -280,8 +303,8 @@ const jsonLd = [
             <div class="card-ui chat">
               <div class="chat-h">Fazila's Kitchen<small>Business account</small></div>
               <div class="chat-b">
-                <div class="bub me">Hi, do you have milk tart this weekend?</div>
-                <div class="bub">Hi! Thanks for messaging Fazila's Kitchen. Order by Thursday for the weekend. Here is our menu:</div>
+                <div class="bub me">Hi, do you have a chocolate cake for this weekend?</div>
+                <div class="bub">Hi! Thanks for messaging Fazila's Kitchen. Order by Wednesday 6pm for the weekend. Here is our menu:</div>
                 <div class="quick"><span>Menu</span><span>Prices</span><span>Delivery areas</span></div>
               </div>
             </div>
@@ -295,51 +318,6 @@ const jsonLd = [
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>3 posters sized for Facebook and Instagram ({R(x.posters.price)})</li>
             </ul>
             <div class="svc-price"><span class="muted">All three in the Launch Pack,</span><strong>{R(w.launchPack.price)}</strong></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DEMO -->
-    <section class="sec sand" id="demo" aria-labelledby="demo-h">
-      <div class="wrap">
-        <div class="head center">
-          <p class="eyebrow">Live demo, made-up data</p>
-          <h2 id="demo-h">Be the customer. Watch what the owner sees.</h2>
-          <p class="lead">Pick a job and an area on the left, then send it. This is Straat Leads at {R(m.leads.price)} a month.</p>
-        </div>
-        <div class="demo-grid">
-          <form class="panel" id="demo-form">
-            <div class="panel-h"><strong>Get a quote</strong><span class="who">Customer</span></div>
-            <fieldset><legend>What do you need?</legend>
-              <div class="opts">
-                {['DB board upgrade', 'COC certificate', 'Fault finding'].map((j, i) => (
-                  <label class="opt"><input type="radio" name="job" value={j} checked={i === 0} /><span>{j}</span></label>
-                ))}
-              </div>
-            </fieldset>
-            <fieldset><legend>Where?</legend>
-              <div class="opts">
-                {['Athlone', 'Rylands', 'Gatesville', 'Bridgetown'].map((a, i) => (
-                  <label class="opt"><input type="radio" name="area" value={a} checked={i === 0} /><span>{a}</span></label>
-                ))}
-              </div>
-            </fieldset>
-            <p class="demo-note">Problem: "Lights trip when the geyser switches on." 2 photos added.</p>
-            <div class="demo-acts"><button class="btn btn-blue" type="submit">Send quote request</button></div>
-            <p class="demo-note" id="demo-thanks" aria-live="polite"></p>
-          </form>
-          <div class="panel" aria-live="polite">
-            <div class="panel-h"><strong>StraatOS enquiries</strong><span class="who">Owner</span></div>
-            <div id="inbox">
-              <div class="inbox-row"><div><b>Geyser or stove wiring</b><small>Rylands, 2 days ago</small></div><span class="status s-quote">Quote sent</span></div>
-              <div class="inbox-row"><div><b>COC certificate</b><small>Gatesville, 5 days ago</small></div><span class="status s-won">Won</span></div>
-            </div>
-            <div class="alert" id="demo-alert" hidden><i></i><span id="demo-alert-t"></span></div>
-            <div class="demo-acts" id="demo-acts" hidden>
-              <button class="btn btn-ghost btn-sm" type="button" id="demo-next">Move to next step</button>
-              <button class="btn btn-ghost btn-sm" type="button" id="demo-reset">Start again</button>
-            </div>
           </div>
         </div>
       </div>
@@ -403,6 +381,7 @@ const jsonLd = [
             <a class="btn btn-ghost" href={whatsappHref(`Hi Straat Studio, I'm interested in the ${w.launchPack.name}.`)} rel="noopener">Start with Launch Pack</a>
           </article>
         </div>
+        <p class="not-sure">Not sure which one? <a href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us.</a></p>
         <div class="paymonthly">
           <p><b>Can't pay at once?</b> Business website plus Straat Leads for {R(pm.setup)} to start, then {R(pm.monthlyFor12Months)} a month for 12 months. The site is yours after the 12th payment, then Straat Leads continues at {R(pm.monthlyAfter)} a month.</p>
           <a class="btn btn-ghost btn-sm" href={whatsappHref('Hi Straat Studio, tell me about the pay-monthly option.')} rel="noopener">Ask about pay-monthly</a>
@@ -414,8 +393,8 @@ const jsonLd = [
         </div>
         <div class="plan-grid">
           <div class="plan"><div class="plan-top"><strong>{m.care.name}</strong><span>{R(m.care.price)} <small>a month</small></span></div><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></div>
-          <div class="plan hi"><div class="plan-top"><strong>{m.leads.name}</strong><span>{R(m.leads.price)} <small>a month</small></span></div><p>Everything in Care, plus the smart quote form, your enquiry list with statuses, instant alerts, instant customer replies and a monthly report.</p><span class="badge">Best value for trades</span></div>
-          <div class="plan"><div class="plan-top"><strong>{m.growth.name}</strong><span>{R(m.growth.price)} <small>a month</small></span></div><p>Everything in Leads, plus review requests after every job, quote follow-up reminders, 2 Google posts a month and a new page every quarter.</p></div>
+          <div class="plan hi"><div class="plan-top"><strong>{m.leads.name}</strong><span>{R(m.leads.price)} <small>a month</small></span></div><p>Everything in Care, plus a quote form, an email alert for every enquiry, your enquiry list in a Google Sheet with a status for each, and a monthly report. Customers see an instant thank-you with a WhatsApp button, and get an email copy if they give an email address.</p><span class="badge">Best value for trades</span></div>
+          <div class="plan"><div class="plan-top"><strong>{m.growth.name}</strong><span>{R(m.growth.price)} <small>a month</small></span></div><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></div>
         </div>
 
         <div class="builder" id="builder">
@@ -622,40 +601,6 @@ const jsonLd = [
     };
     $$('#builder input').forEach((i) => i.addEventListener('change', calc));
     calc();
-
-    // Enquiry demo
-    const steps = [['New', 's-new'], ['Quote sent', 's-quote'], ['Won', 's-won']];
-    let stage = 0, row = null;
-    $('#demo-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const job = $('input[name="job"]:checked').value, area = $('input[name="area"]:checked').value;
-      if (row) row.remove();
-      stage = 0;
-      row = document.createElement('div');
-      row.className = 'inbox-row new';
-      row.innerHTML = `<div><b></b><small></small></div><span class="status s-new">New</span>`;
-      row.querySelector('b').textContent = job;
-      row.querySelector('small').textContent = `${area}, just now, 2 photos`;
-      $('#inbox').prepend(row);
-      $('#demo-alert').hidden = false;
-      $('#demo-alert-t').textContent = `New enquiry: ${job}, ${area}. Sent to your phone.`;
-      $('#demo-acts').hidden = false;
-      $('#demo-next').textContent = 'Move to next step';
-      $('#demo-thanks').textContent = `Thanks, your request is in. Ndlovu Electrical will reply soon. A copy is in your email.`;
-    });
-    $('#demo-next').addEventListener('click', () => {
-      if (!row) return;
-      stage = Math.min(stage + 1, 2);
-      const s = row.querySelector('.status');
-      s.className = 'status ' + steps[stage][1];
-      s.textContent = steps[stage][0];
-      if (stage === 2) { $('#demo-alert-t').textContent = 'Job won. One tap sends the customer your Google review link.'; $('#demo-next').textContent = 'Done'; }
-      else $('#demo-alert-t').textContent = 'Quote sent. Every step is tracked, so no job gets forgotten.';
-    });
-    $('#demo-reset').addEventListener('click', () => {
-      if (row) row.remove(); row = null; stage = 0;
-      $('#demo-alert').hidden = true; $('#demo-acts').hidden = true; $('#demo-thanks').textContent = '';
-    });
   </script>
 </BaseLayout>
 
@@ -702,9 +647,6 @@ const jsonLd = [
     }
     .phone-sum { margin: auto 10px 12px; background: var(--sign-soft); border-radius: 10px; padding: 10px; font-size: 10.5px; line-height: 1.5; }
     .phone-sum b { font-size: 13px; }
-    .th-map { margin: 6px 14px 14px; border-radius: 10px; overflow: hidden; border: 1px solid #eadde4; }
-    .th-map div { display:none; height: 70px; background: linear-gradient(90deg, transparent 46%, #fff 46%, #fff 52%, transparent 52%), linear-gradient(0deg, transparent 44%, #fff 44%, #fff 50%, transparent 50%), #efe4ea; }
-    .th-map p { padding: 8px 10px; font-size: 10px; background: #fff; }
 
     /* Trades */
     .trades { background: var(--sand); padding: 56px 0; }
@@ -724,15 +666,16 @@ const jsonLd = [
     .n1 { color: var(--sign); } .n2 { color: #8ea8ff; } .n3 { color: #6fe3a0; }
     .step3 h3 { color: #fff; }
     .step3 p { color: var(--on-night); margin-top: 10px; }
-    .step3 .price-tag { display: inline-block; margin-top: 14px; font-size: 14px; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: 4px 12px; }
 
     /* Services alternating */
-    .svc { display: grid; gap: 40px; align-items: center; padding: 48px 0; }
+    .svc { display: grid; gap: 28px; align-items: center; padding: 32px 0; }
     .svc + .svc { border-top: 1px solid var(--line); }
-    @media (min-width: 900px) { .svc { grid-template-columns: 1fr 1fr; gap: 80px; padding: 72px 0; } .svc.flip .svc-art { order: 2; } }
-    .svc-art { position: relative; aspect-ratio: 1 / 0.82; display: grid; place-items: center; }
+    @media (min-width: 900px) { .svc { grid-template-columns: 1fr 1fr; gap: 64px; padding: 48px 0; } .svc.flip .svc-art { order: 2; } }
+    .svc:first-of-type { padding-top: 8px; }
+    .svc-art { position: relative; min-height: 300px; padding: 8px 0; display: grid; place-items: center; }
     .svc > * { min-width: 0; }
-    .svc-art::before { content: ''; position: absolute; width: 76%; aspect-ratio: 1; border-radius: 50%; background: var(--c, var(--blue-soft)); }
+    .svc-art::before { content: ''; position: absolute; width: min(300px, 74%); aspect-ratio: 1; border-radius: 50%; background: var(--c, var(--blue-soft)); }
+    .svc-art.flat::before { display: none; }
     .svc-art > * { position: relative; }
     .svc ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 10px; }
     .svc li { display: flex; gap: 10px; align-items: flex-start; }
@@ -743,26 +686,34 @@ const jsonLd = [
 
     .card-ui { background: #fff; border-radius: 14px; box-shadow: 0 24px 48px -28px rgba(15,27,45,.45); border: 1px solid var(--line); font-size: 13px; }
     /* Phone: Thandeka */
-    .ph2 { width: min(250px, 62%); aspect-ratio: 9 / 18; background: var(--ink); border-radius: 30px; padding: 9px; box-shadow: 0 30px 50px -26px rgba(15,27,45,.5); }
-    .ph2-s { height: 100%; border-radius: 22px; overflow: hidden; background: #fbf6f8; font-size: 11px; }
+    .ph2 { width: min(250px, 62%); background: var(--ink); border-radius: 30px; padding: 9px; box-shadow: 0 30px 50px -26px rgba(15,27,45,.5); }
+    .ph2-s { border-radius: 22px; overflow: hidden; background: #fbf6f8; font-size: 11px; padding-bottom: 14px; }
     .th-hero { background: #5b2a4d; color: #fff; padding: 22px 14px 18px; }
     .th-hero strong { display: block; font: 600 17px/1.15 var(--serif); }
     .th-hero span { display: block; color: #f0d9e7; margin-top: 4px; font-size: 10px; }
     .th-list { padding: 10px 14px; }
     .th-list div { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid #eadde4; }
     .th-book { margin: 8px 14px; text-align: center; background: var(--wa); color: #06210f; font-weight: 700; border-radius: 8px; padding: 9px; }
-    /* Pipeline board */
-    .board { width: min(520px, 100%); padding: 16px; }
-    .board-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 700; }
-    .board-h span { font-weight: 500; color: var(--muted); font-size: 12px; }
-    .cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    @media (min-width: 560px) { .cols { grid-template-columns: repeat(4, 1fr); } }
-    .col { background: var(--sand); border-radius: 10px; padding: 8px; min-height: 120px; }
-    @media (min-width: 560px) { .col { min-height: 170px; } }
-    .col p { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 8px; }
-    .tkt { background: #fff; border-radius: 8px; padding: 8px; font-size: 11px; line-height: 1.3; margin-bottom: 6px; border-left: 3px solid var(--blue); }
-    .tkt small { display: block; color: var(--muted); font-size: 10px; margin-top: 2px; }
-    .tkt.y { border-left-color: var(--sign); } .tkt.g { border-left-color: var(--wa); }
+    .th-areas { margin: 12px 14px 0; display: flex; flex-wrap: wrap; gap: 5px; }
+    .th-areas p { width: 100%; font-size: 10px; font-weight: 700; color: #5b2a4d; text-transform: uppercase; letter-spacing: .06em; }
+    .th-areas span { border: 1px solid #eadde4; background: #fff; border-radius: 999px; padding: 3px 8px; font-size: 10px; }
+    /* Three-step enquiry picture: form, email alert, Google Sheet */
+    .steps-pic { width: min(460px, 100%); background: var(--blue-soft); border-radius: 20px; padding: 18px 18px 14px; display: grid; gap: 10px; }
+    .pic-label { font-size: 12px; font-weight: 700; color: var(--blue-dark); text-transform: uppercase; letter-spacing: .08em; }
+    .pic-n { font-size: 13px; font-weight: 600; margin-bottom: 5px; } .pic-n b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 11px; margin-right: 6px; }
+    .pic-form { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 10px; padding: 10px 12px; }
+    .pic-form .f small { display: block; font-size: 10px; color: var(--muted); }
+    .pic-form .f span { display: block; border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; font-size: 11.5px; min-height: 26px; }
+    .pic-form .f span.blank { background: #fafafa; }
+    .pic-mail { display: flex; gap: 10px; align-items: center; padding: 10px 12px; }
+    .pic-mail svg { width: 26px; height: 26px; flex: none; color: var(--blue); }
+    .pic-mail b { display: block; font-size: 12px; line-height: 1.35; } .pic-mail small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+    .pic-sheet { overflow: hidden; }
+    .sh { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 8px; align-items: center; padding: 6px 12px; border-top: 1px solid var(--line); font-size: 11.5px; }
+    .sh:first-child { border-top: 0; } .sh-h { background: var(--sand); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .sh i { font-style: normal; }
+    .not-sure { margin-top: 22px; text-align: center; font-weight: 500; }
+    .not-sure a { color: var(--blue-dark); font-weight: 600; }
     /* Google profile */
     .gbp { width: min(380px, 88%); overflow: hidden; }
     .map { height: 120px; background:
@@ -786,13 +737,7 @@ const jsonLd = [
     .quick { display: flex; gap: 6px; flex-wrap: wrap; }
     .quick span { background: #fff; border-radius: 999px; padding: 5px 10px; font-size: 11px; font-weight: 600; color: #075e54; }
 
-    /* Demo */
-    .demo-grid { display: grid; gap: 20px; }
-    @media (min-width: 900px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
-    .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }
-    .panel-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
-    .panel-h strong { font: 600 20px/1.2 var(--serif); }
-    .who { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    /* Option buttons (package builder) and status chips (enquiry picture) */
     fieldset { border: 0; padding: 0; margin: 0 0 18px; }
     legend { font-weight: 600; margin-bottom: 8px; font-size: 16px; }
     .opts { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -801,16 +746,8 @@ const jsonLd = [
     .opt span { display: inline-flex; min-height: 44px; align-items: center; padding: 8px 14px; border: 1.5px solid var(--line); border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; background: #fff; }
     .opt input:checked + span { border-color: var(--blue); background: var(--blue-soft); color: var(--blue-dark); font-weight: 600; }
     .opt input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
-    .demo-note { margin-top: 6px; font-size: 14px; color: var(--muted); }
-    .inbox-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); }
-    .inbox-row b { display: block; font-size: 16px; }
-    .inbox-row small { color: var(--muted); font-size: 14px; }
-    .inbox-row.new { background: var(--sign-soft); margin: 0 -24px; padding: 14px 24px; border-top: 0; }
-    .status { font-size: 13px; font-weight: 700; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+    .status { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
     .s-new { background: var(--sign); color: var(--ink); } .s-quote { background: var(--blue-soft); color: var(--blue-dark); } .s-won { background: #dcf7e6; color: #0b6b35; }
-    .alert { margin-top: 16px; display: flex; gap: 10px; align-items: flex-start; background: var(--night); color: #fff; border-radius: 10px; padding: 12px 14px; font-size: 15px; }
-    .alert i { width: 10px; height: 10px; border-radius: 50%; background: var(--sign); margin-top: 7px; flex: none; }
-    .demo-acts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
 
     /* Prices */
     .price-grid { display: grid; gap: 16px; }
