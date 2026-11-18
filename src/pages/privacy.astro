@@ -2,8 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { business, phoneHref, emailHref, whatsappHref } from '../config/business';
 
-// Draft until the owner confirms every placeholder below. Set to false to remove the "Draft" banner.
-const draft = true;
+const lastUpdated = "18 November 2026";
 const wa = whatsappHref("Hi Straat Studio, I have a question about my personal information.");
 ---
 
@@ -12,7 +11,7 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about my personal i
   description="How Straat Studio uses the personal information you share with us, and your rights under POPIA, including access and deletion."
   path="/privacy/"
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Privacy notice', path: '/privacy/' }]}
-  draft={draft}
+  lastUpdated={lastUpdated}
 >
   <section class="sec">
     <div class="wrap legal">
@@ -21,8 +20,7 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about my personal i
       <p class="lead" style="max-width:none">
         This notice explains what personal information {business.name} collects, why, where it is kept, and the rights you have under the Protection of Personal Information Act (POPIA).
       </p>
-      <p class="meta">Draft prepared on 12 November 2026. Items marked <mark class="todo">[like this]</mark> still need the owner's confirmation.</p>
-
+      
       <h2>Who we are</h2>
       <p>
         {business.name} is a trading name of {business.legalName}, Reg. {business.regNumber}. We are the responsible party for the information described here. We are based in Cape Town and work with businesses across South Africa.
@@ -30,8 +28,8 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about my personal i
       <ul>
         <li>Email: <a href={emailHref}>{business.email}</a></li>
         <li>WhatsApp and phone: <a href={phoneHref}>{business.phoneDisplay}</a></li>
-        <li>Address: <mark class="todo">[Owner to supply or confirm the address to show, if any. No address is shown on this site yet.]</mark></li>
-        <li>Information Officer: <mark class="todo">[Owner to supply the name of the Information Officer.]</mark></li>
+        <li>Address: ADDRESS_HERE</li>
+        <li>Information Officer: Khulani Mhlophe. Deputy Information Officer: none appointed.</li>
       </ul>
 
       <h2>What we collect</h2>
@@ -50,14 +48,14 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about my personal i
 
       <h2>Where it is kept and for how long</h2>
       <ul>
-        <li>Where messages, forms and files are stored: <mark class="todo">[Owner to confirm, for example WhatsApp, an email inbox, and a Google account for forms, sheets and files.]</mark></li>
-        <li>Service providers who help us run the business, such as messaging, email, file storage, payments and website hosting: <mark class="todo">[Owner to confirm the list at launch.]</mark></li>
-        <li>How long we keep enquiries and client files: <mark class="todo">[Owner to confirm the retention period.]</mark></li>
+        <li>Where messages, forms and files are stored: WhatsApp; email (hello@ is forwarded to a Google mailbox); and enquiry forms, spreadsheets and files in Google Sheets and Drive on our business Google account, which uses 2-step verification.</li>
+        <li>Service providers who help us run the business: Google (email, Sheets, Drive), Cloudflare (website hosting and email forwarding), HostAfrica (domain registration), WhatsApp (Meta), and our bank for EFT payments. Where a client chooses card payments, PayFast or Yoco run under the client's own account.</li>
+        <li>How long we keep information: enquiries that do not become a project are deleted after 12 months. Client files and project records are kept while you are a client and for 12 months after. Accounting and company records are kept for up to 7 years.</li>
       </ul>
 
       <h2>Cookies and visitor counts</h2>
       <p>
-        This website does not set cookies. <mark class="todo">[Owner to confirm when visitor counting is switched on: we plan to use Cloudflare Web Analytics, which does not use cookies.]</mark>
+        This website does not set cookies.
       </p>
 
       <h2>Your rights</h2>

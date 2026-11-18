@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business, emailHref, paiaPublished } from '../config/business';
+
+const lastUpdated = "18 November 2026";
+---
+
+<BaseLayout
+  title="PAIA manual | Straat Studio"
+  description="The PAIA manual of STRAATTECH (Pty) Ltd, trading as Straat Studio: contact details, records we hold and how to ask for access to them."
+  path="/paia-manual/"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'PAIA manual', path: '/paia-manual/' }]}
+  noindex={!paiaPublished}
+  lastUpdated={lastUpdated}
+>
+  <section class="sec">
+    <div class="wrap legal">
+      <p class="eyebrow">PAIA manual</p>
+      <h1>PAIA manual of {business.legalName}</h1>
+      <p class="lead" style="max-width:none">
+        Manual prepared in terms of section 51 of the Promotion of Access to Information Act 2 of 2000 (PAIA), following the Information Regulator's private body template (revision of 1 October 2021).
+      </p>
+      <p class="meta">
+        Company: {business.legalName}, Reg. {business.regNumber}, trading as {business.name}.<br />
+      </p>
+
+      <nav aria-label="Contents" class="toc">
+        <ol>
+          <li><a href="#acronyms">Acronyms and abbreviations</a></li>
+          <li><a href="#purpose">Purpose of the PAIA manual</a></li>
+          <li><a href="#contact">Key contact details</a></li>
+          <li><a href="#guide">Guide on how to use PAIA</a></li>
+          <li><a href="#no-request">Records available without a request</a></li>
+          <li><a href="#legislation">Records available under other legislation</a></li>
+          <li><a href="#subjects">Subjects and categories of records held</a></li>
+          <li><a href="#processing">Processing of personal information</a></li>
+          <li><a href="#availability">Availability of the manual</a></li>
+          <li><a href="#updating">Updating of the manual</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="acronyms">1. Acronyms and abbreviations</h2>
+      <ul>
+        <li><strong>CEO:</strong> chief executive officer.</li>
+        <li><strong>DIO:</strong> deputy information officer.</li>
+        <li><strong>IO:</strong> information officer.</li>
+        <li><strong>Minister:</strong> the Minister of Justice and Correctional Services.</li>
+        <li><strong>PAIA:</strong> the Promotion of Access to Information Act 2 of 2000, as amended.</li>
+        <li><strong>POPIA:</strong> the Protection of Personal Information Act 4 of 2013.</li>
+        <li><strong>Regulator:</strong> the Information Regulator of South Africa.</li>
+        <li><strong>Republic:</strong> the Republic of South Africa.</li>
+      </ul>
+
+      <h2 id="purpose">2. Purpose of the PAIA manual</h2>
+      <p>This manual helps you to:</p>
+      <ul>
+        <li>know what types of records {business.legalName} holds and which of them are available without a formal request;</li>
+        <li>know the subjects on which we hold records, and the categories of records we hold on each;</li>
+        <li>know how we process personal information;</li>
+        <li>understand how to request access to a record, and who to send the request to; and</li>
+        <li>know what to do if you are unhappy with our answer.</li>
+      </ul>
+
+      <h2 id="contact">3. Key contact details for access to information</h2>
+      <p>{business.legalName}, Reg. {business.regNumber}, trading as {business.name}. We are a private company.</p>
+      <ul>
+        <li><strong>Information Officer:</strong> Khulani Mhlophe</li>
+        <li><strong>Deputy Information Officer:</strong> None appointed</li>
+        <li><strong>Email for access to information requests:</strong> <a href={emailHref}>{business.email}</a></li>
+        <li><strong>Website:</strong> <a href="/">{business.siteUrl}</a></li>
+        <li><strong>Postal and street address:</strong> ADDRESS_HERE</li>
+      </ul>
+
+      <h2 id="guide">4. Guide on how to use PAIA and how to obtain access to the guide</h2>
+      <p>
+        The Information Regulator has published a Guide that explains, in plain language, how to use PAIA. It tells you how to request access to a record, what to put in your request, and what you can do if access is refused. It is available on the Regulator's website, <a href="https://inforegulator.org.za" rel="noopener">inforegulator.org.za</a>. You can also ask the Regulator for a copy.
+      </p>
+      <p>
+        We refer you to the Guide for the form to use, the fees that apply and the time limits for a reply. We do not repeat them here, so that this manual does not go out of date when the rules change.
+      </p>
+
+      <h2 id="no-request">5. Categories of records available without a person having to request access</h2>
+      <p>These records are available without a formal request under PAIA:</p>
+      <ul>
+        <li>the public pages of this website, including our services and prices;</li>
+        <li>our <a href="/privacy/">privacy notice</a>;</li>
+        <li>our <a href="/terms/">terms of service</a>; and</li>
+        <li>this PAIA manual.</li>
+      </ul>
+      <p>Any other record needs a request under PAIA. We may refuse access on the grounds the Act allows.</p>
+
+      <h2 id="legislation">6. Description of the records available in accordance with other legislation</h2>
+      <p>
+        We keep records as required by the laws that apply to a small private company with no employees. We list the laws we believe apply. This list does not limit our duty to keep records under other laws.
+      </p>
+      <ul>
+        <li>Companies Act 71 of 2008</li>
+        <li>Promotion of Access to Information Act 2 of 2000</li>
+        <li>Protection of Personal Information Act 4 of 2013</li>
+        <li>Electronic Communications and Transactions Act 25 of 2002</li>
+        <li>Income Tax Act 58 of 1962 and Tax Administration Act 28 of 2011</li>
+        <li>Consumer Protection Act 68 of 2008</li>
+      </ul>
+      <p>
+        The company is not registered for VAT and has no employees, so the Value-Added Tax Act and employment laws are not listed.
+      </p>
+
+      <h2 id="subjects">7. Subjects on which we hold records and categories of records held on each</h2>
+      <p>Records exist on the following subjects. We list the categories only. A record may be refused under PAIA.</p>
+      <table class="paia-tbl">
+        <caption class="sr">Subjects and categories of records held</caption>
+        <thead><tr><th scope="col">Subject</th><th scope="col">Categories of records</th></tr></thead>
+        <tbody>
+          <tr>
+            <th scope="row">Company records</th>
+            <td>Incorporation documents and company registration records, shareholder and director records, company resolutions and policies.</td>
+          </tr>
+          <tr>
+            <th scope="row">Client project records</th>
+            <td>Agreements and quotes, checklist forms, content and photos supplied by clients, website files and handover guides, messages about the project.</td>
+          </tr>
+          <tr>
+            <th scope="row">Enquiry records</th>
+            <td>Messages and enquiries from people who contact us, and the details they give us, such as a name, phone number or email address.</td>
+          </tr>
+          <tr>
+            <th scope="row">Financial records</th>
+            <td>Invoices, payment records, bank records, and tax records.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="processing">8. Processing of personal information</h2>
+      <h3>8.1 Purpose of processing</h3>
+      <p>
+        We process personal information to reply to enquiries, prepare a free homepage preview, quote, build and look after websites, send invoices and meet our legal duties. We do not use it for anything else. This is the same purpose set out in our <a href="/privacy/">privacy notice</a>.
+      </p>
+
+      <h3>8.2 Categories of data subjects and the personal information we hold</h3>
+      <table class="paia-tbl">
+        <caption class="sr">Categories of data subjects and personal information</caption>
+        <thead><tr><th scope="col">Data subjects</th><th scope="col">Personal information</th></tr></thead>
+        <tbody>
+          <tr>
+            <th scope="row">People who contact us</th>
+            <td>Name, phone number or email address, and what they tell us about their business, such as its name, what it does and the areas it serves.</td>
+          </tr>
+          <tr>
+            <th scope="row">Clients</th>
+            <td>The details on our checklist form, such as services and prices, hours, logo, photos of their work and links to their social media pages, and invoicing details.</td>
+          </tr>
+          <tr>
+            <th scope="row">Businesses we contact first</th>
+            <td>Only details that are publicly listed, such as a Google listing or a Facebook page. We ask for permission before we build a free preview.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>8.3 Recipients and service providers</h3>
+      <p>
+        We share personal information only with the service providers we use to run the business, and where the law requires. Our service providers are Google (email, Sheets, Drive), Cloudflare (website hosting and email forwarding), HostAfrica (domain registration), WhatsApp (Meta), and our bank for EFT payments. Where a client chooses card payments, PayFast or Yoco run under the client's own account.
+      </p>
+
+      <h3>8.4 Transfers outside the Republic</h3>
+      <p>
+        Google and Cloudflare may store information in data centres outside South Africa.
+      </p>
+
+      <h3>8.5 Retention</h3>
+      <p>
+        Enquiries that do not become a project are deleted after 12 months. Client files and project records are kept while you are a client and for 12 months after. Accounting and company records are kept for up to 7 years.
+      </p>
+
+      <h3>8.6 Security measures</h3>
+      <p>
+        We take reasonable steps to keep personal information safe. Our business Google account uses 2-step verification, and access is limited to the Information Officer.
+      </p>
+
+      <h2 id="availability">9. Availability of the manual</h2>
+      <ul>
+        <li>This manual is available on this website at <a href="/paia-manual/">{business.siteUrl}/paia-manual/</a>.</li>
+        <li>It is also available on request to the Information Officer, by email to <a href={emailHref}>{business.email}</a>.</li>
+        <li>A copy of the manual may be requested from the Information Regulator, and a fee for copying may be charged as set out in the Regulations under PAIA. Please see the Regulator's Guide for the current fees.</li>
+      </ul>
+
+      <h2 id="updating">10. Updating of the manual</h2>
+      <p>
+        We review this manual once a year, or sooner when something changes. The latest version is always the one on this page.
+      </p>
+
+      <p class="issued"><strong>Issued by:</strong> Khulani Mhlophe, Information Officer, {business.legalName}, Reg. {business.regNumber}, trading as {business.name}. Date of issue: 18 November 2026.</p>
+
+      <p style="margin-top:40px"><a href="/privacy/">Privacy notice</a> &middot; <a href="/terms/">Terms of service</a> &middot; <a href="/">Back to the homepage</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .toc { margin-top: 32px; background: var(--sand); border-radius: var(--r); padding: 18px 24px; }
+  .toc ol { margin: 0; padding-left: 1.4em; display: grid; gap: 4px; font-size: 16px; }
+  .toc a { color: var(--blue-dark); text-underline-offset: 3px; }
+  .paia-tbl { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 16px; }
+  .paia-tbl th, .paia-tbl td { text-align: left; vertical-align: top; padding: 12px 12px; border: 1px solid var(--line); }
+  .paia-tbl thead th { background: var(--sand); font-size: 14px; text-transform: uppercase; letter-spacing: .06em; }
+  .paia-tbl tbody th { width: 30%; font-weight: 600; }
+  .issued { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); }
+</style>

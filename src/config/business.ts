@@ -43,10 +43,10 @@ export const business = {
 } as const;
 
 /**
- * Set to true only when the PAIA manual is finished, the Information Officer is named and the owner approves.
- * While false, the footer link and the sitemap entry for /paia-manual/ are hidden, and the page is noindex.
+ * True: the PAIA manual is published (owner confirmed on 18 November 2026), so the footer link and sitemap entry show and the page is indexable.
+ * Set to false to hide the link and sitemap entry and mark the page noindex.
  */
-export const paiaPublished = false;
+export const paiaPublished = true;
 
 /** True while any placeholder contact detail is still in place. */
 export const hasPlaceholders =

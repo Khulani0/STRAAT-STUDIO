@@ -140,7 +140,9 @@ Minimum 700 words of original content per page.
 
 Build 3 complete concept websites, each with its own look, as proof of standard:
 1. `ndlovu-electrical` (Business package): 5 pages, service pages, areas, quote form.
-2. `fazilas-kitchen` (Catalogue package): product catalogue with Sveltia CMS, WhatsApp order buttons with the product name pre-filled.
+2. `fazilas-kitchen` (Catalogue package): product catalogue driven by a simple product Google Sheet that we set up (no CMS), WhatsApp order buttons with the product name pre-filled.
+
+**Before the first Catalogue sale, the owner product sheet must be built.** This is the Google Sheet template (one row per product: name, description, price, photo, category, available) and the automatic refresh that republishes the site within minutes of an edit. Until it exists, do not sell or promise Catalogue.
 3. `thandeka-hair` (One-Page package): prices, hours, map, booking by WhatsApp.
 
 Host each at `concepts.straatstudio.co.za/[name]/` or its own Pages project. Each gets a case study on `/work/[slug]/`: the brief, design choices, features, mobile and desktop screenshots, Lighthouse scores, and the concept label.
@@ -151,7 +153,7 @@ Host each at `concepts.straatstudio.co.za/[name]/` or its own Pages project. Eac
 - `/terms/`: scope, payment (50/50 or full for One-Page), 2 revision rounds, delivery clock starts on content received, ownership passes on final payment, no ranking guarantees, Straat Care terms, cancellation.
 - `/paia-manual/`: PAIA manual for STRAATTECH (Pty) Ltd.
 - Footer: "Straat Studio is a trading name of STRAATTECH (Pty) Ltd, Reg. 2026/409104/07".
-Mark these pages "Draft, review before launch" until the owner confirms.
+Each page shows "Last updated" with the date of the last real change. These pages have not been reviewed by a lawyer; see `docs/legal-review.md`.
 
 ## 12. Quality gates before every deploy
 
@@ -212,3 +214,7 @@ Page limits (in `maxPages` in business.ts): One-Page 1 page, Business up to 5 pa
 Monthly: Straat Care R99, Straat Leads R249, Straat Growth R449.
 Pay-monthly: R499 setup, then R449 a month for 12 months (Business + Leads), then R249.
 Year 2 hosting and domain without a plan: R999 a year.
+
+## 16. Who edits what
+
+Catalogue clients update their products themselves in a simple product Google Sheet that we set up, and the site refreshes automatically within minutes. There is no CMS. Everything else (text, pages, photos, prices) is changed by us: the client sends a WhatsApp and it is done within 48 hours. Straat Care includes one small change a month. A single change without a plan is R100. Keep the homepage Catalogue card, the FAQ "Can I edit the website myself?", "What we will ask you for", /prices/ and the home bakers page saying the same thing.

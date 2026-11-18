@@ -65,7 +65,7 @@ const faqs = [
   ['Do you only work in Cape Town?', 'No. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, email and online forms, so you never need to visit us.'],
   ['Will I come up on Google?', 'Every site is built for search: one page per service, your towns and suburbs in the titles, fast loading and a Google Business Profile linked to it. No honest company can promise first place, and we never will.'],
   ['Who looks after backups and updates?', `Backups, uptime checks and small changes come with Straat Care from ${R(m.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
-  ['Can I edit the website myself?', `No. You send us a WhatsApp and the change is done within 48 hours. Straat Care includes one small change a month, and a single change without a plan is ${R(prices.singleChangeAfterLaunch)}. Your site is made of plain files, so any developer can take it over.`],
+  ['Can I edit the website myself?', `Only the products on a Catalogue website. You update them in a simple product Google Sheet that we set up, and the site refreshes within minutes. Everything else (text, pages, photos and prices) is changed by us: send a WhatsApp and it is done within 48 hours. Straat Care includes one small change a month, and a single change without a plan is ${R(prices.singleChangeAfterLaunch)}. Your site is made of plain files, so any developer can take it over.`],
   ['Do I get a business email address?', `Yes. An address like info@yourbusiness.co.za forwards to your Gmail for free. A full mailbox can be set up for ${R(x.mailbox.price)}, and you pay the email provider directly.`],
 ];
 const jsonLd = [
@@ -75,7 +75,7 @@ const jsonLd = [
     telephone: `+${business.phoneDigits}`, email: business.email,
     areaServed: { '@type': 'Country', name: 'South Africa' },
     priceRange: prices.priceRange, currenciesAccepted: 'ZAR',
-    description: 'Websites, Google Business Profile setup and enquiry tracking for South African small businesses.',
+    description: 'Websites, Google Business Profile setup and enquiry alerts for South African small businesses.',
   },
   {
     '@context': 'https://schema.org', '@type': 'FAQPage',
@@ -86,7 +86,7 @@ const jsonLd = [
 
 <BaseLayout
   title="Small business websites from R999 | Straat Studio"
-  description="Websites for South African small businesses from R999, domain and hosting included, plus an enquiry system that tracks every quote. See a free preview."
+  description="Websites for South African small businesses from R999, domain and hosting included, plus an alert for every quote request. See a free preview."
   path="/"
   jsonLd={jsonLd}
 >
@@ -98,7 +98,7 @@ const jsonLd = [
         <div>
           <p class="eyebrow">Websites and enquiry systems for South African businesses</p>
           <h1>Get found on Google. Catch <span class="mark">every enquiry.</span> Win more jobs.</h1>
-          <p class="lead">We build fast websites for small businesses across South Africa, then keep track of every quote request so none slip through the cracks. You see your homepage free, before you pay anything.</p>
+          <p class="lead">We build fast websites for small businesses across South Africa, then alert you to every quote request so none slip through the cracks. You see your homepage free, before you pay anything.</p>
           <div class="hero-ctas">
             <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Get my free homepage</a>
             <a class="btn btn-ghost" href="#prices">See prices from {R(w.onePage.price)}</a>
@@ -127,22 +127,20 @@ const jsonLd = [
               alt={work[2].desktopAlt}
             />
           </div>
-          <div class="phone" role="img" aria-label="An example email alert and enquiry list on a phone, with made-up data: a new DB board upgrade enquiry in Athlone, and two earlier enquiries with their status.">
+          <div class="phone" role="img" aria-label="An example email alert on a phone, with made-up data: a new DB board upgrade enquiry in Athlone, then the automatic reply sent to the customer and the monthly report.">
             <div class="phone-screen">
               <div class="phone-top">Straat Leads<small>Ndlovu Electrical</small></div>
               <p class="phone-demo">Example, made-up data</p>
               <div class="notif">
-                <div class="notif-h"><i></i>Email alert &middot; now</div>
+                <div class="notif-h"><i></i>Example: email alert &middot; now</div>
                 <b>New enquiry: DB board upgrade, Athlone, photos added</b>
-                <span>"Lights trip when the geyser switches on."</span><br />
-                <span class="chip">New</span>
+                <span>"Lights trip when the geyser switches on."</span>
               </div>
-              <div class="row-mini"><span><b>Geyser or stove wiring</b><br />Rylands</span><span class="chip blue">Quote sent</span></div>
-              <div class="row-mini"><span><b>COC certificate</b><br />Gatesville</span><span class="chip green">Won</span></div>
-              <div class="phone-sum"><b>14</b> enquiries this month<br /><b>5</b> won &middot; <b>3</b> waiting on a quote</div>
+              <div class="row-mini"><span><b>Example: automatic reply</b><br />Sent to the customer</span></div>
+              <div class="row-mini"><span><b>Example: monthly report</b><br />Sent every month</span></div>
             </div>
           </div>
-          <p class="stage-cap label-concept">Concept project, not commissioned client work. The phone shows an example email alert and enquiry list with made-up data.</p>
+          <p class="stage-cap label-concept">Concept project, not commissioned client work. The phone shows an example email alert with made-up data.</p>
         </div>
       </div>
     </section>
@@ -180,7 +178,7 @@ const jsonLd = [
             <span class="num n2" aria-hidden="true">02</span>
             <div>
               <h3>Catch every enquiry</h3>
-              <p>Customers send a quote form. You get an email alert, and every enquiry sits in your own Google Sheet with a status.</p>
+              <p>Customers send a quote form. You get an instant alert, and the customer gets an automatic reply.</p>
             </div>
           </li>
           <li class="step3">
@@ -246,30 +244,29 @@ const jsonLd = [
                 </div>
               </div>
               <div class="pic-step">
-                <p class="pic-n"><b>2</b> You get an email alert</p>
+                <p class="pic-n"><b>2</b> Example: you get an email alert</p>
                 <div class="card-ui pic-mail">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
                   <div><b>New enquiry: DB board upgrade, Rylands, photos added</b><small>Email alert, straight away</small></div>
                 </div>
               </div>
               <div class="pic-step">
-                <p class="pic-n"><b>3</b> It lands in your Google Sheet</p>
-                <div class="card-ui pic-sheet">
-                  <div class="sh sh-h"><span>Job</span><span>Suburb</span><span>Status</span></div>
-                  <div class="sh"><span>DB board upgrade</span><span>Rylands</span><span><i class="status s-new">New</i></span></div>
-                  <div class="sh"><span>Fault finding</span><span>Athlone</span><span><i class="status s-quote">Quote sent</i></span></div>
-                  <div class="sh"><span>COC certificate</span><span>Gatesville</span><span><i class="status s-won">Won</i></span></div>
+                <p class="pic-n"><b>3</b> Example: the customer gets an automatic reply</p>
+                <div class="card-ui pic-mail">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg>
+                  <div><b>Thank you, Ndlovu Electrical has your request</b><small>Automatic reply, straight away</small></div>
                 </div>
               </div>
             </div>
           </div>
           <div>
-            <p class="eyebrow">Enquiry tracking</p>
-            <h3>Every quote request in one place, from first message to won job.</h3>
+            <p class="eyebrow">Enquiry alerts</p>
+            <h3>Know about every quote request the moment it arrives.</h3>
             <ul>
               <li>A quote form for your customers: job, suburb, phone, photos and an optional email</li>
-              <li>An email alert for you. The customer sees a thank-you on screen with a WhatsApp button, and gets an email copy if they gave an email address</li>
-              <li>Every enquiry in your own Google Sheet with a status, and a monthly report of enquiries, top jobs, won and lost</li>
+              <li>An instant alert to you for every enquiry</li>
+              <li>An automatic reply to the customer</li>
+              <li>A monthly report</li>
               <li>Your customers' details stay yours, under a written POPIA agreement</li>
             </ul>
             <div class="svc-price"><strong>{R(m.leads.price)}</strong><span class="muted">a month</span><a href="#process">See how it works</a></div>
@@ -365,7 +362,7 @@ const jsonLd = [
             <p class="amt">{R(w.catalogue.price)}</p><p class="when">Live in 7 working days</p>
             <ul>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to {maxPages.catalogue} pages</li>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to 30 products you update</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to 30 products you update in a Google Sheet. The site refreshes within minutes.</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp order buttons</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Optional PayFast or Yoco</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp Business setup (ready-to-paste texts plus one guided call)</li>
@@ -398,7 +395,7 @@ const jsonLd = [
         </div>
         <div class="plan-grid">
           <div class="plan"><div class="plan-top"><strong>{m.care.name}</strong><span>{R(m.care.price)} <small>a month</small></span></div><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></div>
-          <div class="plan hi"><div class="plan-top"><strong>{m.leads.name}</strong><span>{R(m.leads.price)} <small>a month</small></span></div><p>Everything in Care, plus a quote form, an email alert for every enquiry, your enquiry list in a Google Sheet with a status for each, and a monthly report. Customers see an instant thank-you with a WhatsApp button, and get an email copy if they give an email address.</p><span class="badge">Best value for trades</span></div>
+          <div class="plan hi"><div class="plan-top"><strong>{m.leads.name}</strong><span>{R(m.leads.price)} <small>a month</small></span></div><p>Everything in Care, plus an instant alert to you for every enquiry, an automatic reply to the customer and a monthly report.</p><span class="badge">Best value for trades</span></div>
           <div class="plan"><div class="plan-top"><strong>{m.growth.name}</strong><span>{R(m.growth.price)} <small>a month</small></span></div><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></div>
         </div>
 
@@ -533,7 +530,7 @@ const jsonLd = [
           <div class="need-grid">
             <div><p class="need-h">Every package</p><ul><li>Business name, logo if you have one</li><li>Services and prices</li><li>Areas you serve and your hours</li><li>Phone, WhatsApp and email</li><li>6 to 15 photos of your work</li></ul></div>
             <div><p class="need-h">Business and Launch Pack</p><ul><li>A few lines on each service</li><li>Your Google Business Profile, or we create one</li><li>Before and after photos, if you have them</li><li>Logo and poster ideas (Launch Pack)</li></ul></div>
-            <div><p class="need-h">Catalogue</p><ul><li>Your product list on our template</li><li>One photo per product</li><li>Delivery or collection areas and fees</li><li>Your PayFast or Yoco account, if you want payments</li></ul></div>
+            <div><p class="need-h">Catalogue</p><ul><li>Your first product list, which we load into your product Google Sheet</li><li>One photo per product</li><li>Delivery or collection areas and fees</li><li>Your PayFast or Yoco account, if you want payments</li></ul></div>
           </div>
         </div>
       </div>
@@ -636,9 +633,6 @@ const jsonLd = [
     .notif-h { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); }
     .notif-h i { width: 14px; height: 14px; border-radius: 4px; background: var(--blue); }
     .notif b { display: block; margin-top: 4px; font-size: 11.5px; }
-    .chip { display: inline-block; font-size: 9.5px; font-weight: 700; padding: 3px 7px; border-radius: 999px; background: var(--sign-soft); color: #6b4e00; margin-top: 6px; }
-    .chip.blue { background: var(--blue-soft); color: var(--blue-dark); }
-    .chip.green { background: #dcf7e6; color: #0b6b35; }
     .row-mini { margin: 0 10px 8px; background: #fff; border-radius: 10px; padding: 8px 10px; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
     .row-mini span { font-size: 10px; line-height: 1.3; }
     .stage-cap { position: absolute; left: 0; bottom: -34px; }
@@ -650,8 +644,6 @@ const jsonLd = [
       .stage-cap { bottom: -30px; }
       .stage { margin-bottom: 0; }
     }
-    .phone-sum { margin: auto 10px 12px; background: var(--sign-soft); border-radius: 10px; padding: 10px; font-size: 10.5px; line-height: 1.5; }
-    .phone-sum b { font-size: 13px; }
 
     /* Trades */
     .trades { background: var(--sand); padding: 56px 0; }
@@ -702,7 +694,7 @@ const jsonLd = [
     .th-areas { margin: 12px 14px 0; display: flex; flex-wrap: wrap; gap: 5px; }
     .th-areas p { width: 100%; font-size: 10px; font-weight: 700; color: #5b2a4d; text-transform: uppercase; letter-spacing: .06em; }
     .th-areas span { border: 1px solid #eadde4; background: #fff; border-radius: 999px; padding: 3px 8px; font-size: 10px; }
-    /* Three-step enquiry picture: form, email alert, Google Sheet */
+    /* Three-step enquiry picture: form, email alert, automatic reply */
     .steps-pic { width: min(460px, 100%); background: var(--blue-soft); border-radius: 20px; padding: 18px 18px 14px; display: grid; gap: 10px; }
     .pic-label { font-size: 12px; font-weight: 700; color: var(--blue-dark); text-transform: uppercase; letter-spacing: .08em; }
     .pic-n { font-size: 13px; font-weight: 600; margin-bottom: 5px; } .pic-n b { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 11px; margin-right: 6px; }
@@ -713,10 +705,6 @@ const jsonLd = [
     .pic-mail { display: flex; gap: 10px; align-items: center; padding: 10px 12px; }
     .pic-mail svg { width: 26px; height: 26px; flex: none; color: var(--blue); }
     .pic-mail b { display: block; font-size: 12px; line-height: 1.35; } .pic-mail small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
-    .pic-sheet { overflow: hidden; }
-    .sh { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 8px; align-items: center; padding: 6px 12px; border-top: 1px solid var(--line); font-size: 11.5px; }
-    .sh:first-child { border-top: 0; } .sh-h { background: var(--sand); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-    .sh i { font-style: normal; }
     .not-sure { margin-top: 22px; text-align: center; font-weight: 500; }
     .not-sure a { color: var(--blue-dark); font-weight: 600; }
     /* Google profile */
@@ -742,7 +730,7 @@ const jsonLd = [
     .quick { display: flex; gap: 6px; flex-wrap: wrap; }
     .quick span { background: #fff; border-radius: 999px; padding: 5px 10px; font-size: 11px; font-weight: 600; color: #075e54; }
 
-    /* Option buttons (package builder) and status chips (enquiry picture) */
+    /* Option buttons (package builder) */
     fieldset { border: 0; padding: 0; margin: 0 0 18px; }
     legend { font-weight: 600; margin-bottom: 8px; font-size: 16px; }
     .opts { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -751,8 +739,6 @@ const jsonLd = [
     .opt span { display: inline-flex; min-height: 44px; align-items: center; padding: 8px 14px; border: 1.5px solid var(--line); border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; background: #fff; }
     .opt input:checked + span { border-color: var(--blue); background: var(--blue-soft); color: var(--blue-dark); font-weight: 600; }
     .opt input:focus-visible + span { outline: 3px solid var(--blue); outline-offset: 2px; }
-    .status { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
-    .s-new { background: var(--sign); color: var(--ink); } .s-quote { background: var(--blue-soft); color: var(--blue-dark); } .s-won { background: #dcf7e6; color: #0b6b35; }
 
     /* Prices */
     .price-grid { display: grid; gap: 16px; }

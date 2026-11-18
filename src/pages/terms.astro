@@ -2,8 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { business, prices, formatRand as R, emailHref, whatsappHref } from '../config/business';
 
-// Draft until the owner confirms every placeholder below. Set to false to remove the "Draft" banner.
-const draft = true;
+const lastUpdated = "18 November 2026";
 const w = prices.websites;
 const m = prices.monthly;
 const pm = prices.payMonthly;
@@ -15,7 +14,7 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about your terms of
   description="The terms for Straat Studio websites: what is included, payment, changes, delivery, ownership, monthly plans and cancellation."
   path="/terms/"
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Terms of service', path: '/terms/' }]}
-  draft={draft}
+  lastUpdated={lastUpdated}
 >
   <section class="sec">
     <div class="wrap legal">
@@ -24,7 +23,6 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about your terms of
       <p class="lead" style="max-width:none">
         These terms apply to websites and monthly plans from {business.name}. We have kept them short and in plain language on purpose.
       </p>
-      <p class="meta">Draft prepared on 12 November 2026. Items marked <mark class="todo">[like this]</mark> still need the owner's confirmation.</p>
 
       <h2>Who we are</h2>
       <p>
@@ -53,7 +51,7 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about your terms of
         <li>{w.onePage.name} is paid in full to start.</li>
         <li>{w.business.name}, {w.catalogue.name} and {w.launchPack.name}: 50% to start and 50% before the website goes live.</li>
         <li>Pay-monthly option: {R(pm.setup)} to start, then {R(pm.monthlyFor12Months)} a month for {pm.months} months ({pm.includes}), then {R(pm.monthlyAfter)} a month for Straat Leads. The website is yours after the 12th payment.</li>
-        <li>How to pay: <mark class="todo">[Owner to confirm the payment methods and banking details to show.]</mark></li>
+        <li>How to pay: We are paid by EFT. Our invoice shows the bank details of {business.legalName}. We never ask for card numbers or passwords.</li>
       </ul>
 
       <h2>Delivery</h2>
@@ -86,19 +84,22 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about your terms of
       <p>Monthly plans are optional. You can cancel at any time, and your website stays yours either way.</p>
       <ul>
         <li><strong>Straat Care, {R(m.care.price)} a month:</strong> backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</li>
-        <li><strong>Straat Leads, {R(m.leads.price)} a month:</strong> everything in Care, plus a quote form on your site, an email alert to you for every enquiry, an on-screen thank-you for the customer (with an email copy if they give an email address), a Google Sheet that tracks each enquiry, and a monthly report. A one-page POPIA data agreement is signed before it starts.</li>
+        <li><strong>Straat Leads, {R(m.leads.price)} a month:</strong> everything in Care, plus an instant alert to you for every enquiry, an automatic reply to the customer, and a monthly report. A one-page POPIA data agreement is signed before it starts.</li>
         <li><strong>Straat Growth, {R(m.growth.price)} a month:</strong> everything in Leads, plus the extras listed on our <a href="/prices/">prices</a> section.</li>
         <li>Without a plan, hosting and your domain cost {R(prices.year2HostingAndDomain)} a year from year 2.</li>
       </ul>
 
-      <h2>Cancelling</h2>
+      <h2>Cancelling and refunds</h2>
       <p>
-        There is no long contract. If you leave, we hand over your files and logins. Before the final payment, the deposit covers the work done so far. <mark class="todo">[Owner to confirm any refund terms.]</mark>
+        There is no long contract. If you leave, we hand over your files and logins.
+      </p>
+      <p>
+        If you cancel before we start building, we refund your deposit in full. After we start, the deposit covers the work done so far. If we cannot deliver what we promised, we refund the part we did not deliver.
       </p>
 
       <h2>Liability and governing law</h2>
       <p>
-        <mark class="todo">[Owner to confirm with a legal adviser: limits on our liability, how disputes are handled, and the governing law.]</mark>
+        These terms are governed by the law of South Africa. Our liability for any claim is limited to the amount you paid us for that service, except where the law does not allow such a limit. If you are unhappy, write to <a href={emailHref}>{business.email}</a> first and we will reply in writing. If we cannot agree, either of us may use the courts of South Africa.
       </p>
 
       <h2>Questions</h2>

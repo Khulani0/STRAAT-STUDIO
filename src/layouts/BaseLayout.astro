@@ -6,11 +6,11 @@ import { business, paiaPublished, phoneHref, emailHref, whatsappHref, defaultWha
 export interface Props extends SEOProps {
   /** Pre-filled WhatsApp message for this page. */
   whatsappMessage?: string;
-  /** Shows the "Draft, review before launch" banner (legal pages). */
-  draft?: boolean;
+  /** Shows a "Last updated" line under the header (legal pages), for example "18 November 2026". */
+  lastUpdated?: string;
 }
 
-const { whatsappMessage = defaultWhatsappMessage, draft = false, ...seo } = Astro.props;
+const { whatsappMessage = defaultWhatsappMessage, lastUpdated, ...seo } = Astro.props;
 const wa = whatsappHref(whatsappMessage);
 const year = new Date().getFullYear();
 
@@ -45,7 +45,7 @@ const nav = [
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  {draft && <p class="draft-banner" role="region" aria-label="Draft notice">Draft, review before launch</p>}
+  {lastUpdated && <p class="draft-banner">Last updated: {lastUpdated}</p>}
 
   <header class="hdr">
     <div class="wrap hdr-in">
