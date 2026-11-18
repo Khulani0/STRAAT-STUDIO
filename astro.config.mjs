@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { copyFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { business, hasPlaceholders } from './src/config/business.ts';
+import { business, hasPlaceholders, paiaPublished } from './src/config/business.ts';
 
 // Fails `astro build` while any contact detail is still a placeholder.
 // `astro dev` is not affected, so you can still preview.
@@ -40,6 +40,6 @@ export default defineConfig({
   server: { port: 4322 },
   trailingSlash: 'always',
   build: { format: 'directory' },
-  integrations: [sitemap({ filter: (page) => !page.endsWith('/404/') }), sitemapAtRoot, placeholderGuard],
+  integrations: [sitemap({ filter: (page) => !page.endsWith('/404/') && (paiaPublished || !page.endsWith('/paia-manual/')) }), sitemapAtRoot, placeholderGuard],
   vite: { plugins: [tailwindcss()] },
 });

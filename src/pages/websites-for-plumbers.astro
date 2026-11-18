@@ -1,0 +1,63 @@
+---
+import TradePage from '../components/TradePage.astro';
+import { prices, formatRand as R } from '../config/business';
+
+const m = prices.monthly;
+---
+
+<TradePage
+  title="Websites for plumbers in South Africa | Straat Studio"
+  description="A fixed-price website for plumbers: easy to call from a phone, a page for each service and a quote form. See a free homepage preview first."
+  path="/websites-for-plumbers/"
+  crumb="Websites for plumbers"
+  eyebrow="Websites for plumbers"
+  h1="A plumber's website that is easy to call when the water is already running."
+  lead="People often look for a plumber at a bad moment, from their phone. The site has to load fast, say what you fix and put the call button where their thumb is."
+  waMessage="Hi Straat Studio, I'd like a free homepage preview for my plumbing business."
+  ctaLabel="Get my free plumbing preview"
+  cta={{ heading: 'Be the number they tap first.', text: 'WhatsApp us your business name and the areas you cover. We write a free homepage preview with the call button at the top, and you pay nothing until you approve it.' }}
+  searches={{
+    heading: 'What people search for when they need a plumber',
+    intro: 'A plumbing search often starts with a problem, not a service name. Someone has water where it should not be, or no hot water, and types what they see. Examples of how people phrase it:',
+    items: ['plumber near me', 'burst pipe emergency plumber Milnerton', 'geyser replacement Table View', 'blocked drain Mitchells Plain', 'leaking tap repair', 'bathroom plumber Claremont'],
+    outro: 'These are examples, not measured search numbers. We have no figures to show you and we will not invent any. The useful part is the pattern: the problem, then the place. Your pages should speak in the same words a worried homeowner would use.',
+  }}
+  sitePages={{
+    heading: 'Which pages a plumbing site needs',
+    intro: 'We keep a plumbing site short and clear. A Business website has up to 5 pages, and this is how we would use them.',
+    items: [
+      { name: 'Home', text: 'The services you offer, where you work, and one large call button above everything else. The quote form sits lower for people who would rather write.' },
+      { name: 'Burst pipes and leaks', text: 'For the urgent search. It says what you do, what the customer should do first, and how to reach you. Only list after-hours work if you really do it.' },
+      { name: 'Geysers', text: 'Geyser repairs and replacements are a job people plan for once something has failed. The page can explain what you install and which areas you cover.' },
+      { name: 'Blocked drains and sewer lines', text: 'Drain work is its own search, with its own questions. A separate page lets the customer see you do this specific work.' },
+      { name: 'Bathrooms and renovations', text: 'The slower, larger jobs. Before and after photos of your own work belong here, because people choose a renovation plumber by looking at results.' },
+    ],
+  }}
+  does={{
+    heading: 'What the site does for you while you are on a job',
+    intro: 'You cannot answer every call when your hands are under a sink. The site is built so that a missed call is not a lost customer.',
+    items: [
+      { name: 'Makes calling effortless', text: 'The phone number is a tap-to-call button on every page. On a phone, the customer does not need to copy a number or remember it.' },
+      { name: 'Lets them message instead', text: 'A WhatsApp button opens a chat with your first message already typed. The customer can add a photo of the leak and press send while you are busy.' },
+      { name: 'Collects the details', text: `The quote form takes their request and suburb. With Straat Leads at ${R(m.leads.price)} a month, you also get an instant alert for every enquiry, an automatic reply to the customer and a monthly report.` },
+    ],
+  }}
+  pkg={{
+    key: 'business',
+    live: '5 working days',
+    heading: `Business or One-Page for a plumber?`,
+    paragraphs: [
+      `The Business website is ${R(prices.websites.business.price)} and has up to 5 pages, a photo gallery, a quote form, your Google Business Profile set up and WhatsApp Business set up. We recommend it, because burst pipes, geysers and drains are different searches and each deserves its own page.`,
+      `If you are only starting and want one clear page with your services, area and phone number, One-Page is ${R(prices.websites.onePage.price)}. You can move up later.`,
+      `If you cannot pay at once, the pay-monthly option is ${R(prices.payMonthly.setup)} to start and then ${R(prices.payMonthly.monthlyFor12Months)} a month for ${prices.payMonthly.months} months, covering the Business website and Straat Leads. The website is yours after the 12th payment.`,
+      `If missed calls worry you most, Straat Leads at ${R(m.leads.price)} a month sends you an instant alert when someone asks for you, and the customer gets an automatic reply while you finish the job. You also get a monthly report. Straat Care is ${R(m.care.price)} a month if you only want backups and uptime checks.`,
+    ],
+  }}
+  faqs={[
+    ['Should my site say we work 24 hours?', 'Only if it is true. We write the hours and the after-hours wording exactly as you give them to us. A site that promises more than you can deliver costs you reviews and trust.'],
+    ['Can I show before and after photos of my jobs?', 'Yes. The Business website has a photo gallery. Send us photos that are your own, or that you have permission to use, and tell us a few words about each job.'],
+    ['What happens if I miss a call while I am on a job?', 'The customer can send a WhatsApp message or fill in the quote form instead. With Straat Leads you get an instant alert for each enquiry, so you know the moment someone has asked for you.'],
+    ['Can I put my registrations on the site?', 'Yes. Send us the registration details and logos you hold, for example from your plumbing industry registration body, and we will show them. We never add a registration you have not given us.'],
+    ['Do I have to put my prices on the website?', 'No. Some plumbers list a few common jobs with prices, and others ask customers to ask for a quote. We follow what you prefer.'],
+  ]}
+/>

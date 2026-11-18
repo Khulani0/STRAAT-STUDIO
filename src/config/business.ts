@@ -42,6 +42,12 @@ export const business = {
   },
 } as const;
 
+/**
+ * Set to true only when the PAIA manual is finished, the Information Officer is named and the owner approves.
+ * While false, the footer link and the sitemap entry for /paia-manual/ are hidden, and the page is noindex.
+ */
+export const paiaPublished = false;
+
 /** True while any placeholder contact detail is still in place. */
 export const hasPlaceholders =
   business.phoneDigits.includes('X') ||

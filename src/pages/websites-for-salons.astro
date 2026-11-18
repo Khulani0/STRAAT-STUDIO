@@ -1,0 +1,60 @@
+---
+import TradePage from '../components/TradePage.astro';
+import { prices, formatRand as R } from '../config/business';
+---
+
+<TradePage
+  title="Websites for hair and nail salons | Straat Studio"
+  description="A fixed-price website for hair and nail salons: your styles, prices and hours on one page, with booking by WhatsApp. Free homepage preview first."
+  path="/websites-for-salons/"
+  crumb="Websites for salons"
+  eyebrow="Websites for salons"
+  h1="A salon website with your styles, your prices and a Book on WhatsApp button."
+  lead="Clients look at pictures first, then check the price and the day. One clear page can show your best work, your price list and your hours, and let them book in one tap."
+  waMessage="Hi Straat Studio, I'd like a free homepage preview for my salon."
+  ctaLabel="Get my free salon preview"
+  cta={{ heading: 'Put your best styles where clients look first.', text: 'Send us your salon name and your suburb, and tell us which styles you do most. We build a free preview with your prices and a Book on WhatsApp button, so you can see it before you decide.' }}
+  searches={{
+    heading: 'What people search for when they want a salon',
+    intro: 'Salon searches are about the style and the place. Clients often search with a hairstyle or a nail treatment name, then compare a few results by looking at photos and prices. Examples of how people phrase it:',
+    items: ['braids near me', 'nail technician Soweto', 'gel nails price', 'hair salon open Saturday Pretoria', 'lash extensions Durban', 'natural hair stylist Khayelitsha'],
+    outro: 'These are examples only. We do not have search numbers and we will not quote any. What matters is that your page uses the names clients use for your styles, shows what each costs, and tells them when you are open.',
+  }}
+  sitePages={{
+    heading: 'One page is often enough for a salon',
+    intro: `Most salons do very well with the One-Page website at ${R(prices.websites.onePage.price)}. Everything sits on a single page that you can scroll on a phone, with sections in the order a client needs them.`,
+    items: [
+      { name: 'Services and prices', text: 'A clear list of what you offer and what it costs. If a price depends on hair length or design, say so, and say how the client can get an exact price.' },
+      { name: 'Your work', text: 'Photos of your own work, with the style name under each one. This is the part clients spend the longest on, so choose your best pictures.' },
+      { name: 'Hours and where to find you', text: 'Your days and times, your suburb and a map. If you work from home, you can show your suburb and a map area without printing your street address.' },
+      { name: 'Booking and contact', text: 'A Book on WhatsApp button with a message ready to send, a call button, and an enquiry form for clients who like to write.' },
+    ],
+    outro: `If your salon has many services and you want a separate page for each, for example braids, nails and lashes, the Business website at ${R(prices.websites.business.price)} has up to 5 pages. Start with one page and move up when you need to.`,
+  }}
+  does={{
+    heading: 'What the site does for your salon',
+    intro: 'It is a shop window that stays open when you are busy with a client.',
+    items: [
+      { name: 'Shows prices up front', text: 'Clients who can see your prices before they message you are clearer about what they want, and you answer fewer of the same questions.' },
+      { name: 'Books by WhatsApp', text: 'The client taps the button and a message such as "Hi, I would like to book box braids on Saturday" is ready to send. We do not build a calendar booking system. Bookings are made by WhatsApp or phone.' },
+      { name: 'Helps new clients find you', text: 'Your Google Business Profile shows your hours and location on Maps. It is included with the Business website, and available as an add-on with One-Page.' },
+    ],
+  }}
+  pkg={{
+    key: 'onePage',
+    live: '3 working days',
+    heading: `The One-Page website, ${R(prices.websites.onePage.price)}`,
+    paragraphs: [
+      `One-Page includes your services, prices, hours and a map, call and WhatsApp buttons, an enquiry form, an info@ email address that forwards to your Gmail, and a WhatsApp Business starter sheet with ready-to-paste texts. It costs ${R(prices.websites.onePage.price)}, once-off and final, paid in full to start.`,
+      `The Google Business Profile setup or fix is an add-on at ${R(prices.extras.googleBusinessProfile.price)} for One-Page. If you also want a logo, a poster pack of 3 is ${R(prices.extras.posters.price)} and a logo is ${R(prices.extras.logo.price)}.`,
+      `You can start without a monthly plan. Straat Care is ${R(prices.monthly.care.price)} a month and includes one small change a month, which suits a salon that updates prices now and then. Straat Leads is ${R(prices.monthly.leads.price)} a month and adds an instant alert to you for every enquiry, an automatic reply to the customer and a monthly report.`,
+    ],
+  }}
+  faqs={[
+    ['I already use Instagram. Do I still need a website?', 'Instagram is a good place to show your work. A website adds a page that Google can show to people searching for a salon, with your prices, hours and location in one place, and a button to book. Many salons use both, and we can link your Instagram from the site.'],
+    ['Can I show my price list?', 'Yes, and we recommend it. Send us your services and prices. If prices change with hair length or design, we can write that in plain words.'],
+    ['Do clients book on the website?', 'Clients book through WhatsApp or by phone. The site has a Book on WhatsApp button, but it does not include a calendar booking system.'],
+    ['I work from home. Do I have to show my address?', 'No. The site can show your suburb and a map area, and clients message you for the exact address once they book. We do not publish an address you do not want shown.'],
+    ['Can I change my prices or add new styles later?', `Yes. Send us a WhatsApp with the change and we make it. A single change after launch is ${R(prices.singleChangeAfterLaunch)} without a plan, and Straat Care includes one small change a month.`],
+  ]}
+/>

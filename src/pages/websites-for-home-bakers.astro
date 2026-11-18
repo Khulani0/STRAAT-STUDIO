@@ -1,0 +1,61 @@
+---
+import TradePage from '../components/TradePage.astro';
+import { prices, maxPages, formatRand as R } from '../config/business';
+---
+
+<TradePage
+  title="Websites for home bakers in South Africa | Straat Studio"
+  description="A fixed-price catalogue website for home bakers and caterers: your cakes and prices online, with WhatsApp order buttons. See a free preview first."
+  path="/websites-for-home-bakers/"
+  crumb="Websites for home bakers"
+  eyebrow="Websites for home bakers"
+  h1="A catalogue website for bakers who sell by WhatsApp message."
+  lead="You take orders in your DMs, in voice notes and in long chats. A catalogue website shows what you bake and what it costs, so customers order with the details you need."
+  waMessage="Hi Straat Studio, I'd like a free homepage preview for my baking business."
+  ctaLabel="Get my free baker preview"
+  cta={{ heading: 'Let customers see the cake before they ask.', text: 'Message us your business name, the kind of baking you do and the areas you deliver to. We prepare a free homepage preview, and you decide whether to carry on to a Catalogue website.' }}
+  searches={{
+    heading: 'What people search for when they want to order baking',
+    intro: 'Baking searches are about the occasion and the place. Someone planning a party searches for the thing they need and the area they live in, then looks for photos and a way to order. Examples of how people phrase it:',
+    items: ['birthday cakes Pretoria', 'custom cake near me', 'cupcakes delivery Durbanville', 'wedding cake baker Johannesburg', 'halal baker Cape Town', 'cake and snack platters for a function'],
+    outro: 'These are examples, not measured numbers. We will not make up search figures. The point is that your customers describe the occasion, so your catalogue should do the same: group your products by occasion and make each one easy to order.',
+  }}
+  sitePages={{
+    heading: 'How a baking catalogue is laid out',
+    intro: `The Catalogue website has up to ${maxPages.catalogue} pages and up to 30 products that you update. That is room for a home page, your product pages and the information customers always ask about.`,
+    items: [
+      { name: 'Home', text: 'A photo of your best work, what you bake, the areas you deliver to, and a button to see the catalogue.' },
+      { name: 'The catalogue', text: 'Your products with a photo, a short description and a price for each. Group them by occasion, for example birthdays, weddings and platters, so people find the right thing.' },
+      { name: 'How to order', text: 'The details you currently repeat in every chat: how many days of notice you need, how deposits work, and how customers collect or receive their order.' },
+      { name: 'Delivery and collection', text: 'The areas you deliver to, any delivery fees, and where collection takes place. We show your suburb and a general area, not a street address, unless you want one shown.' },
+      { name: 'About you', text: 'A short page about your kitchen and how you work. Customers choose a baker they feel they know.' },
+    ],
+  }}
+  does={{
+    heading: 'What the catalogue does for you',
+    intro: 'It answers the repeated questions before the customer messages, so the messages you get are ready to turn into orders.',
+    items: [
+      { name: 'Shows products and prices', text: 'Customers see what you make and what it costs. Fewer chats start with "how much for a cake?"' },
+      { name: 'WhatsApp order buttons', text: 'Each product has an order button that opens WhatsApp with a message ready to send, so you know which product they want.' },
+      { name: 'Takes payment if you want', text: 'PayFast or Yoco payments are optional. If you prefer to be paid by EFT on the day, the site works without them.' },
+    ],
+  }}
+  pkg={{
+    key: 'catalogue',
+    live: '7 working days',
+    heading: `The Catalogue website, ${R(prices.websites.catalogue.price)}`,
+    paragraphs: [
+      `Catalogue is built for people who change products and prices often. It has up to ${maxPages.catalogue} pages, up to 30 products that you update, WhatsApp order buttons, optional PayFast or Yoco, and WhatsApp Business set up with ready-to-paste texts and one guided call. It costs ${R(prices.websites.catalogue.price)}, once-off and final.`,
+      `Catalogue is paid half to start and half before the website goes live. If you have only a few products and just want a simple page, One-Page is ${R(prices.websites.onePage.price)}.`,
+      `Once the site is live, Straat Care at ${R(prices.monthly.care.price)} a month keeps it backed up and covers one small change a month, useful when a price moves. Straat Leads at ${R(prices.monthly.leads.price)} a month sends you an instant alert for every enquiry, replies to the customer automatically and gives you a monthly report.`,
+      'To build the catalogue we ask for one photo per product, your product list on our template, your delivery or collection areas and fees, and your PayFast or Yoco account if you want payments.',
+    ],
+  }}
+  faqs={[
+    ['How many products can I list?', 'The Catalogue website includes up to 30 products. If you bake more than that, tell us and we will talk about what fits.'],
+    ['Do I need PayFast or Yoco?', 'No. Online payment is optional. Many home bakers prefer to confirm an order on WhatsApp and take a deposit by EFT. The website works either way.'],
+    ['Can I show that I take orders a few days ahead?', 'Yes. The How to order page can say how many days of notice you need and when your order list closes for a weekend or a busy season.'],
+    ['Do I have to show my home address?', 'No. We show the areas you deliver to and, if you offer collection, a general area. Customers message you for the exact address once they order.'],
+    ['Do I need any approvals to sell food from home?', 'That depends on what you make and where you live. Please ask your municipality what you need before you sell. We can show approvals or certificates on your site if you send them to us, and we do not add any that you have not given us.'],
+  ]}
+/>

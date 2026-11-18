@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import SEO, { type Props as SEOProps } from '../components/SEO.astro';
-import { business, phoneHref, emailHref, whatsappHref, defaultWhatsappMessage } from '../config/business';
+import { business, paiaPublished, phoneHref, emailHref, whatsappHref, defaultWhatsappMessage } from '../config/business';
 
 export interface Props extends SEOProps {
   /** Pre-filled WhatsApp message for this page. */
@@ -89,6 +89,12 @@ const nav = [
           <li><a href={emailHref}>{business.email}</a></li>
           <li>Based in Cape Town. Serving all of South Africa.</li>
         </ul></div>
+        <div><h2 class="foot-h">Websites for</h2><ul>
+          <li><a href="/websites-for-electricians/">Electricians</a></li>
+          <li><a href="/websites-for-plumbers/">Plumbers</a></li>
+          <li><a href="/websites-for-salons/">Salons</a></li>
+          <li><a href="/websites-for-home-bakers/">Home bakers</a></li>
+        </ul></div>
         <div><h2 class="foot-h">Explore</h2><ul>
           <li><a href="/#services">Services</a></li>
           <li><a href="/prices/">Prices</a></li>
@@ -101,7 +107,7 @@ const nav = [
       <div class="foot-legal">
         <p>{business.legalName}, Reg. {business.regNumber}</p>
         <p>{business.name} is a trading name of {business.legalName}. &copy; {year}.</p>
-        <p><a href="/privacy/">Privacy notice</a> &middot; <a href="/terms/">Terms of service</a></p>
+        <p><a href="/privacy/">Privacy notice</a> &middot; <a href="/terms/">Terms of service</a>{paiaPublished && <> &middot; <a href="/paia-manual/">PAIA manual</a></>}</p>
       </div>
     </div>
   </footer>
