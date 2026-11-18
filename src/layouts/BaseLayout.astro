@@ -18,9 +18,11 @@ const year = new Date().getFullYear();
 const nav = [
   { label: 'Services', href: '/#services' },
   { label: 'Enquiry system', href: '/#system' },
-  { label: 'Prices', href: '/#prices' },
+  { label: 'Prices', href: '/prices/' },
   { label: 'Work', href: '/#work' },
   { label: 'How it works', href: '/#process' },
+  { label: 'About', href: '/about/' },
+  { label: 'Contact', href: '/contact/' },
 ];
 ---
 
@@ -83,14 +85,16 @@ const nav = [
         </div>
         <div><h2 class="foot-h">Contact</h2><ul>
           <li><a href={wa} rel="noopener">WhatsApp us</a></li>
-          <li><a href={phoneHref}>Call {business.phoneDisplay}</a></li>
+          <li><a href={phoneHref} data-event="phone-click">Call {business.phoneDisplay}</a></li>
           <li><a href={emailHref}>{business.email}</a></li>
           <li>Based in Cape Town. Serving all of South Africa.</li>
         </ul></div>
         <div><h2 class="foot-h">Explore</h2><ul>
           <li><a href="/#services">Services</a></li>
-          <li><a href="/#prices">Prices</a></li>
+          <li><a href="/prices/">Prices</a></li>
           <li><a href="/#process">How it works</a></li>
+          <li><a href="/about/">About us</a></li>
+          <li><a href="/contact/">Contact</a></li>
           <li><a href="/#questions">Questions</a></li>
         </ul></div>
       </div>

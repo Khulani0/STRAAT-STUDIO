@@ -208,6 +208,7 @@ Never build a phase before the business trigger is met. Ask the owner to confirm
 ## 15. Current prices (put these in business.ts)
 
 Websites: One-Page R999, Business R2,499, Catalogue R2,999, Launch Pack R3,099.
+Page limits (in `maxPages` in business.ts): One-Page 1 page, Business up to 5 pages, Catalogue up to 8 pages, Launch Pack up to 5 pages (same as Business).
 Monthly: Straat Care R99, Straat Leads R249, Straat Growth R449.
 Pay-monthly: R499 setup, then R449 a month for 12 months (Business + Leads), then R249.
 Year 2 hosting and domain without a plan: R999 a year.

@@ -7,6 +7,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   business,
   prices,
+  maxPages,
   formatRand as R,
   whatsappHref,
   phoneHref,
@@ -350,7 +351,7 @@ const jsonLd = [
             <p class="for">A page for every service, so Google can match each search to the right page.</p>
             <p class="amt">{R(w.business.price)}</p><p class="when">Live in 5 working days</p>
             <ul>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to 5 pages</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to {maxPages.business} pages</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Photo gallery and quote form</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Google Business Profile set up</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp Business setup (ready-to-paste texts plus one guided call)</li>
@@ -363,6 +364,7 @@ const jsonLd = [
             <p class="for">For bakers, caterers and shops who change products and prices often.</p>
             <p class="amt">{R(w.catalogue.price)}</p><p class="when">Live in 7 working days</p>
             <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to {maxPages.catalogue} pages</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to 30 products you update</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp order buttons</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Optional PayFast or Yoco</li>
@@ -376,7 +378,7 @@ const jsonLd = [
             <p class="for">Starting from scratch? The Business website plus everything around it.</p>
             <p class="amt">{R(w.launchPack.price)}</p><p class="when">Live in 5 working days</p>
             <ul>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Business website</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Business website, up to {maxPages.launchPack} pages</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Logo, 3 options</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>3 social media posters</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp Business setup</li>
@@ -384,7 +386,7 @@ const jsonLd = [
             <a class="btn btn-ghost" href={whatsappHref(`Hi Straat Studio, I'm interested in the ${w.launchPack.name}.`)} rel="noopener">Start with Launch Pack</a>
           </article>
         </div>
-        <p class="not-sure">Not sure which one? <a href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us.</a></p>
+        <p class="not-sure">Not sure which one? <a href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us.</a> Or see the <a href="/prices/">full price comparison</a>.</p>
         <div class="paymonthly">
           <p><b>Can't pay at once?</b> Business website plus Straat Leads for {R(pm.setup)} to start, then {R(pm.monthlyFor12Months)} a month for 12 months. The site is yours after the 12th payment, then Straat Leads continues at {R(pm.monthlyAfter)} a month.</p>
           <a class="btn btn-ghost btn-sm" href={whatsappHref('Hi Straat Studio, tell me about the pay-monthly option.')} rel="noopener">Ask about pay-monthly</a>

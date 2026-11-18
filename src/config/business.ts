@@ -26,6 +26,14 @@ export const business = {
   // so this flag is true.
   emailForwardingReady: true,
 
+  // Business hours (confirmed by the owner, 18 November 2026). Times are 24-hour, South African time.
+  hours: {
+    openDays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '08:00',
+    closes: '18:00',
+    closedDays: ['Sunday'],
+  },
+
   // Owner must approve before an address is shown or put in JSON-LD.
   address: null as null | {
     street: string;
@@ -90,6 +98,9 @@ export const prices = {
   /** Lowest and highest website price, used for JSON-LD priceRange. */
   priceRange: 'R999 to R3,099',
 } as const;
+
+/** Maximum number of pages in each website package. */
+export const maxPages = { onePage: 1, business: 5, catalogue: 8, launchPack: 5 } as const;
 
 export function formatRand(amount: number): string {
   // Comma thousands separator, matching the approved copy: R2,499
