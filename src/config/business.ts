@@ -22,9 +22,9 @@ export const business = {
   phoneDisplay: '068 226 4586',
 
   email: 'hello@straatstudio.co.za',
-  // PLACEHOLDER FLAG: the email address is a placeholder until Cloudflare email
-  // routing is set up. Change to true once forwarding works. The build fails until then.
-  emailForwardingReady: false,
+  // hello@straatstudio.co.za is live (Cloudflare Email Routing, tested on 18 November 2026),
+  // so this flag is true.
+  emailForwardingReady: true,
 
   // Owner must approve before an address is shown or put in JSON-LD.
   address: null as null | {
