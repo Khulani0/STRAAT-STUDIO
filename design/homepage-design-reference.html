@@ -197,7 +197,7 @@ WhatsApp us</a>
 <button type="button" onClick="{{pickSite_one}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_one_bg}}; color: {{site_one_fg}}">One-Page R999</button>
 <button type="button" onClick="{{pickSite_business}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_business_bg}}; color: {{site_business_fg}}">Business R2,499</button>
 <button type="button" onClick="{{pickSite_catalogue}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_catalogue_bg}}; color: {{site_catalogue_fg}}">Catalogue R2,999</button>
-<button type="button" onClick="{{pickSite_launch}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_launch_bg}}; color: {{site_launch_fg}}">Launch Pack R3,299</button>
+<button type="button" onClick="{{pickSite_launch}}" style="padding: 10px 16px; border: 2px solid #15171A; border-radius: 999px; font-weight: 600; font-size: 15px; cursor: pointer; font-family: inherit; min-height: 44px; background: {{site_launch_bg}}; color: {{site_launch_fg}}">Launch Pack R3,099</button>
 </div>
 <p style="margin: 0 0 12px; font-weight: 700">2. Monthly plan (optional)</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px">
@@ -616,7 +616,7 @@ class Component extends DCLogic {
       openMenu: () => this.setState({ menuOpen: true }),
       closeMenu: () => this.setState({ menuOpen: false })
     };
-    const sites = { one: 999, business: 2499, catalogue: 2999, launch: 3299 };
+    const sites = { one: 999, business: 2499, catalogue: 2999, launch: 3099 };
     const plans = { none: 0, care: 99, leads: 249, growth: 449 };
     const extras = { logo: 300, posters: 350, wa: 250 };
     Object.keys(sites).forEach((k) => { const c = chip(s.site === k); v['site_' + k + '_bg'] = c.bg; v['site_' + k + '_fg'] = c.fg; v['pickSite_' + k] = () => this.setState({ site: k }); });

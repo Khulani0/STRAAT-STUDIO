@@ -60,7 +60,7 @@ export const prices = {
     onePage: { name: 'One-Page', price: 999 },
     business: { name: 'Business', price: 2499 },
     catalogue: { name: 'Catalogue', price: 2999 },
-    launchPack: { name: 'Launch Pack', price: 3299 },
+    launchPack: { name: 'Launch Pack', price: 3099 },
   },
   monthly: {
     care: { name: 'Straat Care', price: 99 },
@@ -76,10 +76,10 @@ export const prices = {
   },
   extras: {
     logo: { name: 'Logo', price: 300 },
-    posters: { name: '3 posters', price: 350 },
-    whatsappSetup: { name: 'WhatsApp setup', price: 250 },
-    googleBusinessProfile: { name: 'Google Business Profile', price: 250 },
-    mailbox: { name: 'Full email mailbox', price: 250 },
+    posters: { name: 'Poster pack (3)', price: 350 },
+    googleBusinessProfile: { name: 'Google Business Profile setup or fix', price: 250 },
+    mailbox: { name: 'Mailbox setup', price: 250 },
+    extraPage: { name: 'Extra page', price: 250 },
   },
   /** Extra change beyond the 2 included rounds, during the build. */
   extraChangeDuringBuild: 150,
@@ -88,7 +88,7 @@ export const prices = {
   /** Year 2 hosting and domain without a plan, per year. */
   year2HostingAndDomain: 999,
   /** Lowest and highest website price, used for JSON-LD priceRange. */
-  priceRange: 'R999 to R3299',
+  priceRange: 'R999 to R3,099',
 } as const;
 
 export function formatRand(amount: number): string {

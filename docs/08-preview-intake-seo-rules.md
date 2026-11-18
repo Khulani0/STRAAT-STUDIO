@@ -82,10 +82,10 @@ Tool: Google Forms (free, file uploads go to our Drive, answers land in a Google
 
 All prices on the new homepage match 02-quick-reference.md. Fixes made on 11 Nov:
 - "Most chosen by trades" changed to "Recommended for trades". We have no sales yet, so "most chosen" was an untrue claim.
-- JSON-LD price range now R999 to R3,299 (it left out the Launch Pack).
+- JSON-LD price range now R999 to R3,099 (it left out the Launch Pack).
 - Extra changes: the Master Plan said R100 in one place and R150 in another. Confirmed by the owner: R150 for each change beyond the 2 included rounds during the build, and R100 for a single change after launch without Straat Care. Both are in `business.ts`.
 - Pay-monthly costs R5,887 over 12 months against R5,487 for paying upfront (Business plus 12 months of Leads). The R400 difference is fair for spreading the cost.
-- Launch Pack R3,299 is R100 cheaper than buying Business plus logo, posters and WhatsApp setup separately (R3,399). Correct.
+- Launch Pack R3,099 versus Business R2,499 plus logo R300 and posters R350 (R3,149): about R50 cheaper. WhatsApp Business setup is now included in Business (decision of 18 Nov 2026), so do not claim a bigger saving.
 
 ## 4. National, not Cape Town only
 

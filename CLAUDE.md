@@ -102,7 +102,7 @@ Minimum 700 words of original content per page.
 - Images in AVIF and WebP via Astro `<Image>`, lazy below the fold, hero image preloaded.
 - `sitemap.xml` (via @astrojs/sitemap) and `robots.txt` pointing to it.
 - JSON-LD structured data, true facts only:
-  - Homepage: `ProfessionalService` with name, url, telephone, email, areaServed (South Africa, as a Country), address only if the owner approves showing it, priceRange "R999 to R3299" (taken from `prices.priceRange` in business.ts).
+  - Homepage: `ProfessionalService` with name, url, telephone, email, areaServed (South Africa, as a Country), address only if the owner approves showing it, priceRange "R999 to R3,099" (taken from `prices.priceRange` in business.ts).
   - Prices page: `Offer` entries per package.
   - FAQ sections: `FAQPage`.
   - Guides: `Article` with author and date.
@@ -207,7 +207,7 @@ Never build a phase before the business trigger is met. Ask the owner to confirm
 
 ## 15. Current prices (put these in business.ts)
 
-Websites: One-Page R999, Business R2,499, Catalogue R2,999, Launch Pack R3,299.
+Websites: One-Page R999, Business R2,499, Catalogue R2,999, Launch Pack R3,099.
 Monthly: Straat Care R99, Straat Leads R249, Straat Growth R449.
 Pay-monthly: R499 setup, then R449 a month for 12 months (Business + Leads), then R249.
 Year 2 hosting and domain without a plan: R999 a year.
