@@ -16,11 +16,11 @@ const year = new Date().getFullYear();
 
 // Root-relative so the links work from every page.
 const nav = [
-  { label: 'Services', href: '/#services' },
-  { label: 'Enquiry system', href: '/#system' },
+  { label: 'Websites', href: '/websites/' },
+  { label: 'Enquiry alerts', href: '/enquiry-system/' },
   { label: 'Prices', href: '/prices/' },
-  { label: 'Work', href: '/#work' },
-  { label: 'How it works', href: '/#process' },
+  { label: 'Examples', href: '/examples/' },
+  { label: 'How it works', href: '/how-it-works/' },
   { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];
@@ -38,7 +38,7 @@ const nav = [
   <SEO
     {...seo}
     image={seo.image ?? '/og/straat-studio-share.jpg'}
-    imageAlt={seo.imageAlt ?? 'Straat Studio: get found on Google, catch every enquiry, win more jobs.'}
+    imageAlt={seo.imageAlt ?? 'Straat Studio: websites and enquiry systems for South African businesses.'}
   />
   <slot name="head" />
 </head>
@@ -96,9 +96,11 @@ const nav = [
           <li><a href="/websites-for-home-bakers/">Home bakers</a></li>
         </ul></div>
         <div><h2 class="foot-h">Explore</h2><ul>
-          <li><a href="/#services">Services</a></li>
+          <li><a href="/websites/">Websites</a></li>
+          <li><a href="/enquiry-system/">Enquiry alerts</a></li>
           <li><a href="/prices/">Prices</a></li>
-          <li><a href="/#process">How it works</a></li>
+          <li><a href="/examples/">Examples</a></li>
+          <li><a href="/how-it-works/">How it works</a></li>
           <li><a href="/about/">About us</a></li>
           <li><a href="/contact/">Contact</a></li>
           <li><a href="/#questions">Questions</a></li>

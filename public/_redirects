@@ -1,0 +1,3 @@
+# Cloudflare Pages permanent redirects
+/work /examples/ 301
+/work/ /examples/ 301

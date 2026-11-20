@@ -34,22 +34,22 @@ See also `docs/08-preview-intake-seo-rules.md` for the free preview, client inta
 | --- | --- |
 | Ink | #14161A |
 | White | #FFFFFF |
-| Sand (alternate light sections) | #F5F3EF |
-| Line (borders) | #E4E1DA |
+| Cool grey (alternate light sections, was Sand) | #F3F5F8 |
+| Line (borders) | #DDE2EA |
 | Muted text on white and sand | #555B63 (passes 4.5:1) |
 | Straat blue (buttons and links) | #2F54EB, hover #2443C4 |
 | Blue soft (badges) | #E8EDFF |
 | Night navy (dark sections, footer) | #0F1B2D, alt #172640 |
 | Text on night | #C9D1DC |
-| Sign yellow (accent) | #FFC629, soft #FFF4CC |
+| Accent tint (small marks, focus ring on navy) | #8EA8FF, a light tint of the brand blue. No yellow, cream or beige anywhere |
 | WhatsApp green (WhatsApp buttons only) | #25D366 with dark text #06210F (8.6:1 measured). Where the button text is white or small, use dark green #0E7038 (about 6:1). #128C4A is retired: it gives only 4.3:1 with white text |
 
 - Type scale: H1 clamp(38px, 5.4vw, 64px), H2 clamp(30px, 3.8vw, 46px), H3 clamp(21px, 2vw, 26px), body 17px (18px from 768px wide), line-height 1.6. No heading above 64px.
 - Headings: Source Serif 4, weight 600, letter-spacing -0.012em. Body and UI text: Inter.
 - Layout: max-width 1200px plus 24px side padding, section padding 112px on desktop and 72px on mobile.
-- Backgrounds: white and Sand for light sections, Night navy for dark sections and the footer. Dark sections are allowed, but keep them to a few and never two in a row.
-- Colour: Straat blue for buttons and links, sign yellow #FFC629 as the accent (highlights, tags, small marks). Green only on WhatsApp buttons. Never show a row of buttons in three different colours.
-- Shape and depth: 14px corners on cards and panels. Soft shadows only (for example 0 30px 60px -30px rgba(15,27,45,.35)). Buttons are 8px corners as built in the design, min height 48px, visible focus ring 3px accent (yellow on dark sections).
+- Backgrounds: white and cool grey (#F3F5F8) for light sections, Night navy for dark sections and the footer. Dark sections are allowed, but keep them to a few and never two in a row.
+- Colour: Straat blue for buttons and links, the light blue tint #8EA8FF for small marks. Green only on WhatsApp buttons. Never show a row of buttons in three different colours.
+- Shape and depth: 14px corners on cards and panels. Soft shadows only (for example 0 30px 60px -30px rgba(15,27,45,.35)). Buttons are 8px corners as built in the design, min height 48px, visible focus ring 3px accent (light blue tint on navy sections).
 - Icons: plain line icons, 2.5px stroke. Use them sparingly.
 - Motion: no entrance animations, no fade-ins, no scroll effects. Respect `prefers-reduced-motion`.
 - Hero: headline on the left, a picture of a concept site on the right. Until the concept sites are built it is an HTML mock-up labelled "Concept project, not commissioned client work". Replace it with real screenshots.
@@ -61,8 +61,11 @@ See also `docs/08-preview-intake-seo-rules.md` for the free preview, client inta
 | --- | --- |
 | `/` | Homepage (canvas design) |
 | `/prices/` | Full package comparison, add-ons, year 2 costs |
-| `/work/` | Concept projects index |
-| `/work/[slug]/` | One case study per concept project |
+| `/websites/` | The four website packages |
+| `/enquiry-system/` | Enquiry alerts (Straat Leads): quote form, email alert, automatic reply, monthly report |
+| `/how-it-works/` | The four steps and what we ask for |
+| `/examples/` | Concept projects index (`/work/` redirects here) |
+| `/examples/[slug]/` | One case study per concept project |
 | `/websites-for-electricians/` | Trade page |
 | `/websites-for-plumbers/` | Trade page |
 | `/websites-for-salons/` | Trade page |
@@ -145,7 +148,7 @@ Build 3 complete concept websites, each with its own look, as proof of standard:
 **Before the first Catalogue sale, the owner product sheet must be built.** This is the Google Sheet template (one row per product: name, description, price, photo, category, available) and the automatic refresh that republishes the site within minutes of an edit. Until it exists, do not sell or promise Catalogue.
 3. `thandeka-hair` (One-Page package): prices, hours, map, booking by WhatsApp.
 
-Host each at `concepts.straatstudio.co.za/[name]/` or its own Pages project. Each gets a case study on `/work/[slug]/`: the brief, design choices, features, mobile and desktop screenshots, Lighthouse scores, and the concept label.
+Host each at `concepts.straatstudio.co.za/[name]/` or its own Pages project. Each gets a case study on `/examples/[slug]/`: the brief, design choices, features, mobile and desktop screenshots, Lighthouse scores, and the concept label.
 
 ## 11. Legal (POPIA)
 

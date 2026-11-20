@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { prices, formatRand as R, whatsappHref } from '../config/business';
+
+const wa = whatsappHref("Hi Straat Studio, I'd like a free homepage preview for my business.");
+const tick = 'M5 12l4.5 4.5L19 7';
+const needs = [
+  ['Every package', ['Business name, logo if you have one', 'Services and prices', 'Areas you serve and your hours', 'Phone, WhatsApp and email', '6 to 15 photos of your work']],
+  ['Business and Launch Pack', ['A few lines on each service', 'Your Google Business Profile, or we create one', 'Before and after photos, if you have them', 'Logo and poster ideas (Launch Pack)']],
+  ['Catalogue', ['Your first product list, which we load into your product Google Sheet', 'One photo per product', 'Delivery or collection areas and fees', 'Your PayFast or Yoco account, if you want payments']],
+];
+---
+
+<BaseLayout
+  title="How it works | Straat Studio"
+  description="See your homepage free, approve it, pay to start, then two rounds of changes before your website goes live on your own .co.za."
+  path="/how-it-works/"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'How it works', path: '/how-it-works/' }]}
+>
+  <section class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">How it works</p>
+        <h1>How it works</h1>
+        <p class="lead" style="max-width:56ch">See it first, pay after. Four steps, done on WhatsApp and one short online form. No meetings, wherever you are in South Africa.</p>
+      </div>
+      <h2 class="sr">The four steps</h2>
+      <ol class="ip-steps">
+        <li><h3>Tell us about your business</h3><p>Your business name, what you do and where. Two minutes on WhatsApp.</p></li>
+        <li><h3>See your homepage free</h3><p>A view-only preview link, designed and written for you. No payment yet.</p></li>
+        <li><h3>Approve and pay to start</h3><p>One-Page is paid in full. Business, Catalogue and Launch Pack pay half to start and half before going live. Then you fill in one checklist form.</p></li>
+        <li><h3>2 rounds of changes, then live</h3><p>On your own .co.za, with a sheet showing what you own. We aim to have it live within 3 to 7 working days after we have all your content.</p></li>
+      </ol>
+      <div class="ip-cta">
+        <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Get my free homepage</a>
+        <a class="btn btn-ghost" href="/prices/">See prices from {R(prices.websites.onePage.price)}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sand" aria-labelledby="need-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Before we start</p>
+        <h2 id="need-h">What we will ask you for.</h2>
+      </div>
+      <div class="ip-grid three">
+        {needs.map(([h, list]) => (
+          <article class="ip-card">
+            <h3>{h}</h3>
+            <ul>{list.map((i) => <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>{i}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="after-h">
+    <div class="wrap" style="max-width:760px">
+      <h2 id="after-h">After your website is live.</h2>
+      <p style="margin-top:16px">Your domain is registered in your name, and the website and its files become yours when the final payment is made. Catalogue clients edit their own product names, descriptions and prices in the product sheet. We change everything else on the site (pages, text, photos and our package prices): send a WhatsApp and it is done within 48 hours. Straat Care includes one small change a month, and a single change without a plan is {R(prices.singleChangeAfterLaunch)}.</p>
+      <ul class="ip-links">
+        <li><a href="/websites/">Our websites</a></li>
+        <li><a href="/enquiry-system/">Enquiry system</a></li>
+        <li><a href="/terms/">Terms of service</a></li>
+        <li><a href="/contact/">Contact us</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
