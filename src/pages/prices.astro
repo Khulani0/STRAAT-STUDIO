@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { business, prices, maxPages, formatRand as R, whatsappHref } from '../config/business';
+import { business, prices, maxPages, formatRand as R, whatsappHref, deliveryDays, deliveryLine } from '../config/business';
 
 const w = prices.websites;
 const m = prices.monthly;
@@ -12,25 +12,25 @@ const pageUrl = `${business.siteUrl}/prices/`;
 // Package details. Every rand amount is read from business.ts. The words here describe what is included.
 const packages = [
   {
-    key: 'onePage', pkg: w.onePage, live: '3 working days', pay: 'Paid in full to start',
+    key: 'onePage', pkg: w.onePage, live: deliveryDays.onePage, pay: 'Paid in full to start',
     for: 'New businesses and sellers who need one link that explains everything.',
-    items: ['Services, prices, hours, map', 'Call, WhatsApp and enquiry form', 'info@ email to your Gmail', 'WhatsApp Business starter sheet (ready-to-paste texts)'],
+    items: ['Services, prices, hours, map', 'Call, WhatsApp and enquiry form', 'info@ email address that can forward to your Gmail', 'WhatsApp Business starter sheet (ready-to-paste texts)'],
     description: 'A one-page website with services, prices, hours, a map, call and WhatsApp buttons, an enquiry form and a WhatsApp Business starter sheet.',
   },
   {
-    key: 'business', pkg: w.business, live: '5 working days', pay: '50% to start, 50% before it goes live', hi: true,
+    key: 'business', pkg: w.business, live: deliveryDays.business, pay: '50% to start, 50% before it goes live', hi: true,
     for: 'Trades and service businesses that want a page for every service, so Google can match each search to the right page.',
     items: [`Up to ${maxPages.business} pages`, 'Photo gallery and quote form', 'Google Business Profile set up', 'WhatsApp Business setup (ready-to-paste texts plus one guided call)', 'Everything in One-Page'],
     description: `A website of up to ${maxPages.business} pages with a photo gallery, a quote form, Google Business Profile set up and WhatsApp Business setup.`,
   },
   {
-    key: 'catalogue', pkg: w.catalogue, live: '7 working days', pay: '50% to start, 50% before it goes live',
+    key: 'catalogue', pkg: w.catalogue, live: deliveryDays.catalogue, pay: '50% to start, 50% before it goes live',
     for: 'Bakers, caterers and shops who change products and prices often.',
     items: [`Up to ${maxPages.catalogue} pages`, 'Up to 30 products you update in a Google Sheet, live within minutes', 'WhatsApp order buttons', 'Optional PayFast or Yoco', 'WhatsApp Business setup (ready-to-paste texts plus one guided call)', 'Everything in Business'],
     description: `A website of up to ${maxPages.catalogue} pages with a product catalogue of up to 30 products that you update in a Google Sheet, WhatsApp order buttons and WhatsApp Business setup.`,
   },
   {
-    key: 'launchPack', pkg: w.launchPack, live: '5 working days', pay: '50% to start, 50% before it goes live',
+    key: 'launchPack', pkg: w.launchPack, live: deliveryDays.launchPack, pay: '50% to start, 50% before it goes live',
     for: 'Starting from scratch? The Business website plus everything around it.',
     items: [`Business website, up to ${maxPages.launchPack} pages`, 'Logo, 3 options', '3 social media posters', 'WhatsApp Business setup'],
     description: `The Business website (up to ${maxPages.launchPack} pages) plus a logo with 3 options, 3 social media posters and WhatsApp Business setup.`,
@@ -41,14 +41,14 @@ const addOns = [
   { a: x.logo, note: 'A clean name logo, 3 options. Included in the Launch Pack.' },
   { a: x.posters, note: '3 posters sized for Facebook and Instagram. Included in the Launch Pack.' },
   { a: x.googleBusinessProfile, note: 'Create your profile or clean up the one you have, linked to your website. Already included in Business, Catalogue and the Launch Pack.' },
-  { a: x.mailbox, note: 'A full mailbox on your own domain. You pay the email provider directly.' },
+  { a: x.mailbox, note: 'A full mailbox to send and receive from. You pay the email provider directly each month.' },
   { a: x.extraPage, note: 'One more page on your website.' },
 ];
 
 // Comparison table. true = included, false = not included, string = detail.
 const rows: [string, (boolean | string)[]][] = [
   ['Once-off price', packages.map((p) => R(p.pkg.price))],
-  ['Ready in', packages.map((p) => p.live)],
+  ['We aim to have it live within', packages.map((p) => `${p.live} working days after we have all your content`)],
   ['.co.za domain and first-year hosting', [true, true, true, true]],
   ['Words written for you', [true, true, true, true]],
   ['2 rounds of changes', [true, true, true, true]],
@@ -103,9 +103,9 @@ const jsonLd = [
     <div class="wrap">
       <div class="head">
         <p class="eyebrow">Prices</p>
-        <h1>Website prices, all in one place.</h1>
+        <h1>Prices</h1>
         <p class="lead" style="max-width:56ch">
-          Every price is once-off and final, with no VAT added. Each package includes a .co.za domain, first-year hosting, the words written for you and 2 rounds of changes. You see your homepage free before you pay.
+          Website and monthly plan prices, all in one place. Every price is once-off and final, with no VAT added. Each package includes a .co.za domain, first-year hosting, the words written for you and 2 rounds of changes. You see your homepage free before you pay.
         </p>
       </div>
 
@@ -116,7 +116,7 @@ const jsonLd = [
             <h2>{p.pkg.name}</h2>
             <p class="for">{p.for}</p>
             <p class="amt">{R(p.pkg.price)}</p>
-            <p class="when">Live in {p.live}</p>
+            <p class="when">{deliveryLine(p.live)}.</p>
             <ul>
               {p.items.map((i) => (
                 <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>{i}</li>
@@ -194,8 +194,8 @@ const jsonLd = [
         </div>
         <div class="plan hi">
           <div class="plan-top"><h3>{m.leads.name}</h3><span>{R(m.leads.price)} <small>a month</small></span></div>
-          <p>Everything in Care, plus an instant alert to you for every enquiry, an automatic reply to the customer and a monthly report.</p>
-          <span class="badge">Best value for trades</span>
+          <p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p>
+          <span class="badge">Made for trades</span>
         </div>
         <div class="plan">
           <div class="plan-top"><h3>{m.growth.name}</h3><span>{R(m.growth.price)} <small>a month</small></span></div>

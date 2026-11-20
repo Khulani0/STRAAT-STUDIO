@@ -12,6 +12,8 @@ import {
   whatsappHref,
   phoneHref,
   emailHref,
+  deliveryDays,
+  deliveryLine,
 } from '../config/business';
 
 const w = prices.websites;
@@ -25,6 +27,7 @@ const year = new Date().getFullYear();
 const work = [
   {
     key: 'fazila',
+    plain: true,
     name: "Fazila's Kitchen",
     blurb: 'Home baker in Mitchells Plain. Sample menu with a category filter and an Order on WhatsApp button on every product.',
     pkg: w.catalogue,
@@ -63,10 +66,10 @@ const trades = [
 const faqs = [
   ['Can I ask for changes to the free preview?', `The preview shows our design for your business. Changes start once you approve it and pay: One-Page is paid in full, Business and Catalogue pay half. Every package then includes 2 rounds of changes, each sent as one list. Extra changes during the build are ${R(prices.extraChangeDuringBuild)} each.`],
   ['Do you only work in Cape Town?', 'No. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, email and online forms, so you never need to visit us.'],
-  ['Will I come up on Google?', 'Every site is built for search: one page per service, your towns and suburbs in the titles, fast loading and a Google Business Profile linked to it. No honest company can promise first place, and we never will.'],
+  ['Will I come up on Google?', 'Every site is built with search in mind: one page per service, your towns and suburbs in the titles, and a Google Business Profile linked to it. Nobody can promise a ranking, and we do not.'],
   ['Who looks after backups and updates?', `Backups, uptime checks and small changes come with Straat Care from ${R(m.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
   ['Can I edit the website myself?', `Catalogue websites only: you edit your own product names, descriptions and prices in your product sheet, and the site refreshes within minutes. We change everything else on the site (pages, text, photos and our package prices): send a WhatsApp and it is done within 48 hours. Straat Care includes one small change a month, and a single change without a plan is ${R(prices.singleChangeAfterLaunch)}. Your site is made of plain files, so any developer can take it over.`],
-  ['Do I get a business email address?', `Yes. An address like info@yourbusiness.co.za forwards to your Gmail for free. A full mailbox can be set up for ${R(x.mailbox.price)}, and you pay the email provider directly.`],
+  ['Do I get a business email address?', `An address like info@yourbusiness.co.za can forward to your Gmail at no charge. If you want a full mailbox to send and receive from, we can set one up for ${R(x.mailbox.price)}, and you pay the email provider directly each month.`],
 ];
 const jsonLd = [
   {
@@ -86,7 +89,7 @@ const jsonLd = [
 
 <BaseLayout
   title="Small business websites from R999 | Straat Studio"
-  description="Websites for South African small businesses from R999, domain and hosting included, plus an alert for every quote request. See a free preview."
+  description="Websites for South African small businesses from R999, domain and hosting included, plus email alerts for quote requests. See a free preview."
   path="/"
   jsonLd={jsonLd}
 >
@@ -97,8 +100,8 @@ const jsonLd = [
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">Websites and enquiry systems for South African businesses</p>
-          <h1>Get found on Google. Catch <span class="mark">every enquiry.</span> Win more jobs.</h1>
-          <p class="lead">We build fast websites for small businesses across South Africa, then alert you to every quote request so none slip through the cracks. You see your homepage free, before you pay anything.</p>
+          <h1>A website that helps customers <span class="mark">find you and call you.</span></h1>
+          <p class="lead">We build websites for small businesses across South Africa, and with Straat Leads you get an email alert when a customer sends a quote request. You see your homepage free, before you pay anything.</p>
           <div class="hero-ctas">
             <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Get my free homepage</a>
             <a class="btn btn-ghost" href="#prices">See prices from {R(w.onePage.price)}</a>
@@ -106,7 +109,7 @@ const jsonLd = [
           <ul class="hero-trust">
             <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Final prices, no VAT</li>
             <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Domain in your name</li>
-            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Live in 3 to 7 working days</li>
+            <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>{deliveryLine('3 to 7')}</li>
           </ul>
         </div>
 
@@ -163,7 +166,7 @@ const jsonLd = [
         <div class="pkg-left">
           <p class="eyebrow">More than a website</p>
           <h2 id="pkg-h" style="color:#fff">A website is only the start. We look after what happens when someone finds you.</h2>
-          <p class="lead">Most small businesses don't lose work because they are bad at the job. They lose it because a WhatsApp got buried or a quote was never followed up.</p>
+          <p class="lead">Messages can get buried and quotes can be forgotten. A quote form and an email alert make each request easier to notice.</p>
           <div class="hero-ctas"><a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">Ask how it works</a></div>
         </div>
         <ol class="steps3" style="list-style:none;padding:0;margin:0">
@@ -171,14 +174,14 @@ const jsonLd = [
             <span class="num n1" aria-hidden="true">01</span>
             <div>
               <h3>Get found</h3>
-              <p>A fast website with a page for every service and area, linked to your Google Business Profile.</p>
+              <p>A website with a page for every service and area, linked to your Google Business Profile.</p>
             </div>
           </li>
           <li class="step3">
             <span class="num n2" aria-hidden="true">02</span>
             <div>
-              <h3>Catch every enquiry</h3>
-              <p>Customers send a quote form. You get an instant alert, and the customer gets an automatic reply.</p>
+              <h3>Get alerted to quote requests</h3>
+              <p>Customers send a quote form. You get an email alert, and the customer gets an automatic reply.</p>
             </div>
           </li>
           <li class="step3">
@@ -197,12 +200,12 @@ const jsonLd = [
       <div class="wrap">
         <div class="head">
           <p class="eyebrow">What we do</p>
-          <h2 id="svc-h">Everything a small business needs to look professional online.</h2>
+          <h2 id="svc-h">What we set up for a small business online.</h2>
           <p class="label-concept" style="margin-top:14px">The examples below use made-up businesses.</p>
         </div>
 
         <div class="svc">
-          <div class="svc-art" style="--c:#f6e3ec" aria-hidden="true">
+          <div class="svc-art" style="--c:#e8edff" aria-hidden="true">
             <div class="ph2"><div class="ph2-s">
               <div class="th-hero"><strong>Thandeka Hair Studio</strong><span>Soweto, Johannesburg. Tue to Fri 8am to 6pm, Sat 8am to 4pm</span></div>
               <div class="th-list">
@@ -219,7 +222,7 @@ const jsonLd = [
           </div>
           <div>
             <p class="eyebrow">Websites</p>
-            <h3>A website that works on a cheap phone with weak signal.</h3>
+            <h3>A website that loads quickly on a phone, so customers can find your number and call you.</h3>
             <ul>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>We write the words for you, from a WhatsApp chat</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 12 4.5 4.5L19 7"/></svg>Call and WhatsApp buttons on every page</li>
@@ -261,20 +264,20 @@ const jsonLd = [
           </div>
           <div>
             <p class="eyebrow">Enquiry alerts</p>
-            <h3>Know about every quote request the moment it arrives.</h3>
+            <h3>Get an email alert for each quote request.</h3>
             <ul>
               <li>A quote form for your customers: job, suburb, phone, photos and an optional email</li>
-              <li>An instant alert to you for every enquiry</li>
+              <li>An email alert to you for each enquiry</li>
               <li>An automatic reply to the customer</li>
               <li>A monthly report</li>
-              <li>Your customers' details stay yours, under a written POPIA agreement</li>
+              <li>A one-page POPIA data agreement is signed before Straat Leads starts</li>
             </ul>
             <div class="svc-price"><strong>{R(m.leads.price)}</strong><span class="muted">a month</span><a href="#process">See how it works</a></div>
           </div>
         </div>
 
         <div class="svc">
-          <div class="svc-art" style="--c:#e7efdc" aria-hidden="true">
+          <div class="svc-art" style="--c:#e8edff" aria-hidden="true">
             <div class="card-ui gbp">
               <div class="map"><span class="pin"></span></div>
               <div class="gbp-b">
@@ -297,7 +300,7 @@ const jsonLd = [
         </div>
 
         <div class="svc flip">
-          <div class="svc-art" style="--c:var(--sign-soft)" aria-hidden="true">
+          <div class="svc-art" style="--c:#e8edff" aria-hidden="true">
             <div class="card-ui chat">
               <div class="chat-h">Fazila's Kitchen<small>Business account</small></div>
               <div class="chat-b">
@@ -333,11 +336,11 @@ const jsonLd = [
           <article class="pcard">
             <h3>{w.onePage.name}</h3>
             <p class="for">For new businesses and sellers who need one link that explains everything.</p>
-            <p class="amt">{R(w.onePage.price)}</p><p class="when">Live in 3 working days</p>
+            <p class="amt">{R(w.onePage.price)}</p><p class="when">{deliveryLine(deliveryDays.onePage)}.</p>
             <ul>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Services, prices, hours, map</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Call, WhatsApp and enquiry form</li>
-              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>info@ email to your Gmail</li>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>info@ email address that can forward to your Gmail</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>WhatsApp Business starter sheet (ready-to-paste texts)</li>
             </ul>
             <a class="btn btn-ghost" href={whatsappHref(`Hi Straat Studio, I'm interested in the ${w.onePage.name} website.`)} rel="noopener">Start with One-Page</a>
@@ -346,7 +349,7 @@ const jsonLd = [
             <span class="tag">Recommended for trades</span>
             <h3>{w.business.name}</h3>
             <p class="for">A page for every service, so Google can match each search to the right page.</p>
-            <p class="amt">{R(w.business.price)}</p><p class="when">Live in 5 working days</p>
+            <p class="amt">{R(w.business.price)}</p><p class="when">{deliveryLine(deliveryDays.business)}.</p>
             <ul>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to {maxPages.business} pages</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Photo gallery and quote form</li>
@@ -359,7 +362,7 @@ const jsonLd = [
           <article class="pcard">
             <h3>{w.catalogue.name}</h3>
             <p class="for">For bakers, caterers and shops who change products and prices often.</p>
-            <p class="amt">{R(w.catalogue.price)}</p><p class="when">Live in 7 working days</p>
+            <p class="amt">{R(w.catalogue.price)}</p><p class="when">{deliveryLine(deliveryDays.catalogue)}.</p>
             <ul>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to {maxPages.catalogue} pages</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Up to 30 products you update in a Google Sheet. The site refreshes within minutes.</li>
@@ -373,7 +376,7 @@ const jsonLd = [
           <article class="pcard">
             <h3>{w.launchPack.name}</h3>
             <p class="for">Starting from scratch? The Business website plus everything around it.</p>
-            <p class="amt">{R(w.launchPack.price)}</p><p class="when">Live in 5 working days</p>
+            <p class="amt">{R(w.launchPack.price)}</p><p class="when">{deliveryLine(deliveryDays.launchPack)}.</p>
             <ul>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Business website, up to {maxPages.launchPack} pages</li>
               <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>Logo, 3 options</li>
@@ -390,12 +393,12 @@ const jsonLd = [
         </div>
 
         <div class="plans-h">
-          <div><p class="eyebrow" style="margin:0 0 8px">Optional monthly plans</p><h3 style="font-size:clamp(24px,2.6vw,32px)">Never lose an enquiry again.</h3></div>
+          <div><p class="eyebrow" style="margin:0 0 8px">Optional monthly plans</p><h3 style="font-size:clamp(24px,2.6vw,32px)">Know when a quote request arrives.</h3></div>
           <p class="muted small">Cancel any time. Your website stays yours either way.</p>
         </div>
         <div class="plan-grid">
           <div class="plan"><div class="plan-top"><strong>{m.care.name}</strong><span>{R(m.care.price)} <small>a month</small></span></div><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></div>
-          <div class="plan hi"><div class="plan-top"><strong>{m.leads.name}</strong><span>{R(m.leads.price)} <small>a month</small></span></div><p>Everything in Care, plus an instant alert to you for every enquiry, an automatic reply to the customer and a monthly report.</p><span class="badge">Best value for trades</span></div>
+          <div class="plan hi"><div class="plan-top"><strong>{m.leads.name}</strong><span>{R(m.leads.price)} <small>a month</small></span></div><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p><span class="badge">Made for trades</span></div>
           <div class="plan"><div class="plan-top"><strong>{m.growth.name}</strong><span>{R(m.growth.price)} <small>a month</small></span></div><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></div>
         </div>
 
@@ -439,7 +442,7 @@ const jsonLd = [
         <div class="head">
           <p class="eyebrow">Before you pay anyone</p>
           <h2 id="cmp-h">Ask these 8 questions. Here are our answers, in writing.</h2>
-          <p class="lead">Many cheap website adverts don't say what is included. Ours are on this page.</p>
+          <p class="lead">Ask what is included before you pay anyone. Our answers are on this page.</p>
         </div>
         <table class="cmp">
           <thead><tr><th scope="col">Question</th><th scope="col">Straat Studio</th></tr></thead>
@@ -471,14 +474,14 @@ const jsonLd = [
         </div>
         <div class="work-grid">
           {work.map((c) => (
-            <article class={`wk wk-${c.key}`}>
+            <article class={`wk wk-${c.key}${c.plain ? ' wk-plain' : ''}`}>
               <div class="wk-top">
                 <p class="label-concept">Concept project, not commissioned client work</p>
                 <h3>{c.name}</h3>
                 <p>{c.blurb}</p>
                 <span class="wk-pkg">{c.pkg.name} package, {R(c.pkg.price)}</span>
               </div>
-              <div class="wk-devs">
+              {!c.plain && (<div class="wk-devs">
                 <div class="dev-browser">
                   <div class="dev-bar" aria-hidden="true"><i></i><i></i><i></i></div>
                   <img
@@ -504,7 +507,7 @@ const jsonLd = [
                     alt={c.phoneAlt}
                   />
                 </div>
-              </div>
+              </div>)}
             </article>
           ))}
         </div>
@@ -523,7 +526,7 @@ const jsonLd = [
           <li><h3>Tell us about your business</h3><p>Your business name, what you do and where. Two minutes on WhatsApp.</p></li>
           <li><h3>See your homepage free</h3><p>A view-only preview link, designed and written for you. No payment yet.</p></li>
           <li><h3>Approve and pay to start</h3><p>One-Page is paid in full, Business and Catalogue pay half. Then you fill in one checklist form for your package.</p></li>
-          <li><h3>2 rounds of changes, then live</h3><p>On your own .co.za, 3 to 7 working days after your content arrives, with a sheet showing what you own.</p></li>
+          <li><h3>2 rounds of changes, then live</h3><p>On your own .co.za, with a sheet showing what you own. We aim to have it live within 3 to 7 working days after we have all your content.</p></li>
         </ol>
         <div class="need">
           <h3>What we will ask you for</h3>
@@ -548,10 +551,10 @@ const jsonLd = [
         </div>
         <div class="note">
           <p class="eyebrow">Who you deal with</p>
-          <h2 id="about-h">A registered company, with every promise in writing.</h2>
+          <h2 id="about-h">A registered company, with written terms.</h2>
           <div style="margin-top:24px;font-size:clamp(18px,1.6vw,20px)">
             <p>Straat Studio is a trading name of {business.legalName}, a registered South African company.</p>
-            <p>You get one WhatsApp line for your project, from the first message to the day your site goes live. Prices, delivery times and what you own are written down before you pay a cent.</p>
+            <p>You get one WhatsApp line for your project, from the first message to the day your site goes live. Prices, delivery times and what you own are written down before you pay.</p>
             <p>Your domain is registered in your name, your Google profile stays yours, and you can take your website elsewhere at any time.</p>
           </div>
         </div>
@@ -572,7 +575,7 @@ const jsonLd = [
     <section class="wrap" id="contact" style="margin-top:96px" aria-labelledby="cta-h">
       <div class="cta">
         <h2 id="cta-h">Send us your business name. Get your homepage back, free.</h2>
-        <p>No payment and no obligation. We aim to send your preview within 2 working days.</p>
+        <p>No payment and no obligation. We aim to send your preview within 2 working days after you send us your business details.</p>
         <div class="cta-btns">
           <a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us</a>
           <a class="btn btn-ghost" href={phoneHref} data-event="phone-click">Call {business.phoneDisplay}</a>
@@ -616,7 +619,8 @@ const jsonLd = [
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
     .hero-trust { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 10px; font-size: 16px; }
     @media (min-width: 640px) { .hero-trust { display: flex; flex-wrap: wrap; gap: 10px 26px; } }
-    .hero-trust li { display: flex; gap: 8px; align-items: center; white-space: nowrap; }
+    .hero-trust li { display: flex; gap: 8px; align-items: flex-start; }
+    .hero-trust .tick { margin-top: 2px; }
 
     .stage { position: relative; aspect-ratio: 1 / 0.92; max-width: 600px; width: 100%; margin: 0 auto; }
     .stage-disc { position: absolute; inset: 6% 4% 4% 10%; border-radius: 50%; background: var(--blue-soft); }
@@ -624,7 +628,7 @@ const jsonLd = [
     .browser { position: absolute; left: 0; top: 8%; width: 80%; background: #fff; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(15,27,45,.35); overflow: hidden; font-size: 12px; }
     .browser-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: var(--sand); border-bottom: 1px solid var(--line); }
     .phone-demo { background: var(--sign-soft); color: var(--ink); font-size: 9.5px; font-weight: 700; text-align: center; padding: 3px 6px; }
-    .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #d6d2c8; }
+    .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #cdd3dc; }
     .phone { position: absolute; right: 0; bottom: 0; width: 35%; aspect-ratio: 9 / 18.5; background: var(--ink); border-radius: 28px; padding: 9px; box-shadow: 0 30px 60px -24px rgba(15,27,45,.45); }
     .phone-screen { width: 100%; height: 100%; border-radius: 20px; background: #eef1f5; overflow: hidden; display: flex; flex-direction: column; font-size: 11px; }
     .phone-top { background: var(--night); color: #fff; padding: 14px 12px 10px; font-weight: 600; font-size: 11.5px; }
@@ -648,9 +652,9 @@ const jsonLd = [
     /* Trades */
     .trades { background: var(--sand); padding: 56px 0; }
     .trades-title { text-align: center; font: 500 17px/1.5 var(--sans); color: var(--muted); margin-bottom: 28px; }
-    .trade-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .trade-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     @media (min-width: 720px) { .trade-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
-    .trade { background: #fff; border-radius: 12px; padding: 18px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 15.5px; line-height: 1.3; box-shadow: 0 1px 0 var(--line); }
+    .trade { min-width: 0; background: #fff; border-radius: 12px; padding: 16px 14px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 15.5px; line-height: 1.3; box-shadow: 0 1px 0 var(--line); }
     .trade svg { width: 26px; height: 26px; flex: none; stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
     /* Night: whole package */
@@ -660,7 +664,7 @@ const jsonLd = [
     .step3 { display: grid; grid-template-columns: auto 1fr; gap: 24px; padding: 32px 0; border-top: 1px solid rgba(255,255,255,.14); }
     .step3:last-child { border-bottom: 1px solid rgba(255,255,255,.14); }
     .num { font: 700 clamp(56px, 7vw, 88px)/0.9 var(--serif); letter-spacing: -0.03em; }
-    .n1 { color: var(--sign); } .n2 { color: #8ea8ff; } .n3 { color: #6fe3a0; }
+    .n1, .n2, .n3 { color: #8ea8ff; }
     .step3 h3 { color: #fff; }
     .step3 p { color: var(--on-night); margin-top: 10px; }
 
@@ -684,7 +688,7 @@ const jsonLd = [
     .card-ui { background: #fff; border-radius: 14px; box-shadow: 0 24px 48px -28px rgba(15,27,45,.45); border: 1px solid var(--line); font-size: 13px; }
     /* Phone: Thandeka */
     .ph2 { width: min(250px, 62%); background: var(--ink); border-radius: 30px; padding: 9px; box-shadow: 0 30px 50px -26px rgba(15,27,45,.5); }
-    .ph2-s { border-radius: 22px; overflow: hidden; background: #fbf6f8; font-size: 11px; padding-bottom: 14px; }
+    .ph2-s { border-radius: 22px; overflow: hidden; background: #f6f8fb; font-size: 11px; padding-bottom: 14px; }
     .th-hero { background: #5b2a4d; color: #fff; padding: 22px 14px 18px; }
     .th-hero strong { display: block; font: 600 17px/1.15 var(--serif); }
     .th-hero span { display: block; color: #f0d9e7; margin-top: 4px; font-size: 10px; }
@@ -712,7 +716,7 @@ const jsonLd = [
     .map { height: 120px; background:
       linear-gradient(90deg, transparent 48%, #fff 48%, #fff 52%, transparent 52%),
       linear-gradient(0deg, transparent 40%, #fff 40%, #fff 45%, transparent 45%),
-      linear-gradient(30deg, transparent 60%, #fde7a6 60%, #fde7a6 64%, transparent 64%), #e5ecd9; position: relative; }
+      linear-gradient(30deg, transparent 60%, #fff 60%, #fff 64%, transparent 64%), #dfe5ee; position: relative; }
     .pin { position: absolute; left: 50%; top: 38%; width: 22px; height: 22px; border-radius: 50% 50% 50% 0; background: #e5484d; transform: translate(-50%, -50%) rotate(-45deg); }
     .gbp-b { padding: 14px 16px 16px; }
     .gbp-b strong { font: 600 18px/1.2 var(--serif); display: block; }
@@ -721,7 +725,7 @@ const jsonLd = [
     .gbp-acts span { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 12px; font-weight: 600; color: var(--blue-dark); }
     .hours { margin-top: 10px; font-size: 12px; } .hours b { color: #0b6b35; }
     /* WhatsApp chat */
-    .chat { width: min(340px, 84%); overflow: hidden; background: #efe9e1; }
+    .chat { width: min(340px, 84%); overflow: hidden; background: #e6eaf0; }
     .chat-h { background: #075e54; color: #fff; padding: 12px 14px; font-weight: 600; font-size: 13px; }
     .chat-h small { display: block; font-weight: 400; opacity: .8; font-size: 11px; }
     .chat-b { padding: 12px; display: grid; gap: 8px; }
@@ -760,7 +764,7 @@ const jsonLd = [
     .pcard .btn { width: 100%; }
     .pcard.hi .btn-ghost { border-color: #fff; color: #fff; } .pcard.hi .btn-ghost:hover { background: #fff; color: var(--ink); }
     .incl { margin-top: 20px; font-size: 15px; color: var(--muted); }
-    .paymonthly { margin-top: 20px; background: #fff; border: 1.5px dashed #cfc9bd; border-radius: var(--r); padding: 18px 22px; display: flex; gap: 12px 24px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+    .paymonthly { margin-top: 20px; background: #fff; border: 1.5px dashed #b9c2d0; border-radius: var(--r); padding: 18px 22px; display: flex; gap: 12px 24px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
     .paymonthly p { max-width: 70ch; }
     .plans-h { margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: end; margin-bottom: 24px; }
     .plan-grid { display: grid; gap: 16px; }
@@ -798,8 +802,9 @@ const jsonLd = [
     .work-grid { display: grid; gap: 20px; }
     @media (min-width: 900px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
     .wk { border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; color: #fff; }
-    .wk-fazila { background: #93401c; } .wk-thandeka { background: #5b2a4d; } .wk-ndlovu { background: var(--night); }
+    .wk-fazila, .wk-thandeka, .wk-ndlovu { background: var(--night); }
     .wk-top { padding: 26px 24px 0; }
+    .wk-plain .wk-top { padding-bottom: 28px; }
     .wk-top .label-concept { color: #fff; }
     .wk-top h3 { color: #fff; margin-top: 10px; }
     .wk-top p { color: #fff; margin-top: 8px; font-size: 15.5px; }
@@ -807,7 +812,7 @@ const jsonLd = [
     .wk-devs { position: relative; margin: 24px 24px 0; aspect-ratio: 1 / 0.82; }
     .dev-browser { position: absolute; left: 0; top: 0; width: 84%; background: #fff; border-radius: 10px 10px 0 0; border: 1px solid rgba(255,255,255,.35); overflow: hidden; box-shadow: 0 24px 40px -24px rgba(0,0,0,.5); }
     .dev-bar { display: flex; gap: 5px; padding: 7px 10px; background: var(--sand); border-bottom: 1px solid var(--line); }
-    .dev-bar i { width: 7px; height: 7px; border-radius: 50%; background: #d6d2c8; }
+    .dev-bar i { width: 7px; height: 7px; border-radius: 50%; background: #cdd3dc; }
     .dev-browser img, .browser-shot { display: block; width: 100%; height: auto; }
     .dev-phone { position: absolute; right: 0; bottom: 0; width: 33%; background: var(--ink); border-radius: 16px 16px 0 0; padding: 5px 5px 0; box-shadow: 0 24px 40px -20px rgba(0,0,0,.6); }
     .dev-phone img { display: block; width: 100%; height: auto; border-radius: 12px 12px 0 0; }
@@ -836,7 +841,7 @@ const jsonLd = [
     .need ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 16px; display: grid; gap: 4px; }
     .portrait { position: relative; width: min(340px, 80%); aspect-ratio: 1; margin: 0 auto; }
     .portrait::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; background: var(--sign); }
-    .portrait div { position: relative; width: 100%; height: 100%; border-radius: 50%; background: #e9e5dc; border: 2px dashed #bdb6a6; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); font-size: 15px; }
+    .portrait div { position: relative; width: 100%; height: 100%; border-radius: 50%; background: #e6eaf0; border: 2px dashed #b9c2d0; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--muted); font-size: 15px; }
     .note p + p { margin-top: 14px; }
     .note .sig { margin-top: 24px; font: 600 italic 26px/1 var(--serif); }
 
