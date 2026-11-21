@@ -99,3 +99,12 @@ These are lab scores from a local server with Lighthouse's simulated slow 4G. Re
 - Live addresses: https://fazilas-kitchen-concept.pages.dev/, https://thandeka-hair-studio-concept.pages.dev/, https://ndlovu-electrical-concept.pages.dev/
 - Re-run: build no warnings, 56 links zero broken, axe zero violations on 19 pages at 375 and 1280, Lighthouse mobile 100/100/100/100 on /examples/ and the three detail pages.
 - The Examples tiles were left as they are, because a third link would crowd them.
+
+## Production check after the live-links merge (21 November 2026, https://straat-studio.pages.dev)
+
+- main at the merge: 9addf77 (fast-forward from examples-live-links).
+- The three detail pages return 200. Each has a View the live example link to the correct concept address with target="_blank" and rel="noopener".
+- The three concept addresses return 200. / and /examples/ return 200.
+- No noindex meta tag and no X-Robots-Tag header on the 18 pages. The 404 page has noindex.
+- The old number (068 226 4586 and its other forms) appears on none of the 18 pages, and not in robots.txt or sitemap.xml.
+- Lighthouse mobile on production (performance / accessibility / best practices / SEO): / 99/100/100/100, /examples/ 100/100/100/100, /examples/ndlovu-electrical/ 100/100/100/100.

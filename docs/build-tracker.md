@@ -75,9 +75,15 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | L1 | View the live example button on the three detail pages | DONE | New tab, rel noopener, with the made-up business note. |
 | L2 | Small link on the Examples tiles | NOT DONE | Left out on purpose: the tile is already full. |
 
+## Production (21 November 2026)
+
+| Item | What | Status | Notes |
+| --- | --- | --- | --- |
+| P1 | examples-live-links merged into main and deployed | DONE | Fast-forward, production checks pass. |
+
 ## Needs your decision
 
 1. **Plain terms: "cancel with 30 days notice".** The existing /terms/ page says monthly plans can be cancelled at any time, with no notice period. The wording was later changed to: "You can cancel at any time. Cancellation takes effect at the end of the month you have already paid for." No notice period is mentioned.
 2. **Photography.** Say if you want up to 4 licensed photos, and I will source and log them.
-3. **Concept sites.** Not deployed anywhere. They live as local folders and still use the old phone number in their WhatsApp links. See the final report.
+3. **Concept sites.** Deployed at fazilas-kitchen-concept.pages.dev, thandeka-hair-studio-concept.pages.dev and ndlovu-electrical-concept.pages.dev. They use the new number and are noindex.
 4. **404 page noindex.** I kept it on the 404 page only, which is standard. Say if you want it removed.
