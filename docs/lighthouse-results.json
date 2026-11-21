@@ -5,9 +5,9 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "1.7 s",
+  "lcp": "1.0 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "20 ms"
  },
  {
   "page": "/prices/",
@@ -30,12 +30,62 @@
   "tbt": "0 ms"
  },
  {
-  "page": "/examples/",
+  "page": "/websites-for-plumbers/",
   "performance": 100,
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
   "lcp": "0.9 s",
+  "cls": "0",
+  "tbt": "30 ms"
+ },
+ {
+  "page": "/websites-for-salons/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "0.9 s",
+  "cls": "0",
+  "tbt": "10 ms"
+ },
+ {
+  "page": "/websites-for-home-bakers/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "1.0 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/examples/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "0.8 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/enquiry-system/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "0.8 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/contact/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "0.8 s",
   "cls": "0",
   "tbt": "0 ms"
  }

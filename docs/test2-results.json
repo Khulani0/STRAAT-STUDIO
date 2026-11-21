@@ -37,11 +37,15 @@
   "PASS: 47 distinct links checked on 16 pages, zero broken"
  ],
  "wa": [
-  "PASS if no FAIL above: every wa.me link uses 27682264586 with a pre-filled message; every tel: link is +27682264586"
+  "PASS if no FAIL above: every wa.me link uses 27846946588 with a pre-filled message; every tel: link is +27846946588"
  ],
  "redirect": [
   [
-   "/work/ page redirects to /examples/ (meta refresh and canonical)",
+   "No page has a noindex tag except the 404 page (dist/404.html)",
+   "PASS"
+  ],
+  [
+   "robots.txt allows everything and points to https://straatstudio.co.za/sitemap.xml",
    "PASS"
   ],
   [
@@ -69,97 +73,97 @@
  "weight": [
   {
    "page": "/",
-   "kb": 163,
-   "largestImage": "/work/ndlovu-phone-390.webp 27 KB",
+   "kb": 145,
+   "largestImage": "/work/ndlovu-phone-200.webp 13 KB",
    "jsKb": 0
   },
   {
    "page": "/websites/",
-   "kb": 106,
+   "kb": 107,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/enquiry-system/",
-   "kb": 101,
+   "kb": 102,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/prices/",
-   "kb": 117,
+   "kb": 118,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/examples/",
-   "kb": 142,
-   "largestImage": "/work/ndlovu-phone-390.webp 27 KB",
+   "kb": 124,
+   "largestImage": "/work/ndlovu-phone-200.webp 13 KB",
    "jsKb": 0
   },
   {
    "page": "/how-it-works/",
-   "kb": 97,
+   "kb": 98,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/about/",
-   "kb": 96,
+   "kb": 97,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/contact/",
-   "kb": 96,
+   "kb": 97,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/websites-for-electricians/",
-   "kb": 105,
+   "kb": 106,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/websites-for-plumbers/",
-   "kb": 104,
+   "kb": 106,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/websites-for-salons/",
-   "kb": 104,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/websites-for-home-bakers/",
    "kb": 105,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
-   "page": "/privacy/",
-   "kb": 94,
+   "page": "/websites-for-home-bakers/",
+   "kb": 106,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
-   "page": "/terms/",
+   "page": "/privacy/",
    "kb": 95,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
+   "page": "/terms/",
+   "kb": 96,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
    "page": "/paia-manual/",
-   "kb": 104,
+   "kb": 105,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/404.html",
-   "kb": 90,
+   "kb": 91,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   }
@@ -198,7 +202,7 @@
    "PASS"
   ],
   [
-   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9012 ms (must be 6000 ms or more)",
+   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9010 ms (must be 6000 ms or more)",
    "PASS"
   ],
   [

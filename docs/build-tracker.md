@@ -39,14 +39,29 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | M1 | Scroll reveal, 80 ms stagger | DONE | CSS plus IntersectionObserver. |
 | M2 | Hero mock-ups drift | DONE | 7 second slow float. |
 | M3 | Phone demo loop (home, Enquiry alerts, trade pages) | DONE | Form, alert, reply. Loop 9 seconds, pauses when the tab is hidden or off screen. Labelled "Example with made-up data". |
-| M4 | Slow trades strip | DONE | Trade names only. Pauses on hover and has a visible Pause button. |
+| M4 | Slow trades strip | DONE | Pauses on hover and has a visible Pause button. |
 | M5 | Header shrinks and gets a border after first scroll | DONE | The header is fixed on a spacer, so nothing jumps. |
 | M6 | Active process step highlighted | DONE | |
 | M7 | Hover lift, smooth accordion, tile tilt | DONE | Tilt only on a laptop with a mouse. |
 | M8 | Motion checks in the test report | DONE | Reduced motion, JavaScript off, 375 px, layout shift 0.0002. |
+
+## Fix list (21 November 2026)
+
+| Item | What | Status | Notes |
+| --- | --- | --- | --- |
+| F1 | Phone number now 084 694 6588 (27846946588) | DONE | Only in `src/config/business.ts`. Whole-repo search for the old number: 0 matches. |
+| F2 | Indexing check | DONE | No noindex anywhere except the 404 page. Removed the Astro `/work/` stub page, which carried noindex. `/work/` still 301s through `public/_redirects`. robots.txt allows all and lists `https://straatstudio.co.za/sitemap.xml`. |
+| F3 | Phone mock hugs its content | DONE | Fixed aspect ratio removed. All three cards keep their space, so layout shift stays 0. Checked at 375, 768, 1280. |
+| F4 | Fazila and Thandeka tile mock-ups | DONE | Made-up names, prices, WhatsApp buttons. |
+| F5 | "Trade names only" removed | DONE | |
+| F6 | About paperwork line and POPIA data agreement wording | DONE | |
+| F7 | Speed | DONE | CSS inlined, font preloaded, smaller WebP sizes added, header scroll script uses requestAnimationFrame with a passive listener. |
+| F8 | Full test suite | DONE | See `docs/test-report.md`. |
+| F9 | Screenshots and zip | DONE | `docs/screens/` has 48 images. |
 
 ## Needs your decision
 
 1. **Plain terms: "cancel with 30 days notice".** The existing /terms/ page says monthly plans can be cancelled at any time, with no notice period. The wording was later changed to: "You can cancel at any time. Cancellation takes effect at the end of the month you have already paid for." No notice period is mentioned.
 2. **Photography.** Say if you want up to 4 licensed photos, and I will source and log them.
 3. **Fazila and Thandeka tiles.** They show drawn mock-ups in the site palette instead of the concept-site screenshots, which are cream.
+4. **404 page noindex.** I kept it on the 404 page only, which is standard. Say if you want it removed.
