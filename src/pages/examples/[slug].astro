@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import DarkBand from '../../components/DarkBand.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import Icon from '../../components/Icon.astro';
+import { examples } from '../../config/packages';
+import { prices, formatRand as R, whatsappHref } from '../../config/business';
+
+export function getStaticPaths() {
+  return examples.map((e) => ({ params: { slug: e.slug }, props: { e } }));
+}
+const { e } = Astro.props;
+const pkg = prices.websites[e.pkgKey];
+const src = (w: number) => `/work/${e.img}-desktop-${w}.webp`;
+const others = examples.filter((x) => x.slug !== e.slug);
+// Concept sites are not deployed at a public address yet, so there is no "View the live example" button.
+const liveUrl: string | null = null;
+const wa = whatsappHref(`Hi Straat Studio, I saw the ${e.name} example and I'd like a free homepage preview for my business.`);
+---
+
+<BaseLayout
+  title={`${e.name}, concept example | Straat Studio`}
+  description={`${e.name}: a concept website for a made-up South African business. Concept project, not commissioned client work.`}
+  path={`/examples/${e.slug}/`}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Examples', path: '/examples/' }, { name: e.name, path: `/examples/${e.slug}/` }]}
+  whatsappMessage={`Hi Straat Studio, I saw the ${e.name} example and I'd like a free homepage preview for my business.`}
+>
+  <PageHero label="Concept project, not commissioned client work" h1={e.name} lead={e.line} trust={false}>
+    <Fragment slot="actions">
+      {liveUrl && <Button href={liveUrl}>View the live example</Button>}
+      <Button href={wa} variant="whatsapp" event="whatsapp-click" icon="whatsapp">Get a homepage like this on WhatsApp</Button>
+      <Button href="/examples/" variant="secondary">All examples</Button>
+    </Fragment>
+  </PageHero>
+
+  <section class="section bg-grey" aria-labelledby="shots-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>The site</SectionLabel><h2 id="shots-h">On a laptop and on a phone.</h2></div>
+      <div class="shots" data-reveal>
+        <figure style="margin:0">
+          <div class="laptop">
+            <div class="laptop-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src={src(1200)} srcset={`${src(800)} 800w, ${src(1200)} 1200w, ${src(1600)} 1600w`} sizes="(min-width: 1160px) 780px, 92vw" width="1600" height="1000" alt={e.desktopAlt} loading="eager" decoding="async" />
+          </div>
+          <figcaption class="shot-cap">Home page on a laptop. Concept project, not commissioned client work.</figcaption>
+        </figure>
+        <figure style="margin:0">
+          <div class="phone"><div class="phone-frame"><div class="phone-screen">
+            <img src={`/work/${e.img}-phone-390.webp`} srcset={`/work/${e.img}-phone-390.webp 390w, /work/${e.img}-phone-780.webp 780w`} sizes="280px" width="780" height="1688" alt={e.phoneAlt} loading="lazy" decoding="async" />
+          </div></div></div>
+          <figcaption class="shot-cap" style="text-align:center">Home page on a phone.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="brief-h">
+    <div class="wrap two">
+      <div data-reveal>
+        <SectionLabel>The brief</SectionLabel>
+        <h2 id="brief-h">Who it is for, and what it needed.</h2>
+        <p class="lead" style="margin-top:14px">{e.brief}</p>
+        <p class="lead" style="margin-top:14px">The business, its prices and its details are made up. We built the site to show the standard of the {pkg.name} package.</p>
+      </div>
+      <div class="facts" data-reveal>
+        <div><span>Package</span><b>{pkg.name}</b></div>
+        <div><span>Price</span><b>{R(pkg.price)}, once-off</b></div>
+        <div><span>Status</span><b>Concept project, not commissioned client work</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-grey" aria-labelledby="inc-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>What the site includes</SectionLabel><h2 id="inc-h">What is on it.</h2></div>
+      <ul class="ticks" data-reveal>
+        {e.includes.map((t) => <li><Icon name="check" />{t}</li>)}
+      </ul>
+      <p style="margin-top:28px" data-reveal>See the <a class="more" href="/prices/">{pkg.name} package</a> on the prices page, or <a class="more" href="/examples/">go back to all examples</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="more-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>More examples</SectionLabel><h2 id="more-h">See the others.</h2></div>
+      <div class="actions" data-reveal>
+        {others.map((o) => <Button href={`/examples/${o.slug}/`} variant="secondary">{o.name}</Button>)}
+      </div>
+    </div>
+  </section>
+
+  <DarkBand />
+</BaseLayout>

@@ -180,7 +180,7 @@ const jsonLd = [
         <p class="lead">Concept projects for made-up South African businesses, built to show the standard. Real client sites replace them as they go live.</p>
       </div>
       <div class="grid g3">
-        {examples.map((e) => <ExampleTile slug={e.slug} name={e.name} blurb={e.blurb} pkgName={w[e.pkgKey].name} price={w[e.pkgKey].price} desktopAlt={e.desktopAlt} phoneAlt={e.phoneAlt} />)}
+        {examples.map((e) => <ExampleTile slug={e.slug} img={e.img} name={e.name} line={e.line} pkgName={w[e.pkgKey].name} price={w[e.pkgKey].price} desktopAlt={e.desktopAlt} />)}
       </div>
       <p style="margin-top:28px"><a class="more" href="/examples/">See all the examples</a></p>
     </div>
