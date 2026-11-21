@@ -15,8 +15,6 @@ const { e } = Astro.props;
 const pkg = prices.websites[e.pkgKey];
 const src = (w: number) => `/work/${e.img}-desktop-${w}.webp`;
 const others = examples.filter((x) => x.slug !== e.slug);
-// Concept sites are not deployed at a public address yet, so there is no "View the live example" button.
-const liveUrl: string | null = null;
 const wa = whatsappHref(`Hi Straat Studio, I saw the ${e.name} example and I'd like a free homepage preview for my business.`);
 ---
 
@@ -29,11 +27,17 @@ const wa = whatsappHref(`Hi Straat Studio, I saw the ${e.name} example and I'd l
 >
   <PageHero label="Concept project, not commissioned client work" h1={e.name} lead={e.line} trust={false}>
     <Fragment slot="actions">
-      {liveUrl && <Button href={liveUrl}>View the live example</Button>}
       <Button href={wa} variant="whatsapp" event="whatsapp-click" icon="whatsapp">Get a homepage like this on WhatsApp</Button>
       <Button href="/examples/" variant="secondary">All examples</Button>
     </Fragment>
   </PageHero>
+
+  <section class="section-live" aria-label="Live example">
+    <div class="wrap live">
+      <a class="btn btn-primary" href={e.liveUrl} target="_blank" rel="noopener">View the live example<span class="sr"> of {e.name} (opens in a new tab)</span></a>
+      <p class="live-note">This is a concept site for a made-up business. Its WhatsApp buttons open a chat with Straat Studio.</p>
+    </div>
+  </section>
 
   <section class="section bg-grey" aria-labelledby="shots-h">
     <div class="wrap">
