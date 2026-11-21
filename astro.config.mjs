@@ -39,8 +39,7 @@ export default defineConfig({
   output: 'static',
   server: { port: 4322 },
   trailingSlash: 'always',
-  redirects: { '/work/': '/examples/' },
-  build: { format: 'directory' },
+  build: { format: 'directory', inlineStylesheets: 'always' },
   integrations: [sitemap({ filter: (page) => !page.endsWith('/404/') && (paiaPublished || !page.endsWith('/paia-manual/')) }), sitemapAtRoot, placeholderGuard],
   vite: { plugins: [tailwindcss()] },
 });
