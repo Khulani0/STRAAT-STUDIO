@@ -1,0 +1,10 @@
+---
+import Icon from './Icon.astro';
+export interface Props { href: string; variant?: 'primary' | 'secondary' | 'whatsapp'; event?: string; icon?: any; small?: boolean; class?: string; id?: string }
+const { href, variant = 'primary', event, icon, small = false, class: cls = '', id } = Astro.props;
+const v = { primary: 'btn-primary', secondary: 'btn-secondary', whatsapp: 'btn-wa' }[variant];
+const external = href.startsWith('https://wa.me');
+---
+<a id={id} class={`btn ${v} ${small ? 'btn-sm' : ''} ${cls}`.trim()} href={href} data-event={event} rel={external ? 'noopener' : undefined}>
+  {icon && <Icon name={icon} />}<slot />
+</a>

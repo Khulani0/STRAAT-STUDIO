@@ -1,0 +1,35 @@
+---
+import Button from './Button.astro';
+import { whatsappHref } from '../config/business';
+export interface Props { waMessage: string }
+const { waMessage } = Astro.props;
+const here = Astro.url.pathname;
+const nav = [
+  { label: 'Websites', href: '/websites/' },
+  { label: 'Enquiry alerts', href: '/enquiry-system/' },
+  { label: 'Prices', href: '/prices/' },
+  { label: 'Examples', href: '/examples/' },
+  { label: 'How it works', href: '/how-it-works/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Contact', href: '/contact/' },
+];
+const cur = (h: string) => (here === h ? 'page' : undefined);
+---
+<div class="header-space"></div>
+<header class="site-header" data-header>
+  <div class="wrap hdr-in">
+    <a href="/" class="logo" aria-label="Straat Studio, home"><img src="/brand/logo.svg" width="263" height="40" alt="Straat Studio" /></a>
+    <nav class="nav" aria-label="Main">
+      {nav.map((n) => <a href={n.href} aria-current={cur(n.href)}>{n.label}</a>)}
+    </nav>
+    <div class="hdr-cta">
+      <Button href={whatsappHref(waMessage)} variant="whatsapp" small event="whatsapp-click" icon="whatsapp">WhatsApp us</Button>
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </div>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+    <ul>
+      {nav.map((n) => <li><a href={n.href} aria-current={cur(n.href)}>{n.label}</a></li>)}
+    </ul>
+  </nav>
+</header>

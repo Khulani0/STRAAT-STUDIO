@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+export interface Props { id?: string; title: string; icon?: any; level?: 'h2' | 'h3'; dark?: boolean; reveal?: boolean; class?: string }
+const { id, title, icon, level = 'h3', dark = false, reveal = true, class: cls = '' } = Astro.props;
+const H = level;
+---
+<article id={id} class={`card ${dark ? 'dark' : ''} ${cls}`.trim()} data-reveal={reveal ? '' : undefined}>
+  {icon && <span class="chip"><Icon name={icon} /></span>}
+  <H>{title}</H>
+  <slot />
+</article>

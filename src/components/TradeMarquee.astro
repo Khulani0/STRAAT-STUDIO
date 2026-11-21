@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+const trades: [string, any][] = [['Electricians', 'bolt'], ['Plumbers', 'droplet'], ['Roofing and waterproofing', 'roof'], ['Solar installers', 'sun'], ['Painters and builders', 'paint'], ['Hair and nail salons', 'scissors'], ['Home bakers and caterers', 'cake'], ['Mechanics', 'wrench']];
+---
+<div class="marquee-wrap">
+  <div class="marquee" data-marquee>
+    <div class="marquee-track">
+      <ul aria-label="Trades we build websites for">{trades.map(([t, i]) => <li><Icon name={i} />{t}</li>)}</ul>
+      <ul aria-hidden="true">{trades.map(([t, i]) => <li><Icon name={i} />{t}</li>)}</ul>
+    </div>
+  </div>
+  <button type="button" class="marquee-btn" data-marquee-btn aria-pressed="false">Pause scrolling</button>
+</div>

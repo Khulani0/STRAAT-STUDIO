@@ -1,0 +1,19 @@
+---
+import Button from './Button.astro';
+import { whatsappHref } from '../config/business';
+export interface Props { heading?: string; text?: string; waMessage?: string; waLabel?: string; id?: string }
+const { heading = 'See your homepage free, before you pay.', text = 'Send us your business name, what you do and where. We aim to send your preview within 2 working days after you send us your business details.', waMessage = "Hi Straat Studio, I'd like a free homepage preview for my business.", waLabel = 'Get my free homepage on WhatsApp', id = 'cta-h' } = Astro.props;
+---
+<section class="section bg-navy band" aria-labelledby={id}>
+  <div class="wrap">
+    <div class="inner" data-reveal>
+      <h2 id={id}>{heading}</h2>
+      <p>{text}</p>
+      <div class="actions">
+        <Button href={whatsappHref(waMessage)} variant="whatsapp" event="whatsapp-click" icon="whatsapp">{waLabel}</Button>
+        <Button href="/prices/" variant="secondary">See prices</Button>
+      </div>
+      <ul class="links"><li><a href="/contact/">Contact page</a></li><li><a href="/how-it-works/">How it works</a></li></ul>
+    </div>
+  </div>
+</section>

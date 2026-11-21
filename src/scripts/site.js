@@ -1,145 +1,83 @@
-// Shared script, every page: mobile menu, floating WhatsApp button, click events.
-// Vanilla JS only.
+// Shared script, every page. Vanilla JS, no libraries. Every effect is optional: with JavaScript off, or with
+// reduced motion on, all content is visible and nothing moves.
 const find = (s, r = document) => r.querySelector(s);
 const findAll = (s, r = document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 
-/* ---------- Mobile menu: real button, aria-expanded, focus trap, Escape, focus returns ---------- */
+/* Mobile menu: real button, aria-expanded, focus trap, Escape closes, focus returns to the button. */
 (() => {
   const btn = find('#menu-btn');
   const panel = find('#mobile-nav');
   if (!btn || !panel) return;
-
   const onKey = (e) => {
     if (e.key === 'Escape') return close(true);
     if (e.key !== 'Tab') return;
     const items = [btn, ...findAll('a', panel)];
-    const first = items[0];
-    const last = items[items.length - 1];
-    const active = document.activeElement;
-    if (e.shiftKey && active === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && active === last) {
-      e.preventDefault();
-      first.focus();
-    }
+    const a = document.activeElement;
+    if (e.shiftKey && a === items[0]) { e.preventDefault(); items[items.length - 1].focus(); }
+    else if (!e.shiftKey && a === items[items.length - 1]) { e.preventDefault(); items[0].focus(); }
   };
-  function open() {
-    panel.hidden = false;
-    btn.setAttribute('aria-expanded', 'true');
-    btn.textContent = 'Close';
-    document.addEventListener('keydown', onKey);
-    find('a', panel).focus();
-  }
-  function close(refocus) {
-    panel.hidden = true;
-    btn.setAttribute('aria-expanded', 'false');
-    btn.textContent = 'Menu';
-    document.removeEventListener('keydown', onKey);
-    if (refocus) btn.focus();
-  }
+  function open() { panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); btn.textContent = 'Close'; document.addEventListener('keydown', onKey); find('a', panel).focus(); }
+  function close(refocus) { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); btn.textContent = 'Menu'; document.removeEventListener('keydown', onKey); if (refocus) btn.focus(); }
   btn.addEventListener('click', () => (panel.hidden ? open() : close(true)));
   findAll('a', panel).forEach((a) => a.addEventListener('click', () => close(false)));
 })();
 
-/* ---------- Floating WhatsApp button (phones) ----------
-   Shows only after the hero has scrolled out of view. Hides over the contact band and the footer, and while it
-   would sit on top of prices, card text, form buttons or links, so it never covers anything you need to read or press. */
+/* Header gets a little smaller and a thin border after the first scroll. */
 (() => {
-  const fab = find('#wa-float');
-  if (!fab || !('IntersectionObserver' in window)) return;
-  const hero = find('.hero');
-  const zones = new Set(); // contact band and footer currently on screen
-  let heroOnScreen = !!hero;
-  const CONTROLS = 'a, button, input, select, textarea, label, summary, img, svg';
-  const hits = (a, b) => !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
-  // True when the button would sit on real text (measured line by line), a control, or a picture.
-  const coversSomething = () => {
-    const r = fab.getBoundingClientRect();
-    const box = { left: r.left - 6, right: r.right + 6, top: r.top - 6, bottom: r.bottom + 6 };
-    const seen = new Set();
-    for (const fx of [0, 0.25, 0.5, 0.75, 1]) {
-      for (const fy of [0, 0.25, 0.5, 0.75, 1]) {
-        const x = Math.min(innerWidth - 1, Math.max(0, r.left + r.width * fx));
-        const y = Math.min(innerHeight - 1, Math.max(0, r.top + r.height * fy));
-        for (const el of document.elementsFromPoint(x, y)) {
-          if (el === fab || fab.contains(el) || seen.has(el)) continue;
-          seen.add(el);
-          if (el.matches(CONTROLS)) return true;
-          for (const n of el.childNodes) {
-            if (n.nodeType !== 3 || !n.textContent.trim()) continue;
-            const range = document.createRange();
-            range.selectNodeContents(n);
-            for (const lr of range.getClientRects()) if (hits(lr, box)) return true;
-          }
-        }
-      }
-    }
-    return false;
-  };
-  let queued = false;
-  const update = () => {
-    queued = false;
-    const past = hero ? !heroOnScreen : window.scrollY > 400;
-    if (!past || zones.size > 0) { fab.hidden = true; return; }
-    fab.hidden = false; // measure it in place before deciding
-    if (coversSomething()) fab.hidden = true;
-  };
-  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((en) => {
-      if (en.target === hero) heroOnScreen = en.isIntersecting;
-      else (en.isIntersecting ? zones.add(en.target) : zones.delete(en.target));
-    });
-    queue();
-  });
-  [hero, find('#contact'), find('footer')].forEach((el) => el && io.observe(el));
-  window.addEventListener('scroll', queue, { passive: true });
-  window.addEventListener('resize', queue);
-  fab.hidden = true;
-  queue();
+  const h = find('[data-header]');
+  if (!h) return;
+  const set = () => h.classList.toggle('scrolled', scrollY > 8);
+  addEventListener('scroll', set, { passive: true });
+  set();
 })();
 
-/* ---------- Anchor links ----------
-   Links to another page's section (for example Prices from the Privacy page) jump instantly, because the browser
-   does that by default. Links to a section on the same page scroll quickly (0.35 s), or jump instantly when the
-   visitor prefers reduced motion. */
+/* Scroll reveal: fade and rise once. Cards in a row are staggered by about 80 ms. */
 (() => {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const DURATION = 350;
-  const top = (el) => Math.max(0, el.getBoundingClientRect().top + window.scrollY - (parseFloat(getComputedStyle(el).scrollMarginTop) || 0));
-  const settle = (el, hash) => {
-    history.pushState(null, '', hash);
-    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
-    el.focus({ preventScroll: true });
-  };
-  const go = (el, hash) => {
-    const from = window.scrollY;
-    const to = top(el);
-    if (reduce.matches || Math.abs(to - from) < 2) { window.scrollTo(0, to); settle(el, hash); return; }
-    const start = performance.now();
-    const step = (now) => {
-      const t = Math.min(1, (now - start) / DURATION);
-      window.scrollTo(0, from + (to - from) * (1 - Math.pow(1 - t, 3)));
-      if (t < 1) requestAnimationFrame(step); else settle(el, hash);
-    };
-    requestAnimationFrame(step);
-  };
-  document.addEventListener('click', (e) => {
-    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-    const a = e.target.closest('a[href*="#"]');
-    if (!a) return;
-    const u = new URL(a.href, location.href);
-    if (u.origin !== location.origin || u.pathname !== location.pathname || u.hash.length < 2) return;
-    const el = document.getElementById(decodeURIComponent(u.hash.slice(1)));
-    if (!el) return;
-    e.preventDefault();
-    go(el, u.hash);
+  const els = findAll('[data-reveal]');
+  if (!els.length) return;
+  if (reduce.matches || !('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
+  const groups = new Map();
+  els.forEach((e) => { const g = groups.get(e.parentElement) || []; g.push(e); groups.set(e.parentElement, g); });
+  groups.forEach((g) => g.forEach((e, i) => e.style.setProperty('--d', Math.min(i, 5) * 80 + 'ms')));
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  els.forEach((e) => io.observe(e));
+})();
+
+/* Process steps: the step near the middle of the screen is highlighted. */
+(() => {
+  const steps = findAll('[data-step]');
+  if (!steps.length || reduce.matches || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => en.target.classList.toggle('active', en.isIntersecting)), { rootMargin: '-40% 0px -40% 0px' });
+  steps.forEach((s) => io.observe(s));
+})();
+
+/* Phone demo: quote form, email alert, automatic reply. Loops about every 9 seconds, only while on screen and the tab is visible. */
+(() => {
+  const phones = findAll('[data-phone]');
+  if (!phones.length || reduce.matches) return;
+  phones.forEach((p) => {
+    p.setAttribute('data-live', '');
+    p.setAttribute('data-step', '0');
+    let step = 0, timer = null, visible = false;
+    const delays = [1800, 1800, 1800, 3600]; // form, alert, reply, hold. Whole loop: 9 seconds.
+    const tick = () => { step = (step + 1) % 4; p.setAttribute('data-step', String(step)); schedule(); };
+    const schedule = () => { clearTimeout(timer); if (visible && !document.hidden) timer = setTimeout(tick, delays[step]); };
+    new IntersectionObserver((e) => { visible = e[0].isIntersecting; if (visible) { step = 0; p.setAttribute('data-step', '0'); } schedule(); }).observe(p);
+    document.addEventListener('visibilitychange', schedule);
   });
 })();
 
-/* ---------- Analytics events (Cloudflare Web Analytics beacon is added later) ---------- */
-document.addEventListener('click', (e) => {
-  const a = e.target.closest('[data-event]');
-  if (a && window.__straatTrack) window.__straatTrack(a.dataset.event);
-});
+/* Trades strip: pause button for people who want the strip to stop. */
+(() => {
+  const m = find('[data-marquee]');
+  const b = find('[data-marquee-btn]');
+  if (!m || !b) return;
+  b.addEventListener('click', () => {
+    const paused = m.classList.toggle('paused');
+    b.setAttribute('aria-pressed', String(paused));
+    b.textContent = paused ? 'Resume scrolling' : 'Pause scrolling';
+  });
+})();

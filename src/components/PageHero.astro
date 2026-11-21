@@ -1,0 +1,19 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import TrustStrip from './TrustStrip.astro';
+export interface Props { label: string; h1: string; lead: string; trust?: boolean; id?: string }
+const { label, h1, lead, trust = true } = Astro.props;
+const hasVisual = Astro.slots.has('visual');
+---
+<section class="hero">
+  <div class={`wrap ${hasVisual ? 'hero-grid' : ''}`}>
+    <div>
+      <SectionLabel>{label}</SectionLabel>
+      <h1>{h1}</h1>
+      <p class="lead">{lead}</p>
+      <div class="actions"><slot name="actions" /></div>
+      {trust && <TrustStrip />}
+    </div>
+    {hasVisual && <slot name="visual" />}
+  </div>
+</section>

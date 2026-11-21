@@ -1,5 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from './PageHero.astro';
+import Button from './Button.astro';
+import Card from './Card.astro';
+import DarkBand from './DarkBand.astro';
+import Accordion from './Accordion.astro';
+import SectionLabel from './SectionLabel.astro';
+import Icon from './Icon.astro';
+import PhoneMock from './PhoneMock.astro';
 import { business, prices, maxPages, formatRand as R, whatsappHref, deliveryLine } from '../config/business';
 
 export interface Props {
@@ -30,6 +38,10 @@ const jsonLd = [
     mainEntity: p.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
   },
 ];
+const pageIcons = ['browser', 'quote', 'search', 'pin', 'camera', 'layers'] as const;
+const doIcons = ['phone', 'whatsapp', 'quote'] as const;
+const pkgTitles = ['The package that fits', 'If you need something different', 'How you pay', 'After launch'] as const;
+const pkgIcons = ['tag', 'layers', 'coin', 'shield'] as const;
 ---
 
 <BaseLayout
@@ -40,110 +52,77 @@ const jsonLd = [
   jsonLd={jsonLd}
   whatsappMessage={p.waMessage}
 >
-  <section class="sec tp-top">
-    <div class="wrap tp-hero">
-      <div>
-        <p class="eyebrow">{p.eyebrow}</p>
-        <h1>{p.h1}</h1>
-        <p class="lead" style="max-width:54ch">{p.lead}</p>
-        <div class="tp-cta">
-          <a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">{p.ctaLabel}</a>
-          <a class="btn btn-ghost" href="/prices/">See all prices</a>
-        </div>
-      </div>
-      <aside class="tp-price" aria-label="Package and price">
-        <p class="eyebrow" style="margin-bottom:8px">Package that fits</p>
-        <p class="tp-name">{pk.name}</p>
-        <p class="tp-amt">{R(pk.price)}</p>
-        <p class="small muted">Once-off and final, no VAT added. {deliveryLine(p.pkg.live)}. {pages === 1 ? '1 page' : `Up to ${pages} pages`}.</p>
-      </aside>
+  <PageHero label={p.eyebrow} h1={p.h1} lead={p.lead}>
+    <Fragment slot="actions">
+      <Button href={wa} event="whatsapp-click">{p.ctaLabel}</Button>
+      <Button href="/prices/" variant="secondary">See all prices</Button>
+    </Fragment>
+    <div slot="visual" style="max-width:300px;margin:0 auto;width:100%">
+      <PhoneMock float />
+      <p class="concept-note" style="margin-top:12px;text-align:center">Example with made-up data. Concept project, not commissioned client work.</p>
     </div>
-  </section>
+  </PageHero>
 
-  <section class="sec sand" aria-labelledby="s-h">
-    <div class="wrap tp-narrow">
-      <h2 id="s-h">{p.searches.heading}</h2>
-      <p class="tp-p">{p.searches.intro}</p>
-      <ul class="chips">{p.searches.items.map((i) => <li>{i}</li>)}</ul>
-      <p class="tp-p">{p.searches.outro}</p>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="pg-h">
+  <section class="section bg-grey" aria-labelledby="s-h">
     <div class="wrap">
-      <div class="head">
-        <h2 id="pg-h">{p.sitePages.heading}</h2>
-        <p class="lead" style="max-width:60ch">{p.sitePages.intro}</p>
+      <div class="head" data-reveal>
+        <SectionLabel>Searches</SectionLabel>
+        <h2 id="s-h">{p.searches.heading}</h2>
+        <p class="lead">{p.searches.intro}</p>
       </div>
-      <ul class="cards">
-        {p.sitePages.items.map((i) => <li><h3>{i.name}</h3><p>{i.text}</p></li>)}
-      </ul>
-      {p.sitePages.outro && <p class="tp-p tp-narrow" style="margin-top:28px">{p.sitePages.outro}</p>}
+      <ul class="chips" data-reveal>{p.searches.items.map((i) => <li><Icon name="search" />{i}</li>)}</ul>
+      <p class="small muted" style="margin-top:20px;max-width:720px">{p.searches.outro}</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="pg-h">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <SectionLabel>Pages</SectionLabel>
+        <h2 id="pg-h">{p.sitePages.heading}</h2>
+        <p class="lead">{p.sitePages.intro}</p>
+      </div>
+      <div class="grid g3">
+        {p.sitePages.items.map((i, n) => <Card icon={pageIcons[n % pageIcons.length]} title={i.name}><p>{i.text}</p></Card>)}
+      </div>
+      {p.sitePages.outro && <p class="small muted" style="margin-top:24px;max-width:720px">{p.sitePages.outro}</p>}
       <slot />
     </div>
   </section>
 
-  <section class="sec sand" aria-labelledby="do-h">
+  <section class="section bg-grey" aria-labelledby="do-h">
     <div class="wrap">
-      <div class="head">
+      <div class="head" data-reveal>
+        <SectionLabel>What the site does</SectionLabel>
         <h2 id="do-h">{p.does.heading}</h2>
-        <p class="lead" style="max-width:60ch">{p.does.intro}</p>
+        <p class="lead">{p.does.intro}</p>
       </div>
-      <ul class="cards cards-3">
-        {p.does.items.map((i) => <li><h3>{i.name}</h3><p>{i.text}</p></li>)}
-      </ul>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="pk-h">
-    <div class="wrap tp-narrow">
-      <h2 id="pk-h">{p.pkg.heading}</h2>
-      {p.pkg.paragraphs.map((t) => <p class="tp-p">{t}</p>)}
-    </div>
-  </section>
-
-  <section class="sec sand" aria-labelledby="faq-h">
-    <div class="wrap tp-narrow">
-      <h2 id="faq-h">Questions we get from this trade</h2>
-      <div class="faq">
-        {p.faqs.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+      <div class="grid g3">
+        {p.does.items.map((i, n) => <Card icon={doIcons[n % doIcons.length]} title={i.name}><p>{i.text}</p></Card>)}
       </div>
     </div>
   </section>
 
-  <section class="sec night on-night" aria-labelledby="cta-h">
-    <div class="wrap" style="max-width:760px">
-      <h2 id="cta-h">{p.cta.heading}</h2>
-      <p class="lead">{p.cta.text}</p>
-      <div style="margin-top:28px"><a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">{p.ctaLabel}</a></div>
-      <p class="small" style="margin-top:20px;color:var(--on-night)"><a href="/prices/" style="color:#fff">See all prices</a> &middot; <a href="/contact/" style="color:#fff">Contact page</a></p>
+  <section class="section" aria-labelledby="pk-h">
+    <div class="wrap">
+      <div class="head" data-reveal>
+        <SectionLabel>Price</SectionLabel>
+        <h2 id="pk-h">{p.pkg.heading}</h2>
+        <p class="lead">{R(pk.price)}, once-off and final, no VAT added. {pages === 1 ? '1 page' : `Up to ${pages} pages`}. {deliveryLine(p.pkg.live)}.</p>
+      </div>
+      <div class="grid g2">
+        {p.pkg.paragraphs.map((t, n) => <Card icon={pkgIcons[n % pkgIcons.length]} title={pkgTitles[n % pkgTitles.length]}><p>{t}</p></Card>)}
+      </div>
     </div>
   </section>
+
+  <section class="section bg-grey" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>Questions</SectionLabel><h2 id="faq-h">Questions we get from this trade</h2></div>
+      <Accordion items={p.faqs} />
+      <ul class="links"><li><a href="/prices/">See all prices</a></li><li><a href="/contact/">Contact page</a></li></ul>
+    </div>
+  </section>
+
+  <DarkBand heading={p.cta.heading} text={p.cta.text} waMessage={p.waMessage} waLabel={`${p.ctaLabel} on WhatsApp`} />
 </BaseLayout>
-
-<style>
-  .tp-hero { display: grid; gap: 40px; align-items: center; }
-  @media (min-width: 900px) { .tp-hero { grid-template-columns: 1.4fr 0.6fr; gap: 64px; } }
-  .tp-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .tp-price { background: var(--night); color: #fff; border-radius: var(--r); padding: 28px 24px; box-shadow: 0 30px 60px -30px rgba(15, 27, 45, .35); }
-  .tp-price .eyebrow { color: var(--sign); }
-  .tp-price .muted { color: var(--on-night); }
-  .tp-name { font: 600 24px/1.2 var(--serif); }
-  .tp-amt { font: 600 44px/1 var(--serif); margin: 12px 0; letter-spacing: -0.02em; }
-  .tp-narrow { max-width: 820px; }
-  .tp-p { margin-top: 16px; color: var(--ink); }
-  h2 + .tp-p { margin-top: 20px; }
-  .chips { list-style: none; margin: 20px 0 4px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-  .chips li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 16px; }
-  .cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
-  @media (min-width: 800px) { .cards { grid-template-columns: repeat(2, 1fr); } .cards-3 { grid-template-columns: repeat(3, 1fr); } }
-  .cards li { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }
-  .cards h3 { font-size: 21px; }
-  .cards p { margin-top: 10px; color: var(--muted); font-size: 16px; }
-  .faq { display: grid; gap: 10px; margin-top: 24px; }
-  .faq details { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 4px 22px; }
-  .faq summary { cursor: pointer; font-weight: 600; padding: 16px 0; min-height: 48px; }
-  .faq details p { color: var(--muted); padding-bottom: 18px; }
-  .tp-p a { color: var(--blue-dark); text-underline-offset: 3px; }
-  .night a:focus-visible { outline-color: var(--sign); }
-</style>

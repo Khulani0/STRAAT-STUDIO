@@ -1,0 +1,48 @@
+---
+import LaptopMock from './LaptopMock.astro';
+import { formatRand as R } from '../config/business';
+export interface Props { slug: 'fazila' | 'thandeka' | 'ndlovu'; name: string; blurb: string; pkgName: string; price: number; desktopAlt: string; phoneAlt: string; level?: 'h2' | 'h3' }
+const { slug, name, blurb, pkgName, price, desktopAlt, phoneAlt, level = 'h3' } = Astro.props;
+const H = level;
+---
+<article class="tile" data-reveal>
+  <p class="concept-note">Concept project, not commissioned client work</p>
+  <H>{name}</H>
+  <p>{blurb}</p>
+  <span class="pill">{pkgName} package, {R(price)}</span>
+  <div class="tile-devs">
+    {slug === 'thandeka' ? (
+      <LaptopMock alt={desktopAlt}>
+        <div class="mini-cat">
+          <h4>Thandeka Hair Studio: sample price list</h4>
+          <div class="mini-list"><div><span>Knotless braids</span><b>from R550</b></div><div><span>Cornrows</span><b>from R180</b></div><div><span>Twists</span><b>from R450</b></div></div>
+          <span class="ob" style="margin-top:8px">Book on WhatsApp</span>
+        </div>
+      </LaptopMock>
+    ) : slug === 'fazila' ? (
+      <LaptopMock alt={desktopAlt}>
+        <div class="mini-cat">
+          <h4>Fazila's Kitchen: sample menu</h4>
+          <div class="row">
+            <div class="it"><div class="ph"></div>Chocolate ring cake<span class="ob">Order on WhatsApp</span></div>
+            <div class="it"><div class="ph"></div>Samoosa platter<span class="ob">Order on WhatsApp</span></div>
+            <div class="it"><div class="ph"></div>Vanilla cupcakes<span class="ob">Order on WhatsApp</span></div>
+          </div>
+        </div>
+      </LaptopMock>
+    ) : (
+      <LaptopMock src={`/work/${slug}-desktop-600.webp`} srcset={`/work/${slug}-desktop-600.webp 600w, /work/${slug}-desktop-800.webp 800w, /work/${slug}-desktop-1200.webp 1200w`} sizes="(min-width: 960px) 300px, 90vw" alt={desktopAlt} />
+    )}
+    <div class="phone" role="img" aria-label={phoneAlt}>
+      <div class="phone-frame"><div class="phone-screen">
+        {slug === 'thandeka' ? (
+          <div class="mini-phone" aria-hidden="true"><h4>Thandeka Hair Studio</h4><div class="it">Knotless braids, from R550</div><div class="it">Cornrows, from R180</div><span class="ob">Book on WhatsApp</span></div>
+        ) : slug === 'fazila' ? (
+          <div class="mini-phone" aria-hidden="true"><h4>Fazila's Kitchen</h4><div class="it">Chocolate ring cake<span class="ob">Order on WhatsApp</span></div><div class="it">Samoosa platter<span class="ob">Order on WhatsApp</span></div></div>
+        ) : (
+          <img src={`/work/${slug}-phone-390.webp`} srcset={`/work/${slug}-phone-390.webp 390w, /work/${slug}-phone-780.webp 780w`} sizes="100px" width="780" height="1688" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top" />
+        )}
+      </div></div>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,15 @@
+---
+/* The phone mock-up. With `demo`, the three cards play in turn (script: site.js). Without JavaScript, or with reduced
+   motion, all three cards show at once. Made-up data, labelled on the screen. */
+export interface Props { demo?: boolean; float?: boolean; class?: string }
+const { demo = true, float = false, class: cls = '' } = Astro.props;
+---
+<div class={`phone ${float ? 'float d2' : ''} ${cls}`.trim()} data-phone={demo ? '' : undefined} role="img" aria-label="Example with made-up data on a phone: a customer sends a quote form for a DB board upgrade in Rylands, the business gets an email alert, and the customer gets an automatic reply.">
+  <div class="phone-frame"><div class="phone-screen" aria-hidden="true">
+    <div class="phone-top">Straat Leads<small>Ndlovu Electrical (concept)</small></div>
+    <div class="phone-tag">Example with made-up data</div>
+    <div class="m-card c1"><div class="k"><b>1</b>Quote form sent</div><div class="m-field"><span>Job</span><span>DB board upgrade</span></div><div class="m-field"><span>Suburb</span><span>Rylands</span></div></div>
+    <div class="m-card c2"><div class="k"><b>2</b>Email alert</div><strong>New enquiry: DB board upgrade, Rylands, photos added</strong></div>
+    <div class="m-card c3"><div class="k"><b>3</b>Automatic reply</div><strong>Thank you, Ndlovu Electrical has your request.</strong><span class="t">Sent to the customer</span></div>
+  </div></div>
+</div>

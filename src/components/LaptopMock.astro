@@ -1,0 +1,8 @@
+---
+export interface Props { src?: string; srcset?: string; sizes?: string; alt?: string; eager?: boolean; class?: string }
+const { src, srcset, sizes, alt = '', eager = false, class: cls = '' } = Astro.props;
+---
+<div class={`laptop ${cls}`.trim()}>
+  <div class="laptop-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+  {src ? <img src={src} srcset={srcset} sizes={sizes} width="1200" height="750" alt={alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" /> : <div role="img" aria-label={alt}><slot /></div>}
+</div>

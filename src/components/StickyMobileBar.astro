@@ -1,0 +1,11 @@
+---
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+import { phoneHref, whatsappHref, defaultWhatsappMessage } from '../config/business';
+export interface Props { waMessage?: string }
+const { waMessage = defaultWhatsappMessage } = Astro.props;
+---
+<nav class="mbar" aria-label="Call or WhatsApp">
+  <Button href={phoneHref} variant="secondary" event="phone-click" icon="phone">Call</Button>
+  <Button href={whatsappHref(waMessage)} variant="whatsapp" event="whatsapp-click" icon="whatsapp">WhatsApp</Button>
+</nav>

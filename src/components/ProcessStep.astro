@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+export interface Props { n: number; icon: any; title: string; you: string; level?: 'h2' | 'h3' }
+const { n, icon, title, you, level = 'h3' } = Astro.props;
+const H = level;
+---
+<li class="step" data-step data-reveal>
+  <span class="chip"><Icon name={icon} /></span>
+  <div>
+    <span class="num">Step {n}</span>
+    <H>{title}</H>
+    <p><slot /></p>
+    <p class="you"><b>You get:</b> {you}</p>
+  </div>
+</li>
