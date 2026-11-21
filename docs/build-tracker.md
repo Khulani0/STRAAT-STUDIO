@@ -68,6 +68,13 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | E3 | Detail pages /examples/fazilas-kitchen/, /thandeka-hair-studio/, /ndlovu-electrical/ | DONE | In the sitemap. No "View the live example" button because no concept site is deployed. |
 | E4 | Drawn mock-ups deleted | DONE | Component code, CSS and the extra Ndlovu phone-200 image removed. |
 
+## Live example links (21 November 2026)
+
+| Item | What | Status | Notes |
+| --- | --- | --- | --- |
+| L1 | View the live example button on the three detail pages | DONE | New tab, rel noopener, with the made-up business note. |
+| L2 | Small link on the Examples tiles | NOT DONE | Left out on purpose: the tile is already full. |
+
 ## Needs your decision
 
 1. **Plain terms: "cancel with 30 days notice".** The existing /terms/ page says monthly plans can be cancelled at any time, with no notice period. The wording was later changed to: "You can cancel at any time. Cancellation takes effect at the end of the month you have already paid for." No notice period is mentioned.
