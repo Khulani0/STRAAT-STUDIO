@@ -85,8 +85,13 @@ const wa = whatsappHref(`Hi Straat Studio, I saw the ${e.name} example and I'd l
   <section class="section" aria-labelledby="more-h">
     <div class="wrap">
       <div class="head" data-reveal><SectionLabel>More examples</SectionLabel><h2 id="more-h">See the others.</h2></div>
-      <div class="actions" data-reveal>
-        {others.map((o) => <Button href={`/examples/${o.slug}/`} variant="secondary">{o.name}</Button>)}
+      <div class="ex-minis" data-reveal>
+        {others.map((o) => (
+          <a class="ex-mini" href={`/examples/${o.slug}/`}>
+            <img src={`/work/${o.img}-desktop-600.webp`} srcset={`/work/${o.img}-desktop-600.webp 600w, /work/${o.img}-desktop-800.webp 800w`} sizes="(min-width: 640px) 240px, 40vw" width="1600" height="1000" alt="" loading="lazy" decoding="async" />
+            <span class="ex-mini-t"><strong>{o.name}</strong><span>{prices.websites[o.pkgKey].name} package, {R(prices.websites[o.pkgKey].price)}</span></span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
