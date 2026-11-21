@@ -1,0 +1,42 @@
+[
+ {
+  "page": "/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "1.7 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/prices/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "0.9 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/websites-for-electricians/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "0.9 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/examples/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "0.9 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ }
+]

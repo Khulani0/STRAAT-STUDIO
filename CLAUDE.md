@@ -23,10 +23,10 @@ See also `docs/08-preview-intake-seo-rules.md` for the free preview, client inta
 
 - Astro (latest stable) + Tailwind CSS, static output.
 - Hosted on Cloudflare Pages (free plan allows commercial use). Never Vercel Hobby.
-- Fonts: Source Serif 4 (headings) and Inter (body), self-hosted as woff2 in `public/fonts/` (`source-serif-4.woff2`, `inter.woff2`) with `font-display: swap` and a system fallback. Preload both. No Google Fonts request at runtime.
+- Fonts: Inter only, for all text, self-hosted as `public/fonts/inter.woff2` with `font-display: swap` and a metric-matched system fallback. Preload it. No serif font anywhere. No Google Fonts request at runtime.
 - Forms: Web3Forms or Formspree free tier, with a honeypot field and a POPIA consent line.
 - Analytics: Cloudflare Web Analytics (no cookies, no banner needed). Track clicks on WhatsApp, phone and form submit as events.
-- Zero client-side framework. Vanilla JS only for the menu and FAQ. Total JS under 15 KB.
+- Zero client-side framework. Vanilla JS only (menu, header state, scroll reveal, step highlight, phone demo loop, trades strip pause). Total JS under 15 KB. Every effect is optional: with JavaScript off, or with reduced motion on, all content is visible.
 
 ## 3. Design system
 
@@ -44,16 +44,20 @@ See also `docs/08-preview-intake-seo-rules.md` for the free preview, client inta
 | Accent tint (small marks, focus ring on navy) | #8EA8FF, a light tint of the brand blue. No yellow, cream or beige anywhere |
 | WhatsApp green (WhatsApp buttons only) | #25D366 with dark text #06210F (8.6:1 measured). Where the button text is white or small, use dark green #0E7038 (about 6:1). #128C4A is retired: it gives only 4.3:1 with white text |
 
-- Type scale: H1 clamp(38px, 5.4vw, 64px), H2 clamp(30px, 3.8vw, 46px), H3 clamp(21px, 2vw, 26px), body 17px (18px from 768px wide), line-height 1.6. No heading above 64px.
-- Headings: Source Serif 4, weight 600, letter-spacing -0.012em. Body and UI text: Inter.
-- Layout: max-width 1200px plus 24px side padding, section padding 112px on desktop and 72px on mobile.
+- Type scale (tokens in `src/styles/tokens.css`): H1 clamp(36px, 5.2vw, 58px), H2 clamp(28px, 3.4vw, 40px), H3 clamp(19px, 1.8vw, 22px), body 17px (18px from 768px wide), line-height 1.6.
+- Headings: Inter, weight 800 (H3 700), letter-spacing -0.03em. Body and UI text: Inter.
+- Layout: max content width 1120px plus 24px side padding. Section padding 96px on desktop and 56px on phones. No empty gap larger than that.
 - Backgrounds: white and cool grey (#F3F5F8) for light sections, Night navy for dark sections and the footer. Dark sections are allowed, but keep them to a few and never two in a row.
 - Colour: Straat blue for buttons and links, the light blue tint #8EA8FF for small marks. Green only on WhatsApp buttons. Never show a row of buttons in three different colours.
-- Shape and depth: 14px corners on cards and panels. Soft shadows only (for example 0 30px 60px -30px rgba(15,27,45,.35)). Buttons are 8px corners as built in the design, min height 48px, visible focus ring 3px accent (light blue tint on navy sections).
-- Icons: plain line icons, 2.5px stroke. Use them sparingly.
-- Motion: no entrance animations, no fade-ins, no scroll effects. Respect `prefers-reduced-motion`.
+- Shape and depth: 14px corners on cards and panels, thin 1px borders, no heavy shadows. Buttons have 10px corners, min height 48px (52px for primary), visible focus ring 3px (light blue tint on navy). Primary buttons are full width under 640px.
+- Icons: simple line icons, 2px stroke, drawn for this site (`src/components/Icon.astro`). No third-party icon set.
+- Motion (light and tasteful, CSS plus a few lines of IntersectionObserver): scroll reveal (fade and rise once, 80 ms stagger), a slow float on the hero mock-ups, a phone demo loop (quote form, email alert, automatic reply, made-up data, no faster than every 6 seconds, pauses when the tab is hidden), a slow trades strip (trade names only, with a pause button), a header that shrinks after the first scroll, highlighted process steps, hover lift on cards and buttons, a smooth accordion. Not allowed: parallax, auto-playing carousels that hide content, video, animation libraries, text that moves while being read, motion that delays or blocks content. Everything switches off under `prefers-reduced-motion`.
 - Hero: headline on the left, a picture of a concept site on the right. Until the concept sites are built it is an HTML mock-up labelled "Concept project, not commissioned client work". Replace it with real screenshots.
 - Presentation: the site presents Straat Studio as a company. No photos of individuals, no personal details and no address on the site. Copy says South Africa, with Cape Town only as "based in".
+
+## 3b. Components and tests
+
+Components live in `src/components/`: SiteHeader, SiteFooter, Button (primary, secondary, whatsapp), Card, PriceCard, ProcessStep, DarkBand, Accordion, StickyMobileBar, SectionLabel, Icon, TrustStrip, PhoneMock, LaptopMock, ExampleTile, TradeMarquee, PageHero. Every page: white hero with headline, one paragraph, two buttons and the TrustStrip; then alternating white, grey and navy bands; it ends with a DarkBand. Brand files are in `public/brand/` (logo, logo-light, mark, wordmark, 640px square for WhatsApp and Google). Test scripts are in `tools/` (`npm run test:all` after `npm run build`): axe, Lighthouse, keyboard, links, motion. Results are in `docs/test-report.md`.
 
 ## 4. Site map
 
@@ -129,7 +133,7 @@ Minimum 700 words of original content per page.
 - WCAG 2.2 AA. All text contrast 4.5:1 or better.
 - Menu: real `<button>`, `aria-expanded`, focus trapped while open, Escape closes, focus returns to the button.
 - FAQ: native `<details>` and `<summary>`.
-- Floating WhatsApp button: phones only, shown only after the hero has scrolled out of view, hidden over the contact band and footer, and never covers prices, card text, links or form buttons.
+- Sticky mobile bar: phones only (under 768px), Call and WhatsApp side by side, both always visible, 48px or taller. There is no floating bubble.
 - Anchor links: links to a section on another page jump instantly. Same-page smooth scroll is 0.4 seconds or less and is instant under `prefers-reduced-motion`. No CSS `scroll-behavior: smooth`.
 - Every form field has a visible label.
 

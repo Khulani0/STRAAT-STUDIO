@@ -1,0 +1,210 @@
+{
+ "keyboard": [
+  [
+   "Tab order reaches skip link, logo, menu button, buttons",
+   "Skip to content > Straat Studio, home > Menu > Get my free homepage"
+  ],
+  [
+   "Visible focus ring on first 22 tab stops",
+   "PASS"
+  ],
+  [
+   "Menu opens with Enter, focus moves into menu",
+   "PASS (Websites)"
+  ],
+  [
+   "Focus stays inside the open menu (trap)",
+   "PASS"
+  ],
+  [
+   "Escape closes the menu and focus returns to the Menu button",
+   "PASS"
+  ],
+  [
+   "Accordion summary has visible focus and opens/closes with Enter",
+   "PASS"
+  ],
+  [
+   "Sticky bar: Call and WhatsApp both visible, 48 px or taller",
+   "PASS"
+  ],
+  [
+   "Sticky bar links show a focus ring",
+   "PASS"
+  ]
+ ],
+ "links": [
+  "PASS: 47 distinct links checked on 16 pages, zero broken"
+ ],
+ "wa": [
+  "PASS if no FAIL above: every wa.me link uses 27682264586 with a pre-filled message; every tel: link is +27682264586"
+ ],
+ "redirect": [
+  [
+   "/work/ page redirects to /examples/ (meta refresh and canonical)",
+   "PASS"
+  ],
+  [
+   "public/_redirects has a 301 from /work/",
+   "PASS"
+  ]
+ ],
+ "sitemap": [
+  [
+   "Sitemap lists every public page",
+   "PASS (15 URLs)"
+  ],
+  [
+   "Sitemap has no test, redirect or 404 page",
+   "PASS"
+  ]
+ ],
+ "jsonld": [
+  [
+   "Home: ProfessionalService (name, url, telephone, email, areaServed, priceRange) and FAQPage with 6 questions",
+   "PASS"
+  ],
+  "PASS if no FAIL above: every page parses as valid JSON-LD, every non-home page has a BreadcrumbList"
+ ],
+ "weight": [
+  {
+   "page": "/",
+   "kb": 163,
+   "largestImage": "/work/ndlovu-phone-390.webp 27 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites/",
+   "kb": 106,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/enquiry-system/",
+   "kb": 101,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/prices/",
+   "kb": 117,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/examples/",
+   "kb": 142,
+   "largestImage": "/work/ndlovu-phone-390.webp 27 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/how-it-works/",
+   "kb": 97,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/about/",
+   "kb": 96,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/contact/",
+   "kb": 96,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-electricians/",
+   "kb": 105,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-plumbers/",
+   "kb": 104,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-salons/",
+   "kb": 104,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-home-bakers/",
+   "kb": 105,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/privacy/",
+   "kb": 94,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/terms/",
+   "kb": 95,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/paia-manual/",
+   "kb": 104,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/404.html",
+   "kb": 90,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  }
+ ],
+ "motion": [
+  [
+   "JavaScript off, /: hidden reveal items 0, hidden phone cards 0",
+   "PASS"
+  ],
+  [
+   "JavaScript off, /prices/: hidden reveal items 0, hidden phone cards 0",
+   "PASS"
+  ],
+  [
+   "JavaScript off, /websites-for-plumbers/: hidden reveal items 0, hidden phone cards 0",
+   "PASS"
+  ],
+  [
+   "Reduced motion, /: hidden 0, running animations 0, demo loop active 0, hidden phone cards 0, strip duplicate hidden true",
+   "PASS"
+  ],
+  [
+   "Reduced motion, /enquiry-system/: hidden 0, running animations 0, demo loop active 0, hidden phone cards 0, strip duplicate hidden true",
+   "PASS"
+  ],
+  [
+   "Reduced motion, /examples/: hidden 0, running animations 0, demo loop active 0, hidden phone cards 0, strip duplicate hidden true",
+   "PASS"
+  ],
+  [
+   "375 px, full scroll on home: layout shift 0.0002 (limit 0.05)",
+   "PASS"
+  ],
+  [
+   "375 px: items still hidden after scrolling the whole page 0",
+   "PASS"
+  ],
+  [
+   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9016 ms (must be 6000 ms or more)",
+   "PASS"
+  ],
+  [
+   "Header shrinks after scroll",
+   "PASS (76px to 62px)"
+  ]
+ ],
+ "misc": []
+}
