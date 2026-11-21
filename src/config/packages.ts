@@ -31,13 +31,19 @@ export const packages = [
 
 /** The three concept projects. Concept projects, not commissioned client work. */
 export const examples = [
-  { slug: 'fazila', name: "Fazila's Kitchen", blurb: 'Home baker in Mitchells Plain. Sample menu with an Order on WhatsApp button on every product.', pkgKey: 'catalogue',
-    desktopAlt: "Concept site for Fazila's Kitchen on a laptop: a sample menu of three products, each with an Order on WhatsApp button.",
-    phoneAlt: "Concept site for Fazila's Kitchen on a phone: two sample products with Order on WhatsApp buttons." },
-  { slug: 'thandeka', name: 'Thandeka Hair Studio', blurb: 'Salon in Soweto. Sample prices, hours, areas and WhatsApp booking, all on one page.', pkgKey: 'onePage',
+  { slug: 'fazilas-kitchen', img: 'fazila', name: "Fazila's Kitchen", line: 'A home baker in Mitchells Plain with a catalogue and Order on WhatsApp buttons.', pkgKey: 'catalogue',
+    brief: "Fazila's Kitchen is a made-up home baker in Mitchells Plain, Cape Town. She sells cakes, cupcakes, savoury platters and treats boxes, and customers currently ask for prices in chats. The site needed to show every product with a price, let a customer order in one tap on WhatsApp, and say clearly when orders close.",
+    includes: ['5 pages: Home, Our cakes and treats, How to order, About and Contact', '16 sample products in 4 categories, with a filter to show one category at a time', 'An Order on WhatsApp button on every product that names the product', 'A How to order page with the order cut-off and sample delivery areas and fees', 'Credited stock photos, each captioned as an illustrative photo'],
+    desktopAlt: "Home page of the Fazila's Kitchen concept site on a laptop: the headline Baked fresh, made for sharing, and a photo of a chocolate ring cake.",
+    phoneAlt: "Home page of the Fazila's Kitchen concept site on a phone, with a Chat on WhatsApp button." },
+  { slug: 'thandeka-hair-studio', img: 'thandeka', name: 'Thandeka Hair Studio', line: 'A Soweto salon on one page: prices, hours, area and booking by WhatsApp.', pkgKey: 'onePage',
+    brief: 'Thandeka Hair Studio is a made-up hair salon in Soweto, Johannesburg. It does braids, twists and natural hair care by appointment. The site needed to put prices, opening hours and the areas served in one place, and make booking as simple as sending a WhatsApp message.',
+    includes: ['One page with anchored sections: Services and sample prices, Gallery, Hours and area, Book on WhatsApp', 'A sample price list of 7 services, each with its own Book on WhatsApp button that names the service', 'A gallery of 14 credited stock photos', 'Opening hours and 9 areas served', 'A one-page menu that works on a phone'],
     desktopAlt: 'Home page of the Thandeka Hair Studio concept site on a laptop: the headline Braids, twists and natural hair, done with care, and a photo of copper-coloured twists.',
     phoneAlt: 'Home page of the Thandeka Hair Studio concept site on a phone, with a Book on WhatsApp button.' },
-  { slug: 'ndlovu', name: 'Ndlovu Electrical', blurb: 'Five pages for an electrician in Athlone: services, areas served and a demo quote form.', pkgKey: 'business',
+  { slug: 'ndlovu-electrical', img: 'ndlovu', name: 'Ndlovu Electrical', line: 'An Athlone electrician with service pages, areas served and a demo quote form.', pkgKey: 'business',
+    brief: 'Ndlovu Electrical is a made-up electrician in Athlone, Cape Town. It does fault finding, DB board upgrades and certificates of compliance. The site needed to explain each job in plain words, show which suburbs it covers, and make asking for a quote easy.',
+    includes: ['5 pages: Home, Services, About, Our work and Contact', '6 service descriptions, including fault finding, DB board upgrades and certificates of compliance', 'Athlone and 8 nearby suburbs listed as areas served', 'A four-step "how we work" section', 'A demo quote form with job type, suburb, description, name, phone, preferred contact and a consent box. It says "Demo form. Nothing is sent." and sends nothing'],
     desktopAlt: 'Home page of the Ndlovu Electrical concept site on a laptop: the headline Lights on. Breakers steady. Done right., and a photo of an open junction box.',
     phoneAlt: 'Home page of the Ndlovu Electrical concept site on a phone, with a Chat on WhatsApp button.' },
 ] as const;
