@@ -12,7 +12,7 @@ add('a2', 'Link checker, zero broken links', b.links.some((x) => x.startsWith('F
 add('a3', 'No em dashes in src/', em ? 'PASS' : 'FAIL');
 add('b', 'axe, 16 pages at 375 px and 1280 px (WCAG 2.0 to 2.2 A and AA plus best practice)', pf(a.axe.length), `${a.axe.length} violations`);
 const l = lh.map((r) => `${r.page}: ${r.performance}/${r.accessibility}/${r.bestPractices}/${r.seo}`).join('; ');
-add('c', 'Lighthouse mobile: performance, accessibility, best practices, SEO (targets 90, 95, 95, 95)', lh.every((r) => r.performance >= 90 && r.accessibility >= 95 && r.bestPractices >= 95 && r.seo >= 95) ? 'PASS' : 'FAIL', l);
+add('c', 'Lighthouse mobile: performance, accessibility, best practices, SEO (target 95 or more each)', lh.every((r) => r.performance >= 95 && r.accessibility >= 95 && r.bestPractices >= 95 && r.seo >= 95) ? 'PASS' : 'FAIL', l);
 const kb = b.keyboard.filter((x) => Array.isArray(x));
 add('d', 'Keyboard test at 375 px (header, menu, accordion, sticky bar)', kb.every((x) => x[1].startsWith('PASS') || x[0].startsWith('Tab order')) ? 'PASS' : 'FAIL', `${kb.length} checks`);
 add('e', 'Colour contrast WCAG AA', 'PASS', 'Covered by axe color-contrast on every page (item b)');
@@ -23,8 +23,8 @@ add('f4', 'No empty gap over about 110 px inside a section', pf(a.gaps.length), 
 add('f5', 'No orphan words in H1 and H2 headings', pf(a.orphans.length), `${a.orphans.length} found`);
 add('f6', 'Tap targets at least 44 px (48 px for buttons by CSS)', pf(a.tap.length), `${a.tap.length} found`);
 add('f7', 'No sideways scroll at 320, 375, 390, 768, 1280 and 1536 px', pf(a.overflow.length), `${a.overflow.length} found`);
-add('g', 'Every button and link opens the right place; WhatsApp links use the existing number and a message', b.wa.some((x) => x.startsWith('FAIL')) ? 'FAIL' : 'PASS', 'wa.me/27682264586 and tel:+27682264586 only');
-add('h1', '/work/ redirects to /examples/', b.redirect.every((x) => x[1] === 'PASS') ? 'PASS' : 'FAIL', 'Meta refresh page plus a 301 in public/_redirects (Cloudflare)');
+add('g', 'Every button and link opens the right place; WhatsApp links use the existing number and a message', b.wa.some((x) => x.startsWith('FAIL')) ? 'FAIL' : 'PASS', 'wa.me/27846946588 and tel:+27846946588 only');
+add('h1', 'Indexing: no noindex except 404; robots.txt allows all; /work/ 301 to /examples/', b.redirect.every((x) => x[1] === 'PASS') ? 'PASS' : 'FAIL', 'The /work/ 301 lives in public/_redirects (Cloudflare)');
 add('h2', 'Sitemap lists every public page and no test page', b.sitemap.every((x) => x[1].startsWith('PASS')) ? 'PASS' : 'FAIL', b.sitemap[0][1]);
 add('i', 'JSON-LD valid on the home page (and every page)', b.jsonld.some((x) => String(x).startsWith('FAIL') || (Array.isArray(x) && x[1] === 'FAIL')) ? 'FAIL' : 'PASS', 'ProfessionalService, FAQPage, BreadcrumbList');
 const mo = b.motion.filter((x) => Array.isArray(x));

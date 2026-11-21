@@ -18,8 +18,8 @@ export const business = {
   country: 'ZA',
 
   // WhatsApp and phone: same number. Digits only, international format, no plus.
-  phoneDigits: '27682264586',
-  phoneDisplay: '068 226 4586',
+  phoneDigits: '27846946588',
+  phoneDisplay: '084 694 6588',
 
   email: 'hello@straatstudio.co.za',
   // hello@straatstudio.co.za is live (Cloudflare Email Routing, tested on 18 November 2026),

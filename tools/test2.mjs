@@ -59,19 +59,22 @@ const base = 'http://localhost:4399';
       if (h === '#' || h === '#top') R.links.push(`FAIL ${p}: ${h}`);
       if (h.startsWith('/')) { const f = h.split('#')[0].split('?')[0]; if (f && !fs.existsSync('dist' + f + 'index.html') && !fs.existsSync('dist' + f)) R.links.push(`FAIL ${p}: broken ${h}`); if (h.includes('#') && h.split('#')[0] === '') {} }
       if (h.startsWith('#') && h.length > 1) { const ok = await page.evaluate((id) => !!document.getElementById(id), h.slice(1)); if (!ok) R.links.push(`FAIL ${p}: missing anchor ${h}`); }
-      if (h.startsWith('https://wa.me/')) { if (!h.startsWith('https://wa.me/27682264586?text=') || h.length < 50) R.wa.push(`FAIL ${p}: ${h.slice(0, 80)}`); }
-      if (h.startsWith('tel:') && h !== 'tel:+27682264586') R.wa.push(`FAIL ${p}: ${h}`);
+      if (h.startsWith('https://wa.me/')) { if (!h.startsWith('https://wa.me/27846946588?text=') || h.length < 50) R.wa.push(`FAIL ${p}: ${h.slice(0, 80)}`); }
+      if (h.startsWith('tel:') && h !== 'tel:+27846946588') R.wa.push(`FAIL ${p}: ${h}`);
     }
     await page.close();
   }
   R.links.push(`PASS: ${all.size} distinct links checked on ${pages.length} pages` + (R.links.some((x) => x.startsWith('FAIL')) ? '' : ', zero broken'));
-  R.wa.push('PASS if no FAIL above: every wa.me link uses 27682264586 with a pre-filled message; every tel: link is +27682264586');
+  R.wa.push('PASS if no FAIL above: every wa.me link uses 27846946588 with a pre-filled message; every tel: link is +27846946588');
 }
 
 /* h) redirect and sitemap */
 {
-  const html = fs.readFileSync('dist/work/index.html', 'utf8');
-  R.redirect.push(['/work/ page redirects to /examples/ (meta refresh and canonical)', html.includes('url=/examples/') && html.includes('canonical') ? 'PASS' : 'FAIL']);
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(d + '/' + e.name) : [d + '/' + e.name]));
+  const noidx = walk('dist').filter((x) => x.endsWith('.html') && /noindex/i.test(fs.readFileSync(x, 'utf8')));
+  R.redirect.push(['No page has a noindex tag except the 404 page (' + (noidx.join(', ') || 'none') + ')', noidx.every((x) => x === 'dist/404.html') ? 'PASS' : 'FAIL']);
+  const rb = fs.readFileSync('dist/robots.txt', 'utf8');
+  R.redirect.push(['robots.txt allows everything and points to https://straatstudio.co.za/sitemap.xml', /Allow: \//.test(rb) && !/Disallow: \S/.test(rb) && rb.includes('Sitemap: https://straatstudio.co.za/sitemap.xml') ? 'PASS' : 'FAIL']);
   R.redirect.push(['public/_redirects has a 301 from /work/', fs.readFileSync('public/_redirects', 'utf8').includes('/work/ /examples/ 301') ? 'PASS' : 'FAIL']);
   const sm = fs.readFileSync('dist/sitemap.xml', 'utf8');
   const locs = [...sm.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
@@ -93,7 +96,7 @@ const base = 'http://localhost:4399';
     if (p === '/') {
       const ps = blocks.map((b) => JSON.parse(b)).find((j) => j['@type'] === 'ProfessionalService');
       const faq = blocks.map((b) => JSON.parse(b)).find((j) => j['@type'] === 'FAQPage');
-      const ok = ps && ps.telephone === '+27682264586' && ps.areaServed['@type'] === 'Country' && ps.priceRange === 'R999 to R3,099' && faq && faq.mainEntity.length === 6;
+      const ok = ps && ps.telephone === '+27846946588' && ps.areaServed['@type'] === 'Country' && ps.priceRange === 'R999 to R3,099' && faq && faq.mainEntity.length === 6;
       R.jsonld.push(['Home: ProfessionalService (name, url, telephone, email, areaServed, priceRange) and FAQPage with 6 questions', ok ? 'PASS' : 'FAIL']);
     }
     if (p !== '/' && p !== '/404.html' && !types.includes('BreadcrumbList')) R.jsonld.push(`FAIL ${p}: no BreadcrumbList`);
