@@ -5,9 +5,9 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "1.0 s",
+  "lcp": "1.1 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "70 ms"
  },
  {
   "page": "/prices/",
@@ -15,19 +15,19 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "0.9 s",
+  "lcp": "1.0 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "30 ms"
  },
  {
   "page": "/websites-for-electricians/",
-  "performance": 100,
+  "performance": 98,
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "0.9 s",
+  "lcp": "1.0 s",
   "cls": "0",
-  "tbt": "10 ms"
+  "tbt": "170 ms"
  },
  {
   "page": "/websites-for-plumbers/",
@@ -35,9 +35,9 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "0.9 s",
+  "lcp": "1.0 s",
   "cls": "0",
-  "tbt": "20 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/websites-for-salons/",
@@ -45,9 +45,9 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "0.9 s",
+  "lcp": "1.0 s",
   "cls": "0",
-  "tbt": "20 ms"
+  "tbt": "10 ms"
  },
  {
   "page": "/websites-for-home-bakers/",
@@ -55,9 +55,9 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "0.9 s",
+  "lcp": "1.0 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "20 ms"
  },
  {
   "page": "/examples/",
@@ -67,7 +67,7 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "80 ms"
  },
  {
   "page": "/examples/fazilas-kitchen/",
@@ -75,9 +75,9 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "1.5 s",
+  "lcp": "1.8 s",
   "cls": "0",
-  "tbt": "10 ms"
+  "tbt": "20 ms"
  },
  {
   "page": "/examples/thandeka-hair-studio/",
@@ -85,19 +85,19 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "1.7 s",
+  "lcp": "1.8 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "40 ms"
  },
  {
   "page": "/examples/ndlovu-electrical/",
-  "performance": 100,
+  "performance": 99,
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "1.7 s",
+  "lcp": "1.8 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "110 ms"
  },
  {
   "page": "/enquiry-system/",
@@ -107,16 +107,16 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "10 ms"
  },
  {
   "page": "/contact/",
-  "performance": 100,
+  "performance": 99,
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "50 ms"
+  "tbt": "110 ms"
  }
 ]

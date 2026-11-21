@@ -73,7 +73,7 @@
  "weight": [
   {
    "page": "/",
-   "kb": 217,
+   "kb": 235,
    "largestImage": "/work/thandeka-desktop-800.webp 41 KB",
    "jsKb": 0
   },
@@ -91,32 +91,32 @@
   },
   {
    "page": "/prices/",
-   "kb": 116,
+   "kb": 117,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/examples/",
-   "kb": 185,
+   "kb": 199,
    "largestImage": "/work/thandeka-desktop-800.webp 41 KB",
    "jsKb": 0
   },
   {
    "page": "/examples/fazilas-kitchen/",
-   "kb": 143,
-   "largestImage": "/work/fazila-phone-390.webp 25 KB",
+   "kb": 196,
+   "largestImage": "/work/ndlovu-desktop-600.webp 26 KB",
    "jsKb": 0
   },
   {
    "page": "/examples/thandeka-hair-studio/",
-   "kb": 160,
+   "kb": 202,
    "largestImage": "/work/thandeka-desktop-800.webp 41 KB",
    "jsKb": 0
   },
   {
    "page": "/examples/ndlovu-electrical/",
-   "kb": 148,
-   "largestImage": "/work/ndlovu-phone-390.webp 27 KB",
+   "kb": 204,
+   "largestImage": "/work/ndlovu-desktop-800.webp 40 KB",
    "jsKb": 0
   },
   {
@@ -133,13 +133,13 @@
   },
   {
    "page": "/contact/",
-   "kb": 95,
+   "kb": 96,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/websites-for-electricians/",
-   "kb": 104,
+   "kb": 105,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
@@ -151,7 +151,7 @@
   },
   {
    "page": "/websites-for-salons/",
-   "kb": 103,
+   "kb": 104,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
@@ -163,19 +163,19 @@
   },
   {
    "page": "/privacy/",
-   "kb": 93,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/terms/",
    "kb": 94,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
+   "page": "/terms/",
+   "kb": 95,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
    "page": "/paia-manual/",
-   "kb": 103,
+   "kb": 104,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
@@ -220,7 +220,7 @@
    "PASS"
   ],
   [
-   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9012 ms (must be 6000 ms or more)",
+   "Demo loop steps over 22 s: 0,1,2,3,0,1,2,3,0,1,2; loop length 8999 ms (must be 6000 ms or more)",
    "PASS"
   ],
   [
