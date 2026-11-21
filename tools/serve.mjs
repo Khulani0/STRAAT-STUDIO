@@ -14,5 +14,5 @@ export function serve(port = 4399, root = 'dist') {
   });
   return new Promise((r) => server.listen(port, () => r(server)));
 }
-export const pages = ['/', '/websites/', '/enquiry-system/', '/prices/', '/examples/', '/how-it-works/', '/about/', '/contact/', '/websites-for-electricians/', '/websites-for-plumbers/', '/websites-for-salons/', '/websites-for-home-bakers/', '/privacy/', '/terms/', '/paia-manual/', '/404.html'];
+export const pages = ['/', '/websites/', '/enquiry-system/', '/prices/', '/examples/', '/examples/fazilas-kitchen/', '/examples/thandeka-hair-studio/', '/examples/ndlovu-electrical/', '/how-it-works/', '/about/', '/contact/', '/websites-for-electricians/', '/websites-for-plumbers/', '/websites-for-salons/', '/websites-for-home-bakers/', '/privacy/', '/terms/', '/paia-manual/', '/404.html'];
 export const chrome = '/usr/bin/google-chrome';

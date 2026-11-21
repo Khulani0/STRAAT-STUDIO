@@ -42,7 +42,7 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | M4 | Slow trades strip | DONE | Pauses on hover and has a visible Pause button. |
 | M5 | Header shrinks and gets a border after first scroll | DONE | The header is fixed on a spacer, so nothing jumps. |
 | M6 | Active process step highlighted | DONE | |
-| M7 | Hover lift, smooth accordion, tile tilt | DONE | Tilt only on a laptop with a mouse. |
+| M7 | Hover lift, smooth accordion | DONE | The Examples tiles now use a soft hover lift. The 3D tilt was dropped with the old tiles. |
 | M8 | Motion checks in the test report | DONE | Reduced motion, JavaScript off, 375 px, layout shift 0.0002. |
 
 ## Fix list (21 November 2026)
@@ -59,9 +59,18 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | F8 | Full test suite | DONE | See `docs/test-report.md`. |
 | F9 | Screenshots and zip | DONE | `docs/screens/` has 48 images. |
 
+## Examples fix (21 November 2026)
+
+| Item | What | Status | Notes |
+| --- | --- | --- | --- |
+| E1 | Real concept screenshots back on the Examples tiles | DONE | The 12 original WebP files from commit 47303ef were never deleted, only unused, so they are used again unchanged. New 1600 px versions added. |
+| E2 | New ExampleTile: whole screenshot, no crop, no overlap | DONE | Laptop screenshot only on the tile. Both screenshots on the detail page. |
+| E3 | Detail pages /examples/fazilas-kitchen/, /thandeka-hair-studio/, /ndlovu-electrical/ | DONE | In the sitemap. No "View the live example" button because no concept site is deployed. |
+| E4 | Drawn mock-ups deleted | DONE | Component code, CSS and the extra Ndlovu phone-200 image removed. |
+
 ## Needs your decision
 
 1. **Plain terms: "cancel with 30 days notice".** The existing /terms/ page says monthly plans can be cancelled at any time, with no notice period. The wording was later changed to: "You can cancel at any time. Cancellation takes effect at the end of the month you have already paid for." No notice period is mentioned.
 2. **Photography.** Say if you want up to 4 licensed photos, and I will source and log them.
-3. **Fazila and Thandeka tiles.** They show drawn mock-ups in the site palette instead of the concept-site screenshots, which are cream.
+3. **Concept sites.** Not deployed anywhere. They live as local folders and still use the old phone number in their WhatsApp links. See the final report.
 4. **404 page noindex.** I kept it on the 404 page only, which is standard. Say if you want it removed.

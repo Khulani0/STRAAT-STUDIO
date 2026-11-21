@@ -34,7 +34,7 @@
   ]
  ],
  "links": [
-  "PASS: 47 distinct links checked on 16 pages, zero broken"
+  "PASS: 53 distinct links checked on 19 pages, zero broken"
  ],
  "wa": [
   "PASS if no FAIL above: every wa.me link uses 27846946588 with a pre-filled message; every tel: link is +27846946588"
@@ -56,7 +56,7 @@
  "sitemap": [
   [
    "Sitemap lists every public page",
-   "PASS (15 URLs)"
+   "PASS (18 URLs)"
   ],
   [
    "Sitemap has no test, redirect or 404 page",
@@ -73,97 +73,115 @@
  "weight": [
   {
    "page": "/",
-   "kb": 145,
-   "largestImage": "/work/ndlovu-phone-200.webp 13 KB",
+   "kb": 217,
+   "largestImage": "/work/thandeka-desktop-800.webp 41 KB",
    "jsKb": 0
   },
   {
    "page": "/websites/",
-   "kb": 107,
+   "kb": 106,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/enquiry-system/",
-   "kb": 102,
+   "kb": 101,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/prices/",
-   "kb": 118,
+   "kb": 116,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/examples/",
-   "kb": 124,
-   "largestImage": "/work/ndlovu-phone-200.webp 13 KB",
+   "kb": 185,
+   "largestImage": "/work/thandeka-desktop-800.webp 41 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/examples/fazilas-kitchen/",
+   "kb": 143,
+   "largestImage": "/work/fazila-phone-390.webp 25 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/examples/thandeka-hair-studio/",
+   "kb": 160,
+   "largestImage": "/work/thandeka-desktop-800.webp 41 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/examples/ndlovu-electrical/",
+   "kb": 148,
+   "largestImage": "/work/ndlovu-phone-390.webp 27 KB",
    "jsKb": 0
   },
   {
    "page": "/how-it-works/",
-   "kb": 98,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/about/",
-   "kb": 97,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/contact/",
-   "kb": 97,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/websites-for-electricians/",
-   "kb": 106,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/websites-for-plumbers/",
-   "kb": 106,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/websites-for-salons/",
-   "kb": 105,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/websites-for-home-bakers/",
-   "kb": 106,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/privacy/",
-   "kb": 95,
-   "largestImage": "/brand/logo-light.svg 7 KB",
-   "jsKb": 0
-  },
-  {
-   "page": "/terms/",
    "kb": 96,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
-   "page": "/paia-manual/",
+   "page": "/about/",
+   "kb": 95,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/contact/",
+   "kb": 95,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-electricians/",
+   "kb": 104,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-plumbers/",
+   "kb": 104,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-salons/",
+   "kb": 103,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/websites-for-home-bakers/",
    "kb": 105,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
+   "page": "/privacy/",
+   "kb": 93,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/terms/",
+   "kb": 94,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
+   "page": "/paia-manual/",
+   "kb": 103,
+   "largestImage": "/brand/logo-light.svg 7 KB",
+   "jsKb": 0
+  },
+  {
    "page": "/404.html",
-   "kb": 91,
+   "kb": 90,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   }
@@ -202,7 +220,7 @@
    "PASS"
   ],
   [
-   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9010 ms (must be 6000 ms or more)",
+   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9012 ms (must be 6000 ms or more)",
    "PASS"
   ],
   [

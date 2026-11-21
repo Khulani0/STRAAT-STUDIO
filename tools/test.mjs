@@ -41,7 +41,7 @@ for (const p of pages) {
         });
         const sy = scrollY;
         document.querySelectorAll('main > section, main > div').forEach((s) => {
-          const sr = s.getBoundingClientRect(); const kids = [...s.querySelectorAll('*')].filter((k) => { const r = k.getBoundingClientRect(); if (!(r.height > 0 && r.width > 0) || k.closest('[aria-hidden="true"]:not(.err-code)')) return false; const own = [...k.childNodes].some((c) => c.nodeType === 3 && c.textContent.trim()); return own || k.matches('.card, .tile, .step, .acc details, .laptop, .phone, .tbl, .builder-l, .builder-r, .facts, .marquee, img'); });
+          const sr = s.getBoundingClientRect(); const kids = [...s.querySelectorAll('*')].filter((k) => { const r = k.getBoundingClientRect(); if (!(r.height > 0 && r.width > 0) || k.closest('[aria-hidden="true"]:not(.err-code)')) return false; const own = [...k.childNodes].some((c) => c.nodeType === 3 && c.textContent.trim()); return own || k.matches('.card, .ex-tile, .tile, .step, .acc details, .laptop, .phone, .tbl, .builder-l, .builder-r, .facts, .marquee, img'); });
           if (!kids.length) return;
           const top = Math.min(...kids.map((k) => k.getBoundingClientRect().top)); const bot = Math.max(...kids.map((k) => k.getBoundingClientRect().bottom));
           if (top - sr.top > 110) res.gaps.push(`top ${Math.round(top - sr.top)}px in ${s.className.slice(0, 30)} ${s.querySelector('h1,h2')?.textContent.slice(0, 30)}`);

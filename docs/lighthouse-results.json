@@ -7,7 +7,7 @@
   "seo": 100,
   "lcp": "1.0 s",
   "cls": "0",
-  "tbt": "20 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/prices/",
@@ -27,7 +27,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "10 ms"
  },
  {
   "page": "/websites-for-plumbers/",
@@ -37,7 +37,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "30 ms"
+  "tbt": "20 ms"
  },
  {
   "page": "/websites-for-salons/",
@@ -47,7 +47,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "10 ms"
+  "tbt": "20 ms"
  },
  {
   "page": "/websites-for-home-bakers/",
@@ -55,7 +55,7 @@
   "accessibility": 100,
   "bestPractices": 100,
   "seo": 100,
-  "lcp": "1.0 s",
+  "lcp": "0.9 s",
   "cls": "0",
   "tbt": "0 ms"
  },
@@ -66,6 +66,36 @@
   "bestPractices": 100,
   "seo": 100,
   "lcp": "0.8 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/examples/fazilas-kitchen/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "1.5 s",
+  "cls": "0",
+  "tbt": "10 ms"
+ },
+ {
+  "page": "/examples/thandeka-hair-studio/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "1.7 s",
+  "cls": "0",
+  "tbt": "0 ms"
+ },
+ {
+  "page": "/examples/ndlovu-electrical/",
+  "performance": 100,
+  "accessibility": 100,
+  "bestPractices": 100,
+  "seo": 100,
+  "lcp": "1.7 s",
   "cls": "0",
   "tbt": "0 ms"
  },
@@ -87,6 +117,6 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "50 ms"
  }
 ]
