@@ -27,9 +27,10 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)');
 (() => {
   const h = find('[data-header]');
   if (!h) return;
-  const set = () => h.classList.toggle('scrolled', scrollY > 8);
-  addEventListener('scroll', set, { passive: true });
-  set();
+  let on = false, queued = false;
+  const apply = () => { queued = false; const y = window.pageYOffset; if ((y > 8) !== on) { on = !on; h.classList.toggle('scrolled', on); } };
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(apply); } }, { passive: true });
+  requestAnimationFrame(apply);
 })();
 
 /* Scroll reveal: fade and rise once. Cards in a row are staggered by about 80 ms. */
