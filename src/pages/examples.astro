@@ -1,20 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { prices, formatRand as R, whatsappHref } from '../config/business';
-
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import PriceCard from '../components/PriceCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import DarkBand from '../components/DarkBand.astro';
+import Accordion from '../components/Accordion.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Icon from '../components/Icon.astro';
+import LaptopMock from '../components/LaptopMock.astro';
+import PhoneMock from '../components/PhoneMock.astro';
+import ExampleTile from '../components/ExampleTile.astro';
+import { examples } from '../config/packages';
+import { prices, whatsappHref } from '../config/business';
 const w = prices.websites;
 const wa = whatsappHref("Hi Straat Studio, I'd like a free homepage preview for my business.");
-const work = [
-  { key: 'fazila', plain: true, name: "Fazila's Kitchen", blurb: 'Home baker in Mitchells Plain. Sample menu with a category filter and an Order on WhatsApp button on every product.', pkg: w.catalogue,
-    desktopAlt: "Home page of the Fazila's Kitchen concept site on a desktop screen: a concept-project bar, the headline Baked fresh, made for sharing, and a photo of a chocolate ring cake.",
-    phoneAlt: "Home page of the Fazila's Kitchen concept site on a phone: the concept-project bar, a menu button, the headline Baked fresh, made for sharing, and two buttons." },
-  { key: 'thandeka', name: 'Thandeka Hair Studio', blurb: 'Salon in Soweto. Sample prices, hours, areas and WhatsApp booking, all on one page.', pkg: w.onePage,
-    desktopAlt: 'Home page of the Thandeka Hair Studio concept site on a desktop screen: a concept-project bar, the headline Braids, twists and natural hair, done with care, and a photo of copper-coloured twists.',
-    phoneAlt: 'Home page of the Thandeka Hair Studio concept site on a phone: the concept-project bar, a menu button, the headline Braids, twists and natural hair, done with care, and a Book on WhatsApp button.' },
-  { key: 'ndlovu', name: 'Ndlovu Electrical', blurb: 'Five pages for an electrician in Athlone: services, areas served and a demo quote form.', pkg: w.business,
-    desktopAlt: 'Home page of the Ndlovu Electrical concept site on a desktop screen: a concept-project bar, the headline Lights on. Breakers steady. Done right., and a photo of an open junction box.',
-    phoneAlt: 'Home page of the Ndlovu Electrical concept site on a phone: the concept-project bar, a menu button, the headline Lights on. Breakers steady. Done right., and a Chat on WhatsApp button.' },
-];
 ---
 
 <BaseLayout
@@ -23,38 +24,32 @@ const work = [
   path="/examples/"
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Examples', path: '/examples/' }]}
 >
-  <section class="sec">
+  <PageHero label="Examples" h1="Examples of our work" lead="Each business is different, so each site looks different. These are concept projects for made-up South African businesses, built to show the standard. Real client sites replace them here as they go live.">
+    <Fragment slot="actions">
+      <Button href={wa} event="whatsapp-click">Get my free homepage</Button>
+      <Button href="/websites/" variant="secondary">See our websites</Button>
+    </Fragment>
+  </PageHero>
+
+  <section class="section bg-grey" aria-labelledby="ex-h">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Sample work</p>
-        <h1>Examples of our work</h1>
-        <p class="lead" style="max-width:56ch">Each business is different, so each site looks different. These are concept projects for made-up South African businesses, built to show the standard. Real client sites replace them here as they go live.</p>
-      </div>
-      <h2 class="sr">Three concept projects</h2>
-      <div class="ip-grid three">
-        {work.map((c) => (
-          <article class={c.plain ? 'wk2 plain' : 'wk2'}>
-            <div class="wk2-top">
-              <p class="label-concept">Concept project, not commissioned client work</p>
-              <h3 style="font-size:clamp(21px,2vw,26px)">{c.name}</h3>
-              <p>{c.blurb}</p>
-              <span class="pill">{c.pkg.name} package, {R(c.pkg.price)}</span>
-            </div>
-            {!c.plain && (<div class="wk2-devs">
-              <div class="wk2-browser">
-                <img src={`/work/${c.key}-desktop-600.webp`} srcset={`/work/${c.key}-desktop-600.webp 600w, /work/${c.key}-desktop-800.webp 800w, /work/${c.key}-desktop-1200.webp 1200w`} sizes="(min-width: 900px) 330px, 90vw" width="1200" height="750" loading="lazy" decoding="async" alt={c.desktopAlt} />
-              </div>
-              <div class="wk2-phone">
-                <img src={`/work/${c.key}-phone-390.webp`} srcset={`/work/${c.key}-phone-390.webp 390w, /work/${c.key}-phone-780.webp 780w`} sizes="120px" width="780" height="1688" loading="lazy" decoding="async" alt={c.phoneAlt} />
-              </div>
-            </div>)}
-          </article>
-        ))}
-      </div>
-      <div class="ip-cta">
-        <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Get my free homepage</a>
-        <a class="btn btn-ghost" href="/websites/">See our websites</a>
+      <div class="head" data-reveal><SectionLabel>Concept projects</SectionLabel><h2 id="ex-h">Three concept projects.</h2></div>
+      <div class="grid g3">
+        {examples.map((e) => <ExampleTile slug={e.slug} name={e.name} blurb={e.blurb} pkgName={w[e.pkgKey].name} price={w[e.pkgKey].price} desktopAlt={e.desktopAlt} phoneAlt={e.phoneAlt} />)}
       </div>
     </div>
   </section>
+
+  <section class="section" aria-labelledby="read-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>How to read these</SectionLabel><h2 id="read-h">What these examples are, and are not.</h2></div>
+      <div class="grid g3">
+        <Card icon="eye" title="Made-up businesses"><p>The names, suburbs, products and prices in these examples are made up. They are not commissioned client work.</p></Card>
+        <Card icon="browser" title="Built to the same standard"><p>Each one is built the way we build a client site, in the package named on its tile.</p></Card>
+        <Card icon="chat" title="Yours comes first as a preview"><p>You see your own homepage free before you pay, designed and written for your business.</p></Card>
+      </div>
+    </div>
+  </section>
+
+  <DarkBand />
 </BaseLayout>

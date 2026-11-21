@@ -1,7 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import PriceCard from '../components/PriceCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import DarkBand from '../components/DarkBand.astro';
+import Accordion from '../components/Accordion.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Icon from '../components/Icon.astro';
+import LaptopMock from '../components/LaptopMock.astro';
+import PhoneMock from '../components/PhoneMock.astro';
+import ExampleTile from '../components/ExampleTile.astro';
 import { whatsappHref } from '../config/business';
-
 const wa = whatsappHref("Hi Straat Studio, I couldn't find a page on your website.");
 ---
 
@@ -12,25 +23,16 @@ const wa = whatsappHref("Hi Straat Studio, I couldn't find a page on your websit
   noindex
   whatsappMessage="Hi Straat Studio, I couldn't find a page on your website."
 >
-  <section class="sec">
+  <section class="hero">
     <div class="wrap legal">
       <p class="err-code" aria-hidden="true">404</p>
       <h1 style="margin-top:12px">Page not found</h1>
-      <p class="lead">
-        We could not find that page. The link may be old, or the address may have a typo. Go back to the homepage, or message us on WhatsApp and we will point you to the right place.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
-        <a class="btn btn-blue" href="/">Go to the homepage</a>
-        <a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us</a>
+      <p class="lead" style="margin-top:16px">We could not find that page. The link may be old, or the address may have a typo. Go back to the homepage, or message us on WhatsApp and we will point you to the right place.</p>
+      <div class="actions">
+        <Button href="/">Go to the homepage</Button>
+        <Button href={wa} variant="whatsapp" event="whatsapp-click" icon="whatsapp">WhatsApp us</Button>
       </div>
-      <ul class="err-links" aria-label="Pages you may be looking for">
-        <li><a href="/prices/">Prices</a></li>
-        <li><a href="/contact/">Contact</a></li>
-        <li><a href="/#process">How it works</a></li>
-        <li><a href="/#questions">Questions</a></li>
-        <li><a href="/privacy/">Privacy notice</a></li>
-        <li><a href="/terms/">Terms of service</a></li>
-      </ul>
+      <ul class="links"><li><a href="/websites/">Websites</a></li><li><a href="/prices/">Prices</a></li><li><a href="/examples/">Examples</a></li><li><a href="/contact/">Contact</a></li></ul>
     </div>
   </section>
 </BaseLayout>

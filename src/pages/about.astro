@@ -1,18 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import PriceCard from '../components/PriceCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import DarkBand from '../components/DarkBand.astro';
+import Accordion from '../components/Accordion.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Icon from '../components/Icon.astro';
+import LaptopMock from '../components/LaptopMock.astro';
+import PhoneMock from '../components/PhoneMock.astro';
+import ExampleTile from '../components/ExampleTile.astro';
 import { business, prices, formatRand as R, whatsappHref } from '../config/business';
-
-const wa = whatsappHref("Hi Straat Studio, I'd like a free homepage preview for my business.");
-const jsonLd = [
-  {
-    '@context': 'https://schema.org', '@type': 'AboutPage',
-    name: 'About Straat Studio', url: `${business.siteUrl}/about/`,
-    mainEntity: {
-      '@type': 'ProfessionalService', name: business.name, legalName: business.legalName, url: business.siteUrl,
-      areaServed: { '@type': 'Country', name: 'South Africa' },
-    },
-  },
-];
+const wa = whatsappHref("Hi Straat Studio, I read your About page and I'd like a free homepage preview.");
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'AboutPage', name: 'About Straat Studio', url: `${business.siteUrl}/about/`,
+  mainEntity: { '@type': 'ProfessionalService', name: business.name, legalName: business.legalName, url: business.siteUrl, areaServed: { '@type': 'Country', name: 'South Africa' } },
+}];
 ---
 
 <BaseLayout
@@ -23,109 +28,42 @@ const jsonLd = [
   jsonLd={jsonLd}
   whatsappMessage="Hi Straat Studio, I read your About page and I'd like a free homepage preview."
 >
-  <section class="sec">
-    <div class="wrap ab-top">
-      <div>
-        <p class="eyebrow">About us</p>
-        <h1>About Straat Studio</h1>
-        <p class="lead" style="max-width:48ch">
-          A registered company with written terms. {business.name} is a trading name of {business.legalName}. We build websites and enquiry systems for trades and small businesses across South Africa.
-        </p>
-      </div>
-      <div class="facts">
-        <div><span>Company</span><b>{business.legalName}</b></div>
-        <div><span>Registration</span><b>{business.regNumber}</b></div>
-        <div><span>Based in</span><b>Cape Town, Western Cape</b></div>
-        <div><span>Where we work</span><b>All of South Africa, online</b></div>
-        <div><span>Paperwork</span><b>Written agreement, POPIA data agreement</b></div>
-      </div>
+  <PageHero label="About us" h1="About Straat Studio" lead={`A registered company with written terms. ${business.name} is a trading name of ${business.legalName}. We build websites and enquiry alerts for trades and small businesses across South Africa.`}>
+    <Fragment slot="actions">
+      <Button href={wa} event="whatsapp-click">Get my free homepage</Button>
+      <Button href="/contact/" variant="secondary">Contact us</Button>
+    </Fragment>
+    <div slot="visual" class="facts" data-reveal>
+      <div><span>Company</span><b>{business.legalName}</b></div>
+      <div><span>Registration</span><b>{business.regNumber}</b></div>
+      <div><span>Based in</span><b>Cape Town, Western Cape</b></div>
+      <div><span>Where we work</span><b>All of South Africa, online</b></div>
+      <div><span>Paperwork</span><b>Written agreement, POPIA data agreement</b></div>
     </div>
-  </section>
+  </PageHero>
 
-  <section class="sec sand" aria-labelledby="how-h">
+  <section class="section bg-grey" aria-labelledby="how-h">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">How we work</p>
-        <h2 id="how-h">How we work.</h2>
-      </div>
-      <div class="ab-grid">
-        <article>
-          <h3>Free preview first</h3>
-          <p>Every business gets one free homepage preview before paying anything. It is a view-only page, designed and written for you. Changes start once you approve it and pay to start.</p>
-        </article>
-        <article>
-          <h3>Fixed prices</h3>
-          <p>Website prices start at {R(prices.websites.onePage.price)} and are once-off and final, with no VAT added. Every package includes a .co.za domain, first-year hosting, the words written for you and 2 rounds of changes. See every price on our <a href="/prices/">prices page</a>.</p>
-        </article>
-        <article>
-          <h3>You own your domain</h3>
-          <p>Your domain is registered in your name. The website and its files become yours when the final payment is made, with a handover guide. Your Google Business Profile stays in your name, and we are added as a manager you can remove at any time.</p>
-        </article>
-        <article>
-          <h3>Terms in writing</h3>
-          <p>Prices, delivery times and what you own are written down before you pay. A one-page POPIA data agreement is signed before Straat Leads starts. Read our <a href="/terms/">terms</a> and <a href="/privacy/">privacy notice</a>.</p>
-        </article>
+      <div class="head" data-reveal><SectionLabel>How we work</SectionLabel><h2 id="how-h">Four plain statements.</h2></div>
+      <div class="grid g4">
+        <Card icon="eye" title="Free preview first"><p>Every business gets one free homepage preview before paying anything. It is a view-only page, designed and written for you. Changes start once you approve it and pay to start.</p></Card>
+        <Card icon="tag" title="Fixed prices"><p>Website prices start at {R(prices.websites.onePage.price)} and are once-off and final, with no VAT added. See every price on our <a class="more" href="/prices/">prices page</a>.</p></Card>
+        <Card icon="key" title="You own your domain"><p>Your domain is registered in your name. The website and its files become yours when the final payment is made, with a handover guide. Your Google Business Profile stays in your name.</p></Card>
+        <Card icon="quote" title="Terms in writing"><p>Prices, delivery times and what you own are written down before you pay. A one-page POPIA data agreement is signed before Straat Leads starts. Read our <a class="more" href="/terms/">terms</a> and <a class="more" href="/privacy/">privacy notice</a>.</p></Card>
       </div>
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="step-h">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Step by step</p>
-        <h2 id="step-h">What working with us looks like.</h2>
-        <p class="lead" style="max-width:56ch">Done on WhatsApp and one short online form. No meetings, wherever you are in South Africa.</p>
-      </div>
-      <ol class="steps">
-        <li><h3>Tell us about your business</h3><p>Your business name, what you do and where. Two minutes on WhatsApp.</p></li>
-        <li><h3>See your homepage free</h3><p>A view-only preview link. No payment yet.</p></li>
-        <li><h3>Approve and pay to start</h3><p>One-Page is paid in full. Business, Catalogue and Launch Pack pay half to start and half before going live. Then you fill in one checklist form.</p></li>
-        <li><h3>2 rounds of changes, then live</h3><p>On your own .co.za, with a sheet showing what you own. We aim to have it live within 3 to 7 working days after we have all your content.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="sec sand" aria-labelledby="not-h">
-    <div class="wrap ab-two">
-      <div>
-        <p class="eyebrow">What we will not do</p>
-        <h2 id="not-h">No tricks.</h2>
-      </div>
-      <ul class="plain">
-        <li>We do not promise a position on Google. We build every site so Google can read it, and nobody can promise first place.</li>
-        <li>We do not lock you in. If you leave, we hand over your files and logins.</li>
-        <li>We do not show made-up clients or reviews. The sample sites on our homepage are labelled as concept projects, not commissioned client work.</li>
+  <section class="section" aria-labelledby="not-h">
+    <div class="wrap two">
+      <div data-reveal><SectionLabel>What we will not do</SectionLabel><h2 id="not-h">No tricks.</h2></div>
+      <ul class="ticks" data-reveal>
+        <li><Icon name="x" />We do not promise a position on Google. We build every site so Google can read it, and nobody can promise first place.</li>
+        <li><Icon name="x" />We do not lock you in. If you leave, we hand over your files and logins.</li>
+        <li><Icon name="x" />We do not show made-up clients or reviews. The sample sites on our examples page are labelled as concept projects, not commissioned client work.</li>
       </ul>
     </div>
   </section>
 
-  <section class="sec night on-night" aria-labelledby="cta-h">
-    <div class="wrap" style="max-width:760px">
-      <h2 id="cta-h">Start with a free preview.</h2>
-      <p class="lead">Send us your business name, what you do and where. See our <a href="/prices/" style="color:#fff">prices</a>, or go to our <a href="/contact/" style="color:#fff">contact page</a>.</p>
-      <div style="margin-top:28px"><a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">Get my free preview on WhatsApp</a></div>
-    </div>
-  </section>
+  <DarkBand heading="Start with a free preview." text="Send us your business name, what you do and where." waMessage="Hi Straat Studio, I read your About page and I'd like a free homepage preview." />
 </BaseLayout>
-
-<style>
-  .ab-top { display: grid; gap: 40px; align-items: center; }
-  @media (min-width: 900px) { .ab-top { grid-template-columns: 1.2fr 0.8fr; gap: 72px; } }
-  .facts { background: var(--sand); border-radius: 18px; padding: 8px 24px; border-top: 6px solid var(--sign); }
-  .facts div { display: grid; gap: 2px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-  .facts div:last-child { border-bottom: 0; }
-  .facts span { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
-  .facts b { font: 600 19px/1.3 var(--serif); }
-  .ab-grid { display: grid; gap: 16px; }
-  @media (min-width: 800px) { .ab-grid { grid-template-columns: repeat(2, 1fr); } }
-  .ab-grid article { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 26px 24px; }
-  .ab-grid p, .steps p { margin-top: 10px; color: var(--muted); }
-  .ab-grid a { color: var(--blue-dark); text-underline-offset: 3px; }
-  .steps { display: grid; gap: 28px; counter-reset: s; list-style: none; padding: 0; margin: 0; }
-  @media (min-width: 900px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
-  .steps li { position: relative; padding-top: 70px; }
-  .steps li::before { counter-increment: s; content: counter(s); position: absolute; top: 0; left: 0; width: 50px; height: 50px; border-radius: 50%; background: var(--sign); display: grid; place-items: center; font: 700 22px/1 var(--serif); }
-  .ab-two { display: grid; gap: 32px; align-items: start; }
-  @media (min-width: 900px) { .ab-two { grid-template-columns: 0.8fr 1.2fr; gap: 72px; } }
-  .plain { margin: 0; padding-left: 1.2em; display: grid; gap: 14px; }
-</style>

@@ -1,6 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { business, prices, maxPages, formatRand as R, whatsappHref, deliveryDays, deliveryLine } from '../config/business';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import PriceCard from '../components/PriceCard.astro';
+import DarkBand from '../components/DarkBand.astro';
+import Accordion from '../components/Accordion.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Icon from '../components/Icon.astro';
+import { packages } from '../config/packages';
+import { business, prices, formatRand as R, whatsappHref, deliveryLine, deliveryDays } from '../config/business';
 
 const w = prices.websites;
 const m = prices.monthly;
@@ -9,60 +18,13 @@ const pm = prices.payMonthly;
 const wa = whatsappHref("Hi Straat Studio, I'd like help choosing a website package.");
 const pageUrl = `${business.siteUrl}/prices/`;
 
-// Package details. Every rand amount is read from business.ts. The words here describe what is included.
-const packages = [
-  {
-    key: 'onePage', pkg: w.onePage, live: deliveryDays.onePage, pay: 'Paid in full to start',
-    for: 'New businesses and sellers who need one link that explains everything.',
-    items: ['Services, prices, hours, map', 'Call, WhatsApp and enquiry form', 'info@ email address that can forward to your Gmail', 'WhatsApp Business starter sheet (ready-to-paste texts)'],
-    description: 'A one-page website with services, prices, hours, a map, call and WhatsApp buttons, an enquiry form and a WhatsApp Business starter sheet.',
-  },
-  {
-    key: 'business', pkg: w.business, live: deliveryDays.business, pay: '50% to start, 50% before it goes live', hi: true,
-    for: 'Trades and service businesses that want a page for every service, so Google can match each search to the right page.',
-    items: [`Up to ${maxPages.business} pages`, 'Photo gallery and quote form', 'Google Business Profile set up', 'WhatsApp Business setup (ready-to-paste texts plus one guided call)', 'Everything in One-Page'],
-    description: `A website of up to ${maxPages.business} pages with a photo gallery, a quote form, Google Business Profile set up and WhatsApp Business setup.`,
-  },
-  {
-    key: 'catalogue', pkg: w.catalogue, live: deliveryDays.catalogue, pay: '50% to start, 50% before it goes live',
-    for: 'Bakers, caterers and shops who change products and prices often.',
-    items: [`Up to ${maxPages.catalogue} pages`, 'Up to 30 products you update in a Google Sheet, live within minutes', 'WhatsApp order buttons', 'Optional PayFast or Yoco', 'WhatsApp Business setup (ready-to-paste texts plus one guided call)', 'Everything in Business'],
-    description: `A website of up to ${maxPages.catalogue} pages with a product catalogue of up to 30 products that you update in a Google Sheet, WhatsApp order buttons and WhatsApp Business setup.`,
-  },
-  {
-    key: 'launchPack', pkg: w.launchPack, live: deliveryDays.launchPack, pay: '50% to start, 50% before it goes live',
-    for: 'Starting from scratch? The Business website plus everything around it.',
-    items: [`Business website, up to ${maxPages.launchPack} pages`, 'Logo, 3 options', '3 social media posters', 'WhatsApp Business setup'],
-    description: `The Business website (up to ${maxPages.launchPack} pages) plus a logo with 3 options, 3 social media posters and WhatsApp Business setup.`,
-  },
-] as const;
-
 const addOns = [
-  { a: x.logo, note: 'A clean name logo, 3 options. Included in the Launch Pack.' },
-  { a: x.posters, note: '3 posters sized for Facebook and Instagram. Included in the Launch Pack.' },
-  { a: x.googleBusinessProfile, note: 'Create your profile or clean up the one you have, linked to your website. Already included in Business, Catalogue and the Launch Pack.' },
-  { a: x.mailbox, note: 'A full mailbox to send and receive from. You pay the email provider directly each month.' },
-  { a: x.extraPage, note: 'One more page on your website.' },
-];
-
-// Comparison table. true = included, false = not included, string = detail.
-const rows: [string, (boolean | string)[]][] = [
-  ['Once-off price', packages.map((p) => R(p.pkg.price))],
-  ['We aim to have it live within', packages.map((p) => `${p.live} working days after we have all your content`)],
-  ['.co.za domain and first-year hosting', [true, true, true, true]],
-  ['Words written for you', [true, true, true, true]],
-  ['2 rounds of changes', [true, true, true, true]],
-  ['Free homepage preview first', [true, true, true, true]],
-  ['Pages', [`${maxPages.onePage} page`, `Up to ${maxPages.business} pages`, `Up to ${maxPages.catalogue} pages`, `Up to ${maxPages.launchPack} pages`]],
-  ['Call, WhatsApp and enquiry form', [true, true, true, true]],
-  ['Photo gallery and quote form', [false, true, true, true]],
-  ['Google Business Profile set up', [false, true, true, true]],
-  ['WhatsApp Business', ['Starter sheet (ready-to-paste texts)', 'Setup (texts plus one guided call)', 'Setup (texts plus one guided call)', 'Setup']],
-  ['Up to 30 products and WhatsApp order buttons', [false, false, true, false]],
-  ['Logo, 3 options', [false, false, false, true]],
-  ['3 social media posters', [false, false, false, true]],
-  ['How you pay', ['In full to start', '50% and 50%', '50% and 50%', '50% and 50%']],
-];
+  [x.logo, 'A clean name logo, 3 options. Included in the Launch Pack.'],
+  [x.posters, '3 posters sized for Facebook and Instagram. Included in the Launch Pack.'],
+  [x.googleBusinessProfile, 'Create your profile or clean up the one you have, linked to your website. Already included in Business, Catalogue and the Launch Pack.'],
+  [x.mailbox, 'A full mailbox to send and receive from. You pay the email provider directly each month.'],
+  [x.extraPage, 'One more page on your website.'],
+] as const;
 
 const faqs = [
   ['Are the prices final?', 'Yes. The website prices are once-off and final, and no VAT is added. Each package includes a .co.za domain and first-year hosting, the words written for you and 2 rounds of changes.'],
@@ -76,10 +38,8 @@ const faqs = [
 const jsonLd = [
   ...packages.map((p) => ({
     '@context': 'https://schema.org', '@type': 'Offer',
-    name: `${p.pkg.name} website`,
-    description: p.description,
-    price: String(p.pkg.price), priceCurrency: 'ZAR',
-    url: `${pageUrl}#${p.key}`,
+    name: `${p.pkg.name} website`, description: p.description,
+    price: String(p.pkg.price), priceCurrency: 'ZAR', url: `${pageUrl}#${p.key}`,
     areaServed: { '@type': 'Country', name: 'South Africa' },
     seller: { '@type': 'ProfessionalService', name: business.name, url: business.siteUrl },
     itemOffered: { '@type': 'Service', name: `${p.pkg.name} website`, provider: { '@type': 'ProfessionalService', name: business.name, url: business.siteUrl } },
@@ -99,233 +59,163 @@ const jsonLd = [
   jsonLd={jsonLd}
   whatsappMessage="Hi Straat Studio, I'd like help choosing a website package."
 >
-  <section class="sec pr-top">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Prices</p>
-        <h1>Prices</h1>
-        <p class="lead" style="max-width:56ch">
-          Website and monthly plan prices, all in one place. Every price is once-off and final, with no VAT added. Each package includes a .co.za domain, first-year hosting, the words written for you and 2 rounds of changes. You see your homepage free before you pay.
-        </p>
-      </div>
+  <PageHero label="Prices" h1="Prices" lead="Website and monthly plan prices, all in one place. Every price is once-off and final, with no VAT added. You see your homepage free before you pay.">
+    <Fragment slot="actions">
+      <Button href={wa} event="whatsapp-click">Help me choose a package</Button>
+      <Button href="#builder" variant="secondary">Build your package</Button>
+    </Fragment>
+  </PageHero>
 
-      <div class="price-grid">
+  <section class="section section-flush bg-grey" aria-labelledby="pk-h">
+    <div class="wrap" style="padding-bottom:var(--section-y)">
+      <div class="head" data-reveal><SectionLabel>Website packages</SectionLabel><h2 id="pk-h">Four packages. Pick the one that fits.</h2></div>
+      <div class="grid g4">
         {packages.map((p) => (
-          <article class={`pcard${'hi' in p && p.hi ? ' hi' : ''}`} id={p.key}>
-            {'hi' in p && p.hi && <span class="tag">Recommended for trades</span>}
-            <h2>{p.pkg.name}</h2>
-            <p class="for">{p.for}</p>
-            <p class="amt">{R(p.pkg.price)}</p>
-            <p class="when">{deliveryLine(p.live)}.</p>
-            <ul>
-              {p.items.map((i) => (
-                <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg>{i}</li>
-              ))}
-            </ul>
-            <a class={`btn ${'hi' in p && p.hi ? 'btn-wa' : 'btn-ghost'}`} href={whatsappHref(`Hi Straat Studio, I'm interested in the ${p.pkg.name} website.`)} rel="noopener" data-event="whatsapp-click">Start with {p.pkg.name}</a>
-          </article>
+          <PriceCard id={p.key} name={p.pkg.name} price={R(p.pkg.price)} forWho={p.forWho} items={p.items} when={`${deliveryLine(p.live)}. ${p.pay}.`} featured={'featured' in p} badge={'featured' in p ? 'Recommended for trades' : undefined} href={whatsappHref(`Hi Straat Studio, I'm interested in the ${p.pkg.name} website.`)} cta={`Start with ${p.pkg.name}`} />
         ))}
-      </div>
-      <p class="small muted" style="margin-top:20px">Not sure which one? <a href={wa} rel="noopener" data-event="whatsapp-click">WhatsApp us</a> and we will help you pick, or read about <a href="/about/">how we work</a>. We also have pages for <a href="/websites-for-electricians/">electricians</a>, <a href="/websites-for-plumbers/">plumbers</a>, <a href="/websites-for-salons/">salons</a> and <a href="/websites-for-home-bakers/">home bakers</a>.</p>
-    </div>
-  </section>
-
-  <section class="sec sand" aria-labelledby="cmp-h">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Compare</p>
-        <h2 id="cmp-h">The four packages side by side.</h2>
-      </div>
-      <div class="tbl-wrap">
-        <table class="pr-tbl">
-          <caption class="sr">Comparison of the One-Page, Business, Catalogue and Launch Pack websites</caption>
-          <thead>
-            <tr><th scope="col"><span class="sr">What you get</span></th>{packages.map((p) => <th scope="col">{p.pkg.name}</th>)}</tr>
-          </thead>
-          <tbody>
-            {rows.map(([label, vals]) => (
-              <tr>
-                <th scope="row">{label}</th>
-                {vals.map((v, i) => (
-                  <td data-label={packages[i].pkg.name}>
-                    {v === true ? (<><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m5 12 4.5 4.5L19 7"/></svg><span class="sr">Included</span></>)
-                      : v === false ? (<><span aria-hidden="true">-</span><span class="sr">Not included</span></>)
-                      : v}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="add-ons" aria-labelledby="add-h">
+  <section class="section" aria-labelledby="pay-h">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Add-ons</p>
-        <h2 id="add-h">Extras, once-off and final.</h2>
-        <p class="lead" style="max-width:56ch">Add any of these to a website package. Each is a once-off price.</p>
+      <div class="head" data-reveal><SectionLabel>How you pay</SectionLabel><h2 id="pay-h">Pay once, or pay monthly.</h2></div>
+      <div class="grid g2">
+        <Card icon="coin" title="Pay once" level="h3">
+          <p>One-Page is paid in full to start. Business, Catalogue and Launch Pack are 50% to start and 50% before the website goes live. We are paid by EFT.</p>
+          <ul><li><Icon name="check" />Prices are once-off and final, no VAT added</li><li><Icon name="check" />Domain and first-year hosting included</li></ul>
+        </Card>
+        <Card icon="calendar" title="Pay monthly" level="h3" id="pay-monthly">
+          <p>The {pm.includes} package, spread over {pm.months} months.</p>
+          <ul>
+            <li><Icon name="check" /><span><strong>{R(pm.setup)}</strong> to start</span></li>
+            <li><Icon name="check" /><span><strong>{R(pm.monthlyFor12Months)} a month</strong> for {pm.months} months, {R(pm.setup + pm.monthlyFor12Months * pm.months)} in total</span></li>
+            <li><Icon name="check" /><span>The website is yours after the {pm.months}th payment, then Straat Leads continues at <strong>{R(pm.monthlyAfter)} a month</strong></span></li>
+          </ul>
+          <Button href={whatsappHref('Hi Straat Studio, tell me about the pay-monthly option.')} variant="secondary" event="whatsapp-click">Ask about pay-monthly</Button>
+        </Card>
       </div>
-      <ul class="addons">
-        {addOns.map(({ a, note }) => (
-          <li><div><strong>{a.name}</strong><p>{note}</p></div><span class="addon-price">{R(a.price)}</span></li>
-        ))}
+    </div>
+  </section>
+
+  <section class="section bg-grey" aria-labelledby="inc-h">
+    <div class="wrap two">
+      <div data-reveal>
+        <SectionLabel>In every package</SectionLabel>
+        <h2 id="inc-h">What is included in every package.</h2>
+        <p class="lead" style="margin-top:14px">No hidden extras on the website itself.</p>
+      </div>
+      <ul class="ticks" data-reveal>
+        <li><Icon name="check" />A .co.za domain, registered in your name, and first-year hosting</li>
+        <li><Icon name="check" />The words written for you, from a WhatsApp chat</li>
+        <li><Icon name="check" />Call and WhatsApp buttons</li>
+        <li><Icon name="check" />2 rounds of changes</li>
+        <li><Icon name="check" />A free homepage preview before you pay</li>
+        <li><Icon name="check" />{deliveryLine(deliveryDays.business).replace('We aim to have it live', 'We aim to be live')}, depending on the package</li>
       </ul>
-      <p class="small muted" style="margin-top:20px">
-        WhatsApp Business setup is included in Business, Catalogue and the Launch Pack, and One-Page comes with a starter sheet.
-        Extra changes during the build are {R(prices.extraChangeDuringBuild)} each. After launch, a single change is {R(prices.singleChangeAfterLaunch)} without Straat Care.
-      </p>
     </div>
   </section>
 
-  <section class="sec sand" id="monthly" aria-labelledby="mon-h">
+  <section class="section" aria-labelledby="add-h">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Monthly plans</p>
-        <h2 id="mon-h">Optional, and you can cancel any time.</h2>
-        <p class="lead" style="max-width:56ch">Your website stays yours either way.</p>
+      <div class="head" data-reveal><SectionLabel>Add-ons</SectionLabel><h2 id="add-h">Extras, once-off and final.</h2><p class="lead">Add any of these to a website package. Each is a once-off price.</p></div>
+      <table class="tbl" data-reveal>
+        <caption class="sr">Add-ons and their once-off prices</caption>
+        <thead><tr><th scope="col">Add-on</th><th scope="col">What it is</th><th scope="col">Price</th></tr></thead>
+        <tbody>{addOns.map(([a, note]) => <tr><th scope="row">{a.name}</th><td style="font-weight:400">{note}</td><td>{R(a.price)}</td></tr>)}</tbody>
+      </table>
+      <p class="small muted" style="margin-top:16px">Extra changes during the build are {R(prices.extraChangeDuringBuild)} each. After launch, a single change is {R(prices.singleChangeAfterLaunch)} without Straat Care.</p>
+    </div>
+  </section>
+
+  <section class="section bg-grey" id="monthly" aria-labelledby="mon-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>Monthly plans</SectionLabel><h2 id="mon-h">Optional, and you can cancel any time.</h2><p class="lead">Your website stays yours either way.</p></div>
+      <div class="grid g3">
+        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></Card>
+        <Card title={m.leads.name} icon="bell"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p></Card>
+        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></Card>
       </div>
-      <div class="plan-grid">
-        <div class="plan">
-          <div class="plan-top"><h3>{m.care.name}</h3><span>{R(m.care.price)} <small>a month</small></span></div>
-          <p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p>
+      <p class="small muted" style="margin-top:20px">Without a plan, hosting and your domain cost {R(prices.year2HostingAndDomain)} a year from year 2. With Straat Care at {R(m.care.price)} a month, they are included.</p>
+    </div>
+  </section>
+
+  <section class="section" id="builder" aria-labelledby="bld-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>Price builder</SectionLabel><h2 id="bld-h">Pick what you need. The total updates as you go.</h2></div>
+      <div class="builder">
+        <div class="builder-l">
+          <fieldset style="margin-top:0"><legend>1. Your website</legend><div class="opts">
+            {[w.onePage, w.business, w.catalogue, w.launchPack].map((p, i) => (
+              <label class="opt"><input type="radio" name="b-site" value={p.price} data-name={p.name} checked={i === 1} /><span>{p.name} {R(p.price)}</span></label>
+            ))}
+          </div></fieldset>
+          <fieldset><legend>2. Monthly plan (optional)</legend><div class="opts">
+            <label class="opt"><input type="radio" name="b-plan" value="0" data-name="No plan" /><span>No plan</span></label>
+            {[m.care, m.leads, m.growth].map((p, i) => (
+              <label class="opt"><input type="radio" name="b-plan" value={p.price} data-name={p.name} checked={i === 1} /><span>{p.name.replace('Straat ', '')} {R(p.price)}</span></label>
+            ))}
+          </div></fieldset>
+          <fieldset><legend>3. Extras</legend><div class="opts">
+            {[x.logo, x.posters, x.googleBusinessProfile, x.mailbox, x.extraPage].map((p) => (
+              <label class="opt"><input type="checkbox" name="b-extra" value={p.price} data-name={p.name} data-lock={p === x.googleBusinessProfile ? 'gbp' : (p === x.logo || p === x.posters ? 'launch' : '')} /><span>{p.name} {R(p.price)}</span></label>
+            ))}
+          </div></fieldset>
+          <p class="small muted" id="b-note" style="margin-top:18px">The Launch Pack already includes the logo, posters and WhatsApp Business setup. Business, Catalogue and Launch Pack already include the Google Business Profile.</p>
         </div>
-        <div class="plan hi">
-          <div class="plan-top"><h3>{m.leads.name}</h3><span>{R(m.leads.price)} <small>a month</small></span></div>
-          <p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p>
-          <span class="badge">Made for trades</span>
+        <div class="builder-r" aria-live="polite">
+          <p class="total-l">Once-off, final price</p>
+          <p class="total" id="b-once">{R(w.business.price)}</p>
+          <p class="total-l" style="margin-top:14px">Then</p>
+          <p class="total-m" id="b-month">{R(m.leads.price)} a month</p>
+          <Button id="b-send" href={wa} variant="whatsapp" icon="whatsapp">Send this to us on WhatsApp</Button>
+          <p class="small" style="margin-top:10px">Domain and first-year hosting included. No VAT added. Free homepage preview before you pay.</p>
         </div>
-        <div class="plan">
-          <div class="plan-top"><h3>{m.growth.name}</h3><span>{R(m.growth.price)} <small>a month</small></span></div>
-          <p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="pay-monthly" aria-labelledby="pay-h">
-    <div class="wrap pr-two">
-      <div>
-        <p class="eyebrow">Pay-monthly option</p>
-        <h2 id="pay-h">Can't pay at once?</h2>
-        <p class="lead">The {pm.includes} package, spread over {pm.months} months.</p>
-      </div>
-      <div class="box">
-        <ul>
-          <li><strong>{R(pm.setup)}</strong> to start.</li>
-          <li><strong>{R(pm.monthlyFor12Months)} a month</strong> for {pm.months} months. In total you pay {R(pm.setup + pm.monthlyFor12Months * pm.months)} over the first {pm.months} months.</li>
-          <li>The website is yours after the {pm.months}th payment.</li>
-          <li>After that, Straat Leads continues at <strong>{R(pm.monthlyAfter)} a month</strong>.</li>
-        </ul>
-        <a class="btn btn-ghost" href={whatsappHref('Hi Straat Studio, tell me about the pay-monthly option.')} rel="noopener" data-event="whatsapp-click">Ask about pay-monthly</a>
+  <section class="section bg-grey" aria-labelledby="terms-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>Plain terms</SectionLabel><h2 id="terms-h">The plain terms behind the prices.</h2><p class="lead">The short version. The full wording is on our <a class="more" href="/terms/">terms of service</a> page.</p></div>
+      <div class="grid g2">
+        <Card icon="key" title="You own what you pay for"><p>Your domain is registered in your name after you pay. The website and its files become yours when the final payment is made, with a handover guide. Your Google Business Profile stays in your name, and we are added as a manager you can remove at any time.</p></Card>
+        <Card icon="refresh" title="Monthly plans are optional"><p>Monthly plans are optional. You can cancel at any time, and your website stays yours either way.</p></Card>
+        <Card icon="coin" title="Deposit and refunds"><p>If you cancel before we start building, we refund your deposit in full. After we start, the deposit covers the work done so far. If we cannot deliver what we promised, we refund the part we did not deliver.</p></Card>
+        <Card icon="search" title="No promises about Google"><p>We build every website so that Google can read it. We do not promise a position in Google results, and nobody honest can.</p></Card>
       </div>
     </div>
   </section>
 
-  <section class="sec sand" id="year-2" aria-labelledby="y2-h">
-    <div class="wrap pr-two">
-      <div>
-        <p class="eyebrow">After the first year</p>
-        <h2 id="y2-h">What year 2 costs.</h2>
-        <p class="lead">Your domain and first-year hosting are already paid for. From year 2 you choose.</p>
-      </div>
-      <div class="box">
-        <ul>
-          <li><strong>With Straat Care, {R(m.care.price)} a month:</strong> hosting and your domain are included, plus backups, uptime checks and 1 small change a month. Over 12 months that is {R(m.care.price * 12)}.</li>
-          <li><strong>Without a plan, {R(prices.year2HostingAndDomain)} a year:</strong> hosting and your domain only. A single change is {R(prices.singleChangeAfterLaunch)}.</li>
-          <li>Your domain is registered in your name, so you can take your website elsewhere at any time.</li>
-        </ul>
-      </div>
+  <section class="section" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>Questions</SectionLabel><h2 id="faq-h">About our prices.</h2></div>
+      <Accordion items={faqs} />
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="faq-h">
-    <div class="wrap pr-faq">
-      <div class="head">
-        <p class="eyebrow">Questions</p>
-        <h2 id="faq-h">About our prices.</h2>
-      </div>
-      <div class="faq">
-        {faqs.map(([q, a]) => (
-          <details><summary>{q}</summary><p>{a}</p></details>
-        ))}
-      </div>
-    </div>
-  </section>
+  <DarkBand />
+<script is:inline define:vars={{ waBase: `https://wa.me/${business.phoneDigits}?text=` }}>
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    const rand = (n) => 'R' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  <section class="sec night on-night" aria-labelledby="cta-h">
-    <div class="wrap" style="max-width:760px">
-      <h2 id="cta-h">See your homepage free, before you pay.</h2>
-      <p class="lead">Send us your business name, what you do and where. We design and write a preview for you. Not ready yet? Read <a href="/about/" style="color:#fff">how we work</a>, or go to our <a href="/contact/" style="color:#fff">contact page</a>.</p>
-      <div style="margin-top:28px"><a class="btn btn-wa" href={whatsappHref("Hi Straat Studio, I'd like a free homepage preview for my business.")} rel="noopener" data-event="whatsapp-click">Get my free preview on WhatsApp</a></div>
-    </div>
-  </section>
+    // Package builder
+    const calc = () => {
+      const site = $('input[name="b-site"]:checked');
+      const plan = $('input[name="b-plan"]:checked');
+      const isLaunch = site.dataset.name === 'Launch Pack';
+      const extras = $$('input[name="b-extra"]');
+      extras.forEach((e) => { const lock = (isLaunch && e.dataset.lock === 'launch') || (site.dataset.name !== 'One-Page' && e.dataset.lock === 'gbp'); e.disabled = lock; if (lock) e.checked = false; e.closest('.opt').style.opacity = lock ? .45 : 1; });
+      const chosen = extras.filter((e) => e.checked);
+      const once = Number(site.value) + chosen.reduce((s, e) => s + Number(e.value), 0);
+      const monthly = Number(plan.value);
+      $('#b-once').textContent = rand(once);
+      $('#b-month').textContent = monthly ? `${rand(monthly)} a month` : 'Nothing monthly';
+      const msg = `Hi Straat Studio, I'd like: ${site.dataset.name}${chosen.length ? ' + ' + chosen.map((e) => e.dataset.name).join(', ') : ''}${monthly ? ' + ' + plan.dataset.name : ''}. Total ${rand(once)} once-off${monthly ? ', then ' + rand(monthly) + ' a month' : ''}.`;
+      $('#b-send').href = waBase + encodeURIComponent(msg);
+    };
+    $$('#builder input').forEach((i) => i.addEventListener('change', calc));
+    calc();
+  </script>
 </BaseLayout>
-
-<style>
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .pr-top { padding-bottom: 72px; }
-  .price-grid { display: grid; gap: 16px; }
-  @media (min-width: 720px) { .price-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1100px) { .price-grid { grid-template-columns: repeat(4, 1fr); } }
-  .pcard { background: #fff; border-radius: var(--r); padding: 28px 24px; display: flex; flex-direction: column; border: 1px solid var(--line); scroll-margin-top: 96px; }
-  @media (max-width: 719px) { .pcard.hi { order: -1; margin-top: 12px; } }
-  .pcard.hi { background: var(--night); color: #fff; border-color: var(--night); position: relative; box-shadow: 0 30px 60px -30px rgba(15, 27, 45, .35); }
-  .pcard .tag { position: absolute; top: -12px; left: 24px; background: var(--sign); color: var(--ink); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
-  .pcard h2 { font-size: 24px; }
-  .pcard .for { margin-top: 8px; font-size: 15px; color: var(--muted); min-height: 5.5em; }
-  .pcard.hi .for, .pcard.hi .when { color: var(--on-night); }
-  .pcard .amt { font: 600 44px/1 var(--serif); margin-top: 22px; letter-spacing: -0.02em; }
-  .pcard .when { font-size: 14px; color: var(--muted); margin-top: 6px; }
-  .pcard ul { list-style: none; padding: 0; margin: 22px 0 26px; display: grid; gap: 9px; font-size: 15.5px; flex: 1; align-content: start; }
-  .pcard li { display: flex; gap: 9px; }
-  .pcard li .tick { margin-top: 3px; width: 18px; height: 18px; }
-  .pcard.hi .tick { color: var(--sign); }
-  .pcard .btn { width: 100%; }
-  .pcard.hi .btn-ghost { border-color: #fff; color: #fff; }
-
-  .tbl-wrap { overflow-x: auto; }
-  .pr-tbl { width: 100%; border-collapse: collapse; font-size: 16px; background: #fff; border-radius: var(--r); }
-  .pr-tbl th, .pr-tbl td { text-align: left; padding: 14px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  .pr-tbl thead th { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); border-bottom: 2px solid var(--ink); }
-  .pr-tbl tbody th { font-weight: 600; width: 28%; }
-  .pr-tbl .tick { width: 20px; height: 20px; }
-  @media (max-width: 800px) {
-    .pr-tbl, .pr-tbl tbody, .pr-tbl tr, .pr-tbl th, .pr-tbl td { display: block; width: 100% !important; }
-    .pr-tbl thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    .pr-tbl tr { padding: 12px 14px; border-bottom: 1px solid var(--line); }
-    .pr-tbl th, .pr-tbl td { border: 0; padding: 3px 0; }
-    .pr-tbl td::before { content: attr(data-label) ': '; color: var(--muted); font-size: 14px; }
-    .pr-tbl td { display: flex; gap: 6px; align-items: baseline; }
-  }
-
-  .addons { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; max-width: 860px; }
-  .addons li { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 18px 22px; display: flex; justify-content: space-between; gap: 20px; align-items: baseline; }
-  .addons p { color: var(--muted); font-size: 15.5px; margin-top: 4px; }
-  .addon-price { font: 600 24px/1 var(--serif); white-space: nowrap; }
-
-  .plan-grid { display: grid; gap: 16px; }
-  @media (min-width: 900px) { .plan-grid { grid-template-columns: repeat(3, 1fr); } }
-  .plan { background: #fff; border-radius: var(--r); padding: 26px 24px; border: 1px solid var(--line); }
-  .plan.hi { border: 2px solid var(--blue); }
-  .plan-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
-  .plan-top h3 { font-size: 22px; }
-  .plan-top span { font: 600 26px/1 var(--serif); white-space: nowrap; } .plan-top span small { font: 400 14px var(--sans); color: var(--muted); }
-  .plan p { margin-top: 12px; font-size: 15.5px; color: var(--muted); }
-  .plan .badge { display: inline-block; margin-top: 14px; font-size: 12px; font-weight: 700; color: var(--blue-dark); background: var(--blue-soft); border-radius: 999px; padding: 4px 10px; }
-
-  .pr-two { display: grid; gap: 32px; align-items: start; }
-  @media (min-width: 900px) { .pr-two { grid-template-columns: 0.8fr 1.2fr; gap: 72px; } }
-  .box { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 26px 24px; }
-  .box ul { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 12px; }
-  .box ul:last-child { margin-bottom: 0; }
-
-  .pr-faq { max-width: 860px; }
-  .faq { display: grid; gap: 10px; }
-  .faq details { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 4px 22px; }
-  .faq summary { cursor: pointer; font-weight: 600; padding: 16px 0; min-height: 48px; }
-  .faq details p { color: var(--muted); padding-bottom: 18px; }
-  .night a:focus-visible { outline-color: var(--sign); }
-</style>

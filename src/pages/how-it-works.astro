@@ -1,13 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { prices, formatRand as R, whatsappHref } from '../config/business';
-
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import PriceCard from '../components/PriceCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import DarkBand from '../components/DarkBand.astro';
+import Accordion from '../components/Accordion.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Icon from '../components/Icon.astro';
+import LaptopMock from '../components/LaptopMock.astro';
+import PhoneMock from '../components/PhoneMock.astro';
+import ExampleTile from '../components/ExampleTile.astro';
+import { prices, formatRand as R, whatsappHref, deliveryLine } from '../config/business';
 const wa = whatsappHref("Hi Straat Studio, I'd like a free homepage preview for my business.");
-const tick = 'M5 12l4.5 4.5L19 7';
-const needs = [
-  ['Every package', ['Business name, logo if you have one', 'Services and prices', 'Areas you serve and your hours', 'Phone, WhatsApp and email', '6 to 15 photos of your work']],
-  ['Business and Launch Pack', ['A few lines on each service', 'Your Google Business Profile, or we create one', 'Before and after photos, if you have them', 'Logo and poster ideas (Launch Pack)']],
-  ['Catalogue', ['Your first product list, which we load into your product Google Sheet', 'One photo per product', 'Delivery or collection areas and fees', 'Your PayFast or Yoco account, if you want payments']],
+const faqs: [string, string][] = [
+  ['Can I ask for changes to the free preview?', `The preview shows our design for your business. Changes start once you approve it and pay: One-Page is paid in full, Business and Catalogue pay half. Every package then includes 2 rounds of changes, each sent as one list. Extra changes during the build are ${R(prices.extraChangeDuringBuild)} each.`],
+  ['How long does it take?', 'We aim to have it live within 3 to 7 working days after we have all your content, depending on the package. The clock starts when we have received everything we asked for.'],
+  ['Do we need to meet?', 'No. Everything happens on WhatsApp, email and one short online form, wherever you are in South Africa.'],
+  ['Who looks after backups and updates?', `Backups, uptime checks and small changes come with Straat Care from ${R(prices.monthly.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
 ];
 ---
 
@@ -17,54 +28,40 @@ const needs = [
   path="/how-it-works/"
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'How it works', path: '/how-it-works/' }]}
 >
-  <section class="sec">
+  <PageHero label="How it works" h1="How it works" lead="See it first, pay after. Five stages, done on WhatsApp and one short online form. No meetings, wherever you are in South Africa.">
+    <Fragment slot="actions">
+      <Button href={wa} event="whatsapp-click">Get my free homepage</Button>
+      <Button href="/prices/" variant="secondary">See prices from {R(prices.websites.onePage.price)}</Button>
+    </Fragment>
+  </PageHero>
+
+  <section class="section bg-grey" aria-labelledby="st-h">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">How it works</p>
-        <h1>How it works</h1>
-        <p class="lead" style="max-width:56ch">See it first, pay after. Four steps, done on WhatsApp and one short online form. No meetings, wherever you are in South Africa.</p>
-      </div>
-      <h2 class="sr">The four steps</h2>
-      <ol class="ip-steps">
-        <li><h3>Tell us about your business</h3><p>Your business name, what you do and where. Two minutes on WhatsApp.</p></li>
-        <li><h3>See your homepage free</h3><p>A view-only preview link, designed and written for you. No payment yet.</p></li>
-        <li><h3>Approve and pay to start</h3><p>One-Page is paid in full. Business, Catalogue and Launch Pack pay half to start and half before going live. Then you fill in one checklist form.</p></li>
-        <li><h3>2 rounds of changes, then live</h3><p>On your own .co.za, with a sheet showing what you own. We aim to have it live within 3 to 7 working days after we have all your content.</p></li>
+      <div class="head" data-reveal><SectionLabel>The five stages</SectionLabel><h2 id="st-h">From first message to after launch.</h2></div>
+      <ol class="steps" style="max-width:820px">
+        <ProcessStep n={1} icon="chat" title="Tell us about your business" you="a reply on WhatsApp, not a form to fill in">Your business name, what you do and where. Two minutes on WhatsApp.</ProcessStep>
+        <ProcessStep n={2} icon="eye" title="See your homepage free" you="a view-only preview link, designed and written for you">No payment yet. You decide whether to carry on.</ProcessStep>
+        <ProcessStep n={3} icon="coin" title="Approve and pay to start" you="one checklist form for your package, and a clear invoice">One-Page is paid in full. Business, Catalogue and Launch Pack pay half to start and half before going live.</ProcessStep>
+        <ProcessStep n={4} icon="refresh" title="Two rounds of changes, then live" you="your site on your own .co.za, with a sheet showing what you own">{deliveryLine(5)}. Send each round of changes as one list.</ProcessStep>
+        <ProcessStep n={5} icon="shield" title="After launch" you="a website that is yours, with a plan if you want one">Your domain is registered in your name, and the website and its files become yours when the final payment is made. Straat Care includes one small change a month.</ProcessStep>
       </ol>
-      <div class="ip-cta">
-        <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Get my free homepage</a>
-        <a class="btn btn-ghost" href="/prices/">See prices from {R(prices.websites.onePage.price)}</a>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="after-h">
+    <div class="wrap two">
+      <div data-reveal><SectionLabel>After your website is live</SectionLabel><h2 id="after-h">Who changes what.</h2></div>
+      <div class="prose" data-reveal>
+        <p>Catalogue clients edit their own product names, descriptions and prices in the product sheet, and the site refreshes within minutes. We change everything else on the site (pages, text, photos and our package prices): send a WhatsApp and it is done within 48 hours.</p>
+        <p>Straat Care includes one small change a month, and a single change without a plan is {R(prices.singleChangeAfterLaunch)}.</p>
+        <ul class="links"><li><a href="/websites/">What we will ask you for</a></li><li><a href="/terms/">Terms of service</a></li></ul>
       </div>
     </div>
   </section>
 
-  <section class="sec sand" aria-labelledby="need-h">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Before we start</p>
-        <h2 id="need-h">What we will ask you for.</h2>
-      </div>
-      <div class="ip-grid three">
-        {needs.map(([h, list]) => (
-          <article class="ip-card">
-            <h3>{h}</h3>
-            <ul>{list.map((i) => <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>{i}</li>)}</ul>
-          </article>
-        ))}
-      </div>
-    </div>
+  <section class="section bg-grey" aria-labelledby="faq-h">
+    <div class="wrap"><div class="head" data-reveal><SectionLabel>Questions</SectionLabel><h2 id="faq-h">Questions about how it works.</h2></div><Accordion items={faqs} /></div>
   </section>
 
-  <section class="sec" aria-labelledby="after-h">
-    <div class="wrap" style="max-width:760px">
-      <h2 id="after-h">After your website is live.</h2>
-      <p style="margin-top:16px">Your domain is registered in your name, and the website and its files become yours when the final payment is made. Catalogue clients edit their own product names, descriptions and prices in the product sheet. We change everything else on the site (pages, text, photos and our package prices): send a WhatsApp and it is done within 48 hours. Straat Care includes one small change a month, and a single change without a plan is {R(prices.singleChangeAfterLaunch)}.</p>
-      <ul class="ip-links">
-        <li><a href="/websites/">Our websites</a></li>
-        <li><a href="/enquiry-system/">Enquiry system</a></li>
-        <li><a href="/terms/">Terms of service</a></li>
-        <li><a href="/contact/">Contact us</a></li>
-      </ul>
-    </div>
-  </section>
+  <DarkBand />
 </BaseLayout>

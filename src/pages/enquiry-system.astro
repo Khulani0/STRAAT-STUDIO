@@ -1,82 +1,102 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import PriceCard from '../components/PriceCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import DarkBand from '../components/DarkBand.astro';
+import Accordion from '../components/Accordion.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Icon from '../components/Icon.astro';
+import LaptopMock from '../components/LaptopMock.astro';
+import PhoneMock from '../components/PhoneMock.astro';
+import ExampleTile from '../components/ExampleTile.astro';
 import { prices, formatRand as R, whatsappHref } from '../config/business';
 
 const m = prices.monthly;
 const wa = whatsappHref("Hi Straat Studio, I'd like to know more about Straat Leads.");
-const tick = 'M5 12l4.5 4.5L19 7';
-
-const jsonLd = [{
-  '@context': 'https://schema.org', '@type': 'Service', name: 'Straat Leads enquiry alerts',
-  provider: { '@type': 'ProfessionalService', name: 'Straat Studio', url: 'https://straatstudio.co.za' },
-  areaServed: { '@type': 'Country', name: 'South Africa' },
-  description: 'A quote form on your website, an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.',
-  offers: { '@type': 'Offer', price: String(m.leads.price), priceCurrency: 'ZAR' },
-}];
+const faqs: [string, string][] = [
+  ['Do customers have to give an email address?', 'No. The email address on the quote form is optional. The customer reply by email only goes to customers who give one.'],
+  ['What happens to my customers\' details?', 'A one-page POPIA data agreement is signed before Straat Leads starts. Read our privacy notice to see how we handle personal information.'],
+  ['Can I cancel?', 'Yes. Monthly plans are optional and you can cancel at any time. Your website stays yours either way.'],
+  ['Do you promise more enquiries?', 'No. We do not promise a number of enquiries or any other result. Enquiry alerts tell you when a customer sends a request, so you can answer it.'],
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'Service', name: 'Straat Leads enquiry alerts',
+    provider: { '@type': 'ProfessionalService', name: 'Straat Studio', url: 'https://straatstudio.co.za' },
+    areaServed: { '@type': 'Country', name: 'South Africa' },
+    description: 'A quote form on your website, an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.',
+    offers: { '@type': 'Offer', price: String(m.leads.price), priceCurrency: 'ZAR' } },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+];
 ---
 
 <BaseLayout
-  title="Enquiry system for quote requests | Straat Studio"
+  title="Enquiry alerts for quote requests | Straat Studio"
   description="Straat Leads: a quote form, an email alert for each enquiry, an automatic reply to the customer and a monthly report. R249 a month."
   path="/enquiry-system/"
-  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Enquiry system', path: '/enquiry-system/' }]}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Enquiry alerts', path: '/enquiry-system/' }]}
   jsonLd={jsonLd}
   whatsappMessage="Hi Straat Studio, I'd like to know more about Straat Leads."
 >
-  <section class="sec">
+  <PageHero label="Enquiry alerts" h1="Enquiry alerts for quote requests" lead={`Know when a customer asks for a quote. Messages can get buried and quotes can be forgotten. A quote form and an email alert make each request easier to notice. The service is called Straat Leads and costs ${R(m.leads.price)} a month.`}>
+    <Fragment slot="actions">
+      <Button href={wa} event="whatsapp-click">Ask about Straat Leads</Button>
+      <Button href="/prices/" variant="secondary">See every price</Button>
+    </Fragment>
+    <div slot="visual" style="max-width:300px;margin:0 auto;width:100%"><PhoneMock float /></div>
+  </PageHero>
+
+  <section class="section bg-grey" aria-labelledby="how-h">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Enquiry system</p>
-        <h1>Enquiry alerts for quote requests</h1>
-        <p class="lead" style="max-width:56ch">Know when a customer asks for a quote. Messages can get buried and quotes can be forgotten. A quote form and an email alert make each request easier to notice. The service is called Straat Leads and costs {R(m.leads.price)} a month.</p>
-        <div class="ip-cta">
-          <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Ask about Straat Leads</a>
-          <a class="btn btn-ghost" href="/prices/">See every price</a>
-        </div>
-      </div>
-      <h2 class="sr">What you get</h2>
-      <div class="ip-grid three">
-        <article class="ip-card"><h3 style="font-size:24px">A quote form</h3><p class="for">Customers give the job, suburb, phone number, photos and an optional email address.</p></article>
-        <article class="ip-card"><h3 style="font-size:24px">An email alert to you</h3><p class="for">You get an email alert for each enquiry, with the details the customer gave.</p></article>
-        <article class="ip-card"><h3 style="font-size:24px">An automatic reply</h3><p class="for">The customer gets an automatic reply, and a monthly report is sent to you every month.</p></article>
+      <div class="head" data-reveal><SectionLabel>How it works</SectionLabel><h2 id="how-h">Three steps, from form to reply.</h2><p class="lead">Example with made-up data. Ndlovu Electrical is a concept project, not commissioned client work.</p></div>
+      <ol class="steps" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
+        <ProcessStep n={1} icon="quote" title="The customer fills in your quote form" you="the job, suburb, phone number, photos and an optional email address">Your form sits on your website, so the request arrives in one tidy message.</ProcessStep>
+        <ProcessStep n={2} icon="bell" title="You get an email alert" you="an email for each enquiry, with the details the customer gave">For example: New enquiry: DB board upgrade, Rylands, photos added.</ProcessStep>
+        <ProcessStep n={3} icon="mail" title="The customer gets an automatic reply" you="a monthly report of the enquiries that came in">For example: Thank you, Ndlovu Electrical has your request.</ProcessStep>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="get-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>What you get</SectionLabel><h2 id="get-h">What Straat Leads includes.</h2></div>
+      <div class="grid g4">
+        <Card icon="quote" title="A quote form"><p>Job, suburb, phone number, photos and an optional email address.</p></Card>
+        <Card icon="bell" title="An email alert"><p>An email alert to you for each enquiry.</p></Card>
+        <Card icon="mail" title="An automatic reply"><p>The customer gets an automatic reply.</p></Card>
+        <Card icon="chart" title="A monthly report"><p>A report of your enquiries, sent to you every month.</p></Card>
       </div>
     </div>
   </section>
 
-  <section class="sec sand" aria-labelledby="ex-h">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">What it looks like</p>
-        <h2 id="ex-h">An example, step by step.</h2>
-      </div>
-      <div class="ip-grid three">
-        <div class="ip-example"><p class="label-concept">Example with made-up data</p>
-          <dl><dt>1. The customer fills in your quote form</dt><dd>Job: DB board upgrade. Suburb: Rylands.</dd></dl></div>
-        <div class="ip-example"><p class="label-concept">Example: email alert</p>
-          <dl><dt>2. You get an email alert</dt><dd>New enquiry: DB board upgrade, Rylands, photos added.</dd></dl></div>
-        <div class="ip-example"><p class="label-concept">Example: automatic reply</p>
-          <dl><dt>3. The customer gets an automatic reply</dt><dd>Thank you, Ndlovu Electrical has your request.</dd></dl></div>
-      </div>
-      <p class="label-concept" style="margin-top:18px">Ndlovu Electrical is a concept project, not commissioned client work.</p>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="plans-h">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Monthly plans</p>
-        <h2 id="plans-h">Pick the plan that fits.</h2>
-      </div>
-      <div class="ip-grid three">
-        <article class="ip-card"><h3>{m.care.name}</h3><p class="amt">{R(m.care.price)} <small style="font:400 15px var(--sans);color:var(--muted)">a month</small></p><p class="for">Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></article>
-        <article class="ip-card"><h3>{m.leads.name}</h3><p class="amt">{R(m.leads.price)} <small style="font:400 15px var(--sans);color:var(--muted)">a month</small></p><p class="for">Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report. A one-page POPIA data agreement is signed before it starts.</p></article>
-        <article class="ip-card"><h3>{m.growth.name}</h3><p class="amt">{R(m.growth.price)} <small style="font:400 15px var(--sans);color:var(--muted)">a month</small></p><p class="for">Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></article>
-      </div>
-      <ul class="ip-links">
-        <li><a href="/websites/">Our websites</a></li>
-        <li><a href="/how-it-works/">How it works</a></li>
-        <li><a href="/privacy/">Privacy notice</a></li>
+  <section class="section bg-grey" aria-labelledby="not-h">
+    <div class="wrap two">
+      <div data-reveal><SectionLabel>Plain limits</SectionLabel><h2 id="not-h">What we do not do.</h2></div>
+      <ul class="ticks" data-reveal>
+        <li><Icon name="x" />We do not promise a number of enquiries or any result.</li>
+        <li><Icon name="x" />We do not send WhatsApp alerts or WhatsApp auto-replies. Alerts and replies go by email.</li>
+        <li><Icon name="x" />We share personal information only with the service providers listed in our privacy notice, and a POPIA data agreement is signed before it starts.</li>
       </ul>
     </div>
   </section>
+
+  <section class="section" aria-labelledby="price-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>Price</SectionLabel><h2 id="price-h">Pick the monthly plan that fits.</h2><p class="lead">Optional, and you can cancel any time.</p></div>
+      <div class="grid g3">
+        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></Card>
+        <Card title={m.leads.name} icon="bell" class="price-card featured"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p></Card>
+        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></Card>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-grey" aria-labelledby="faq-h">
+    <div class="wrap"><div class="head" data-reveal><SectionLabel>Questions</SectionLabel><h2 id="faq-h">Questions about enquiry alerts.</h2></div><Accordion items={faqs} />
+      <ul class="links"><li><a href="/websites/">Our websites</a></li><li><a href="/how-it-works/">How it works</a></li><li><a href="/privacy/">Privacy notice</a></li></ul></div>
+  </section>
+
+  <DarkBand heading="Ask how enquiry alerts work for your business." text="Message us your business name and the kind of work you do. We will explain what Straat Leads does and what it costs." waMessage="Hi Straat Studio, I'd like to know more about Straat Leads." waLabel="Ask about Straat Leads on WhatsApp" />
 </BaseLayout>

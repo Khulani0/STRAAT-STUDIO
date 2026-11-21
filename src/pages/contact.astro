@@ -1,30 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import PriceCard from '../components/PriceCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import DarkBand from '../components/DarkBand.astro';
+import Accordion from '../components/Accordion.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Icon from '../components/Icon.astro';
+import LaptopMock from '../components/LaptopMock.astro';
+import PhoneMock from '../components/PhoneMock.astro';
+import ExampleTile from '../components/ExampleTile.astro';
 import { business, whatsappHref, defaultWhatsappMessage, phoneHref, emailHref } from '../config/business';
-
 const wa = whatsappHref(defaultWhatsappMessage);
 const h = business.hours;
-const hoursLine = `Monday to Saturday, ${h.opens} to ${h.closes}`;
-
-const jsonLd = [
-  {
-    '@context': 'https://schema.org', '@type': 'ContactPage',
-    name: 'Contact Straat Studio', url: `${business.siteUrl}/contact/`,
-    mainEntity: {
-      '@type': 'ProfessionalService', name: business.name, legalName: business.legalName, url: business.siteUrl,
-      telephone: `+${business.phoneDigits}`, email: business.email,
-      areaServed: { '@type': 'Country', name: 'South Africa' },
-      openingHoursSpecification: [{
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: h.openDays, opens: h.opens, closes: h.closes,
-      }],
-      contactPoint: [{
-        '@type': 'ContactPoint', contactType: 'customer service', telephone: `+${business.phoneDigits}`, email: business.email,
-        areaServed: 'ZA', availableLanguage: 'English',
-      }],
-    },
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Contact Straat Studio', url: `${business.siteUrl}/contact/`,
+  mainEntity: {
+    '@type': 'ProfessionalService', name: business.name, legalName: business.legalName, url: business.siteUrl,
+    telephone: `+${business.phoneDigits}`, email: business.email, areaServed: { '@type': 'Country', name: 'South Africa' },
+    openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: h.openDays, opens: h.opens, closes: h.closes }],
+    contactPoint: [{ '@type': 'ContactPoint', contactType: 'customer service', telephone: `+${business.phoneDigits}`, email: business.email, areaServed: 'ZA', availableLanguage: 'English' }],
   },
-];
+}];
 ---
 
 <BaseLayout
@@ -34,82 +33,49 @@ const jsonLd = [
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact/' }]}
   jsonLd={jsonLd}
 >
-  <section class="sec">
+  <PageHero label="Contact" h1="Contact Straat Studio" lead="Talk to us on WhatsApp. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, by phone and by email, so you never need to visit us.">
+    <Fragment slot="actions">
+      <Button href={wa} variant="whatsapp" event="whatsapp-click" icon="whatsapp">Get my free preview on WhatsApp</Button>
+      <Button href={phoneHref} variant="secondary" event="phone-click" icon="phone">Call {business.phoneDisplay}</Button>
+    </Fragment>
+  </PageHero>
+
+  <section class="section bg-grey" aria-labelledby="ways-h">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Contact</p>
-        <h1>Contact Straat Studio</h1>
-        <p class="lead" style="max-width:56ch">
-          Talk to us on WhatsApp. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, by phone and by email, so you never need to visit us.
-        </p>
-        <div style="margin-top:28px">
-          <a class="btn btn-wa" href={wa} rel="noopener" data-event="whatsapp-click">
-            <svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
-            Get my free preview on WhatsApp
-          </a>
-        </div>
+      <div class="head" data-reveal><SectionLabel>Ways to reach us</SectionLabel><h2 id="ways-h">WhatsApp, phone or email.</h2></div>
+      <div class="grid g3">
+        <Card icon="whatsapp" title="WhatsApp"><p>Tap the link and your message opens ready to send.</p><p><a class="more" href={wa} rel="noopener" data-event="whatsapp-click">Message {business.phoneDisplay}</a></p></Card>
+        <Card icon="phone" title="Phone"><p>Call us in business hours.</p><p><a class="more" href={phoneHref} data-event="phone-click">{business.phoneDisplay}</a></p></Card>
+        <Card icon="mail" title="Email"><p>For longer questions, or if you prefer email.</p><p><a class="more" href={emailHref} data-event="email-click">{business.email}</a></p></Card>
       </div>
-
-      <div class="ct-grid">
-        <div class="ct-card">
-          <h2>WhatsApp</h2>
-          <p>Tap the link and your message opens ready to send.</p>
-          <p><a href={wa} rel="noopener" data-event="whatsapp-click">Message {business.phoneDisplay}</a></p>
-        </div>
-        <div class="ct-card">
-          <h2>Phone</h2>
-          <p>Call us in business hours.</p>
-          <p><a href={phoneHref} data-event="phone-click">{business.phoneDisplay}</a></p>
-        </div>
-        <div class="ct-card">
-          <h2>Email</h2>
-          <p>For longer questions, or if you prefer email.</p>
-          <p><a href={emailHref} data-event="email-click">{business.email}</a></p>
-        </div>
-      </div>
-
-      <div class="ct-two">
-        <div class="ct-card">
-          <h2>Business hours</h2>
-          <table class="hours">
-            <caption class="sr">Business hours, South African time</caption>
-            <tbody>
-              <tr><th scope="row">Monday to Saturday</th><td>{h.opens} to {h.closes}</td></tr>
-              <tr><th scope="row">{h.closedDays.join(', ')}</th><td>Closed</td></tr>
-            </tbody>
-          </table>
-          
-        </div>
-        <div class="ct-card">
-          <h2>What to send in your first message</h2>
-          <ul>
-            <li>Your business name</li>
-            <li>What you do</li>
-            <li>Where you work</li>
-          </ul>
-          <p class="small muted">That is enough to start your free homepage preview. See our <a href="/prices/">prices</a> or read <a href="/about/">how we work</a>.</p>
-        </div>
-      </div>
-
-      <p class="small muted" style="margin-top:32px">
-        {business.name} is a trading name of {business.legalName}, Reg. {business.regNumber}. How we handle your details is explained in our <a href="/privacy/">privacy notice</a>.
-      </p>
     </div>
   </section>
-</BaseLayout>
 
-<style>
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .ct-grid { display: grid; gap: 16px; margin-top: 8px; }
-  @media (min-width: 800px) { .ct-grid { grid-template-columns: repeat(3, 1fr); } }
-  .ct-two { display: grid; gap: 16px; margin-top: 16px; }
-  @media (min-width: 800px) { .ct-two { grid-template-columns: repeat(2, 1fr); } }
-  .ct-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 26px 24px; box-shadow: 0 30px 60px -40px rgba(15, 27, 45, .35); }
-  .ct-card h2 { font-size: clamp(22px, 2vw, 26px); }
-  .ct-card p { margin-top: 12px; color: var(--muted); }
-  .ct-card p a { color: var(--blue-dark); font-weight: 600; text-underline-offset: 3px; overflow-wrap: anywhere; }
-  .ct-card ul { margin: 14px 0 0; padding-left: 1.2em; display: grid; gap: 4px; }
-  .hours { margin-top: 14px; width: 100%; border-collapse: collapse; }
-  .hours th, .hours td { text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
-  .hours td { font-weight: 600; }
-</style>
+  <section class="section" aria-labelledby="hrs-h">
+    <div class="wrap two">
+      <div data-reveal>
+        <SectionLabel>Business hours</SectionLabel>
+        <h2 id="hrs-h">When we answer.</h2>
+        <table class="hours" style="margin-top:24px">
+          <caption class="sr">Business hours, South African time</caption>
+          <tbody>
+            <tr><th scope="row">Monday to Saturday</th><td>{h.opens} to {h.closes}</td></tr>
+            <tr><th scope="row">{h.closedDays.join(', ')}</th><td>Closed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div data-reveal>
+        <SectionLabel>Your first message</SectionLabel>
+        <h2 style="font-size:var(--fs-h2)">What to send in your first message.</h2>
+        <ul class="ticks" style="margin-top:24px"><li><Icon name="check" />Your business name</li><li><Icon name="check" />What you do</li><li><Icon name="check" />Where you work</li></ul>
+        <p class="small muted" style="margin-top:16px">That is enough to start your free homepage preview. See our <a class="more" href="/prices/">prices</a> or read <a class="more" href="/about/">how we work</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight bg-grey">
+    <div class="wrap"><p class="small muted">{business.name} is a trading name of {business.legalName}, Reg. {business.regNumber}. How we handle your details is explained in our <a class="more" href="/privacy/">privacy notice</a>.</p></div>
+  </section>
+
+  <DarkBand />
+</BaseLayout>
