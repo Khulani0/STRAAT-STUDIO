@@ -47,6 +47,6 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 
 ## Needs your decision
 
-1. **Plain terms: "cancel with 30 days notice".** The existing /terms/ page says monthly plans can be cancelled at any time, with no notice period. I used the terms wording and did not invent a notice period.
+1. **Plain terms: "cancel with 30 days notice".** The existing /terms/ page says monthly plans can be cancelled at any time, with no notice period. The wording was later changed to: "You can cancel at any time. Cancellation takes effect at the end of the month you have already paid for." No notice period is mentioned.
 2. **Photography.** Say if you want up to 4 licensed photos, and I will source and log them.
 3. **Fazila and Thandeka tiles.** They show drawn mock-ups in the site palette instead of the concept-site screenshots, which are cream.

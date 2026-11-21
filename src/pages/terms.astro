@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { business, prices, formatRand as R, emailHref, whatsappHref } from '../config/business';
 
-const lastUpdated = "18 November 2026";
+const lastUpdated = "21 November 2026";
 const w = prices.websites;
 const m = prices.monthly;
 const pm = prices.payMonthly;
@@ -81,7 +81,7 @@ const wa = whatsappHref("Hi Straat Studio, I have a question about your terms of
       </p>
 
       <h2>Monthly plans</h2>
-      <p>Monthly plans are optional. You can cancel at any time, and your website stays yours either way.</p>
+      <p>Monthly plans are optional. You can cancel at any time. Cancellation takes effect at the end of the month you have already paid for. Your website stays yours either way.</p>
       <ul>
         <li><strong>Straat Care, {R(m.care.price)} a month:</strong> backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</li>
         <li><strong>Straat Leads, {R(m.leads.price)} a month:</strong> everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer, and a monthly report. A one-page POPIA data agreement is signed before it starts.</li>

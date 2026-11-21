@@ -198,7 +198,7 @@
    "PASS"
   ],
   [
-   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9016 ms (must be 6000 ms or more)",
+   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9012 ms (must be 6000 ms or more)",
    "PASS"
   ],
   [
