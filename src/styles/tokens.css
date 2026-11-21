@@ -1,0 +1,39 @@
+/* Design tokens: the only place colours, type and spacing are defined. */
+:root {
+  /* Colour */
+  --white: #ffffff;
+  --grey: #f3f5f8;          /* cool light grey bands */
+  --navy: #0f1b2d;          /* dark bands, footer, phone frames */
+  --navy-2: #172640;
+  --blue: #2f54eb;          /* the one brand blue: buttons, links, icons */
+  --blue-dark: #2443c4;     /* hover */
+  --tint: #e8edff;          /* light tint of the brand blue: icon chips, pills */
+  --tint-on-navy: #8ea8ff;  /* labels and marks on navy */
+  --ink: #14161a;           /* text on white and grey */
+  --muted: #4d545c;         /* secondary text, 7:1 on white */
+  --line: #dde2ea;          /* thin borders */
+  --on-navy: #c9d1dc;       /* text on navy */
+  --wa: #25d366;            /* WhatsApp green: only on buttons whose label says WhatsApp */
+  --wa-ink: #06210f;
+
+  /* Type: one family, Inter, self-hosted */
+  --font: 'Inter', 'Inter Fallback', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --fs-body: 17px;
+  --fs-body-lg: 18px;
+  --fs-h1: clamp(36px, 5.2vw, 58px);
+  --fs-h2: clamp(28px, 3.4vw, 40px);
+  --fs-h3: clamp(19px, 1.8vw, 22px);
+  --track-tight: -0.03em;
+
+  /* Layout */
+  --wrap: 1120px;
+  --gutter: 24px;
+  --section-y: 56px;        /* phones */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --header-h: 76px;
+  --bar-h: 72px;            /* sticky mobile bar */
+}
+@media (min-width: 900px) {
+  :root { --section-y: 96px; }
+}
