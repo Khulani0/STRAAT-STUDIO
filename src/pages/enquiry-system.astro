@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { prices, formatRand as R, whatsappHref } from '../config/business';
+
+const m = prices.monthly;
+const wa = whatsappHref("Hi Straat Studio, I'd like to know more about Straat Leads.");
+const tick = 'M5 12l4.5 4.5L19 7';
+
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'Service', name: 'Straat Leads enquiry alerts',
+  provider: { '@type': 'ProfessionalService', name: 'Straat Studio', url: 'https://straatstudio.co.za' },
+  areaServed: { '@type': 'Country', name: 'South Africa' },
+  description: 'A quote form on your website, an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.',
+  offers: { '@type': 'Offer', price: String(m.leads.price), priceCurrency: 'ZAR' },
+}];
+---
+
+<BaseLayout
+  title="Enquiry system for quote requests | Straat Studio"
+  description="Straat Leads: a quote form, an email alert for each enquiry, an automatic reply to the customer and a monthly report. R249 a month."
+  path="/enquiry-system/"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Enquiry system', path: '/enquiry-system/' }]}
+  jsonLd={jsonLd}
+  whatsappMessage="Hi Straat Studio, I'd like to know more about Straat Leads."
+>
+  <section class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Enquiry system</p>
+        <h1>Enquiry alerts for quote requests</h1>
+        <p class="lead" style="max-width:56ch">Know when a customer asks for a quote. Messages can get buried and quotes can be forgotten. A quote form and an email alert make each request easier to notice. The service is called Straat Leads and costs {R(m.leads.price)} a month.</p>
+        <div class="ip-cta">
+          <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Ask about Straat Leads</a>
+          <a class="btn btn-ghost" href="/prices/">See every price</a>
+        </div>
+      </div>
+      <h2 class="sr">What you get</h2>
+      <div class="ip-grid three">
+        <article class="ip-card"><h3 style="font-size:24px">A quote form</h3><p class="for">Customers give the job, suburb, phone number, photos and an optional email address.</p></article>
+        <article class="ip-card"><h3 style="font-size:24px">An email alert to you</h3><p class="for">You get an email alert for each enquiry, with the details the customer gave.</p></article>
+        <article class="ip-card"><h3 style="font-size:24px">An automatic reply</h3><p class="for">The customer gets an automatic reply, and a monthly report is sent to you every month.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sand" aria-labelledby="ex-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">What it looks like</p>
+        <h2 id="ex-h">An example, step by step.</h2>
+      </div>
+      <div class="ip-grid three">
+        <div class="ip-example"><p class="label-concept">Example with made-up data</p>
+          <dl><dt>1. The customer fills in your quote form</dt><dd>Job: DB board upgrade. Suburb: Rylands.</dd></dl></div>
+        <div class="ip-example"><p class="label-concept">Example: email alert</p>
+          <dl><dt>2. You get an email alert</dt><dd>New enquiry: DB board upgrade, Rylands, photos added.</dd></dl></div>
+        <div class="ip-example"><p class="label-concept">Example: automatic reply</p>
+          <dl><dt>3. The customer gets an automatic reply</dt><dd>Thank you, Ndlovu Electrical has your request.</dd></dl></div>
+      </div>
+      <p class="label-concept" style="margin-top:18px">Ndlovu Electrical is a concept project, not commissioned client work.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="plans-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Monthly plans</p>
+        <h2 id="plans-h">Pick the plan that fits.</h2>
+      </div>
+      <div class="ip-grid three">
+        <article class="ip-card"><h3>{m.care.name}</h3><p class="amt">{R(m.care.price)} <small style="font:400 15px var(--sans);color:var(--muted)">a month</small></p><p class="for">Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></article>
+        <article class="ip-card"><h3>{m.leads.name}</h3><p class="amt">{R(m.leads.price)} <small style="font:400 15px var(--sans);color:var(--muted)">a month</small></p><p class="for">Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report. A one-page POPIA data agreement is signed before it starts.</p></article>
+        <article class="ip-card"><h3>{m.growth.name}</h3><p class="amt">{R(m.growth.price)} <small style="font:400 15px var(--sans);color:var(--muted)">a month</small></p><p class="for">Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></article>
+      </div>
+      <ul class="ip-links">
+        <li><a href="/websites/">Our websites</a></li>
+        <li><a href="/how-it-works/">How it works</a></li>
+        <li><a href="/privacy/">Privacy notice</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

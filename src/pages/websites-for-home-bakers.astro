@@ -1,6 +1,6 @@
 ---
 import TradePage from '../components/TradePage.astro';
-import { prices, maxPages, formatRand as R } from '../config/business';
+import { prices, maxPages, formatRand as R, deliveryDays } from '../config/business';
 ---
 
 <TradePage
@@ -9,7 +9,7 @@ import { prices, maxPages, formatRand as R } from '../config/business';
   path="/websites-for-home-bakers/"
   crumb="Websites for home bakers"
   eyebrow="Websites for home bakers"
-  h1="A catalogue website for bakers who sell by WhatsApp message."
+  h1="Websites for home bakers"
   lead="You take orders in your DMs, in voice notes and in long chats. A catalogue website shows what you bake and what it costs, so customers order with the details you need."
   waMessage="Hi Straat Studio, I'd like a free homepage preview for my baking business."
   ctaLabel="Get my free baker preview"
@@ -42,12 +42,12 @@ import { prices, maxPages, formatRand as R } from '../config/business';
   }}
   pkg={{
     key: 'catalogue',
-    live: '7 working days',
+    live: deliveryDays.catalogue,
     heading: `The Catalogue website, ${R(prices.websites.catalogue.price)}`,
     paragraphs: [
       `Catalogue is built for people who change products and prices often. It has up to ${maxPages.catalogue} pages, up to 30 products that you update in a simple Google Sheet that we set up, and the site refreshes within minutes. It also has WhatsApp order buttons, optional PayFast or Yoco, and WhatsApp Business set up with ready-to-paste texts and one guided call. It costs ${R(prices.websites.catalogue.price)}, once-off and final.`,
       `Catalogue is paid half to start and half before the website goes live. If you have only a few products and just want a simple page, One-Page is ${R(prices.websites.onePage.price)}.`,
-      `Once the site is live, Straat Care at ${R(prices.monthly.care.price)} a month keeps it backed up and covers one small change a month. You edit your own product names, descriptions and prices in your product sheet. We change everything else on the site (pages, text, photos and our package prices): send a WhatsApp and it is done within 48 hours. A single change without a plan is ${R(prices.singleChangeAfterLaunch)}. Straat Leads at ${R(prices.monthly.leads.price)} a month sends you an instant alert for every enquiry, replies to the customer automatically and gives you a monthly report.`,
+      `Once the site is live, Straat Care at ${R(prices.monthly.care.price)} a month keeps it backed up and covers one small change a month. You edit your own product names, descriptions and prices in your product sheet. We change everything else on the site (pages, text, photos and our package prices): send a WhatsApp and it is done within 48 hours. A single change without a plan is ${R(prices.singleChangeAfterLaunch)}. Straat Leads at ${R(prices.monthly.leads.price)} a month sends you an email alert for each enquiry, replies to the customer automatically and gives you a monthly report.`,
       'To build the catalogue we ask for one photo per product, your first product list, which we load into your product Google Sheet, your delivery or collection areas and fees, and your PayFast or Yoco account if you want payments.',
     ],
   }}

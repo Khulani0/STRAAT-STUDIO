@@ -1,6 +1,6 @@
 ---
 import TradePage from '../components/TradePage.astro';
-import { prices, formatRand as R } from '../config/business';
+import { prices, formatRand as R, deliveryDays } from '../config/business';
 
 const x = prices.extras;
 ---
@@ -11,14 +11,14 @@ const x = prices.extras;
   path="/websites-for-electricians/"
   crumb="Websites for electricians"
   eyebrow="Websites for electricians"
-  h1="A website that turns electrical searches into calls and quote requests."
+  h1="Websites for electricians"
   lead="Your customers search for a job and a suburb. A Business website gives each of your main services its own page, so Google has something specific to show them."
   waMessage="Hi Straat Studio, I'd like a free homepage preview for my electrical business."
   ctaLabel="Get my free electrical preview"
   cta={{ heading: 'Tell us which jobs you want more of.', text: 'Send us your business name and the electrical work you do. We will show you a free homepage with your services and your suburbs before you pay anything.' }}
   searches={{
     heading: 'What people search for when they need an electrician',
-    intro: 'Most electrical searches name a job and a place together. The person usually knows what they need, and they want to find someone nearby who does it. Here are examples of how people phrase it:',
+    intro: 'Many electrical searches name a job and a place together. The person usually knows what they need, and they want to find someone nearby who does it. Here are examples of how people phrase it:',
     items: ['COC certificate Bellville', 'DB board upgrade Parow', 'electrician near me', 'fault finding electrician Athlone', 'solar installation Durbanville', 'geyser element replacement', 'plug points installation'],
     outro: 'These are examples of how a search can look. We do not have search numbers to show you, and we will not make any up. What we can do is build the site around the way customers describe the work, using your services and your suburbs, so each page answers one clear question.',
   }}
@@ -40,18 +40,18 @@ const x = prices.extras;
     items: [
       { name: 'Calls', text: 'A tap-to-call button on every page, so a customer on a phone can ring you without typing your number.' },
       { name: 'WhatsApp', text: 'A WhatsApp button with the message already written, for example "Hi, I need a COC for my property". The customer only has to press send.' },
-      { name: 'Quote requests', text: 'A quote form on the site for people who prefer to write. Add Straat Leads and you get an instant alert for every enquiry, an automatic reply to the customer and a monthly report.' },
+      { name: 'Quote requests', text: 'A quote form on the site for people who prefer to write. Add Straat Leads and you get an email alert for each enquiry, an automatic reply to the customer and a monthly report.' },
     ],
   }}
   pkg={{
     key: 'business',
-    live: '5 working days',
+    live: deliveryDays.business,
     heading: `The Business website, ${R(prices.websites.business.price)}`,
     paragraphs: [
       `Business is the package we recommend for electricians. It has up to 5 pages, a photo gallery for your finished work, a quote form, your Google Business Profile set up and WhatsApp Business set up. The price is ${R(prices.websites.business.price)}, once-off and final.`,
       `If you are starting from nothing and also need a logo and 3 social media posters, the Launch Pack is ${R(prices.websites.launchPack.price)} and includes all of that with the Business website. If you only need a single page for now, One-Page is ${R(prices.websites.onePage.price)}.`,
       `Business is paid half to start and half before the website goes live. Your Google Business Profile stays in your name, and we are added as a manager you can remove at any time. The domain and the first year of hosting are included.`,
-      `After launch you can add Straat Care at ${R(prices.monthly.care.price)} a month for backups, uptime checks and one small change a month. Straat Leads is ${R(prices.monthly.leads.price)} a month and gives you an instant alert for every quote request, an automatic reply to the customer and a monthly report.`,
+      `After launch you can add Straat Care at ${R(prices.monthly.care.price)} a month for backups, uptime checks and one small change a month. Straat Leads is ${R(prices.monthly.leads.price)} a month and gives you an email alert for each quote request, an automatic reply to the customer and a monthly report.`,
     ],
   }}
   faqs={[
@@ -59,6 +59,6 @@ const x = prices.extras;
     ['Do I need a separate page for every suburb I serve?', 'No. List your areas on the service pages and, if you want, on one extra page. Many near-identical pages that only change the suburb name help nobody, and search engines can treat them as spam.'],
     ['Can customers send me photos of the problem?', 'Customers can send photos to you on WhatsApp using the button on the site. That is often the quickest way to see a tripping DB board or a damaged plug before you quote.'],
     ['I mostly do solar. Can the site focus on that?', 'Yes. We can build the pages around the work you want more of. Tell us your main services and we will write the pages to match.'],
-    ['How long until the site is live?', 'The Business website goes live about 5 working days after we have received everything we asked for. You see a free homepage preview before you pay anything.'],
+    ['How long until the site is live?', 'We aim to have the Business website live within 5 working days after we have all your content. You see a free homepage preview before you pay anything.'],
   ]}
 />

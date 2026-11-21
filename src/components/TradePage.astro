@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { business, prices, maxPages, formatRand as R, whatsappHref } from '../config/business';
+import { business, prices, maxPages, formatRand as R, whatsappHref, deliveryLine } from '../config/business';
 
 export interface Props {
   title: string;
@@ -16,7 +16,7 @@ export interface Props {
   searches: { heading: string; intro: string; items: string[]; outro: string };
   sitePages: { heading: string; intro: string; items: { name: string; text: string }[]; outro?: string };
   does: { heading: string; intro: string; items: { name: string; text: string }[] };
-  pkg: { key: keyof typeof prices.websites; heading: string; paragraphs: string[]; live: string };
+  pkg: { key: keyof typeof prices.websites; heading: string; paragraphs: string[]; live: number };
   faqs: [string, string][];
 }
 
@@ -55,7 +55,7 @@ const jsonLd = [
         <p class="eyebrow" style="margin-bottom:8px">Package that fits</p>
         <p class="tp-name">{pk.name}</p>
         <p class="tp-amt">{R(pk.price)}</p>
-        <p class="small muted">Once-off and final, no VAT added. Live in {p.pkg.live}. {pages === 1 ? '1 page' : `Up to ${pages} pages`}.</p>
+        <p class="small muted">Once-off and final, no VAT added. {deliveryLine(p.pkg.live)}. {pages === 1 ? '1 page' : `Up to ${pages} pages`}.</p>
       </aside>
     </div>
   </section>

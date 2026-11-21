@@ -105,6 +105,14 @@ export const prices = {
   priceRange: 'R999 to R3,099',
 } as const;
 
+/** Working days we aim to take to go live, counted from when we have all of the client's content. */
+export const deliveryDays = { onePage: 3, business: 5, catalogue: 7, launchPack: 5 } as const;
+
+/** One sentence for every delivery line on the site. Pass a number, or a range such as '3 to 7'. */
+export function deliveryLine(days: number | string): string {
+  return `We aim to have it live within ${days} working days after we have all your content`;
+}
+
 /** Maximum number of pages in each website package. */
 export const maxPages = { onePage: 1, business: 5, catalogue: 8, launchPack: 5 } as const;
 

@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { prices, maxPages, formatRand as R, whatsappHref, deliveryDays, deliveryLine } from '../config/business';
+
+const w = prices.websites;
+const x = prices.extras;
+const wa = whatsappHref("Hi Straat Studio, I'd like a free homepage preview for my business.");
+const tick = 'M5 12l4.5 4.5L19 7';
+
+const packages = [
+  { pkg: w.onePage, pages: `${maxPages.onePage} page`, live: deliveryDays.onePage, for: 'New businesses and sellers who need one link that explains everything.',
+    items: ['Services, prices, hours, map', 'Call, WhatsApp and enquiry form', 'info@ email address that can forward to your Gmail', 'WhatsApp Business starter sheet'] },
+  { pkg: w.business, pages: `Up to ${maxPages.business} pages`, live: deliveryDays.business, for: 'Trades and service businesses that want a page for every service.',
+    items: ['Photo gallery and quote form', 'Google Business Profile set up', 'WhatsApp Business setup', 'Everything in One-Page'] },
+  { pkg: w.catalogue, pages: `Up to ${maxPages.catalogue} pages`, live: deliveryDays.catalogue, for: 'Bakers, caterers and shops who change products and prices often.',
+    items: ['Up to 30 products you update in a Google Sheet, live within minutes', 'WhatsApp order buttons', 'Optional PayFast or Yoco', 'Everything in Business'] },
+  { pkg: w.launchPack, pages: `Up to ${maxPages.launchPack} pages`, live: deliveryDays.launchPack, for: 'Starting from scratch? The Business website plus everything around it.',
+    items: ['Business website', 'Logo, 3 options', '3 social media posters', 'WhatsApp Business setup'] },
+];
+
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'Service', name: 'Websites for small businesses',
+  provider: { '@type': 'ProfessionalService', name: 'Straat Studio', url: 'https://straatstudio.co.za' },
+  areaServed: { '@type': 'Country', name: 'South Africa' },
+  description: 'Fixed-price websites for small businesses across South Africa, with a .co.za domain and first-year hosting included.',
+}];
+---
+
+<BaseLayout
+  title="Websites for small businesses | Straat Studio"
+  description="Four fixed-price website packages for small businesses across South Africa, each with a .co.za domain and first-year hosting. Free preview first."
+  path="/websites/"
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Services', path: '/websites/' }]}
+  jsonLd={jsonLd}
+>
+  <section class="sec">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Services</p>
+        <h1>Websites for small businesses</h1>
+        <p class="lead" style="max-width:56ch">Fixed prices, on the page. We write the words from a WhatsApp chat and build the site for you. Every price is once-off and final, with no VAT added. You see your homepage free before you pay.</p>
+        <div class="ip-cta">
+          <a class="btn btn-blue" href={wa} rel="noopener" data-event="whatsapp-click">Get my free homepage</a>
+          <a class="btn btn-ghost" href="/prices/">See every price</a>
+        </div>
+      </div>
+      <h2 class="sr">The four website packages</h2>
+      <div class="ip-grid four">
+        {packages.map((p) => (
+          <article class="ip-card">
+            <h3 style="font-size:24px">{p.pkg.name}</h3>
+            <p class="amt">{R(p.pkg.price)}</p>
+            <p class="for">{p.for}</p>
+            <ul>
+              <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>{p.pages}</li>
+              {p.items.map((i) => <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>{i}</li>)}
+            </ul>
+            <span class="pill">{deliveryLine(p.live)}.</span>
+            <a class="btn btn-ghost" href="/prices/">Compare on the prices page</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sand" aria-labelledby="inc-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">In every package</p>
+        <h2 id="inc-h">What you get with every website.</h2>
+      </div>
+      <ul class="ip-list">
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>A .co.za domain, registered in your name, and first-year hosting</li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>The words written for you, from a WhatsApp chat</li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>Call and WhatsApp buttons</li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>2 rounds of changes</li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d={tick}/></svg>A free homepage preview before you pay</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="more-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Add to your website</p>
+        <h2 id="more-h">Google, WhatsApp and the small things.</h2>
+      </div>
+      <div class="ip-grid three">
+        <article class="ip-card"><h3>Google Business Profile</h3><p class="for">Created or cleaned up, linked to your website, in your name. We are added as a manager and you can remove us any time. Included in Business, Catalogue and the Launch Pack.</p><p class="amt">{R(x.googleBusinessProfile.price)}</p></article>
+        <article class="ip-card"><h3>WhatsApp Business setup</h3><p class="for">Greeting and away messages and quick replies, ready to paste. Included in Business, Catalogue and the Launch Pack.</p></article>
+        <article class="ip-card"><h3>Logo and posters</h3><p class="for">A clean name logo with 3 options ({R(x.logo.price)}) and 3 posters sized for Facebook and Instagram ({R(x.posters.price)}). Both are in the Launch Pack.</p></article>
+      </div>
+      <p style="margin-top:28px">Want an email alert when a customer asks for a quote? See the <a href="/enquiry-system/" style="color:var(--blue-dark)">enquiry system</a>.</p>
+    </div>
+  </section>
+
+  <section class="sec sand" aria-labelledby="trade-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">By trade</p>
+        <h2 id="trade-h">Websites for your kind of business.</h2>
+      </div>
+      <ul class="ip-links">
+        <li><a href="/websites-for-electricians/">Electricians</a></li>
+        <li><a href="/websites-for-plumbers/">Plumbers</a></li>
+        <li><a href="/websites-for-salons/">Hair and nail salons</a></li>
+        <li><a href="/websites-for-home-bakers/">Home bakers</a></li>
+        <li><a href="/examples/">See our examples</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
