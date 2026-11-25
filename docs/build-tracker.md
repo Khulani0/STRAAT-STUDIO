@@ -81,7 +81,17 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | --- | --- | --- | --- |
 | P1 | examples-live-links merged into main and deployed | DONE | Fast-forward, production checks pass. |
 
+## Live domain (25 November 2026)
+
+| Item | What | Status | Notes |
+| --- | --- | --- | --- |
+| D1 | straatstudio.co.za serves the site, http redirects to https | DONE | All 18 pages 200. |
+| D2 | www.straatstudio.co.za | DONE, with a note | Returns 200, canonical points to the apex. Not redirected. |
+| D3 | straat-studio.pages.dev redirects to the custom domain or is noindex | NOT DONE | Waiting for your decision. |
+
 ## Needs your decision
+
+0. **Duplicate address.** straat-studio.pages.dev is indexable and not redirected. See docs/test-report.md for the options.
 
 1. **Plain terms: "cancel with 30 days notice".** The existing /terms/ page says monthly plans can be cancelled at any time, with no notice period. The wording was later changed to: "You can cancel at any time. Cancellation takes effect at the end of the month you have already paid for." No notice period is mentioned.
 2. **Photography.** Say if you want up to 4 licensed photos, and I will source and log them.

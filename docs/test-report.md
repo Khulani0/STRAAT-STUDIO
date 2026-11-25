@@ -108,3 +108,17 @@ These are lab scores from a local server with Lighthouse's simulated slow 4G. Re
 - No noindex meta tag and no X-Robots-Tag header on the 18 pages. The 404 page has noindex.
 - The old number (068 226 4586 and its other forms) appears on none of the 18 pages, and not in robots.txt or sitemap.xml.
 - Lighthouse mobile on production (performance / accessibility / best practices / SEO): / 99/100/100/100, /examples/ 100/100/100/100, /examples/ndlovu-electrical/ 100/100/100/100.
+
+## Live custom domain check (25 November 2026, https://straatstudio.co.za)
+
+| Check | Result | Notes |
+| --- | --- | --- |
+| 1. All 18 sitemap pages return 200 | PASS | |
+| 1. http redirects to https | PASS | 301 to the https address, also for inner pages. The very first request in the run failed to connect (a one-off); three repeats all gave 301. |
+| 2. www.straatstudio.co.za returns 200 | PASS | https://www answers 200 and http://www gives 301 to https://www. It does not redirect to the apex, but its canonical tag points to straatstudio.co.za. |
+| 3. Canonical tags | PASS | All 18 pages point to their own https://straatstudio.co.za/ address. None points to pages.dev or www. |
+| 4. robots.txt and sitemap.xml served | PASS | Sitemap lists 18 URLs, all on straatstudio.co.za. |
+| 4. No noindex meta or X-Robots-Tag header except the 404 page | PASS | The 404 page has noindex. |
+| 5. Open Graph and Twitter tags | PASS | og:url, og:image and twitter:image use straatstudio.co.za. The share image returns 200. |
+| 6. Lighthouse mobile (performance / accessibility / best practices / SEO) | PASS | / 96/100/100/100, /prices/ 100/100/100/100, /examples/ 100/100/100/100 |
+| 7. straat-studio.pages.dev redirects or is noindex | FAIL | Neither. It serves the full site with index, follow. The canonical tags point to the custom domain, which tells Google which copy to use, but a redirect is cleaner. |
