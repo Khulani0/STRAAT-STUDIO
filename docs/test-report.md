@@ -122,3 +122,23 @@ These are lab scores from a local server with Lighthouse's simulated slow 4G. Re
 | 5. Open Graph and Twitter tags | PASS | og:url, og:image and twitter:image use straatstudio.co.za. The share image returns 200. |
 | 6. Lighthouse mobile (performance / accessibility / best practices / SEO) | PASS | / 96/100/100/100, /prices/ 100/100/100/100, /examples/ 100/100/100/100 |
 | 7. straat-studio.pages.dev redirects or is noindex | FAIL | Neither. It serves the full site with index, follow. The canonical tags point to the custom domain, which tells Google which copy to use, but a redirect is cleaner. |
+
+## One address (25 November 2026)
+
+Merged one-address into main (fast-forward, 02531b1). Tested on the real hosts after the deploy:
+
+| Request | Result |
+| --- | --- |
+| https://straat-studio.pages.dev/ | 301 to https://straatstudio.co.za/ |
+| https://straat-studio.pages.dev/prices/ | 301 to https://straatstudio.co.za/prices/ |
+| https://straat-studio.pages.dev/examples/?x=1 | 301 to https://straatstudio.co.za/examples/?x=1 |
+| https://www.straatstudio.co.za/ and /prices/ | 301 to the apex, same path |
+| https://straatstudio.co.za/, /prices/, /examples/, /robots.txt, /sitemap.xml | 200 |
+| https://one-address.straat-studio.pages.dev/ and https://stage-2-redesign.straat-studio.pages.dev/ | 200 (previews still work) |
+| /work/ and /work on straatstudio.co.za | 301 to /examples/ |
+| http:// on both redirect hosts | 301 to https first, then to the apex |
+| Redirect loops | None. Every chain ended on straatstudio.co.za with 200 after 1 or 2 redirects. |
+
+Lighthouse mobile on the live domain (performance / accessibility / best practices / SEO): / 92/100/100/100 (LCP 1.6 s, CLS 0), /prices/ 99/100/100/100 (LCP 1.3 s, CLS 0). The home page performance is under the 95 target on this run.
+
+Claims audit: see docs/claims-audit.md (report only).
