@@ -1,0 +1,13 @@
+OVERALL START 2026-11-25T21:51:54+02:00
+logo-pack START 2026-11-25T21:52:46+02:00
+logo-pack END 2026-11-25T21:53:19+02:00
+logo-pack FIXES: png/pdf helpers did not create output folders (fixed in lib.mjs)
+poster-pack START 2026-11-25T21:53:19+02:00
+poster-pack END 2026-11-25T21:54:54+02:00
+poster-pack FIXES: font file not loading in the renderer (page showed a fallback font), now embedded as data URI in lib.mjs; headline orphan word fixed with text-wrap balance
+review-kit START 2026-11-25T21:54:54+02:00
+review-kit END 2026-11-25T21:55:44+02:00
+posts START 2026-11-25T21:55:44+02:00
+posts END 2026-11-25T21:56:21+02:00
+checks START 2026-11-25T21:56:44+02:00
+checks END 2026-11-25T21:58:21+02:00
