@@ -47,3 +47,7 @@ Khulani minutes (all four): ____
 - Text extracted from every PDF and the posts and messages: zero em dashes or en dashes; zero banned words (best, fastest, guaranteed, leading, trusted by, number 1, most, cheapest, top-rated); the number 084 694 6588 appears and no other phone number appears anywhere (23 matches, all the same number); no old number (068 226 4586 in any form).
 - Facts used: prices, delivery days and package contents come from src/config; sentences come from the live site wording. No clients, reviews, statistics, years or team size.
 - Not checked: the text inside the PNG images was checked from its source strings, not by reading the pixels. The look of the PDFs on a physical printer.
+
+## Change on 28 November 2026 (branch fix-round-1)
+- Two posts rewritten so they no longer mention Google Business Profile setup, WhatsApp Business setup or "logo with 3 options" (posts 06 on 14 December and 07 on 16 December). Their dates and image file names are unchanged and the images, posts.txt, posting-calendar.csv and the contact sheets were regenerated. Post 06 now describes the Business website as up to 5 pages, a photo gallery and a quote form. Post 07 is now a free preview post.
+- The Launch Pack and Catalogue are no longer promoted in the sample month. The Catalogue package is marked "Coming soon" on the site.
