@@ -40,6 +40,7 @@ const jsonLd = [
     '@context': 'https://schema.org', '@type': 'Offer',
     name: `${p.pkg.name} website`, description: p.description,
     price: String(p.pkg.price), priceCurrency: 'ZAR', url: `${pageUrl}#${p.key}`,
+    ...('soon' in p ? { availability: 'https://schema.org/PreOrder' } : {}),
     areaServed: { '@type': 'Country', name: 'South Africa' },
     seller: { '@type': 'ProfessionalService', name: business.name, url: business.siteUrl },
     itemOffered: { '@type': 'Service', name: `${p.pkg.name} website`, provider: { '@type': 'ProfessionalService', name: business.name, url: business.siteUrl } },
@@ -71,7 +72,7 @@ const jsonLd = [
       <div class="head" data-reveal><SectionLabel>Website packages</SectionLabel><h2 id="pk-h">Four packages. Pick the one that fits.</h2></div>
       <div class="grid g4">
         {packages.map((p) => (
-          <PriceCard id={p.key} name={p.pkg.name} price={R(p.pkg.price)} forWho={p.forWho} items={p.items} when={`${deliveryLine(p.live)}. ${p.pay}.`} featured={'featured' in p} badge={'featured' in p ? 'Recommended for trades' : undefined} href={whatsappHref(`Hi Straat Studio, I'm interested in the ${p.pkg.name} website.`)} cta={`Start with ${p.pkg.name}`} />
+          <PriceCard id={p.key} name={p.pkg.name} price={R(p.pkg.price)} forWho={p.forWho} items={p.items} when={`${deliveryLine(p.live)}. ${p.pay}.`} featured={'featured' in p} badge={'featured' in p ? 'Recommended for trades' : undefined} href={whatsappHref('soon' in p ? "Hi Straat Studio, I'd like to ask about the Catalogue website. I see it is coming soon." : `Hi Straat Studio, I'm interested in the ${p.pkg.name} website.`)} cta={'soon' in p ? 'Ask on WhatsApp' : `Start with ${p.pkg.name}`} soon={'soon' in p} />
         ))}
       </div>
     </div>
@@ -147,7 +148,7 @@ const jsonLd = [
         <div class="builder-l">
           <fieldset style="margin-top:0"><legend>1. Your website</legend><div class="opts">
             {[w.onePage, w.business, w.catalogue, w.launchPack].map((p, i) => (
-              <label class="opt"><input type="radio" name="b-site" value={p.price} data-name={p.name} checked={i === 1} /><span>{p.name} {R(p.price)}</span></label>
+              <label class="opt"><input type="radio" name="b-site" value={p.price} data-name={p === w.catalogue ? 'Catalogue (coming soon)' : p.name} checked={i === 1} /><span>{p.name} {R(p.price)}{p === w.catalogue ? ' (coming soon)' : ''}</span></label>
             ))}
           </div></fieldset>
           <fieldset><legend>2. Monthly plan (optional)</legend><div class="opts">

@@ -1,12 +1,12 @@
 ---
 import Icon from './Icon.astro';
 import Button from './Button.astro';
-export interface Props { name: string; price: string; forWho: string; items: string[]; when?: string; featured?: boolean; badge?: string; href: string; cta: string; level?: 'h2' | 'h3'; id?: string }
-const { name, price, forWho, items, when, featured = false, badge, href, cta, level = 'h3', id } = Astro.props;
+export interface Props { name: string; price: string; forWho: string; items: string[]; when?: string; featured?: boolean; badge?: string; href: string; cta: string; level?: 'h2' | 'h3'; id?: string; soon?: boolean }
+const { name, price, forWho, items, when, featured = false, badge, href, cta, level = 'h3', id, soon = false } = Astro.props;
 const H = level;
 ---
 <article class={`card price-card ${featured ? 'featured' : ''}`} id={id} data-reveal>
-  {badge && <span class="pill">{badge}</span>}
+  {soon ? <span class="pill soon">Coming soon</span> : badge && <span class="pill">{badge}</span>}
   <H class="name">{name}</H>
   <p class="amt">{price}</p>
   <p class="for">{forWho}</p>

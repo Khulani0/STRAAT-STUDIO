@@ -16,7 +16,7 @@ export const packages = [
     description: `A website of up to ${maxPages.business} pages with a photo gallery, a quote form, Google Business Profile set up and WhatsApp Business setup.`,
   },
   {
-    key: 'catalogue', pkg: w.catalogue, pages: `Up to ${maxPages.catalogue} pages`, live: deliveryDays.catalogue, pay: '50% to start, 50% before it goes live',
+    key: 'catalogue', soon: true, pkg: w.catalogue, pages: `Up to ${maxPages.catalogue} pages`, live: deliveryDays.catalogue, pay: '50% to start, 50% before it goes live',
     forWho: 'Bakers, caterers and shops who change products and prices often.',
     items: [`Up to ${maxPages.catalogue} pages`, 'Up to 30 products you update in a Google Sheet, live within minutes', 'WhatsApp order buttons', 'Optional PayFast or Yoco', 'WhatsApp Business setup (ready-to-paste texts plus one guided call)', 'Everything in Business'],
     description: `A website of up to ${maxPages.catalogue} pages with a product catalogue of up to 30 products that you update in a Google Sheet, WhatsApp order buttons and WhatsApp Business setup.`,

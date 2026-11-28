@@ -24,7 +24,7 @@ export interface Props {
   searches: { heading: string; intro: string; items: string[]; outro: string };
   sitePages: { heading: string; intro: string; items: { name: string; text: string }[]; outro?: string };
   does: { heading: string; intro: string; items: { name: string; text: string }[] };
-  pkg: { key: keyof typeof prices.websites; heading: string; paragraphs: string[]; live: number };
+  pkg: { key: keyof typeof prices.websites; heading: string; paragraphs: string[]; live: number; soon?: boolean };
   faqs: [string, string][];
 }
 
@@ -107,6 +107,7 @@ const pkgIcons = ['tag', 'layers', 'coin', 'shield'] as const;
     <div class="wrap">
       <div class="head" data-reveal>
         <SectionLabel>Price</SectionLabel>
+        {p.pkg.soon && <p><span class="pill soon">Coming soon</span></p>}
         <h2 id="pk-h">{p.pkg.heading}</h2>
         <p class="lead">{R(pk.price)}, once-off and final, no VAT added. {pages === 1 ? '1 page' : `Up to ${pages} pages`}. {deliveryLine(p.pkg.live)}.</p>
       </div>
@@ -124,5 +125,5 @@ const pkgIcons = ['tag', 'layers', 'coin', 'shield'] as const;
     </div>
   </section>
 
-  <DarkBand heading={p.cta.heading} text={p.cta.text} waMessage={p.waMessage} waLabel={`${p.ctaLabel} on WhatsApp`} />
+  <DarkBand heading={p.cta.heading} text={p.cta.text} waMessage={p.waMessage} waLabel={p.pkg.soon ? p.ctaLabel : `${p.ctaLabel} on WhatsApp`} />
 </BaseLayout>

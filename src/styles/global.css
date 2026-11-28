@@ -337,3 +337,6 @@ h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.015em; line-h
 .live { display: grid; gap: 12px; justify-items: start; }
 .live-note { margin: 0; font-size: 15px; color: var(--muted); max-width: 60ch; }
 @media (max-width: 639px) { .live .btn { width: 100%; } }
+
+/* Coming soon label on the Catalogue package */
+.pill.soon { background: var(--navy); color: #fff; }

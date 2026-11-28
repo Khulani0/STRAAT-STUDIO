@@ -50,7 +50,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="head" data-reveal><SectionLabel>Packages</SectionLabel><h2 id="pk-h">The four website packages.</h2></div>
       <div class="grid g4">
-        {packages.map((p) => <PriceCard name={p.pkg.name} price={R(p.pkg.price)} forWho={p.forWho} items={[p.pages, ...p.items.filter((i) => !i.startsWith('Up to') || i.includes('products'))]} when={`${deliveryLine(p.live)}.`} featured={'featured' in p} badge={'featured' in p ? 'Recommended for trades' : undefined} href="/prices/" cta="Compare on the prices page" />)}
+        {packages.map((p) => <PriceCard name={p.pkg.name} price={R(p.pkg.price)} forWho={p.forWho} items={[p.pages, ...p.items.filter((i) => !i.startsWith('Up to') || i.includes('products'))]} when={`${deliveryLine(p.live)}.`} featured={'featured' in p} badge={'featured' in p ? 'Recommended for trades' : undefined} href={'soon' in p ? whatsappHref("Hi Straat Studio, I'd like to ask about the Catalogue website. I see it is coming soon.") : "/prices/"} cta={'soon' in p ? "Ask on WhatsApp" : "Compare on the prices page"} soon={'soon' in p} />)}
       </div>
     </div>
   </section>
@@ -93,7 +93,7 @@ const jsonLd = [
       <div class="grid g3">
         <Card icon="list" title="Every package"><ul><li><Icon name="check" />Business name, logo if you have one</li><li><Icon name="check" />Services and prices</li><li><Icon name="check" />Areas you serve and your hours</li><li><Icon name="check" />Phone, WhatsApp and email</li><li><Icon name="check" />6 to 15 photos of your work</li></ul></Card>
         <Card icon="layers" title="Business and Launch Pack"><ul><li><Icon name="check" />A few lines on each service</li><li><Icon name="check" />Your Google Business Profile, or we create one</li><li><Icon name="check" />Before and after photos, if you have them</li><li><Icon name="check" />Logo and poster ideas (Launch Pack)</li></ul></Card>
-        <Card icon="grid" title="Catalogue"><ul><li><Icon name="check" />Your first product list, which we load into your product Google Sheet</li><li><Icon name="check" />One photo per product</li><li><Icon name="check" />Delivery or collection areas and fees</li><li><Icon name="check" />Your PayFast or Yoco account, if you want payments</li></ul></Card>
+        <Card icon="grid" title="Catalogue (coming soon)"><ul><li><Icon name="check" />Your first product list, which we load into your product Google Sheet</li><li><Icon name="check" />One photo per product</li><li><Icon name="check" />Delivery or collection areas and fees</li><li><Icon name="check" />Your PayFast or Yoco account, if you want payments</li></ul></Card>
       </div>
       <ul class="links">
         <li><a href="/websites-for-electricians/">Websites for electricians</a></li><li><a href="/websites-for-plumbers/">Plumbers</a></li><li><a href="/websites-for-salons/">Salons</a></li><li><a href="/websites-for-home-bakers/">Home bakers</a></li><li><a href="/examples/">See our examples</a></li>

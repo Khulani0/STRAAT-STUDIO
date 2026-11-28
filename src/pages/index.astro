@@ -136,7 +136,7 @@ const jsonLd = [
       </div>
       <div class="grid g4">
         {packages.map((p) => (
-          <PriceCard name={p.pkg.name} price={R(p.pkg.price)} forWho={p.forWho} items={p.items.slice(0, 4)} when={`${deliveryLine(p.live)}.`} featured={'featured' in p} badge={'featured' in p ? 'Made for trades' : undefined} href={whatsappHref(`Hi Straat Studio, I'm interested in the ${p.pkg.name} website.`)} cta={`Start with ${p.pkg.name}`} />
+          <PriceCard name={p.pkg.name} price={R(p.pkg.price)} forWho={p.forWho} items={p.items.slice(0, 4)} when={`${deliveryLine(p.live)}.`} featured={'featured' in p} badge={'featured' in p ? 'Made for trades' : undefined} href={whatsappHref('soon' in p ? "Hi Straat Studio, I'd like to ask about the Catalogue website. I see it is coming soon." : `Hi Straat Studio, I'm interested in the ${p.pkg.name} website.`)} cta={'soon' in p ? 'Ask on WhatsApp' : `Start with ${p.pkg.name}`} soon={'soon' in p} />
         ))}
       </div>
       <div class="head" style="margin-top:56px;margin-bottom:24px" data-reveal>
