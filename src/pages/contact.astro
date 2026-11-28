@@ -46,7 +46,7 @@ const jsonLd = [{
       <div class="grid g3">
         <Card icon="whatsapp" title="WhatsApp"><p>Tap the link and your message opens ready to send.</p><p><a class="more" href={wa} rel="noopener" data-event="whatsapp-click">Message {business.phoneDisplay}</a></p></Card>
         <Card icon="phone" title="Phone"><p>Call us in business hours.</p><p><a class="more" href={phoneHref} data-event="phone-click">{business.phoneDisplay}</a></p></Card>
-        <Card icon="mail" title="Email"><p>For longer questions, or if you prefer email.</p><p><strong class="plain-email">{business.email}</strong></p><p><a class="more" href={emailHref} data-event="email-click">Open your mail app</a></p></Card>
+        <Card icon="mail" title="Email"><p>For longer questions, or if you prefer email.</p><p><Fragment set:html="<!--email_off-->" /><strong class="plain-email">{business.email}</strong><Fragment set:html="<!--/email_off-->" /></p><p><a class="more" href={emailHref} data-event="email-click">Open your mail app</a></p></Card>
       </div>
     </div>
   </section>

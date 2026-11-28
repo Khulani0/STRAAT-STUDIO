@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
       <div><h2 class="foot-h">Contact</h2><ul>
         <li><a href={whatsappHref(waMessage)} rel="noopener">WhatsApp us</a></li>
         <li><a href={phoneHref} data-event="phone-click">Call {business.phoneDisplay}</a></li>
-        <li><span class="plain-email">{business.email}</span> <a href={emailHref} aria-label="Open your mail app to email us">(open mail app)</a></li>
+        <li><Fragment set:html="<!--email_off-->" /><span class="plain-email">{business.email}</span><Fragment set:html="<!--/email_off-->" /> <a href={emailHref} aria-label="Open your mail app to email us">(open mail app)</a></li>
         <li><span>Based in Cape Town. Serving all of South Africa.</span></li>
       </ul></div>
       <div><h2 class="foot-h">Websites for</h2><ul>
