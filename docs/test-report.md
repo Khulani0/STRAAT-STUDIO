@@ -152,3 +152,19 @@ Claims audit: see docs/claims-audit.md (report only).
 - Build no warnings (19 pages). Link check: 56 distinct links, zero broken. axe: 0 violations on all 19 pages at 375 and 1280 px (includes /, /prices/ and /websites/). No sideways scroll.
 - Lighthouse mobile (local): / 100/100/100/100 (LCP 0.9 s, CLS 0), /prices/ 100/100/100/100 (LCP 0.9 s, CLS 0).
 - service-tests/ is merged into this branch and is not in public/ or the Astro output: dist has no service-tests files.
+
+## Production check after fix round 1 (28 November 2026, main b76e887)
+
+| Request | Result |
+| --- | --- |
+| https://straat-studio.pages.dev/prices/ | 301 to https://straatstudio.co.za/prices/ |
+| https://straat-studio.pages.dev/ and /examples/?x=1 | 301 to the apex, same path and query |
+| https://www.straatstudio.co.za/ | 301 to https://straatstudio.co.za/ |
+| https://straatstudio.co.za/, /prices/, /examples/, /robots.txt, /sitemap.xml | 200 |
+| Catalogue "Coming soon" label on /prices/ | Present |
+| /brand/logo.svg, /fonts/inter.woff2, /work/ndlovu-desktop-800.webp, /favicon.svg on the apex, pages.dev, www and two previews | 200 on every host |
+| Previews one-address, stage-2-redesign and fix-round-1 (/ and /prices/) | 200 |
+
+Note: the built site has no /_astro/ folder, because the CSS is inlined into each page, so there were no /_astro files to test. The /_astro/* exclusion in public/_routes.json is a guard for later.
+
+Service audit (Straat Leads and Straat Care): docs/service-audit.md. Starter sheet for Straat Studio: service-tests/starter-sheet/ (checked: no em dashes, no banned words, only 084 694 6588 and 27846946588).

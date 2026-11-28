@@ -1,0 +1,30 @@
+STRAAT STUDIO: WHATSAPP BUSINESS TEXTS
+Paste each text into WhatsApp Business. Greeting and away message: Settings, Business tools. Quick replies: Settings, Business tools, Quick replies (type the shortcut after a slash in a chat).
+
+GREETING MESSAGE (sent to new customers)
+Hi, thank you for messaging Straat Studio. We build fixed-price websites for trades and small businesses in South Africa. Tell us your business name, what you do and where, and we will prepare your free homepage preview.
+
+AWAY MESSAGE (sent outside our hours)
+Thank you for your message. We are away right now. Our hours are Monday to Saturday, 08:00 to 18:00. Closed on Sunday. South African time. We will read your message when we are back.
+
+QUICK REPLY 1: shortcut /preview
+Here is how the free preview works. Send us your business name, what you do and where. We aim to send your homepage preview within 2 working days after you send us your business details. You see it before you pay anything.
+
+QUICK REPLY 2: shortcut /prices
+Our website prices are once-off and final, with no VAT added: One-Page R999, Business R2,499 and Launch Pack R3,099. Every package includes a .co.za domain, first-year hosting, the words written for you and 2 rounds of changes. All prices: https://straatstudio.co.za/prices/
+
+QUICK REPLY 3: shortcut /time
+We aim to have it live within 3 to 7 working days after we have all your content, depending on the package. The clock starts when we have received everything we asked for.
+
+QUICK REPLY 4: shortcut /ownership
+Your domain is registered in your name after you pay. The website and its files become yours when the final payment is made, with a handover guide.
+
+QUICK REPLY 5: shortcut /hours
+Our hours are Monday to Saturday, 08:00 to 18:00. Closed on Sunday. South African time.
+
+CLICK-TO-CHAT LINK (opens WhatsApp with this message typed in, ready to send)
+https://wa.me/27846946588?text=Hi%20Straat%20Studio%2C%20I'd%20like%20a%20free%20homepage%20preview%20for%20my%20business.
+Message in the link: "Hi Straat Studio, I'd like a free homepage preview for my business."
+
+PLAIN LINK (opens a chat with no message)
+https://wa.me/27846946588

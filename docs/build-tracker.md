@@ -99,7 +99,17 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | F3 | _routes.json so the redirect function skips assets | DONE | public/_routes.json |
 | F4 | service-tests merged into the branch, not published | DONE | Lives at the repo root, outside public/ and src/. |
 
+## 28 November 2026
+
+| Item | What | Status | Notes |
+| --- | --- | --- | --- |
+| S1 | fix-round-1 merged into main and deployed | DONE | Redirects, assets and the Catalogue label checked on the real hosts. |
+| S2 | Audit of Straat Leads and Straat Care | DONE (report only) | docs/service-audit.md. Uptime checks and Straat Growth are not built. |
+| S3 | Starter sheet for Straat Studio | DONE | service-tests/starter-sheet/ (profile text, 5 FAQ answers, WhatsApp Business texts, click-to-chat link). |
+
 ## Needs your decision
+
+0. **Wording that is not true today.** Read docs/service-audit.md: uptime checks (Straat Care), the Growth items and the 'automatic reply' wording. Tell me what to change. Also change the old phone number in /home/sojama/straatos before any client site uses the form.
 
 0. **Claims audit.** Read docs/claims-audit.md and tell me what to change or hold back.
 
