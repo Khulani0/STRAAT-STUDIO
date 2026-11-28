@@ -1,0 +1,15 @@
+name = "straat-uptime"
+main = "src/worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+TARGETS = '[{"name":"straatstudio.co.za","url":"https://straatstudio.co.za/"},{"name":"ndlovu-electrical concept","url":"https://ndlovu-electrical-concept.pages.dev/"},{"name":"fazilas-kitchen concept","url":"https://fazilas-kitchen-concept.pages.dev/"},{"name":"thandeka-hair-studio concept","url":"https://thandeka-hair-studio-concept.pages.dev/"}]'
+
+# The deploy script fills in the KV id. ALERT_URL and ALERT_SECRET are secrets, set by the deploy script, never written in a file.
+[[kv_namespaces]]
+binding = "STATE"
+id = "REPLACE_BY_DEPLOY_SCRIPT"

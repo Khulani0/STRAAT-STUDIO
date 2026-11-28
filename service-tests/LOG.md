@@ -51,3 +51,39 @@ Khulani minutes (all four): ____
 ## Change on 28 November 2026 (branch fix-round-1)
 - Two posts rewritten so they no longer mention Google Business Profile setup, WhatsApp Business setup or "logo with 3 options" (posts 06 on 14 December and 07 on 16 December). Their dates and image file names are unchanged and the images, posts.txt, posting-calendar.csv and the contact sheets were regenerated. Post 06 now describes the Business website as up to 5 pages, a photo gallery and a quote form. Post 07 is now a free preview post.
 - The Launch Pack and Catalogue are no longer promoted in the sample month. The Catalogue package is marked "Coming soon" on the site.
+
+---
+
+# Service tests batch B (28 November 2026)
+
+Branch: service-tests-batch-b, made from launch-polish (the launch-polish branch had not yet been merged to main when this started). Times are the computer clock (South African time) and cover Claude Code's command running time only. Evidence files are in service-tests/evidence/batch-b/.
+Overall: 14:00 to 14:06, about 6 minutes.
+
+## 1. Uptime monitor
+- Minutes: about 3 (14:02 to 14:05). Khulani minutes: ____
+- Built: uptime-monitor/ (Cloudflare Worker with a cron every 5 minutes, checks straatstudio.co.za and the three concept sites; after 2 failures in a row it POSTs once to an Apps Script web app that emails Khulani, plus CLIENT_TO if set; one "Back up" email on recovery; test mode at /test checks a deliberately broken address twice). Run-it-yourself script: uptime-monitor/deploy-uptime.sh. Steps: uptime-monitor/README.txt.
+- Tests: 19 offline logic checks pass (01a-uptime-logic-tests.txt): 2-failure rule, no repeat alerts, reset on success, recovery message, per-site tracking, lost-alert retry, test mode, free-plan KV write limit, Apps Script secret, recipients, TEST marking.
+- Local run with real network (01b, 01c, 01d): `wrangler dev --local` with a mock alert address. A scheduled run checked all 4 live sites: all returned 200, no alert. Test mode sent one POST marked test=true after the 2nd failed check of a broken straatstudio.co.za address (404). A wrong key returned 404.
+- Needed fixing: Cloudflare Workers refuse a main file that exports anything except the handler, so the logic moved to src/monitor.js. The first design wrote to KV on every check (1,152 writes a day, free limit 1,000); it now writes only when something changes (tested).
+- NOT tested: the real Apps Script web app, the real Cloudflare deployment, a real email arriving, and the cron firing on Cloudflare. Those need your Google and Cloudflare logins.
+- Not covered: if Cloudflare itself is down the monitor may not tell you; a 5-minute interval can miss a very short outage.
+
+## 2. Customer automatic reply (StraatOS)
+- Minutes: about 1 (14:01). Khulani minutes: ____
+- Finding: StraatOS already sent a copy to the customer when an email was given. It is now a proper automatic reply that names the business: "Thank you. <business> has your request and will be in touch.", says it is an automatic reply, repeats the reference, job, area and problem, and the reply-to is the business. The owner alert is unchanged (checked by a test).
+- Files: straatos/apps-script/Code.gs (sendCustomerCopy_), straatos/test/code-gs.test.mjs.
+- Tests: 29 of 29 pass (02-customer-reply-test-output.txt), including: no email gives exactly one email (to the owner) and no other recipient; with an email the reply goes only to the customer, uses the business name in the text, sender name and subject, and does not contain the owner address.
+- NOT tested on real Google (the tests use fakes of Google services).
+
+## 3. Monthly report
+- Minutes: about 1 (14:01). Khulani minutes: ____
+- Ran the real monthlyReport() from Code.gs on a made-up sheet of 12 enquiries (service-tests/_build/monthly-report-run.mjs). Output: 03-monthly-report-email.txt. Counts checked by hand: 12 received, 6 quotes (3 Quote sent and 3 Won), 3 Won, 2 Lost, 4 still New or Contacted, top jobs and areas ranked.
+- The email was NOT sent: the Google test sheet cannot be reached from here, and the tests use a fake mail service. The saved file is the email text the function builds. The month label shows 2026-09 only because the test fake formats dates in UTC; real Google gives the month name.
+- Needed fixing (my script, not the product): the first run put the first row in the header row and counted 11, not 12.
+
+## 4. Growth page template (one local service page)
+- Minutes: about 2 (14:04 to 14:06). Khulani minutes: ____
+- Built: src/pages/local/[slug].astro (template), src/data/local-pages.json (empty list, so nothing is built), src/data/local-pages.template.json (field guide), src/lib/local-pages.mjs (rules), tools/local-page.mjs (list, add, check, publish).
+- A page is built only when "approved" is true. Rules enforced at add, check and build: title under 61 characters, description under 156, at least 2 sections, 3 to 5 FAQs, at least 2 services, at least 500 words, no em or en dashes, no banned claims (best, guaranteed, leading and so on), prices flagged for checking.
+- Test with made-up text (04-growth-page-test.txt): a draft is not built and not in the sitemap; a short draft and a draft with a long title, dashes and banned words are refused; the good draft built as /local/test-template-page/ with one H1, absolute canonical, FAQ and breadcrumb data, in the sitemap, links to /prices/ and /contact/, Lighthouse 100/100/100/100. The test data was then removed: the data file is an empty list again and the site has no /local/ pages.
+- Nothing published. Waiting for your text and your approval.

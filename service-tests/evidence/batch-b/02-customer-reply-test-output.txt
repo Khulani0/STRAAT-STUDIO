@@ -1,0 +1,33 @@
+
+> straatos@0.1.0 test:script
+> node test/code-gs.test.mjs
+
+PASS doGet returns business, jobs and areas from Config, nothing private
+PASS phone formats: 082 123 4567, +27821234567, 27821234567 are accepted and stored as 0821234567
+PASS phone formats: bad numbers are refused
+PASS a good enquiry adds one row with all columns, Status New, reference Q-0001, and a formula
+PASS references count up: Q-0001, Q-0002
+PASS validation: each required field and each length limit is enforced
+PASS honeypot filled: nothing saved, no email, robot is told ok
+PASS submitted faster than 3 seconds (or no timer): nothing saved
+PASS rate limit: 4th enquiry from one phone in the window is refused
+PASS retry with the same form id does not create a second row or second email
+PASS owner alert: subject "New enquiry: JOB, AREA", all details, tap-to-call and wa.me reply link
+PASS customer copy: NOT sent without an email address (one email only)
+PASS automatic reply: with an email address it uses the business name, says thank you and goes only to the customer
+PASS owner alert is unchanged when a customer email is given (subject, recipient, reply-to the customer)
+PASS customer copy: sent when an email address is given, with reply-to the owner
+PASS email quota nearly used up: owner alert still goes, customer copy is skipped, the row is still saved
+PASS formula injection: a name starting with = is stored as text
+PASS HTML in the problem text is escaped in the email
+PASS the lock is taken for every write and always released
+PASS photos: up to 3 saved with links in the row, the 4th is refused
+PASS photos: wrong token, wrong type, fake image bytes and oversize are refused
+PASS review formula: empty unless Won, builds a wa.me link with the Config review link, no incentive wording
+PASS daily reminder: lists only Quote sent rows older than 3 days, by status change date
+PASS daily reminder: no email at all when nothing is due
+PASS monthly report: counts last month only, top jobs and areas ranked
+PASS setup runs on a fresh sheet: Config rows written, Log header written, two triggers installed
+PASS onEdit stamps Status changed only when the Status column is edited
+PASS no client details are hard-coded in Code.gs
+PASS no em dashes in Code.gs

@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Button from '../../components/Button.astro';
+import Card from '../../components/Card.astro';
+import DarkBand from '../../components/DarkBand.astro';
+import Accordion from '../../components/Accordion.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { whatsappHref, prices, formatRand as R } from '../../config/business';
+import { problemsWith } from '../../lib/local-pages.mjs';
+import data from '../../data/local-pages.json';
+
+export function getStaticPaths() {
+  // Only approved pages are built. Unapproved drafts do not exist on the site and are not in the sitemap.
+  return (data as any[]).filter((p) => p.approved === true).map((p) => {
+    const problems = problemsWith(p);
+    if (problems.length) throw new Error(`Local page "${p.slug}" cannot be published: ${problems.join('; ')}`);
+    return { params: { slug: p.slug }, props: { p } };
+  });
+}
+const { p } = Astro.props as { p: any };
+const path = `/local/${p.slug}/`;
+const wa = whatsappHref(p.waMessage);
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: p.faqs.map(([q, a]: [string, string]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+}];
+---
+<BaseLayout title={p.title} description={p.description} path={path} jsonLd={jsonLd}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: p.h1, path }]} whatsappMessage={p.waMessage} lastUpdated={p.updated}>
+  <PageHero label={p.label ?? 'Local service'} h1={p.h1} lead={p.lead}>
+    <Fragment slot="actions">
+      <Button href={wa} event="whatsapp-click">Get my free homepage</Button>
+      <Button href="/prices/" variant="secondary">See prices from {R(prices.websites.onePage.price)}</Button>
+    </Fragment>
+  </PageHero>
+
+  {p.sections.map((s: any, i: number) => (
+    <section class={`section ${i % 2 === 0 ? 'bg-grey' : ''}`} aria-labelledby={`s${i}-h`}>
+      <div class="wrap" style="max-width:820px">
+        <div class="head" data-reveal><h2 id={`s${i}-h`}>{s.heading}</h2></div>
+        {s.paragraphs.map((t: string) => <p data-reveal>{t}</p>)}
+      </div>
+    </section>
+  ))}
+
+  <section class="section" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>What we do</SectionLabel><h2 id="svc-h">{p.servicesHeading ?? 'What this includes'}</h2></div>
+      <div class="grid g3">{p.services.map((s: any) => <Card title={s.name}><p>{s.text}</p></Card>)}</div>
+      <p style="margin-top:24px">See <a class="more" href="/prices/">all prices</a>, or <a class="more" href="/contact/">contact us</a>.{p.tradePage && <> We also have a page for <a class="more" href={p.tradePage.path}>{p.tradePage.label}</a>.</>}</p>
+    </div>
+  </section>
+
+  <section class="section bg-grey" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="head" data-reveal><SectionLabel>Questions</SectionLabel><h2 id="faq-h">Questions people ask</h2></div>
+      <Accordion items={p.faqs} />
+    </div>
+  </section>
+
+  <DarkBand heading="See your homepage free, before you pay." waMessage={p.waMessage} />
+</BaseLayout>

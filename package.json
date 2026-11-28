@@ -11,7 +11,8 @@
     "test:more": "node tools/test2.mjs",
     "test:lighthouse": "node tools/lighthouse.mjs",
     "test:all": "node tools/test.mjs && node tools/test2.mjs && node tools/lighthouse.mjs",
-    "shots": "node tools/shoot.mjs docs/screens 375 && node tools/shoot.mjs docs/screens 1280 && node tools/shoot.mjs docs/screens 375 --fold"
+    "shots": "node tools/shoot.mjs docs/screens 375 && node tools/shoot.mjs docs/screens 1280 && node tools/shoot.mjs docs/screens 375 --fold",
+    "local:list": "node tools/local-page.mjs list"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

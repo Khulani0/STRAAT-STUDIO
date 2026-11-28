@@ -1,0 +1,51 @@
+Growth page template test. Made-up text, never published. Sat Nov 28 02:05:35 PM SAST 2026
+
+== add a short draft
+Added draft short-page. Not published.
+Still to fix:
+- needs at least 2 sections
+== add a draft with a long title, banned words and an em dash
+Added draft bad-page. Not published.
+Still to fix:
+- title is 70 characters, limit 60
+- contains an em dash or en dash
+- contains the banned claim "best"
+- contains the banned claim "guaranteed"
+== add a good draft
+Added draft test-template-page. Not published.
+All rules pass.
+== list
+draft     short-page (724 words)
+draft     bad-page (1203 words)
+draft     test-template-page (1203 words)
+== build with only drafts: the page must NOT exist
+ls: cannot access 'dist/local': No such file or directory
+0
+== publish the short one (must refuse)
+Not published. Fix first:
+- needs at least 2 sections
+exit 1
+== publish the good one
+14:05:37 [build] 20 page(s) built in 419ms
+PASS one H1
+PASS canonical is absolute with trailing slash
+PASS title and description present
+PASS in sitemap.xml
+PASS FAQ and breadcrumb structured data
+PASS links to /prices/ and /contact/
+Built locally. To put it on the live site: commit, push, and merge to main when you are happy.
+== built files
+test-template-page
+1
+== words
+draft     short-page (724 words)
+draft     bad-page (1203 words)
+PUBLISHED test-template-page (1203 words)
+┌─────────┬──────────────────────────────┬─────────────┬───────────────┬───────────────┬─────┬─────────┬─────┬────────┐
+│ (index) │ page                         │ performance │ accessibility │ bestPractices │ seo │ lcp     │ cls │ tbt    │
+├─────────┼──────────────────────────────┼─────────────┼───────────────┼───────────────┼─────┼─────────┼─────┼────────┤
+│ 0       │ '/local/test-template-page/' │ 100         │ 100           │ 100           │ 100 │ '0.8 s' │ '0' │ '0 ms' │
+└─────────┴──────────────────────────────┴─────────────┴───────────────┴───────────────┴─────┴─────────┴─────┴────────┘
+
+
+Restored: local-pages.json is an empty list again. Rebuild: no /local/ folder, 0 local entries in sitemap.xml. Nothing from this test is on the site.

@@ -1,0 +1,21 @@
+{
+  "slug": "short-lowercase-words-with-hyphens",
+  "label": "Short label above the heading",
+  "title": "Under 60 characters | Straat Studio",
+  "description": "Under 155 characters. Plain South African English.",
+  "h1": "One clear heading for this service and place",
+  "lead": "One paragraph under the heading.",
+  "sections": [
+    { "heading": "First section heading", "paragraphs": ["Paragraph one.", "Paragraph two."] },
+    { "heading": "Second section heading", "paragraphs": ["Paragraph one."] }
+  ],
+  "servicesHeading": "What this includes",
+  "services": [
+    { "name": "Service one", "text": "One or two sentences." },
+    { "name": "Service two", "text": "One or two sentences." }
+  ],
+  "faqs": [["Question one?", "Answer."], ["Question two?", "Answer."], ["Question three?", "Answer."]],
+  "waMessage": "Hi Straat Studio, I'd like a free homepage preview for my business.",
+  "tradePage": { "path": "/websites-for-electricians/", "label": "electricians" },
+  "pricesChecked": false
+}

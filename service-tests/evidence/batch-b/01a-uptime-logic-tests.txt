@@ -1,0 +1,21 @@
+PASS all sites up: no alert, failure counts stay at 0
+PASS one failure: no alert yet
+PASS two failures in a row: exactly one alert, with the site, address and secret
+PASS a third and fourth failure do not send more alerts
+PASS failure, success, failure: the count resets, so no alert
+PASS recovery: one "up" message after an alert, then quiet
+PASS a 404 counts as down, a 301 followed to 200 counts as up
+PASS each site is tracked on its own: a concept site down does not alert for the main site
+PASS if the alert address is down, the alert is retried on the next check (not lost)
+PASS test mode: a deliberately broken address alerts on the 2nd check, marked as a test, and cleans up after itself
+PASS test mode does not touch the real site state
+PASS KV writes: a healthy site is written once, then not again (stays under the free 1,000 writes a day)
+PASS Apps Script: wrong secret sends nothing
+PASS Apps Script: bad JSON sends nothing
+PASS Apps Script: a down alert goes to Khulani only when no client address is set
+PASS Apps Script: when a client address is set, both get the email
+PASS Apps Script: a test alert is clearly marked TEST and says nothing is wrong
+PASS Apps Script: an "up" message says Back up
+PASS No em dashes in the monitor files
+
+19 PASS, 0 FAIL

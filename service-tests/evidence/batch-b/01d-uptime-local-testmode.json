@@ -1,0 +1,1 @@
+{"first":[{"site":"TEST broken address","url":"https://straatstudio.co.za/uptime-test-this-page-does-not-exist/","ok":false,"status":404,"error":"HTTP 404","fails":1,"action":"none"}],"second":[{"site":"TEST broken address","url":"https://straatstudio.co.za/uptime-test-this-page-does-not-exist/","ok":false,"status":404,"error":"HTTP 404","fails":2,"action":"alert-sent"}]}

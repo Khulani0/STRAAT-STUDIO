@@ -1,0 +1,1 @@
+2026-11-28T12:04:11.858Z POST {"secret":"(hidden)","type":"down","test":true,"site":"TEST broken address","url":"https://straatstudio.co.za/uptime-test-this-page-does-not-exist/","fails":2,"status":404,"error":"HTTP 404","time":"2026-11-28T12:04:11.855Z"}

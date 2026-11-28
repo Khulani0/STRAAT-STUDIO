@@ -1,0 +1,19 @@
+MADE-UP DATA, FAKE GOOGLE SERVICES. This is the email monthlyReport() produces for 12 made-up enquiries.
+Note: the month label here (2026-09) is a limit of the test fake, which formats dates in UTC. On real Google, Utilities.formatDate with MMMM yyyy gives the month name, for example October 2026.
+
+To: owner@example.test
+From name: Test Electrical enquiries
+Subject: Enquiries report: 2026-09
+
+Test Electrical: enquiries report for 2026-09
+
+Enquiries received: 12
+Quotes sent: 6 (rows now marked Quote sent or Won)
+Won: 3
+Lost: 2
+Still New or Contacted: 4
+
+Top jobs: COC certificate (5), Fault finding (3), DB board upgrade (2), Other (1), Solar (1)
+Top areas: Rylands (5), Athlone (4), Bellville (2), Other (1)
+
+Counts use each enquiry's current Status. Website visits are in your Cloudflare Web Analytics report.
