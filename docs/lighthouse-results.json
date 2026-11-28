@@ -7,7 +7,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "20 ms"
  },
  {
   "page": "/prices/",
@@ -17,7 +17,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "10 ms"
+  "tbt": "70 ms"
  },
  {
   "page": "/websites-for-electricians/",
@@ -27,7 +27,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "50 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/websites-for-plumbers/",
@@ -37,7 +37,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "50 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/websites-for-salons/",
@@ -47,7 +47,7 @@
   "seo": 100,
   "lcp": "0.9 s",
   "cls": "0",
-  "tbt": "40 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/websites-for-home-bakers/",
@@ -67,7 +67,7 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "40 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/examples/fazilas-kitchen/",
@@ -77,7 +77,7 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "50 ms"
  },
  {
   "page": "/examples/thandeka-hair-studio/",
@@ -87,7 +87,7 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "70 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/examples/ndlovu-electrical/",
@@ -97,7 +97,7 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "70 ms"
+  "tbt": "0 ms"
  },
  {
   "page": "/enquiry-system/",
@@ -117,6 +117,6 @@
   "seo": 100,
   "lcp": "0.8 s",
   "cls": "0",
-  "tbt": "0 ms"
+  "tbt": "30 ms"
  }
 ]

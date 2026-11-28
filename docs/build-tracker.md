@@ -90,6 +90,15 @@ DONE means built and passing the tests in `docs/test-report.md`. Branch: `stage-
 | D3 | straat-studio.pages.dev and www redirect to the custom domain | DONE | Pages Function in functions/_middleware.ts, tested on the real hosts. |
 | D4 | Claims audit of services not yet built or tested | DONE (report only) | docs/claims-audit.md. No site wording changed. |
 
+## Fix round 1 (28 November 2026)
+
+| Item | What | Status | Notes |
+| --- | --- | --- | --- |
+| F1 | Catalogue marked Coming soon, button Ask on WhatsApp | DONE | PriceCard, TradePage, packages.ts, home, /prices/, /websites/, home bakers page, terms. |
+| F2 | Two sample posts rewritten | DONE | service-tests/posts-sample-month, 14 and 16 December. |
+| F3 | _routes.json so the redirect function skips assets | DONE | public/_routes.json |
+| F4 | service-tests merged into the branch, not published | DONE | Lives at the repo root, outside public/ and src/. |
+
 ## Needs your decision
 
 0. **Claims audit.** Read docs/claims-audit.md and tell me what to change or hold back.

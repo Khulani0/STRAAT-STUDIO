@@ -142,3 +142,13 @@ Merged one-address into main (fast-forward, 02531b1). Tested on the real hosts a
 Lighthouse mobile on the live domain (performance / accessibility / best practices / SEO): / 92/100/100/100 (LCP 1.6 s, CLS 0), /prices/ 99/100/100/100 (LCP 1.3 s, CLS 0). The home page performance is under the 95 target on this run.
 
 Claims audit: see docs/claims-audit.md (report only).
+
+## Fix round 1 (28 November 2026, branch fix-round-1)
+
+- Catalogue marked Coming soon (label and Ask on WhatsApp button) on the home page, /prices/, /websites/, /websites-for-home-bakers/ and /terms/. The Fazila's Kitchen concept project is unchanged.
+- Two sample posts rewritten (service-tests/posts-sample-month, 14 and 16 December) so they no longer mention untested services.
+- public/_routes.json: the redirect function now runs only for page requests. Excluded: /_astro/*, /brand/*, /fonts/*, /og/*, /work/*, /favicon.svg.
+- Local Host-header test (wrangler pages dev, no login): straat-studio.pages.dev and www.straatstudio.co.za give 301 to https://straatstudio.co.za with the same path and query for /, /prices/ and /examples/?x=1. On the same two hosts /brand/logo.svg, /fonts/inter.woff2, /og/straat-studio-share.jpg, /work/ndlovu-desktop-800.webp and /favicon.svg return 200. The apex, a branch preview host and localhost return 200 for pages and assets. /robots.txt and /sitemap.xml on a redirect host still give 301.
+- Build no warnings (19 pages). Link check: 56 distinct links, zero broken. axe: 0 violations on all 19 pages at 375 and 1280 px (includes /, /prices/ and /websites/). No sideways scroll.
+- Lighthouse mobile (local): / 100/100/100/100 (LCP 0.9 s, CLS 0), /prices/ 100/100/100/100 (LCP 0.9 s, CLS 0).
+- service-tests/ is merged into this branch and is not in public/ or the Astro output: dist has no service-tests files.

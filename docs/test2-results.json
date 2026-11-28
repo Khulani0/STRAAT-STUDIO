@@ -79,7 +79,7 @@
   },
   {
    "page": "/websites/",
-   "kb": 106,
+   "kb": 107,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
@@ -157,7 +157,7 @@
   },
   {
    "page": "/websites-for-home-bakers/",
-   "kb": 105,
+   "kb": 106,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
@@ -220,7 +220,7 @@
    "PASS"
   ],
   [
-   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9006 ms (must be 6000 ms or more)",
+   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9008 ms (must be 6000 ms or more)",
    "PASS"
   ],
   [
