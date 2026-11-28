@@ -133,9 +133,9 @@ const jsonLd = [
     <div class="wrap">
       <div class="head" data-reveal><SectionLabel>Monthly plans</SectionLabel><h2 id="mon-h">Optional, and you can cancel any time.</h2><p class="lead">Your website stays yours either way.</p></div>
       <div class="grid g3">
-        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></Card>
-        <Card title={m.leads.name} icon="bell"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p></Card>
-        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></Card>
+        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups and 1 small change a month. From year 2, hosting and your domain are included. Set up after your site goes live.</p></Card>
+        <Card title={m.leads.name} icon="bell"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply by email (only when the customer gives an email address) and a monthly report. Set up after your site goes live.</p></Card>
+        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter, written and added by hand. <span class="pill soon">Coming soon</span> Set up after your site goes live.</p></Card>
       </div>
       <p class="small muted" style="margin-top:20px">Without a plan, hosting and your domain cost {R(prices.year2HostingAndDomain)} a year from year 2. With Straat Care at {R(m.care.price)} a month, they are included.</p>
     </div>
@@ -148,7 +148,7 @@ const jsonLd = [
         <div class="builder-l">
           <fieldset style="margin-top:0"><legend>1. Your website</legend><div class="opts">
             {[w.onePage, w.business, w.catalogue, w.launchPack].map((p, i) => (
-              <label class="opt"><input type="radio" name="b-site" value={p.price} data-name={p === w.catalogue ? 'Catalogue (coming soon)' : p.name} checked={i === 1} /><span>{p.name} {R(p.price)}{p === w.catalogue ? ' (coming soon)' : ''}</span></label>
+              <label class={`opt${p === w.catalogue ? ' is-off' : ''}`}><input type="radio" name="b-site" disabled={p === w.catalogue} value={p.price} data-name={p === w.catalogue ? 'Catalogue (coming soon)' : p.name} checked={i === 1} /><span>{p.name} {R(p.price)}{p === w.catalogue ? ' (coming soon)' : ''}</span></label>
             ))}
           </div></fieldset>
           <fieldset><legend>2. Monthly plan (optional)</legend><div class="opts">

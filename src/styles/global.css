@@ -340,3 +340,7 @@ h3 { font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.015em; line-h
 
 /* Coming soon label on the Catalogue package */
 .pill.soon { background: var(--navy); color: #fff; }
+
+.opt.is-off { opacity: .6; cursor: not-allowed; background: var(--grey); }
+.opt input:disabled { cursor: not-allowed; }
+.plain-email { user-select: all; overflow-wrap: anywhere; }
