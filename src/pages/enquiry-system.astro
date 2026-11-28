@@ -26,7 +26,7 @@ const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'Service', name: 'Straat Leads enquiry alerts',
     provider: { '@type': 'ProfessionalService', name: 'Straat Studio', url: 'https://straatstudio.co.za' },
     areaServed: { '@type': 'Country', name: 'South Africa' },
-    description: 'A quote form on your website, an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.',
+    description: 'A quote form on your website, an email alert to you for each enquiry, an automatic reply by email (only when the customer gives an email address) and a monthly report.',
     offers: { '@type': 'Offer', price: String(m.leads.price), priceCurrency: 'ZAR' } },
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
 ];
@@ -34,7 +34,7 @@ const jsonLd = [
 
 <BaseLayout
   title="Enquiry alerts for quote requests | Straat Studio"
-  description="Straat Leads: a quote form, an email alert for each enquiry, an automatic reply to the customer and a monthly report. R249 a month."
+  description="Straat Leads: a quote form, an email alert for each enquiry, an automatic email reply and a monthly report. R249 a month."
   path="/enquiry-system/"
   breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Enquiry alerts', path: '/enquiry-system/' }]}
   jsonLd={jsonLd}
@@ -54,7 +54,7 @@ const jsonLd = [
       <ol class="steps" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
         <ProcessStep n={1} icon="quote" title="The customer fills in your quote form" you="the job, suburb, phone number, photos and an optional email address">Your form sits on your website, so the request arrives in one tidy message.</ProcessStep>
         <ProcessStep n={2} icon="bell" title="You get an email alert" you="an email for each enquiry, with the details the customer gave">For example: New enquiry: DB board upgrade, Rylands, photos added.</ProcessStep>
-        <ProcessStep n={3} icon="mail" title="The customer gets an automatic reply" you="a monthly report of the enquiries that came in">For example: Thank you, Ndlovu Electrical has your request.</ProcessStep>
+        <ProcessStep n={3} icon="mail" title="The customer gets an automatic reply by email" you="a monthly report of the enquiries that came in">For example: Thank you, Ndlovu Electrical has your request.</ProcessStep>
       </ol>
     </div>
   </section>
@@ -65,7 +65,7 @@ const jsonLd = [
       <div class="grid g4">
         <Card icon="quote" title="A quote form"><p>Job, suburb, phone number, photos and an optional email address.</p></Card>
         <Card icon="bell" title="An email alert"><p>An email alert to you for each enquiry.</p></Card>
-        <Card icon="mail" title="An automatic reply"><p>The customer gets an automatic reply.</p></Card>
+        <Card icon="mail" title="An automatic reply"><p>Sent by email, and only when the customer gives an email address. Every customer sees an on-screen thank-you either way.</p></Card>
         <Card icon="chart" title="A monthly report"><p>A report of your enquiries, sent to you every month.</p></Card>
       </div>
     </div>
@@ -86,9 +86,9 @@ const jsonLd = [
     <div class="wrap">
       <div class="head" data-reveal><SectionLabel>Price</SectionLabel><h2 id="price-h">Pick the monthly plan that fits.</h2><p class="lead">Optional, and you can cancel any time.</p></div>
       <div class="grid g3">
-        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></Card>
-        <Card title={m.leads.name} icon="bell" class="price-card featured"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p></Card>
-        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></Card>
+        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups and 1 small change a month. From year 2, hosting and your domain are included. Set up after your site goes live.</p></Card>
+        <Card title={m.leads.name} icon="bell" class="price-card featured"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply by email (only when the customer gives an email address) and a monthly report. Set up after your site goes live.</p></Card>
+        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter, written and added by hand. <span class="pill soon">Coming soon</span> Set up after your site goes live.</p></Card>
       </div>
     </div>
   </section>

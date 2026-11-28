@@ -25,7 +25,7 @@ const faqs = [
   ['Can I ask for changes to the free preview?', `The preview shows our design for your business. Changes start once you approve it and pay: One-Page is paid in full, Business and Catalogue pay half. Every package then includes 2 rounds of changes, each sent as one list. Extra changes during the build are ${R(prices.extraChangeDuringBuild)} each.`],
   ['Do you only work in Cape Town?', 'No. We are based in Cape Town and work with businesses all over South Africa. Everything happens on WhatsApp, email and online forms, so you never need to visit us.'],
   ['Will I come up on Google?', 'Every site is built with search in mind: one page per service, your towns and suburbs in the titles, and a Google Business Profile linked to it. Nobody can promise a ranking, and we do not.'],
-  ['Who looks after backups and updates?', `Backups, uptime checks and small changes come with Straat Care from ${R(m.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
+  ['Who looks after backups and updates?', `Backups and small changes come with Straat Care from ${R(m.care.price)} a month. Without a plan, the site is yours to run and a single change after launch is ${R(prices.singleChangeAfterLaunch)}.`],
   ['Can I edit the website myself?', `Catalogue websites only: you edit your own product names, descriptions and prices in your product sheet, and the site refreshes within minutes. We change everything else on the site (pages, text, photos and our package prices): send a WhatsApp and it is done within 48 hours. Straat Care includes one small change a month, and a single change without a plan is ${R(prices.singleChangeAfterLaunch)}. Your site is made of plain files, so any developer can take it over.`],
   ['Do I get a business email address?', `An address like info@yourbusiness.co.za can forward to your Gmail at no charge. If you want a full mailbox to send and receive from, we can set one up for ${R(x.mailbox.price)}, and you pay the email provider directly each month.`],
 ];
@@ -144,9 +144,9 @@ const jsonLd = [
         <p class="lead">Cancel any time. Your website stays yours either way.</p>
       </div>
       <div class="grid g3">
-        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups, uptime checks and 1 small change a month. From year 2, hosting and your domain are included.</p></Card>
-        <Card title={m.leads.name} icon="bell"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply to the customer and a monthly report.</p></Card>
-        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter.</p></Card>
+        <Card title={m.care.name} icon="shield"><p class="amt-sm">{R(m.care.price)} <small>a month</small></p><p>Backups and 1 small change a month. From year 2, hosting and your domain are included. Set up after your site goes live.</p></Card>
+        <Card title={m.leads.name} icon="bell"><p class="amt-sm">{R(m.leads.price)} <small>a month</small></p><p>Everything in Care, plus an email alert to you for each enquiry, an automatic reply by email (only when the customer gives an email address) and a monthly report. Set up after your site goes live.</p></Card>
+        <Card title={m.growth.name} icon="chart"><p class="amt-sm">{R(m.growth.price)} <small>a month</small></p><p>Everything in Leads, plus 2 Google posts a month and a new service or area page every quarter, written and added by hand. <span class="pill soon">Coming soon</span> Set up after your site goes live.</p></Card>
       </div>
       <div class="actions"><Button href="/prices/">See every price and build your package</Button></div>
     </div>
@@ -161,7 +161,7 @@ const jsonLd = [
         <ul class="ticks" style="margin-top:24px">
           <li><Icon name="check" />A quote form: job, suburb, phone, photos and an optional email</li>
           <li><Icon name="check" />An email alert to you for each enquiry</li>
-          <li><Icon name="check" />An automatic reply to the customer</li>
+          <li><Icon name="check" />An automatic reply by email (only when the customer gives an email address)</li>
           <li><Icon name="check" />A monthly report</li>
         </ul>
         <div class="actions"><Button href="/enquiry-system/">See how enquiry alerts work</Button></div>
