@@ -85,13 +85,13 @@
   },
   {
    "page": "/enquiry-system/",
-   "kb": 101,
+   "kb": 102,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
   {
    "page": "/prices/",
-   "kb": 117,
+   "kb": 118,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
@@ -133,7 +133,7 @@
   },
   {
    "page": "/contact/",
-   "kb": 96,
+   "kb": 97,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   },
@@ -181,7 +181,7 @@
   },
   {
    "page": "/404.html",
-   "kb": 90,
+   "kb": 91,
    "largestImage": "/brand/logo-light.svg 7 KB",
    "jsKb": 0
   }
@@ -220,7 +220,7 @@
    "PASS"
   ],
   [
-   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9008 ms (must be 6000 ms or more)",
+   "Demo loop steps over 22 s: 0,0,1,2,3,0,1,2,3,0,1,2; loop length 9012 ms (must be 6000 ms or more)",
    "PASS"
   ],
   [

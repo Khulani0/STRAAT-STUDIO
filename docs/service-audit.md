@@ -38,3 +38,7 @@ True means it matches what is built and tested. "True in tests" means it works a
 | "2 Google posts a month and a new service or area page every quarter" (Straat Growth) | Home, /prices/, /enquiry-system/ | Not true today. Not built. |
 | Phone mock-up (quote form, email alert, automatic reply) | Home, /enquiry-system/, trade pages | True as a picture of the designed flow, labelled "Example with made-up data". The real alert subject is "New enquiry: JOB, AREA" with no "photos added", so the made-up card is richer than the real email. |
 | "A monthly report of the enquiries that came in" | /enquiry-system/ step 3 | Same as the monthly report above. |
+
+## Update, launch-polish branch (28 November 2026)
+
+Site wording now matches this audit: "uptime checks" removed everywhere; the automatic reply is described as an email sent only when the customer gives an email address; Straat Growth is labelled "Coming soon" and written as done by hand; Care and Leads say "Set up after your site goes live". The Catalogue option in the price builder is disabled. The old WhatsApp number in /home/sojama/straatos was replaced with 27846946588.
