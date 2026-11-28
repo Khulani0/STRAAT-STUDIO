@@ -21,7 +21,7 @@ export function problemsWith(p) {
   const w = wordsOf(p);
   if (w < MIN_WORDS) e.push(`only ${w} words of original text, minimum ${MIN_WORDS}`);
   const all = JSON.stringify(p).toLowerCase();
-  if (all.includes('—') || all.includes('–')) e.push('contains an em dash or en dash');
+  if (all.includes('\u2014') || all.includes('\u2013')) e.push('contains an em dash or en dash');
   for (const b of BANNED) if (new RegExp('\\b' + b.replace(/\./g, '\\.') + '\\b').test(all)) e.push(`contains the banned claim "${b}"`);
   if (/\bR\s?\d/.test(JSON.stringify(p)) && !p.pricesChecked) e.push('mentions a price: set "pricesChecked": true after checking it against src/config/business.ts');
   return e;
